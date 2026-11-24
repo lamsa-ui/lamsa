@@ -194,3 +194,32 @@ for (const [name, css] of Object.entries(TEXT_STRESS)) {
     });
   }
 }
+
+// WCAG 1.4.10: at 320 CSS pixels wide (400% zoom on a 1280 screen) nothing scrolls sideways.
+for (const route of ROUTES) {
+  test(`reflow at 320px /${route}: no sideways scroll`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await openDocs(page, route);
+    const width = await page.evaluate(
+      () => document.documentElement.scrollWidth - innerWidth,
+    );
+    expect(width).toBeLessThanOrEqual(1);
+  });
+}
+
+test('more contrast: muted text and borders go to full strength', async ({
+  page,
+}) => {
+  await page.emulateMedia({ contrast: 'more' });
+  await openDocs(page, 'components/text-field');
+  const [text, muted, border] = await page.evaluate(() => {
+    const probe = document.createElement('span');
+    document.body.append(probe);
+    return ['--ui-text', '--ui-text-muted', '--ui-border'].map((v) => {
+      probe.style.color = `var(${v})`;
+      return getComputedStyle(probe).color;
+    });
+  });
+  expect(muted).toBe(text);
+  expect(border).toBe(text);
+});

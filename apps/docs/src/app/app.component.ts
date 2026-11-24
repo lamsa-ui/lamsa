@@ -81,9 +81,11 @@ import { NAV } from './shared/nav';
       >
         <ui-icon name="search" size="18px" />
         <span class="doc-search-trigger__label">Search pages</span>
-        <kbd class="doc-search-trigger__shortcut" aria-hidden="true"
-          >Ctrl K</kbd
-        >
+        @if (!onPalettePage()) {
+          <kbd class="doc-search-trigger__shortcut" aria-hidden="true"
+            >Ctrl K</kbd
+          >
+        }
       </button>
       <div class="doc-settings">
         <ng-container
@@ -135,6 +137,7 @@ import { NAV } from './shared/nav';
     <ui-command-palette
       [commands]="pageCommands"
       [(open)]="searchOpen"
+      [shortcut]="onPalettePage() ? null : 'k'"
       title="Search pages"
       placeholder="Search components and pages..."
       emptyLabel="No pages match your search."
@@ -305,6 +308,8 @@ export class AppComponent {
   private readonly injector = inject(Injector);
   private readonly sideNav = viewChild<ElementRef<HTMLElement>>('sideNav');
   protected readonly isHome = signal(false);
+  /** The command palette page has its own Ctrl+K demo, so the site search gives the key up there. */
+  protected readonly onPalettePage = signal(false);
 
   constructor() {
     // Angular's anchor jump ignores CSS scroll-padding, so land headings below the sticky header.
@@ -320,7 +325,9 @@ export class AppComponent {
         takeUntilDestroyed(),
       )
       .subscribe((e) => {
-        this.isHome.set(e.urlAfterRedirects.split(/[?#]/)[0] === '/');
+        const path = e.urlAfterRedirects.split(/[?#]/)[0];
+        this.isHome.set(path === '/');
+        this.onPalettePage.set(path === '/components/command-palette');
         this.navRef?.close();
         afterNextRender(() => this.scrollActiveLinkIntoView(), {
           injector: this.injector,

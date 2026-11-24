@@ -1,6 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "es2022",
+    "importHelpers": false,
     "strict": true,
     "noEmit": true,
     "types": ["vitest/globals"]

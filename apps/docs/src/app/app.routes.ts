@@ -513,5 +513,12 @@ export const appRoutes: Route[] = [
         (m) => m.AccessibilityComponent,
       ),
   },
+  {
+    path: 'accessibility/conformance',
+    loadComponent: () =>
+      import('./pages/conformance.component').then(
+        (m) => m.ConformanceComponent,
+      ),
+  },
   { path: '**', redirectTo: '' },
 ];

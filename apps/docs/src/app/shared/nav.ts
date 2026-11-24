@@ -6,6 +6,7 @@ export const NAV = [
       { path: '/getting-started', label: 'Getting started' },
       { path: '/ai', label: 'Build with AI' },
       { path: '/accessibility', label: 'Accessibility' },
+      { path: '/accessibility/conformance', label: 'Conformance report' },
     ],
   },
   {

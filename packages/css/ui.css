@@ -231,6 +231,16 @@
   font-family: var(--ui-font);
 }
 
+/* More contrast asked for by the system: muted text and borders go to full text strength,
+   and dividers get the border colour, so every edge stands out. */
+@media (prefers-contrast: more) {
+  :root {
+    --ui-text-muted: var(--ui-text);
+    --ui-border: var(--ui-text);
+    --ui-divider: light-dark(#586087, #9fa5c0);
+  }
+}
+
 [data-theme='light'] {
   color-scheme: light;
 }
@@ -1640,6 +1650,34 @@ dialog.ui-dialog::backdrop {
 }
 .ui-progress__bar:indeterminate::-moz-progress-bar {
   background: transparent;
+}
+/* High contrast drops the fill colour, so draw the done part in the text colour. */
+@media (forced-colors: active) {
+  .ui-progress__bar {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .ui-progress__bar::-webkit-progress-bar {
+    background: Canvas;
+  }
+  .ui-progress__bar::-webkit-progress-value {
+    background: CanvasText;
+  }
+  .ui-progress__bar::-moz-progress-bar {
+    background: CanvasText;
+  }
+  .ui-progress__bar:indeterminate {
+    background: linear-gradient(
+        to right,
+        transparent 0 35%,
+        CanvasText 35% 65%,
+        transparent 65%
+      )
+      Canvas;
+    background-size: 250% 100%;
+  }
 }
 @keyframes ui-progress-band {
   from {

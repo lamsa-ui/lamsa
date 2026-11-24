@@ -22,3 +22,37 @@ for (const { route, name } of PAGES) {
     });
   });
 }
+
+// Windows high contrast (forced colours): controls must keep their edges, states and focus ring.
+// The first example of each page, with its first control focused from the keyboard.
+const FORCED = [
+  'checkbox',
+  'switch',
+  'radio-group',
+  'segmented-control',
+  'tabs',
+  'button',
+  'text-field',
+  'select',
+  'toggle',
+  'progress',
+];
+
+for (const name of FORCED) {
+  test(`forced colours: ${name}`, async ({ page }) => {
+    await page.emulateMedia({ forcedColors: 'active' });
+    await openDocs(page, `components/${name}`);
+    await page.evaluate(() => document.fonts.ready);
+    const example = page.locator('main .doc-preview').first();
+    await example.scrollIntoViewIfNeeded();
+    const control = example
+      .locator('button, input, [tabindex="0"], [role="tab"]')
+      .first();
+    if (await control.count()) await control.focus();
+    await expect(example).toHaveScreenshot(`forced-${name}.png`, {
+      animations: 'disabled',
+      maxDiffPixelRatio: process.platform === 'linux' ? 0.04 : 0.02,
+      threshold: 0.125,
+    });
+  });
+}

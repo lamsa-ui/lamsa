@@ -1,15 +1,26 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { DocsSettings } from '../shared/docs-settings';
 import { PageComponent } from '../shared/page.component';
 
 @Component({
   selector: 'app-accessibility',
-  imports: [PageComponent],
+  imports: [PageComponent, RouterLink],
   template: `
     <app-page
       title="Accessibility statement"
       lead="Lamsa is built so that everyone can use what is made with it: with a keyboard, a screen reader, high contrast, zoom or a small phone, in Arabic and in English. This page says what we aim for, how we check it, and what is not done yet."
     >
+      <p class="doc-section">
+        <a [routerLink]="[]" fragment="arabic" lang="ar"
+          >اقرأ هذا البيان بالعربية</a
+        >
+        ·
+        <a routerLink="/accessibility/conformance"
+          >Conformance report, criterion by criterion</a
+        >
+      </p>
+
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">What we aim for</h2>
         <ul class="doc-list">
@@ -60,37 +71,48 @@ import { PageComponent } from '../shared/page.component';
           </li>
           <li>
             Motion stops when the system asks for reduced motion, and every
-            control keeps its edges and states in Windows high contrast.
+            control keeps its edges and states in Windows high contrast. When
+            the system asks for more contrast, borders and secondary text go to
+            full text strength.
           </li>
         </ul>
       </section>
 
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">How we check it</h2>
+        <p>Every check below runs on every push, and any failure stops it.</p>
         <ul class="doc-list">
           <li>
-            A contrast test measures every colour pair of both themes; the build
-            fails below the target.
+            A contrast test measures every colour pair of both themes against
+            its target.
           </li>
           <li>
-            On every push, axe-core checks every page of this site in light and
-            dark and in each framework's view, and again with dialogs, menus,
-            popovers, tooltips and toasts open in Angular, React and Vue. Any
-            problem fails the build.
+            axe-core checks every page of this site in light and dark and in
+            each framework's view, and again with dialogs, menus, popovers,
+            tooltips and toasts open in Angular, React and Vue.
           </li>
           <li>
-            Every page is loaded with text at 200% and with the WCAG text
-            spacing override; the build fails if either pushes the page
+            Every page is loaded with text at 200%, with the WCAG text spacing
+            override, and at 320 pixels wide; none of them may push the page
             sideways.
           </li>
           <li>
-            Unit tests check each component's roles, names, states and keys.
+            Browser tests press the keys of each interactive component in the
+            Angular, React and Vue views, in Chromium, Firefox and WebKit.
           </li>
           <li>
-            By hand: keyboard only, Windows high contrast (forced colours), and
-            reflow at 320 pixels wide.
+            Unit tests in each framework check every component's roles, names
+            and states, and the keys of the interactive ones.
+          </li>
+          <li>
+            Screenshots of the main controls in Windows high contrast are
+            compared with approved ones, and the more contrast setting is
+            checked.
           </li>
         </ul>
+        <p>
+          By hand, before each release: a walk through with the keyboard only.
+        </p>
       </section>
 
       <section class="doc-section">
@@ -139,8 +161,110 @@ import { PageComponent } from '../shared/page.component';
           technology.
         </p>
         <p class="doc-muted">
-          Written on <time datetime="2026-11-19">19 November 2026</time>, and
+          Written on <time datetime="2026-11-19">19 November 2026</time>,
+          updated on <time datetime="2026-11-24">24 November 2026</time>, and
           reviewed with every release.
+        </p>
+      </section>
+
+      <section class="doc-section" lang="ar" dir="rtl">
+        <h2 class="ui-heading doc-h2" id="arabic">البيان بالعربية</h2>
+        <p>
+          صُمّمت لمسة ليستطيع الجميع استخدام ما يُبنى بها: بلوحة المفاتيح، أو بقارئ
+          الشاشة، أو بالتباين العالي، أو بالتكبير، أو على هاتف صغير، بالعربية
+          والإنجليزية.
+        </p>
+
+        <h3 class="ui-heading">ما نهدف إليه</h3>
+        <ul class="doc-list">
+          <li>
+            يلتزم كل مكوّن بإرشادات الوصول إلى محتوى الويب
+            <span dir="ltr">(WCAG 2.2)</span> على المستوى AA، في الوضعين الفاتح
+            والداكن، ومن اليسار إلى اليمين ومن اليمين إلى اليسار.
+          </li>
+          <li>
+            يبلغ تباين النص مع خلفيته <span dir="ltr">7:1</span> في الوضعين
+            (المستوى AAA)، وتبلغ الحدود وحلقات التركيز وعناصر التحكم
+            <span dir="ltr">3:1</span>.
+          </li>
+          <li>
+            لا يحمل اللون وحده أي معنى، وكل عنصر تحكم يعمل بلوحة المفاتيح وحدها،
+            والتركيز ظاهر دائمًا.
+          </li>
+          <li>
+            يتبع كل مكوّن نمط WAI-ARIA المناسب، أو يستخدم عنصر HTML الأصلي حين
+            يوجد. وتعرض صفحة كل مكوّن مفاتيحه وما يسمعه مستخدم قارئ الشاشة.
+          </li>
+          <li>
+            لا تقل مساحة اللمس عن <span dir="ltr">24 × 24</span> بكسل، ولا يقل
+            ارتفاع الأزرار والحقول عن 44 بكسل.
+          </li>
+          <li>
+            تتوقف الحركة حين يطلب النظام تقليلها، وتحتفظ عناصر التحكم بحدودها
+            وحالاتها في وضع التباين العالي في ويندوز، ويشتد تباين الحدود والنص
+            الثانوي حين يطلب النظام تباينًا أعلى.
+          </li>
+        </ul>
+
+        <h3 class="ui-heading">كيف نتحقق</h3>
+        <p>تعمل كل هذه الفحوص مع كل رفع للكود، وأي خطأ يوقفه.</p>
+        <ul class="doc-list">
+          <li>يقيس اختبار التباين كل زوج من الألوان في الوضعين.</li>
+          <li>
+            يفحص axe-core كل صفحة من هذا الموقع في الوضعين وفي عرض كل إطار عمل،
+            ثم يفحصها مرة أخرى والنوافذ الحوارية والقوائم والتلميحات والإشعارات
+            مفتوحة.
+          </li>
+          <li>
+            تُفتح كل صفحة بنص مكبّر إلى 200%، وبتباعد النص الذي تحدده WCAG، وبعرض
+            320 بكسل، ولا يجوز أن تحتاج الصفحة إلى تمرير أفقي.
+          </li>
+          <li>
+            تجرّب اختبارات المتصفح مفاتيح كل مكوّن تفاعلي في Angular وReact وVue،
+            على Chromium وFirefox وWebKit.
+          </li>
+          <li>
+            تفحص اختبارات الوحدة أدوار كل مكوّن وأسماءه وحالاته في كل إطار عمل.
+          </li>
+          <li>
+            تُقارن صور لعناصر التحكم الأساسية في وضع التباين العالي بصور معتمدة.
+          </li>
+        </ul>
+
+        <h3 class="ui-heading">ما لم يكتمل بعد</h3>
+        <ul class="doc-list">
+          <li>
+            الاختبار بقارئات شاشة حقيقية: NVDA وJAWS على ويندوز، وVoiceOver على
+            macOS وiOS، وTalkBack على أندرويد، بما فيها الأصوات العربية.
+          </li>
+          <li>
+            لا تظهر التلميحات على شاشات اللمس، فلا تضع فيها شيئًا لا غنى عنه.
+          </li>
+        </ul>
+
+        <h3 class="ui-heading">ما يبقى على تطبيقك</h3>
+        <ul class="doc-list">
+          <li>
+            ضبط <code>lang</code> و<code>dir</code> على عنصر
+            <code>html</code> وتغييرهما مع اللغة؛
+          </li>
+          <li>عنوان خاص لكل صفحة، وعنوان رئيسي واحد فيها؛</li>
+          <li>نص بديل للصور، وتسميات حقيقية للحقول؛</li>
+          <li>
+            الحفاظ على <span dir="ltr">7:1</span> للنص و<span dir="ltr"
+              >3:1</span
+            >
+            للحدود إن غيّرت الألوان.
+          </li>
+        </ul>
+
+        <h3 class="ui-heading">أخبرنا</h3>
+        <p>
+          إن وجدت شيئًا صعب الاستخدام أو مستحيلًا، فافتح
+          <a href="https://github.com/lamsa-ui/lamsa/issues"
+            >مشكلة على GitHub</a
+          >
+          واذكر المكوّن والمتصفح والتقنية المساعدة التي تستخدمها.
         </p>
       </section>
     </app-page>
