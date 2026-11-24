@@ -1,17 +1,17 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { HomeRippleComponent } from './home-ripple.component';
+import { HomeLayersComponent } from './home-layers.component';
 import { FRAMEWORKS } from '../shared/docs-settings';
 import { COMPONENTS, NAV } from '../shared/nav';
 
 const foundationCount =
   NAV.find((g) => g.title === 'Foundations')?.links.length ?? 0;
 
-/** The landing page: one first screen, the pitch beside the Lamsa mark as a frozen ripple. */
+/** The landing page: one first screen, the pitch beside the library as an exploded model. */
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, HomeRippleComponent],
+  imports: [RouterLink, HomeLayersComponent],
   host: { class: 'doc-home' },
   template: `
     <section class="doc-home__hero" aria-labelledby="home-title">
@@ -65,7 +65,7 @@ const foundationCount =
         </dl>
       </div>
 
-      <app-home-ripple />
+      <app-home-layers />
     </section>
   `,
 })

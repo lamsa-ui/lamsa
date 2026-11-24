@@ -1003,15 +1003,8 @@ ol.doc-list {
   font-variant-numeric: tabular-nums;
 }
 
-/* The mark as a frozen ripple: the dot, ring and arc of the Lamsa mark, each extruded from stacked
-   layers, on a blueprint floor with ripples, orbits and a pin field. Sizes are cqi of
-   the stage. --rx/--rz (tilt, spin) are set per frame by home-ripple.component.
-   --glow (0–1) is the wave a tap sends: it lifts a piece and brightens its layers. */
-@property --glow {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
+/* The home scene: a blueprint floor with ripples and orbits, sized in cqi of the stage.
+   --rx/--rz (tilt, spin) are set per frame by home-layers.component. */
 /* Clip top and bottom only: sideways the floor runs to the window edge, where .doc-layout--home
    clips it. Clipping both ways cut it at the hero's 84rem box on wide screens. */
 .doc-home__hero {
@@ -1148,71 +1141,154 @@ ol.doc-list {
     opacity: 0;
   }
 }
-.doc-ripple__mark {
-  inline-size: 46cqi;
-  block-size: 46cqi;
-  margin: -23cqi 0 0 -23cqi;
+/* The exploded model: four slabs (tokens, ui.css, components, frameworks) stacked over the floor.
+   The model is drawn 40rem wide and scaled to the stage by --k (set by home-layers.component);
+   --open (0–1, from the tilt) sets how far apart the slabs stand. */
+.doc-layers {
+  --gap: calc(1.5rem + var(--open, 0.6) * 6rem);
+  inline-size: 26rem;
+  block-size: 19rem;
+  margin: -9.5rem 0 0 -13rem;
   transform-style: preserve-3d;
-}
-.doc-ripple__piece,
-.doc-ripple__inner {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-.doc-ripple__inner svg {
-  position: absolute;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  /* Layers are the piece's sides: darker towards the floor, the top layer in full colour. */
-  transform: translateZ(calc(var(--i) * (0.75cqi + var(--glow) * 1.2cqi)));
-  filter: brightness(calc(0.4 + 0.6 * var(--i) / var(--n) + var(--glow) * 0.3));
-}
-.doc-ripple__inner svg:last-child {
-  filter: brightness(calc(1 + var(--glow) * 0.25));
-}
-/* The pin field, one pin per component: each pin is a dot on the floor and a cap held above it. --wave is the ripple
-   running out from the mark, --glow the one a tap sends; both raise the cap and turn it blue. */
-@property --wave {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-.doc-pin {
-  --lift: calc(var(--wave) * 3 + var(--glow) * 7);
-  transform-style: preserve-3d;
-  transform: translate(calc(var(--x) * 1cqi), calc(var(--y) * 1cqi));
+  transform: scale(var(--k, 1));
   pointer-events: none;
 }
-.doc-pin::before,
-.doc-pin::after {
-  content: '';
+.doc-layers__slab {
   position: absolute;
-  inline-size: 2.6cqi;
-  block-size: 2.6cqi;
-  margin: -1.3cqi 0 0 -1.3cqi;
-  border-radius: 0.6cqi;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-surface);
+  box-shadow: 0 1.5rem 3rem -1rem var(--ui-shadow-color);
+  transform: translateZ(calc(1rem + var(--i) * var(--gap)));
+  pointer-events: auto;
 }
-/* The tapped component's pin stays up, in brand red. */
-.doc-pin--picked {
-  --glow: 1;
+/* A tapped part lifts its whole layer and rings it in brand blue. */
+.doc-layers__slab--lifted {
+  border-color: var(--ui-primary);
+  outline: 2px solid var(--ui-primary);
+  transform: translateZ(calc(3rem + var(--i) * var(--gap)));
 }
-.doc-pin--picked::after {
-  background: #dc4b4b;
+.doc-layers__slab--tokens,
+.doc-layers__slab--css {
+  background: color-mix(in srgb, var(--ui-surface) 88%, var(--ui-primary));
 }
-.doc-pin::before {
-  background: var(--ui-border);
-  opacity: 0.6;
+/* The framework layer is glass: the screen shows through it. */
+.doc-layers__slab--frameworks {
+  place-items: stretch;
+  background: color-mix(in srgb, var(--ui-primary) 6%, transparent);
+  border-color: color-mix(in srgb, var(--ui-primary) 60%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(1px);
 }
-.doc-pin::after {
-  background: color-mix(
-    in srgb,
-    var(--ui-primary) min(100%, calc(var(--lift) * 18%)),
-    var(--ui-border)
-  );
-  transform: translateZ(calc((0.8 + var(--lift)) * 1cqi));
-  filter: brightness(calc(0.85 + var(--glow) * 0.35));
+.doc-layers__tag {
+  position: absolute;
+  inset-block-start: var(--ui-space-2);
+  inset-inline-end: var(--ui-space-2);
+  padding: var(--ui-space-0-5) var(--ui-space-2);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-text);
+  color: var(--ui-surface);
+  font: var(--ui-body-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+.doc-layers__tokens {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--ui-space-4);
+  align-items: center;
+  inline-size: 100%;
+}
+.doc-layers__swatches {
+  display: flex;
+  gap: var(--ui-space-2);
+}
+.doc-layers__swatches span {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: var(--ui-radius-md);
+}
+.doc-layers__aa {
+  font: var(--ui-head-2xl);
+  color: var(--ui-text);
+}
+.doc-layers__space {
+  display: grid;
+  gap: var(--ui-space-1);
+}
+.doc-layers__space span {
+  block-size: 0.5rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+.doc-layers__css {
+  margin: 0;
+  inline-size: 100%;
+  color: var(--ui-text);
+  font: 0.875rem/1.6 var(--ui-font-mono);
+  white-space: pre;
+}
+.doc-layers__screen {
+  display: grid;
+  gap: var(--ui-space-3);
+  inline-size: 100%;
+}
+.doc-layers__bar,
+.doc-layers__filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+}
+.doc-layers__filters .ui-input {
+  flex: 1;
+}
+.doc-layers__screen .ui-table td {
+  padding-block: var(--ui-space-1-5);
+}
+.doc-layers__glass {
+  display: grid;
+  align-content: space-between;
+  block-size: 100%;
+}
+.doc-layers__tabs {
+  display: flex;
+  gap: var(--ui-space-1);
+  justify-self: start;
+  padding: var(--ui-space-1);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+}
+.doc-layers__tabs span {
+  padding: var(--ui-space-1) var(--ui-space-3);
+  border-radius: var(--ui-radius-full);
+  color: var(--ui-text);
+  font: var(--ui-body-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+.doc-layers__tabs .doc-layers__tab--on {
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+.doc-layers__code {
+  justify-self: stretch;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-text);
+  color: var(--ui-surface);
+  font: 0.8125rem/1.5 var(--ui-font-mono);
+  overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-layers__slab {
+    transition: transform var(--ui-duration-slow) var(--ui-ease);
+  }
 }
 .doc-ripple__hint {
   margin: 0;
@@ -1228,38 +1304,6 @@ ol.doc-list {
   }
   .doc-ripple__orbit--b {
     animation: doc-ripple-orbit-b 11s linear infinite;
-  }
-  /* The pieces drop onto the floor one after another, then settle. */
-  .doc-ripple__piece {
-    animation: doc-ripple-lock 1.4s var(--ui-ease) backwards;
-  }
-  .doc-ripple__piece--ring {
-    animation-delay: 150ms;
-  }
-  .doc-ripple__piece--dot {
-    animation-delay: 300ms;
-  }
-  .doc-ripple__inner {
-    animation: doc-ripple-breathe 5s ease-in-out infinite alternate;
-  }
-  .doc-ripple__piece--ring .doc-ripple__inner {
-    animation-delay: -1.7s;
-  }
-  .doc-ripple__piece--dot .doc-ripple__inner {
-    animation-delay: -3.4s;
-  }
-  .doc-ripple__piece--arc .doc-ripple__inner {
-    animation:
-      doc-ripple-breathe 5s ease-in-out infinite alternate,
-      doc-ripple-turn 28s linear infinite;
-  }
-  .doc-ripple__inner svg {
-    transition: transform var(--ui-duration-fast) var(--ui-ease);
-  }
-  /* Rings run out at about 150ms per cqi, one every 1.2s: each pin rises as a ring passes it. */
-  .doc-pin {
-    animation: doc-pin-wave 1.2s linear infinite;
-    animation-delay: calc(var(--r) * 150ms - 7.2s);
   }
 }
 @keyframes doc-ripple-run {
@@ -1283,30 +1327,6 @@ ol.doc-list {
 @keyframes doc-ripple-orbit-b {
   to {
     transform: translateZ(8cqi) rotateX(68deg) rotateY(24deg) rotate(360deg);
-  }
-}
-@keyframes doc-ripple-lock {
-  from {
-    translate: 0 0 40cqi;
-  }
-}
-@keyframes doc-ripple-breathe {
-  to {
-    transform: translateZ(1.2cqi);
-  }
-}
-@keyframes doc-ripple-turn {
-  to {
-    rotate: 360deg;
-  }
-}
-@keyframes doc-pin-wave {
-  0%,
-  100% {
-    --wave: 0;
-  }
-  30% {
-    --wave: 1;
   }
 }
 @media (prefers-reduced-motion: reduce) {
