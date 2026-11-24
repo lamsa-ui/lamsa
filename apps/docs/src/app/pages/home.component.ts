@@ -42,6 +42,13 @@ const foundationCount =
           Accessible components for Angular, React, Vue and plain HTML, drawn
           from one stylesheet, in Arabic and English, light and dark.
         </p>
+        <p class="ui-body doc-home__lead">
+          Accessibility comes first, not last: text at 7:1 contrast in both
+          themes, every control usable by keyboard alone, touch targets that
+          meet WCAG 2.2, support for reduced motion and high contrast, and an
+          automated WCAG 2.2 audit on every push.
+          <a routerLink="/accessibility">Read the accessibility statement</a>.
+        </p>
         <div class="doc-home__actions">
           <a
             class="ui-button ui-button--primary ui-button--lg"

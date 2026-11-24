@@ -42,7 +42,23 @@ import { PageComponent } from '../shared/page.component';
               @case ('react') {
                 React components are built on React Aria.
               }
+              @case ('vue') {
+                Vue overlays, menus, dates and trees are built on Reka UI.
+              }
+              @case ('html') {
+                Plain HTML gives you the classes and the markup; the keyboard
+                script for tabs, menus and other widgets is yours to add, as
+                each page says.
+              }
             }
+          </li>
+          <li>
+            Touch targets are at least 24 by 24 pixels, the WCAG 2.2 minimum,
+            and buttons and fields are 44 pixels tall or more.
+          </li>
+          <li>
+            Motion stops when the system asks for reduced motion, and every
+            control keeps its edges and states in Windows high contrast.
           </li>
         </ul>
       </section>
@@ -77,6 +93,11 @@ import { PageComponent } from '../shared/page.component';
             VoiceOver on macOS and iOS, TalkBack on Android, including Arabic
             voices. Automated checks catch only part of what a screen reader
             user meets.
+          </li>
+          <li>
+            The audit with dialogs, menus and popups open covers the Angular and
+            HTML views only. React and Vue pages are audited in their resting
+            state.
           </li>
           <li>
             Tooltips never show on touch screens, so nothing needed may live
