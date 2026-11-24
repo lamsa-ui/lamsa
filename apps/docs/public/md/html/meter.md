@@ -1,10 +1,10 @@
 # Meter
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A level inside a known range: storage used, a plan's limit, a score. It is not work in progress, that is Progress. The value is written next to the label, so the tone colour only repeats what the words say.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/meter
+Docs: https://ghazal-ui.github.io/ghazal/components/meter
 
 ```html
 <div class="ui-meter">…<div class="ui-meter__bar" role="meter">…</div></div>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/meter
 
 When to use something else:
 
-- Work that is still going, such as an upload: [Progress](https://lamsa-ui.github.io/lamsa/components/progress)
-- One number and how it changed: [Stat](https://lamsa-ui.github.io/lamsa/components/stat)
-- A value the reader sets: [Slider](https://lamsa-ui.github.io/lamsa/components/slider)
+- Work that is still going, such as an upload: [Progress](https://ghazal-ui.github.io/ghazal/components/progress)
+- One number and how it changed: [Stat](https://ghazal-ui.github.io/ghazal/components/stat)
+- A value the reader sets: [Slider](https://ghazal-ui.github.io/ghazal/components/slider)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

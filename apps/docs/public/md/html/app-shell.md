@@ -1,10 +1,10 @@
 # App shell
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/app-shell
+Docs: https://ghazal-ui.github.io/ghazal/components/app-shell
 
 ```html
 <div class="ui-shell">
@@ -18,8 +18,8 @@ Docs: https://lamsa-ui.github.io/lamsa/components/app-shell
 
 When to use something else:
 
-- Links in a side bar only, inside your own layout: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Show where the page sits in the site: [Breadcrumbs](https://lamsa-ui.github.io/lamsa/components/breadcrumbs)
+- Links in a side bar only, inside your own layout: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Show where the page sits in the site: [Breadcrumbs](https://ghazal-ui.github.io/ghazal/components/breadcrumbs)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
@@ -49,7 +49,7 @@ This preview is narrower than 64rem, so the side bar starts folded. Press Menu. 
       aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
       <i class="ui-icon ui-icon-menu"></i>
     </button>
-    <a class="ui-shell__brand" href="/">Lamsa</a>
+    <a class="ui-shell__brand" href="/">Ghazal</a>
   </header>
   <div class="ui-shell__body">
     <div class="ui-shell__sidebar" id="sidebar">

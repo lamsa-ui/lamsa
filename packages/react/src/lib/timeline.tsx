@@ -1,4 +1,4 @@
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import { cx } from './class-names.js';
 import { Icon } from './icon.js';
 import { useUiLabels } from './labels.js';

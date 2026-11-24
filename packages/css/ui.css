@@ -1,7 +1,7 @@
 /*
- * @lamsa-ui/css — the Lamsa design system: fonts, tokens, component styles.
+ * @ghazal-ui/css — the Ghazal design system: fonts, tokens, component styles.
  *
- * Source of every value: the Lamsa palette (colour, type). Product UI needs shades the brand
+ * Source of every value: the Ghazal palette (colour, type). Product UI needs shades the brand
  * book doesn't name, so each one below is the brand colour itself, or the brand colour darkened
  * or lightened along its own hue until it reaches 7:1 for small text. Status colours (success,
  * warning) are not brand colours; they are chosen to pass 7:1 and to stay clear of brand red.
@@ -4867,7 +4867,7 @@ dialog.ui-dialog::backdrop {
 }
 
 /* Icon: draws in the text colour, sized from the font. <ui-icon> and <Icon> render an svg inside it;
-   <i class="ui-icon ui-icon-search"> uses the masks from @lamsa-ui/icons/icons.css. */
+   <i class="ui-icon ui-icon-search"> uses the masks from @ghazal-ui/icons/icons.css. */
 .ui-icon {
   inline-size: var(--ui-icon-size, 1.25em);
   block-size: var(--ui-icon-size, 1.25em);

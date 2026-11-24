@@ -1,10 +1,10 @@
 # Stepper
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A flow split into steps, such as checkout. Each step holds its own content, and the stepper shows the current one with Back and Next under it. The step names are buttons, so people can go back. Done steps have a tick and are read as Done, the current one is announced as the current step, and focus moves to the new step's content after each change.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/stepper
+Docs: https://ghazal-ui.github.io/ghazal/components/stepper
 
 ```html
 <div class="ui-stepper">
@@ -16,9 +16,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/stepper
 
 When to use something else:
 
-- Views the reader can open in any order: [Tabs](https://lamsa-ui.github.io/lamsa/components/tabs)
-- Pages of a list: [Pagination](https://lamsa-ui.github.io/lamsa/components/pagination)
-- What happened to a request, in time order: [Timeline](https://lamsa-ui.github.io/lamsa/components/timeline)
+- Views the reader can open in any order: [Tabs](https://ghazal-ui.github.io/ghazal/components/tabs)
+- Pages of a list: [Pagination](https://ghazal-ui.github.io/ghazal/components/pagination)
+- What happened to a request, in time order: [Timeline](https://ghazal-ui.github.io/ghazal/components/timeline)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

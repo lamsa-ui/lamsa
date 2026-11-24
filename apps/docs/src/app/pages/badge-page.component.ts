@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BadgeComponent } from '@lamsa-ui/angular';
+import { BadgeComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -47,9 +47,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class BadgePageComponent {
   protected readonly usage = {
-    angular: `import { BadgeComponent } from '@lamsa-ui/angular';`,
-    react: `import { Badge } from '@lamsa-ui/react';`,
-    vue: `import { Badge } from '@lamsa-ui/vue';`,
+    angular: `import { BadgeComponent } from '@ghazal-ui/angular';`,
+    react: `import { Badge } from '@ghazal-ui/react';`,
+    vue: `import { Badge } from '@ghazal-ui/vue';`,
     html: `<span class="ui-badge ui-badge--success">Paid</span>`,
   };
 

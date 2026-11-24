@@ -59,16 +59,16 @@ function write(key: string, value: string): void {
 @Injectable({ providedIn: 'root' })
 export class DocsSettings {
   readonly framework = signal<Framework>(
-    read('lamsa:framework', FRAMEWORKS, 'angular'),
+    read('ghazal:framework', FRAMEWORKS, 'angular'),
   );
-  readonly theme = signal<Theme>(read('lamsa:theme', THEMES, 'system'));
+  readonly theme = signal<Theme>(read('ghazal:theme', THEMES, 'system'));
 
   constructor() {
     const root = inject(DOCUMENT).documentElement;
-    effect(() => write('lamsa:framework', this.framework()));
+    effect(() => write('ghazal:framework', this.framework()));
     effect(() => {
       const theme = this.theme();
-      write('lamsa:theme', theme);
+      write('ghazal:theme', theme);
       if (theme === 'system') delete root.dataset['theme'];
       else root.dataset['theme'] = theme;
     });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AvatarComponent } from '@lamsa-ui/angular';
+import { AvatarComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -60,9 +60,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class AvatarPageComponent {
   protected readonly usage = {
-    angular: `import { AvatarComponent } from '@lamsa-ui/angular';`,
-    react: `import { Avatar } from '@lamsa-ui/react';`,
-    vue: `import { Avatar } from '@lamsa-ui/vue';`,
+    angular: `import { AvatarComponent } from '@ghazal-ui/angular';`,
+    react: `import { Avatar } from '@ghazal-ui/react';`,
+    vue: `import { Avatar } from '@ghazal-ui/vue';`,
     html: `<span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>`,
   };
 

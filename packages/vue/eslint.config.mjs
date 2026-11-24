@@ -15,7 +15,7 @@ export default [
             '{projectRoot}/vite.config*.{js,ts,mjs,mts}',
             '{projectRoot}/src/**/*.spec.ts',
           ],
-          ignoredDependencies: ['@lamsa-ui/css'],
+          ignoredDependencies: ['@ghazal-ui/css'],
         },
       ],
     },

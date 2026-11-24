@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { IconComponent, ToggleComponent } from '@lamsa-ui/angular';
+import { IconComponent, ToggleComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -60,9 +60,9 @@ export class TogglePageComponent {
   protected readonly liked = signal(true);
 
   protected readonly usage = {
-    angular: `import { ToggleComponent } from '@lamsa-ui/angular';`,
-    react: `import { Toggle } from '@lamsa-ui/react';`,
-    vue: `import { Toggle } from '@lamsa-ui/vue';`,
+    angular: `import { ToggleComponent } from '@ghazal-ui/angular';`,
+    react: `import { Toggle } from '@ghazal-ui/react';`,
+    vue: `import { Toggle } from '@ghazal-ui/vue';`,
     html: `<button class="ui-button ui-button--secondary ui-button--md ui-toggle" type="button" aria-pressed="false">Pin order</button>`,
   };
 

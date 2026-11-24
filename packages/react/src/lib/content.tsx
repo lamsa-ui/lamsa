@@ -5,7 +5,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from './class-names.js';
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import { Icon } from './icon.js';
 import { useUiLabels } from './labels.js';
 

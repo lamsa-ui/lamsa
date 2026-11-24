@@ -217,7 +217,7 @@ describe('AppShell', () => {
     const { container } = render(
       <AppShell
         landmarks={false}
-        brand={<span>Lamsa</span>}
+        brand={<span>Ghazal</span>}
         sidebar={
           <nav aria-label="Main">
             <a href="#orders">Orders</a>

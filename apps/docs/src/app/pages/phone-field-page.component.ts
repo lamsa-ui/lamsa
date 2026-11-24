@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { PhoneFieldComponent, type PhoneCountry } from '@lamsa-ui/angular';
+import { PhoneFieldComponent, type PhoneCountry } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -73,10 +73,10 @@ export class PhoneFieldPageComponent {
   ];
 
   protected readonly usage = {
-    angular: `import { PhoneFieldComponent, PHONE_COUNTRIES } from '@lamsa-ui/angular';
+    angular: `import { PhoneFieldComponent, PHONE_COUNTRIES } from '@ghazal-ui/angular';
 // The value is an E.164 number such as +201012345678, or null.`,
-    react: `import { PhoneField, PHONE_COUNTRIES } from '@lamsa-ui/react';`,
-    vue: `import { PhoneField, PHONE_COUNTRIES } from '@lamsa-ui/vue';
+    react: `import { PhoneField, PHONE_COUNTRIES } from '@ghazal-ui/react';`,
+    vue: `import { PhoneField, PHONE_COUNTRIES } from '@ghazal-ui/vue';
 // Bind one E.164 number with v-model, or null when empty.`,
     html: `<div class="ui-field ui-phone-field">...</div>`,
   };

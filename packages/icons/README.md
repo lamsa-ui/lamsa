@@ -1,14 +1,14 @@
-# @lamsa-ui/icons
+# @ghazal-ui/icons
 
-Icons for the Lamsa design system. 24 px stroke SVGs that follow the text colour, with arrows and chevrons that flip in right-to-left pages.
+Icons for the Ghazal design system. 24 px stroke SVGs that follow the text colour, with arrows and chevrons that flip in right-to-left pages.
 
 The icons are [Lucide](https://lucide.dev) icons (ISC licence, see `NOTICE`), vendored in `svg/` so the set is ours to change.
 
 ## Use it in plain HTML
 
 ```html
-<link rel="stylesheet" href="node_modules/@lamsa-ui/css/ui.css" />
-<link rel="stylesheet" href="node_modules/@lamsa-ui/icons/icons.css" />
+<link rel="stylesheet" href="node_modules/@ghazal-ui/css/ui.css" />
+<link rel="stylesheet" href="node_modules/@ghazal-ui/icons/icons.css" />
 
 <i class="ui-icon ui-icon-search" role="img" aria-label="Search"></i>
 <i class="ui-icon ui-icon-check ui-icon--lg" aria-hidden="true"></i>
@@ -26,12 +26,12 @@ Icons drawn this way are masks, so they take the current text colour and one str
 <Icon name="search" label="Search" />
 ```
 
-Both come from `@lamsa-ui/angular` and `@lamsa-ui/react`, which depend on this package.
+Both come from `@ghazal-ui/angular` and `@ghazal-ui/react`, which depend on this package.
 
 ## Use the data
 
 ```ts
-import { ICONS, searchIcon, type IconName } from '@lamsa-ui/icons';
+import { ICONS, searchIcon, type IconName } from '@ghazal-ui/icons';
 ```
 
 `ICONS` holds every icon by name. Import a single `xIcon` constant to keep the rest out of your bundle.

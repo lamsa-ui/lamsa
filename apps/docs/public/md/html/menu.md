@@ -1,10 +1,10 @@
 # Menu
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A short list of actions that opens from a button, such as the actions on a row. Enter, Space or the down arrow open it, the arrow keys and typing move through it, and Escape closes it and puts focus back on the button. For choosing a value, use a select.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/menu
+Docs: https://ghazal-ui.github.io/ghazal/components/menu
 
 ```html
 <!-- A menu needs script for the keyboard. Follow the WAI-ARIA menu button pattern with these classes: -->
@@ -17,10 +17,10 @@ Docs: https://lamsa-ui.github.io/lamsa/components/menu
 
 When to use something else:
 
-- The same actions on right-click or a long press: [Context menu](https://lamsa-ui.github.io/lamsa/components/context-menu)
-- Pick a value that a form sends: [Select](https://lamsa-ui.github.io/lamsa/components/select)
-- Links that go to other pages: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Two or three actions that fit on screen: [Button group](https://lamsa-ui.github.io/lamsa/components/button-group)
+- The same actions on right-click or a long press: [Context menu](https://ghazal-ui.github.io/ghazal/components/context-menu)
+- Pick a value that a form sends: [Select](https://ghazal-ui.github.io/ghazal/components/select)
+- Links that go to other pages: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Two or three actions that fit on screen: [Button group](https://ghazal-ui.github.io/ghazal/components/button-group)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

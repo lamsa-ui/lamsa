@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AvatarGroupComponent } from '@lamsa-ui/angular';
+import { AvatarGroupComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -62,9 +62,9 @@ export class AvatarGroupPageComponent {
   protected readonly arabicMore = (count: number) => `${count} آخرون`;
 
   protected readonly usage = {
-    angular: `import { AvatarGroupComponent } from '@lamsa-ui/angular';`,
-    react: `import { AvatarGroup } from '@lamsa-ui/react';`,
-    vue: `import { AvatarGroup } from '@lamsa-ui/vue';`,
+    angular: `import { AvatarGroupComponent } from '@ghazal-ui/angular';`,
+    react: `import { AvatarGroup } from '@ghazal-ui/react';`,
+    vue: `import { AvatarGroup } from '@ghazal-ui/vue';`,
     html: `<div class="ui-avatar-group" role="group" aria-label="Kitchen team">…</div>`,
   };
 

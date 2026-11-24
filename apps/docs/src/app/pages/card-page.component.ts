@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BadgeComponent, CardComponent } from '@lamsa-ui/angular';
+import { BadgeComponent, CardComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -58,9 +58,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class CardPageComponent {
   protected readonly usage = {
-    angular: `import { CardComponent } from '@lamsa-ui/angular';`,
-    react: `import { Card } from '@lamsa-ui/react';`,
-    vue: `import { Card } from '@lamsa-ui/vue';`,
+    angular: `import { CardComponent } from '@ghazal-ui/angular';`,
+    react: `import { Card } from '@ghazal-ui/react';`,
+    vue: `import { Card } from '@ghazal-ui/vue';`,
     html: `<div class="ui-card">...</div>`,
   };
 

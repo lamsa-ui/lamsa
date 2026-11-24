@@ -1,10 +1,10 @@
 # Switch
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 An on or off setting that takes effect at once, with no save button. Screen readers say on and off, and the knob's side shows the state, so it never depends on colour. For a choice saved with a form, use a checkbox.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/switch
+Docs: https://ghazal-ui.github.io/ghazal/components/switch
 
 ```html
 <label class="ui-switch">
@@ -15,8 +15,8 @@ Docs: https://lamsa-ui.github.io/lamsa/components/switch
 
 When to use something else:
 
-- A choice sent with a form: [Checkbox](https://lamsa-ui.github.io/lamsa/components/checkbox)
-- A pressed state in a toolbar, such as bold: [Toggle](https://lamsa-ui.github.io/lamsa/components/toggle)
+- A choice sent with a form: [Checkbox](https://ghazal-ui.github.io/ghazal/components/checkbox)
+- A pressed state in a toolbar, such as bold: [Toggle](https://ghazal-ui.github.io/ghazal/components/toggle)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

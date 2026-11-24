@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { PaginationComponent } from '@lamsa-ui/angular';
+import { PaginationComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -82,9 +82,9 @@ export class PaginationPageComponent {
   };
 
   protected readonly usage = {
-    angular: `import { PaginationComponent } from '@lamsa-ui/angular';`,
-    react: `import { Pagination } from '@lamsa-ui/react';`,
-    vue: `import { Pagination } from '@lamsa-ui/vue';`,
+    angular: `import { PaginationComponent } from '@ghazal-ui/angular';`,
+    react: `import { Pagination } from '@ghazal-ui/react';`,
+    vue: `import { Pagination } from '@ghazal-ui/vue';`,
     html: `<nav class="ui-pagination" aria-label="Pagination">...</nav>`,
   };
 

@@ -1,10 +1,10 @@
 # Alert
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A message in the page, such as a problem with the whole form or a notice about the account. The title says what it is in words; the icon's shape and the colour repeat it. For a note after an action, use a toast; for a question that needs an answer, an alert dialog.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/alert
+Docs: https://ghazal-ui.github.io/ghazal/components/alert
 
 ```html
 <div class="ui-alert ui-alert--success">
@@ -18,9 +18,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/alert
 
 When to use something else:
 
-- Confirm an action that just finished: [Toast](https://lamsa-ui.github.io/lamsa/components/toast)
-- Stop the reader until they decide: [Alert dialog](https://lamsa-ui.github.io/lamsa/components/alert-dialog)
-- Show a status in a row or a card: [Badge](https://lamsa-ui.github.io/lamsa/components/badge)
+- Confirm an action that just finished: [Toast](https://ghazal-ui.github.io/ghazal/components/toast)
+- Stop the reader until they decide: [Alert dialog](https://ghazal-ui.github.io/ghazal/components/alert-dialog)
+- Show a status in a row or a card: [Badge](https://ghazal-ui.github.io/ghazal/components/badge)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

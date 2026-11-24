@@ -4,7 +4,7 @@ import {
   DatePickerComponent,
   TextFieldComponent,
   type DateRange,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -136,11 +136,11 @@ export class DatePickerPageComponent {
   protected readonly stay = signal<DateRange | null>(null);
 
   protected readonly usage = {
-    angular: `import { DatePickerComponent, TextFieldComponent } from '@lamsa-ui/angular';
+    angular: `import { DatePickerComponent, TextFieldComponent } from '@ghazal-ui/angular';
 // The value is an ISO date (YYYY-MM-DD), or null.
 // For the browser's own date and time pickers, use TextFieldComponent.`,
-    react: `import { DatePicker, TextField } from '@lamsa-ui/react';`,
-    vue: `import { DatePicker, TextField } from '@lamsa-ui/vue';`,
+    react: `import { DatePicker, TextField } from '@ghazal-ui/react';`,
+    vue: `import { DatePicker, TextField } from '@ghazal-ui/vue';`,
     html: `<!-- Without a framework, use a date field: the browser's own picker. -->
 <input class="ui-input" type="date" />`,
   };
@@ -192,7 +192,7 @@ isFriday = (date: string) => new Date(date + 'T00:00:00Z').getUTCDay() === 5;`,
   [(range)]="stay"
 />`,
     react: `import { useState } from 'react';
-import { DatePicker, type DateRange } from '@lamsa-ui/react';
+import { DatePicker, type DateRange } from '@ghazal-ui/react';
 
 const [stay, setStay] = useState<DateRange | null>(null);
 
@@ -205,7 +205,7 @@ const [stay, setStay] = useState<DateRange | null>(null);
   onChange={setStay}
 />`,
     vue: `<script setup lang="ts">
-import { DatePicker, type DateRange } from '@lamsa-ui/vue';
+import { DatePicker, type DateRange } from '@ghazal-ui/vue';
 import { ref } from 'vue';
 
 const stay = ref<DateRange | null>(null);

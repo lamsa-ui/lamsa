@@ -1,10 +1,10 @@
 # Select
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 One choice from a list. Arrow keys, Home and End, and typing the first letters all move through the options; Escape and Tab close the list and return focus.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/select
+Docs: https://ghazal-ui.github.io/ghazal/components/select
 
 ```html
 <select class="ui-input" id="city">...</select>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/select
 
 When to use something else:
 
-- A long list the reader searches: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
-- Two to five options that fit on screen: [Radio group](https://lamsa-ui.github.io/lamsa/components/radio-group)
-- Actions, not values: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- A long list the reader searches: [Combobox](https://ghazal-ui.github.io/ghazal/components/combobox)
+- Two to five options that fit on screen: [Radio group](https://ghazal-ui.github.io/ghazal/components/radio-group)
+- Actions, not values: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

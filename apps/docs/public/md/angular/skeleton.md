@@ -1,19 +1,19 @@
 # Skeleton
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Grey shapes where content is loading, so the page does not jump when it arrives. Screen readers skip the shapes: mark the area busy and say it is loading with a spinner or a status message. With reduced motion the shapes stop pulsing.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/skeleton
+Docs: https://ghazal-ui.github.io/ghazal/components/skeleton
 
 ```ts
-import { SkeletonComponent } from '@lamsa-ui/angular';
+import { SkeletonComponent } from '@ghazal-ui/angular';
 ```
 
 When to use something else:
 
-- Work with a known length: [Progress](https://lamsa-ui.github.io/lamsa/components/progress)
-- A short wait inside a button: [Spinner](https://lamsa-ui.github.io/lamsa/components/spinner)
+- Work with a known length: [Progress](https://ghazal-ui.github.io/ghazal/components/progress)
+- A short wait inside a button: [Spinner](https://ghazal-ui.github.io/ghazal/components/spinner)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

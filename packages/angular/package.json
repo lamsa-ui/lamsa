@@ -1,5 +1,5 @@
 {
-  "name": "@lamsa-ui/angular",
+  "name": "@ghazal-ui/angular",
   "version": "0.0.0",
   "peerDependencies": {
     "@angular/cdk": "^22.2.0",
@@ -11,16 +11,16 @@
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
-  "description": "Accessible Angular 22 components for the Lamsa design system: standalone, signal based, right to left ready. Forms, overlays, navigation, data table, calendar and more, styled by @lamsa-ui/css.",
+  "description": "Accessible Angular 22 components for the Ghazal design system: standalone, signal based, right to left ready. Forms, overlays, navigation, data table, calendar and more, styled by @ghazal-ui/css.",
   "license": "MIT",
-  "author": "Lamsa contributors",
-  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "author": "Ghazal contributors",
+  "homepage": "https://ghazal-ui.github.io/ghazal/",
   "bugs": {
-    "url": "https://github.com/lamsa-ui/lamsa/issues"
+    "url": "https://github.com/ghazal-ui/ghazal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "url": "git+https://github.com/ghazal-ui/ghazal.git",
     "directory": "packages/angular"
   },
   "keywords": [
@@ -40,7 +40,7 @@
     "arabic",
     "dark-mode",
     "design-tokens",
-    "lamsa",
+    "ghazal",
     "ui",
     "components"
   ],
@@ -48,7 +48,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@lamsa-ui/css": "^0.0.0",
-    "@lamsa-ui/icons": "^0.0.0"
+    "@ghazal-ui/css": "^0.0.0",
+    "@ghazal-ui/icons": "^0.0.0"
   }
 }

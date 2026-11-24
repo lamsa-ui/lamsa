@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StatusDotComponent } from '@lamsa-ui/angular';
+import { StatusDotComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -44,9 +44,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class StatusDotPageComponent {
   protected readonly usage = {
-    angular: `import { StatusDotComponent } from '@lamsa-ui/angular';`,
-    react: `import { StatusDot } from '@lamsa-ui/react';`,
-    vue: `import { StatusDot } from '@lamsa-ui/vue';`,
+    angular: `import { StatusDotComponent } from '@ghazal-ui/angular';`,
+    react: `import { StatusDot } from '@ghazal-ui/react';`,
+    vue: `import { StatusDot } from '@ghazal-ui/vue';`,
     html: `<span class="ui-status-dot ui-status-dot--success">Online</span>`,
   };
 

@@ -1,10 +1,10 @@
 # Combobox
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A text field that filters a list as you type, for a long list such as countries. Focus stays in the field: arrow keys move through the matches, Enter picks one and Escape closes the list. The value is always one of the options.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/combobox
+Docs: https://ghazal-ui.github.io/ghazal/components/combobox
 
 ```html
 <!-- A combobox needs script for the keyboard and the list. Use a framework package,
@@ -17,9 +17,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/combobox
 
 When to use something else:
 
-- One choice from fewer than about 10 options: [Select](https://lamsa-ui.github.io/lamsa/components/select)
-- Several values: [Chip input](https://lamsa-ui.github.io/lamsa/components/chip-input)
-- Find a page or run a command from anywhere: [Command palette](https://lamsa-ui.github.io/lamsa/components/command-palette)
+- One choice from fewer than about 10 options: [Select](https://ghazal-ui.github.io/ghazal/components/select)
+- Several values: [Chip input](https://ghazal-ui.github.io/ghazal/components/chip-input)
+- Find a page or run a command from anywhere: [Command palette](https://ghazal-ui.github.io/ghazal/components/command-palette)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

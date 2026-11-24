@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -85,13 +85,13 @@ export class TextFieldPageComponent {
   );
 
   protected readonly usage = {
-    react: `import { TextField } from '@lamsa-ui/react';
+    react: `import { TextField } from '@ghazal-ui/react';
 // Every other prop goes to the input: value, onChange, name, ref,
 // so it works with React Hook Form's register() too.`,
-    vue: `import { TextField } from '@lamsa-ui/vue';
+    vue: `import { TextField } from '@ghazal-ui/vue';
 // Bind it with v-model; every other attribute goes to the input:
 // name, autocomplete, required, maxlength.`,
-    angular: `import { TextFieldComponent } from '@lamsa-ui/angular';
+    angular: `import { TextFieldComponent } from '@ghazal-ui/angular';
 // Works with formControlName, [formControl] and ngModel.`,
     html: `<div class="ui-field">
   <label class="ui-field__label" for="email">Email</label>

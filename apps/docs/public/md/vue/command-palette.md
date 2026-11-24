@@ -1,20 +1,20 @@
 # Command palette
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/command-palette
+Docs: https://ghazal-ui.github.io/ghazal/components/command-palette
 
 ```ts
-import { CommandPalette, type Command } from '@lamsa-ui/vue';
+import { CommandPalette, type Command } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- Pick a value inside a form: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
-- Search the items of one list: [Search field](https://lamsa-ui.github.io/lamsa/components/search-field)
-- A few actions on one thing: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- Pick a value inside a form: [Combobox](https://ghazal-ui.github.io/ghazal/components/combobox)
+- Search the items of one list: [Search field](https://ghazal-ui.github.io/ghazal/components/search-field)
+- A few actions on one thing: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

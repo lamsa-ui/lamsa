@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MeterComponent } from '@lamsa-ui/angular';
+import { MeterComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -70,9 +70,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class MeterPageComponent {
   protected readonly usage = {
-    angular: `import { MeterComponent } from '@lamsa-ui/angular';`,
-    react: `import { Meter } from '@lamsa-ui/react';`,
-    vue: `import { Meter } from '@lamsa-ui/vue';`,
+    angular: `import { MeterComponent } from '@ghazal-ui/angular';`,
+    react: `import { Meter } from '@ghazal-ui/react';`,
+    vue: `import { Meter } from '@ghazal-ui/vue';`,
     html: `<div class="ui-meter">…<div class="ui-meter__bar" role="meter">…</div></div>`,
   };
 

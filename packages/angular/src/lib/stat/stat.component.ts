@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import { IconComponent } from '../icon/icon.component';
 
 export type StatTrend = 'up' | 'down' | 'flat';

@@ -1,10 +1,10 @@
 # Toggle
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A button that stays pressed until it is pressed again. The label stays the same; screen readers hear 'pressed' or 'not pressed', and the look changes in fill and border, not colour alone.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/toggle
+Docs: https://ghazal-ui.github.io/ghazal/components/toggle
 
 ```html
 <button class="ui-button ui-button--secondary ui-button--md ui-toggle" type="button" aria-pressed="false">Pin order</button>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toggle
 
 When to use something else:
 
-- A setting that takes effect at once, such as notifications: [Switch](https://lamsa-ui.github.io/lamsa/components/switch)
-- One of several views, such as grid or list: [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control)
-- An action that happens once, such as Save: [Button](https://lamsa-ui.github.io/lamsa/components/button)
+- A setting that takes effect at once, such as notifications: [Switch](https://ghazal-ui.github.io/ghazal/components/switch)
+- One of several views, such as grid or list: [Segmented control](https://ghazal-ui.github.io/ghazal/components/segmented-control)
+- An action that happens once, such as Save: [Button](https://ghazal-ui.github.io/ghazal/components/button)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

@@ -7,7 +7,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { TagComponent } from '@lamsa-ui/angular';
+import { TagComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -99,9 +99,9 @@ export class TagPageComponent {
   }
 
   protected readonly usage = {
-    angular: `import { TagComponent } from '@lamsa-ui/angular';`,
-    react: `import { Tag } from '@lamsa-ui/react';`,
-    vue: `import { Tag } from '@lamsa-ui/vue';`,
+    angular: `import { TagComponent } from '@ghazal-ui/angular';`,
+    react: `import { Tag } from '@ghazal-ui/react';`,
+    vue: `import { Tag } from '@ghazal-ui/vue';`,
     html: `<span class="ui-tag">Angular</span>`,
   };
 

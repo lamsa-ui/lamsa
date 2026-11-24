@@ -1,19 +1,19 @@
 # Pagination
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Moves through long lists a page at a time. A named navigation landmark: each page button says its number, the current page is marked, and the line of shown rows is announced when it changes.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/pagination
+Docs: https://ghazal-ui.github.io/ghazal/components/pagination
 
 ```ts
-import { Pagination } from '@lamsa-ui/vue';
+import { Pagination } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- Steps of a task: [Stepper](https://lamsa-ui.github.io/lamsa/components/stepper)
-- Where the page sits in the site: [Breadcrumbs](https://lamsa-ui.github.io/lamsa/components/breadcrumbs)
+- Steps of a task: [Stepper](https://ghazal-ui.github.io/ghazal/components/stepper)
+- Where the page sits in the site: [Breadcrumbs](https://ghazal-ui.github.io/ghazal/components/breadcrumbs)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

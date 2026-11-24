@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef, CSSProperties } from 'react';
-import { ICONS, MIRRORED_ICONS, type IconName } from '@lamsa-ui/icons';
+import { ICONS, MIRRORED_ICONS, type IconName } from '@ghazal-ui/icons';
 import { cx } from './class-names.js';
 
 /** sm, md and lg, or any CSS length ('3rem'), or a number of pixels. */

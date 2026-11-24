@@ -20,7 +20,7 @@ async function validatePackage() {
   const manifest = JSON.parse(
     await readFile(join(output, 'package.json'), 'utf8'),
   );
-  assert.equal(manifest.name, '@lamsa-ui/css');
+  assert.equal(manifest.name, '@ghazal-ui/css');
   assert.equal(manifest.style, './ui.css');
 
   for (const file of manifest.files) {

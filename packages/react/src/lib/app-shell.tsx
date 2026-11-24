@@ -35,7 +35,7 @@ export interface AppShellProps {
  * opens over the page; Escape, the shade or following a link closes it again.
  *
  * ```tsx
- * <AppShell brand={<a className="ui-shell__brand" href="/">Lamsa</a>} sidebar={<Nav label="Main">…</Nav>}>
+ * <AppShell brand={<a className="ui-shell__brand" href="/">Ghazal</a>} sidebar={<Nav label="Main">…</Nav>}>
  *   <Outlet />
  * </AppShell>
  * ```

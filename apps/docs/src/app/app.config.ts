@@ -7,7 +7,7 @@ import {
   RouteReuseStrategy,
   withInMemoryScrolling,
 } from '@angular/router';
-import { KeepRouteStrategy } from '@lamsa-ui/angular';
+import { KeepRouteStrategy } from '@ghazal-ui/angular';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {

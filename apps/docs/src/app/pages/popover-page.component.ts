@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   PopoverTriggerDirective,
   SwitchComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -56,10 +56,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class PopoverPageComponent {
   protected readonly usage = {
-    angular: `import { PopoverTriggerDirective } from '@lamsa-ui/angular';
+    angular: `import { PopoverTriggerDirective } from '@ghazal-ui/angular';
 // On the Angular CDK overlay. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { Popover } from '@lamsa-ui/react';`,
-    vue: `import { Popover } from '@lamsa-ui/vue';`,
+    react: `import { Popover } from '@ghazal-ui/react';`,
+    vue: `import { Popover } from '@ghazal-ui/vue';`,
     html: `<!-- The native popover attribute opens it with no script; place it yourself. -->
 <button class="ui-button ui-button--secondary" popovertarget="fee" id="fee-button">Delivery fee</button>
 <div class="ui-popover" id="fee" popover role="dialog" aria-labelledby="fee-button">

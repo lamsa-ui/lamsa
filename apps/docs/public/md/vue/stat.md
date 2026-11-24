@@ -1,19 +1,19 @@
 # Stat
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 One number with its label, and how it changed. The change is written out, with its sign or in words; the arrow and the colour only repeat it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/stat
+Docs: https://ghazal-ui.github.io/ghazal/components/stat
 
 ```ts
-import { Stat } from '@lamsa-ui/vue';
+import { Stat } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- A level against a limit, such as 70% of storage: [Meter](https://lamsa-ui.github.io/lamsa/components/meter)
-- Several label and value pairs: [Property list](https://lamsa-ui.github.io/lamsa/components/property-list)
+- A level against a limit, such as 70% of storage: [Meter](https://ghazal-ui.github.io/ghazal/components/meter)
+- Several label and value pairs: [Property list](https://ghazal-ui.github.io/ghazal/components/property-list)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

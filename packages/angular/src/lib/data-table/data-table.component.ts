@@ -14,7 +14,7 @@ import {
   TemplateRef,
   viewChild,
 } from '@angular/core';
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import { IconComponent } from '../icon/icon.component';
 import { UI_LABELS } from '../labels';
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavComponent } from '@lamsa-ui/angular';
+import { NavComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -54,10 +54,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class NavPageComponent {
   protected readonly usage = {
-    angular: `import { NavComponent } from '@lamsa-ui/angular';
+    angular: `import { NavComponent } from '@ghazal-ui/angular';
 // Mark the current link with routerLinkActive ariaCurrentWhenActive="page".`,
-    react: `import { Nav } from '@lamsa-ui/react';`,
-    vue: `import { Nav } from '@lamsa-ui/vue';`,
+    react: `import { Nav } from '@ghazal-ui/react';`,
+    vue: `import { Nav } from '@ghazal-ui/vue';`,
     html: `<nav class="ui-nav" aria-label="Main">
   <ul>
     <li><a href="/orders" aria-current="page">Orders</a></li>

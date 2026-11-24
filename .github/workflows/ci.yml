@@ -35,8 +35,8 @@ jobs:
       - run: node tools/release-check.mjs
       - run: pnpm llms --check
       - run: pnpm nx run-many -t lint test build
-      # The docs site lives under /lamsa/ on Pages; 404.html lets deep links load the app.
-      - run: pnpm nx build docs --base-href=/lamsa/ --skip-nx-cache
+      # The docs site lives under /ghazal/ on Pages; 404.html lets deep links load the app.
+      - run: pnpm nx build docs --base-href=/ghazal/ --skip-nx-cache
       - run: cp dist/apps/docs/browser/index.html dist/apps/docs/browser/404.html
       # Playwright: axe (WCAG 2.2 AA + best practice) on every page, keyboard checks in
       # Chromium, Firefox and WebKit, and screenshots, on the site as it will be published.

@@ -528,7 +528,7 @@ const RESULT_AR: Record<Level, string> = {
   template: `
     <app-page
       title="Conformance report"
-      lead="How Lamsa's components meet each WCAG 2.2 success criterion at levels A and AA. It covers the components; an app built with them still needs its own review."
+      lead="How Ghazal's components meet each WCAG 2.2 success criterion at levels A and AA. It covers the components; an app built with them still needs its own review."
     >
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">How to read it</h2>
@@ -604,7 +604,7 @@ const RESULT_AR: Record<Level, string> = {
       <section class="doc-section" lang="ar" dir="rtl">
         <h2 class="ui-heading doc-h2" id="arabic">التقرير بالعربية</h2>
         <p>
-          كيف تلتزم مكوّنات لمسة بكل معيار نجاح في
+          كيف تلتزم مكوّنات غزال بكل معيار نجاح في
           <span dir="ltr">WCAG 2.2</span>
           على المستويين A وAA. يغطي التقرير المكوّنات؛ أما التطبيق المبني بها
           فيحتاج إلى مراجعته الخاصة.

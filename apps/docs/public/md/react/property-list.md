@@ -1,20 +1,20 @@
 # Property list
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Label and value pairs, such as the details of one order. Built on the native description list, so screen readers say how many items there are and pair each label with its value.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/property-list
+Docs: https://ghazal-ui.github.io/ghazal/components/property-list
 
 ```tsx
-import { Property, PropertyList } from '@lamsa-ui/react';
+import { Property, PropertyList } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- Many records with the same fields: [Data table](https://lamsa-ui.github.io/lamsa/components/data-table)
-- One headline number: [Stat](https://lamsa-ui.github.io/lamsa/components/stat)
-- Values the reader edits: [Text field and the other form fields](https://lamsa-ui.github.io/lamsa/components/text-field)
+- Many records with the same fields: [Data table](https://ghazal-ui.github.io/ghazal/components/data-table)
+- One headline number: [Stat](https://ghazal-ui.github.io/ghazal/components/stat)
+- Values the reader edits: [Text field and the other form fields](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

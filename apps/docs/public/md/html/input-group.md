@@ -1,10 +1,10 @@
 # Input group
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A text field with fixed text inside its box, before or after the value: a currency, a unit, a domain. The text is read with the field, so 'Price, EGP' is heard, but it is never part of the value.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/input-group
+Docs: https://ghazal-ui.github.io/ghazal/components/input-group
 
 ```html
 <div class="ui-input-group">…<input class="ui-input-group__input" />…</div>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/input-group
 
 When to use something else:
 
-- A number with − and + buttons: [Number field](https://lamsa-ui.github.io/lamsa/components/number-field)
-- A phone number with its country code: [Phone field](https://lamsa-ui.github.io/lamsa/components/phone-field)
-- A search box with a clear button: [Search field](https://lamsa-ui.github.io/lamsa/components/search-field)
+- A number with − and + buttons: [Number field](https://ghazal-ui.github.io/ghazal/components/number-field)
+- A phone number with its country code: [Phone field](https://ghazal-ui.github.io/ghazal/components/phone-field)
+- A search box with a clear button: [Search field](https://ghazal-ui.github.io/ghazal/components/search-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

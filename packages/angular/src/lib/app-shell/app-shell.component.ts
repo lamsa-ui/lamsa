@@ -27,7 +27,7 @@ const FOCUSABLE =
  *
  * ```html
  * <ui-app-shell>
- *   <a uiShellBrand class="ui-shell__brand" routerLink="/">Lamsa</a>
+ *   <a uiShellBrand class="ui-shell__brand" routerLink="/">Ghazal</a>
  *   <ui-language-switcher uiShellActions … />
  *   <ui-nav uiShellSidebar label="Main">…</ui-nav>
  *   <router-outlet />

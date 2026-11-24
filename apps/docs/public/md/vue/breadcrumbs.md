@@ -1,20 +1,20 @@
 # Breadcrumbs
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Where the page sits, as a trail of links back up. A named navigation landmark around an ordered list; the last item is the page itself, marked as current and not a link. The slashes are drawn, not read out.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/breadcrumbs
+Docs: https://ghazal-ui.github.io/ghazal/components/breadcrumbs
 
 ```ts
-import { Breadcrumbs } from '@lamsa-ui/vue';
+import { Breadcrumbs } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- The main links of the app: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Steps of a task in order: [Stepper](https://lamsa-ui.github.io/lamsa/components/stepper)
-- Pages of a long list: [Pagination](https://lamsa-ui.github.io/lamsa/components/pagination)
+- The main links of the app: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Steps of a task in order: [Stepper](https://ghazal-ui.github.io/ghazal/components/stepper)
+- Pages of a long list: [Pagination](https://ghazal-ui.github.io/ghazal/components/pagination)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

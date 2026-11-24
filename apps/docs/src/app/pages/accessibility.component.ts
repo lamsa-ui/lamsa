@@ -9,7 +9,7 @@ import { PageComponent } from '../shared/page.component';
   template: `
     <app-page
       title="Accessibility statement"
-      lead="Lamsa is built so that everyone can use what is made with it: with a keyboard, a screen reader, high contrast, zoom or a small phone, in Arabic and in English. This page says what we aim for, how we check it, and what is not done yet."
+      lead="Ghazal is built so that everyone can use what is made with it: with a keyboard, a screen reader, high contrast, zoom or a small phone, in Arabic and in English. This page says what we aim for, how we check it, and what is not done yet."
     >
       <p class="doc-section">
         <a [routerLink]="[]" fragment="arabic" lang="ar"
@@ -164,7 +164,7 @@ import { PageComponent } from '../shared/page.component';
         <h2 class="ui-heading doc-h2">Tell us</h2>
         <p>
           If something is hard or impossible to use, please
-          <a href="https://github.com/lamsa-ui/lamsa/issues">
+          <a href="https://github.com/ghazal-ui/ghazal/issues">
             open an issue on GitHub</a
           >
           and say which component, which browser, and which assistive
@@ -180,9 +180,9 @@ import { PageComponent } from '../shared/page.component';
       <section class="doc-section" lang="ar" dir="rtl">
         <h2 class="ui-heading doc-h2" id="arabic">البيان بالعربية</h2>
         <p>
-          صُمّمت لمسة ليستطيع الجميع استخدام ما يُبنى بها: بلوحة المفاتيح، أو بقارئ
-          الشاشة، أو بالتباين العالي، أو بالتكبير، أو على هاتف صغير، بالعربية
-          والإنجليزية.
+          صُمّمت مكتبة غزال ليستطيع الجميع استخدام ما يُبنى بها: بلوحة المفاتيح، أو
+          بقارئ الشاشة، أو بالتباين العالي، أو بالتكبير، أو على هاتف صغير،
+          بالعربية والإنجليزية.
         </p>
 
         <h3 class="ui-heading">ما نهدف إليه</h3>
@@ -282,7 +282,7 @@ import { PageComponent } from '../shared/page.component';
         <h3 class="ui-heading">أخبرنا</h3>
         <p>
           إن وجدت شيئًا صعب الاستخدام أو مستحيلًا، فافتح
-          <a href="https://github.com/lamsa-ui/lamsa/issues"
+          <a href="https://github.com/ghazal-ui/ghazal/issues"
             >مشكلة على GitHub</a
           >
           واذكر المكوّن والمتصفح والتقنية المساعدة التي تستخدمها.

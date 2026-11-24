@@ -8,14 +8,14 @@ import { PageComponent } from '../shared/page.component';
   template: `
     <app-page
       title="React integrations"
-      lead="Lamsa React controls stay independent of form libraries. React Hook Form is a familiar choice for validation: register native fields directly and use Controller for compound controls."
+      lead="Ghazal React controls stay independent of form libraries. React Hook Form is a familiar choice for validation: register native fields directly and use Controller for compound controls."
     >
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">React Hook Form</h2>
         <p>
           Install React Hook Form in your app; it is not a dependency of
-          <code>@lamsa-ui/react</code>. This example validates a text field with
-          <code>register</code> and a compound Select with
+          <code>@ghazal-ui/react</code>. This example validates a text field
+          with <code>register</code> and a compound Select with
           <code>Controller</code>.
         </p>
         <app-code-block caption="Install" text="pnpm add react-hook-form" />
@@ -25,7 +25,7 @@ import { PageComponent } from '../shared/page.component';
         />
         <p class="doc-note">
           Validation rules and translated messages stay in your application.
-          Lamsa controls expose the value, blur, name, and focus-ref hooks the
+          Ghazal controls expose the value, blur, name, and focus-ref hooks the
           form library needs.
         </p>
       </section>
@@ -34,7 +34,7 @@ import { PageComponent } from '../shared/page.component';
 })
 export class ReactIntegrationsPageComponent {
   protected readonly reactHookForm = `import { Controller, useForm } from 'react-hook-form';
-import { Select, TextField } from '@lamsa-ui/react';
+import { Select, TextField } from '@ghazal-ui/react';
 
 type Checkout = { email: string; city: string };
 

@@ -1,5 +1,5 @@
 // The words the components say on their own: hidden names of buttons, announcements, empty
-// states. One set per language. This file is the same in @lamsa-ui/angular, /react and /vue
+// states. One set per language. This file is the same in @ghazal-ui/angular, /react and /vue
 // (tools/api-parity.mjs checks it); each package wires it to its framework.
 
 export type UiTimelineStatus = 'approved' | 'pending' | 'rejected';

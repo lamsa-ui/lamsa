@@ -113,7 +113,7 @@ const durations = [
                       <span class="ui-anim-ping doc-anim-dot__ring"></span>
                     </span>
                   } @else {
-                    <span [class]="'doc-anim-chip ' + a.cls">Lamsa</span>
+                    <span [class]="'doc-anim-chip ' + a.cls">Ghazal</span>
                   }
                 }
               </div>

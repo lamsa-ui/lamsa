@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ButtonComponent, UiToast } from '@lamsa-ui/angular';
+import { ButtonComponent, UiToast } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -83,15 +83,15 @@ export class ToastPageComponent {
   }
 
   protected readonly usage = {
-    angular: `import { UiToast } from '@lamsa-ui/angular';
+    angular: `import { UiToast } from '@ghazal-ui/angular';
 
 const toast = inject(UiToast);
 // The region and close buttons take their words from provideUiLabels.`,
-    react: `import { ToastProvider, useToast } from '@lamsa-ui/react';
+    react: `import { ToastProvider, useToast } from '@ghazal-ui/react';
 
 // Once, around the app:
 <ToastProvider>{app}</ToastProvider>`,
-    vue: `import { ToastProvider, useToast } from '@lamsa-ui/vue';
+    vue: `import { ToastProvider, useToast } from '@ghazal-ui/vue';
 
 <!-- Once, around the app (App.vue): -->
 <ToastProvider><RouterView /></ToastProvider>`,

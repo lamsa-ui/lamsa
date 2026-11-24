@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   CommandPaletteComponent,
   type Command,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -80,10 +80,10 @@ export class CommandPalettePageComponent {
   ];
 
   protected readonly usage = {
-    angular: `import { CommandPaletteComponent, type Command } from '@lamsa-ui/angular';
+    angular: `import { CommandPaletteComponent, type Command } from '@ghazal-ui/angular';
 // Built on the kit's dialog. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { CommandPalette, type Command } from '@lamsa-ui/react';`,
-    vue: `import { CommandPalette, type Command } from '@lamsa-ui/vue';`,
+    react: `import { CommandPalette, type Command } from '@ghazal-ui/react';`,
+    vue: `import { CommandPalette, type Command } from '@ghazal-ui/vue';`,
     html: `<!-- Filtering, keys and focus need script: use the Angular or React component.
      The classes are ui-command, ui-command__list, ui-option and ui-command__shortcut. -->`,
   };

@@ -117,7 +117,7 @@ const fence = (lang, code) => '```' + lang + '\n' + code.trim() + '\n```';
 
 const rules = `## Rules for AI assistants
 
-Follow these every time you write code with Lamsa.
+Follow these every time you write code with Ghazal.
 
 1. Use the kit's components and classes. Do not hand-build a button, field, dialog or table that the kit already has.
 2. Restyle only through the \`--ui-*\` tokens and Tailwind classes. Never override a \`.ui-*\` class, and never copy the kit's CSS into the project.
@@ -133,34 +133,34 @@ Follow these every time you write code with Lamsa.
 12. When unsure, say so and point to the docs page instead of guessing.`;
 
 const setup = {
-  angular: `${fence('sh', 'pnpm add @lamsa-ui/angular @lamsa-ui/css @angular/cdk@^22.2.0\npnpm add -D tailwindcss @tailwindcss/postcss')}
+  angular: `${fence('sh', 'pnpm add @ghazal-ui/angular @ghazal-ui/css @angular/cdk@^22.2.0\npnpm add -D tailwindcss @tailwindcss/postcss')}
 
 Needs Node 22, Angular 22.2 (core, common, forms, router), the same major of the Angular CDK, RxJS 7.8, Tailwind 4.1.
 
 ${fence('json', '// .postcssrc.json, next to angular.json\n{ "plugins": { "@tailwindcss/postcss": {} } }')}
 
-${fence('css', "/* the global stylesheet (src/styles.css), first lines; never in a component's styles */\n@import 'tailwindcss';\n@import '@lamsa-ui/css/tailwind.css';\n@import '@angular/cdk/overlay-prebuilt.css';\n@import '@angular/cdk/a11y-prebuilt.css';")}
+${fence('css', "/* the global stylesheet (src/styles.css), first lines; never in a component's styles */\n@import 'tailwindcss';\n@import '@ghazal-ui/css/tailwind.css';\n@import '@angular/cdk/overlay-prebuilt.css';\n@import '@angular/cdk/a11y-prebuilt.css';")}
 
 UiDialog, UiAlertDialog and UiToast are provided in root: inject them where needed.`,
-  react: `${fence('sh', 'pnpm add @lamsa-ui/react @lamsa-ui/css\npnpm add -D tailwindcss @tailwindcss/vite')}
+  react: `${fence('sh', 'pnpm add @ghazal-ui/react @ghazal-ui/css\npnpm add -D tailwindcss @tailwindcss/vite')}
 
 Needs Node 22, React 19, Tailwind 4.1.
 
 ${fence('ts', "// vite.config.ts\nimport tailwindcss from '@tailwindcss/vite';\nexport default defineConfig({ plugins: [react(), tailwindcss()] });")}
 
-${fence('css', "/* src/index.css, imported once in main.tsx, above every other CSS import */\n@import 'tailwindcss';\n@import '@lamsa-ui/css/tailwind.css';")}
+${fence('css', "/* src/index.css, imported once in main.tsx, above every other CSS import */\n@import 'tailwindcss';\n@import '@ghazal-ui/css/tailwind.css';")}
 
 Wrap the app in \`ToastProvider\` if you use toasts (\`useToast()\` throws without it). For Arabic also wrap it in React Aria's \`I18nProvider locale="ar"\`.`,
-  vue: `${fence('sh', 'pnpm add @lamsa-ui/vue @lamsa-ui/css vue')}
+  vue: `${fence('sh', 'pnpm add @ghazal-ui/vue @ghazal-ui/css vue')}
 
 Vue 3.5: every component, with v-model for values, @events and #slots. Wrap the app in \`<ToastProvider>\` if you use toasts.
 
-${fence('css', "/* src/main.css, imported once from main.ts */\n@import '@lamsa-ui/css/ui.css';")}
+${fence('css', "/* src/main.css, imported once from main.ts */\n@import '@ghazal-ui/css/ui.css';")}
 
 ${fence(
   'vue',
   `<script setup lang="ts">
-import { Button, TextField } from '@lamsa-ui/vue';
+import { Button, TextField } from '@ghazal-ui/vue';
 import { ref } from 'vue';
 
 const email = ref('');
@@ -175,15 +175,15 @@ const email = ref('');
 )}
 
 See the [Vue integration guide](${SITE}/integrations/vue).`,
-  html: `${fence('sh', 'pnpm add @lamsa-ui/css @lamsa-ui/icons\npnpm add -D tailwindcss @tailwindcss/cli')}
+  html: `${fence('sh', 'pnpm add @ghazal-ui/css @ghazal-ui/icons\npnpm add -D tailwindcss @tailwindcss/cli')}
 
-${fence('css', "/* src/app.css */\n@import 'tailwindcss';\n@import '@lamsa-ui/css/tailwind.css';\n@import '@lamsa-ui/icons/icons.css';")}
+${fence('css', "/* src/app.css */\n@import 'tailwindcss';\n@import '@ghazal-ui/css/tailwind.css';\n@import '@ghazal-ui/icons/icons.css';")}
 
 The component markup uses icon classes, \`<i class="ui-icon ui-icon-chevron-down" aria-hidden="true"></i>\`, drawn by \`icons.css\`. Every icon name is on ${SITE}/foundations/icons
 
 ${fence('sh', 'npx @tailwindcss/cli -i src/app.css -o dist/app.css --watch')}
 
-Without Tailwind, load \`@lamsa-ui/css/ui.css\` alone and use the \`ui-\` classes (\`ui-p-4\`, \`ui-head-md\`). The package ships no JavaScript: behaviour is yours to write, each page lists the elements and attributes it needs. Keep the \`fonts\` folder next to the CSS.`,
+Without Tailwind, load \`@ghazal-ui/css/ui.css\` alone and use the \`ui-\` classes (\`ui-p-4\`, \`ui-head-md\`). The package ships no JavaScript: behaviour is yours to write, each page lists the elements and attributes it needs. Keep the \`fonts\` folder next to the CSS.`,
 };
 
 function tokenSection() {
@@ -287,9 +287,9 @@ function componentSection(page, framework) {
 
 function buildFull() {
   const parts = [
-    `# Lamsa: guide for AI assistants (full)
+    `# Ghazal: guide for AI assistants (full)
 
-Lamsa is the Lamsa design system: plain CSS tokens and component styles (\`@lamsa-ui/css\`), with Angular (\`@lamsa-ui/angular\`) and React (\`@lamsa-ui/react\`) and Vue (\`@lamsa-ui/vue\`) components. Accessible (WCAG 2.2 AA, text at 7:1), light and dark, left-to-right and right-to-left (Arabic first-class). ${components.length} documented components in every framework.
+Ghazal is the Ghazal design system: plain CSS tokens and component styles (\`@ghazal-ui/css\`), with Angular (\`@ghazal-ui/angular\`) and React (\`@ghazal-ui/react\`) and Vue (\`@ghazal-ui/vue\`) components. Accessible (WCAG 2.2 AA, text at 7:1), light and dark, left-to-right and right-to-left (Arabic first-class). ${components.length} documented components in every framework.
 
 Site and live demos: ${SITE}/
 Pick one framework section below and ignore the others.`,
@@ -341,11 +341,11 @@ function pageMarkdown(page, framework) {
 }
 
 function buildIndex() {
-  return `# Lamsa
+  return `# Ghazal
 
-> The Lamsa design system: plain CSS tokens and component styles, with Angular, React and Vue 3 components. Accessible (WCAG 2.2 AA), light and dark, right-to-left ready. Give this file to your AI assistant before it writes UI code with the kit.
+> The Ghazal design system: plain CSS tokens and component styles, with Angular, React and Vue 3 components. Accessible (WCAG 2.2 AA), light and dark, right-to-left ready. Give this file to your AI assistant before it writes UI code with the kit.
 
-Packages: \`@lamsa-ui/css\` (any stack), \`@lamsa-ui/angular\` (Angular 22, standalone, signals), \`@lamsa-ui/react\` (React 19, React Aria), and \`@lamsa-ui/vue\` (Vue 3.5, Reka UI). Tailwind CSS 4.1 runs under the kit: its classes read the kit's tokens.
+Packages: \`@ghazal-ui/css\` (any stack), \`@ghazal-ui/angular\` (Angular 22, standalone, signals), \`@ghazal-ui/react\` (React 19, React Aria), and \`@ghazal-ui/vue\` (Vue 3.5, Reka UI). Tailwind CSS 4.1 runs under the kit: its classes read the kit's tokens.
 
 ${rules}
 

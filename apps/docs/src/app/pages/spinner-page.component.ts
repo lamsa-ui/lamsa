@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent, SpinnerComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, SpinnerComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -49,9 +49,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class SpinnerPageComponent {
   protected readonly usage = {
-    angular: `import { SpinnerComponent } from '@lamsa-ui/angular';`,
-    react: `import { Spinner } from '@lamsa-ui/react';`,
-    vue: `import { Spinner } from '@lamsa-ui/vue';`,
+    angular: `import { SpinnerComponent } from '@ghazal-ui/angular';`,
+    react: `import { Spinner } from '@ghazal-ui/react';`,
+    vue: `import { Spinner } from '@ghazal-ui/vue';`,
     html: `<span class="ui-loading" role="status">
   <span class="ui-spinner" aria-hidden="true"></span>
   <span class="ui-visually-hidden">Loading orders</span>

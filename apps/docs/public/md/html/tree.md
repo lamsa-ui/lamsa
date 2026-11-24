@@ -1,10 +1,10 @@
 # Tree
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Nested items that open and close, such as folders or menu categories. One Tab stop: the arrow keys move, Right opens a branch and Left closes it, typing a name jumps to it, and Enter or Space selects. For a site's page links, use navigation instead.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/tree
+Docs: https://ghazal-ui.github.io/ghazal/components/tree
 
 ```html
 <!-- Keys, focus and opening need script: use the Angular or React component.
@@ -13,8 +13,8 @@ Docs: https://lamsa-ui.github.io/lamsa/components/tree
 
 When to use something else:
 
-- A flat list with columns: [Data table](https://lamsa-ui.github.io/lamsa/components/data-table)
-- Sections that open and close: [Accordion](https://lamsa-ui.github.io/lamsa/components/accordion)
+- A flat list with columns: [Data table](https://ghazal-ui.github.io/ghazal/components/data-table)
+- Sections that open and close: [Accordion](https://ghazal-ui.github.io/ghazal/components/accordion)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

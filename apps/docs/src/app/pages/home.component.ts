@@ -97,7 +97,7 @@ export class HomeComponent {
   );
 
   constructor() {
-    inject(Title).setTitle('Lamsa · One look, every frontend');
+    inject(Title).setTitle('Ghazal · One look, every frontend');
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const words = setInterval(() => this.wordAt.update((n) => n + 1), 2600);
       inject(DestroyRef).onDestroy(() => clearInterval(words));

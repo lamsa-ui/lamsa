@@ -154,14 +154,14 @@ import { PageComponent } from '../shared/page.component';
             <code>rounded-xl</code> are the kit's own space, colour and radius.
           </li>
           <li>
-            Install <code>&#64;lamsa-ui/css</code> yourself, even though the
+            Install <code>&#64;ghazal-ui/css</code> yourself, even though the
             framework package depends on it. With pnpm, a package you did not
             add is not visible to your own imports, and step 3 imports it.
           </li>
           <li>
-            Each <code>&#64;lamsa-ui/*</code> package has its own version. When
+            Each <code>&#64;ghazal-ui/*</code> package has its own version. When
             you update a framework package, update
-            <code>&#64;lamsa-ui/css</code> with it, so your direct css install
+            <code>&#64;ghazal-ui/css</code> with it, so your direct css install
             matches the version the framework package depends on.
           </li>
           @if (settings.framework() === 'angular') {
@@ -327,7 +327,7 @@ import { PageComponent } from '../shared/page.component';
           <li>
             The text is in IBM Plex Sans (DevTools, Computed, Rendered fonts).
           </li>
-          <li>The primary button is Lamsa blue with white text.</li>
+          <li>The primary button is Ghazal blue with white text.</li>
           <li>Pressing Tab to the button shows a focus ring around it.</li>
           <li>
             <code>data-theme="dark"</code> on <code>&lt;html&gt;</code> turns
@@ -366,7 +366,7 @@ import { PageComponent } from '../shared/page.component';
                 <th scope="row">No styles at all</th>
                 <td>
                   <code>tailwind.css</code> is not loaded. Redo step 3; with
-                  pnpm, check that step 2 added <code>&#64;lamsa-ui/css</code>.
+                  pnpm, check that step 2 added <code>&#64;ghazal-ui/css</code>.
                 </td>
               </tr>
               <tr>
@@ -498,32 +498,32 @@ export class GettingStartedComponent {
 
   protected readonly install = {
     angular:
-      'pnpm add @lamsa-ui/angular @lamsa-ui/css @angular/cdk@^22.2.0\npnpm add -D tailwindcss @tailwindcss/postcss',
+      'pnpm add @ghazal-ui/angular @ghazal-ui/css @angular/cdk@^22.2.0\npnpm add -D tailwindcss @tailwindcss/postcss',
     react:
-      'pnpm add @lamsa-ui/react @lamsa-ui/css\npnpm add -D tailwindcss @tailwindcss/vite',
-    vue: 'pnpm add @lamsa-ui/vue @lamsa-ui/css vue',
-    html: 'pnpm add @lamsa-ui/css @lamsa-ui/icons\npnpm add -D tailwindcss @tailwindcss/cli',
+      'pnpm add @ghazal-ui/react @ghazal-ui/css\npnpm add -D tailwindcss @tailwindcss/vite',
+    vue: 'pnpm add @ghazal-ui/vue @ghazal-ui/css vue',
+    html: 'pnpm add @ghazal-ui/css @ghazal-ui/icons\npnpm add -D tailwindcss @tailwindcss/cli',
   };
 
   protected readonly styles = {
     angular: `/* src/styles.css: the global stylesheet, first lines */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 @import '@angular/cdk/overlay-prebuilt.css';
 @import '@angular/cdk/a11y-prebuilt.css';
 
 /* your own theme and styles below */`,
     react: `/* src/index.css, imported once in main.tsx */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 
 /* your own theme and styles below */`,
     vue: `/* src/main.css: the global stylesheet */
-@import '@lamsa-ui/css/ui.css';`,
+@import '@ghazal-ui/css/ui.css';`,
     html: `/* src/app.css */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
-@import '@lamsa-ui/icons/icons.css'; /* <i class="ui-icon ui-icon-x"> in the markup */
+@import '@ghazal-ui/css/tailwind.css';
+@import '@ghazal-ui/icons/icons.css'; /* <i class="ui-icon ui-icon-x"> in the markup */
 
 /* your own theme and styles below */`,
   };
@@ -567,19 +567,19 @@ npx @tailwindcss/cli -i src/app.css -o dist/app.css --watch`,
   protected readonly uiLabels = {
     angular: `// app.config.ts: lang() is your language signal
 import { computed } from '@angular/core';
-import { arabicLabels, englishLabels, provideUiLabels } from '@lamsa-ui/angular';
+import { arabicLabels, englishLabels, provideUiLabels } from '@ghazal-ui/angular';
 
 providers: [
   provideUiLabels(computed(() => (lang() === 'ar' ? arabicLabels : englishLabels))),
 ]`,
-    react: `import { arabicLabels, englishLabels, UiLabelsProvider } from '@lamsa-ui/react';
+    react: `import { arabicLabels, englishLabels, UiLabelsProvider } from '@ghazal-ui/react';
 
 <UiLabelsProvider labels={lang === 'ar' ? arabicLabels : englishLabels}>
   <App />
 </UiLabelsProvider>`,
     vue: `// App.vue, in <script setup>: lang is your language ref
 import { computed } from 'vue';
-import { arabicLabels, englishLabels, provideUiLabels } from '@lamsa-ui/vue';
+import { arabicLabels, englishLabels, provideUiLabels } from '@ghazal-ui/vue';
 
 provideUiLabels(computed(() => (lang.value === 'ar' ? arabicLabels : englishLabels)));`,
   };
@@ -587,11 +587,11 @@ provideUiLabels(computed(() => (lang.value === 'ar' ? arabicLabels : englishLabe
   protected readonly appWide = {
     angular: `// Nothing to set up: inject the services where you need them.
 import { inject } from '@angular/core';
-import { UiToast } from '@lamsa-ui/angular';
+import { UiToast } from '@ghazal-ui/angular';
 
 private readonly toast = inject(UiToast);`,
     react: `// main.tsx
-import { ToastProvider } from '@lamsa-ui/react';
+import { ToastProvider } from '@ghazal-ui/react';
 
 createRoot(root).render(
   <ToastProvider>
@@ -604,13 +604,13 @@ createRoot(root).render(
   };
 
   protected readonly first = {
-    react: `import { Button } from '@lamsa-ui/react';
+    react: `import { Button } from '@ghazal-ui/react';
 
 export function SaveBar() {
   return <Button>Save</Button>;
 }`,
     angular: `import { Component } from '@angular/core';
-import { ButtonComponent } from '@lamsa-ui/angular';
+import { ButtonComponent } from '@ghazal-ui/angular';
 
 @Component({
   selector: 'app-save-bar',
@@ -619,7 +619,7 @@ import { ButtonComponent } from '@lamsa-ui/angular';
 })
 export class SaveBarComponent {}`,
     vue: `<script setup lang="ts">
-import { Button } from '@lamsa-ui/vue';
+import { Button } from '@ghazal-ui/vue';
 </script>
 
 <template>

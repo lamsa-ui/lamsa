@@ -8,20 +8,20 @@ import { PageComponent } from '../shared/page.component';
   template: `
     <app-page
       title="Vue integrations"
-      lead="Every Lamsa component in Vue 3.5: the same names, options and markup as in Angular and React, bound with v-model and slots. Overlays, menus, dates and trees run on Reka UI; everything else is plain Vue on the shared Lamsa CSS."
+      lead="Every Ghazal component in Vue 3.5: the same names, options and markup as in Angular and React, bound with v-model and slots. Overlays, menus, dates and trees run on Reka UI; everything else is plain Vue on the shared Ghazal CSS."
     >
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">Install</h2>
         <app-code-block
           caption="Terminal"
-          text="pnpm add @lamsa-ui/vue @lamsa-ui/css vue"
+          text="pnpm add @ghazal-ui/vue @ghazal-ui/css vue"
         />
       </section>
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">Load the styles once</h2>
         <app-code-block
           caption="src/main.css"
-          text="@import '@lamsa-ui/css/ui.css';"
+          text="@import '@ghazal-ui/css/ui.css';"
         />
       </section>
       <section class="doc-section">
@@ -57,7 +57,7 @@ import { PageComponent } from '../shared/page.component';
 })
 export class VueIntegrationsPageComponent {
   protected readonly example = `<script setup lang="ts">
-import { Button, TextField } from '@lamsa-ui/vue';
+import { Button, TextField } from '@ghazal-ui/vue';
 import { ref } from 'vue';
 
 const email = ref('');

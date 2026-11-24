@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ICONS, MIRRORED_ICONS, type IconName } from '@lamsa-ui/icons';
+import { ICONS, MIRRORED_ICONS, type IconName } from '@ghazal-ui/icons';
 
 /** sm, md and lg, or any CSS length ('3rem'), or a number of pixels. */
 export type IconSize = 'sm' | 'md' | 'lg' | number | (string & {});

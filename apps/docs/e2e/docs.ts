@@ -23,8 +23,8 @@ export async function openDocs(
 ): Promise<void> {
   await page.addInitScript(
     ([t, f]) => {
-      localStorage.setItem('lamsa:theme', t);
-      localStorage.setItem('lamsa:framework', f);
+      localStorage.setItem('ghazal:theme', t);
+      localStorage.setItem('ghazal:framework', f);
     },
     [theme, framework],
   );

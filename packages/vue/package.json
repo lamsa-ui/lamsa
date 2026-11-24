@@ -1,16 +1,16 @@
 {
-  "name": "@lamsa-ui/vue",
+  "name": "@ghazal-ui/vue",
   "version": "0.0.0",
-  "description": "Accessible Vue 3.5 components for the Lamsa design system, right to left ready: forms, overlays, navigation, data table, calendar and more, built on Reka UI and styled by @lamsa-ui/css.",
+  "description": "Accessible Vue 3.5 components for the Ghazal design system, right to left ready: forms, overlays, navigation, data table, calendar and more, built on Reka UI and styled by @ghazal-ui/css.",
   "license": "MIT",
-  "author": "Lamsa contributors",
-  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "author": "Ghazal contributors",
+  "homepage": "https://ghazal-ui.github.io/ghazal/",
   "bugs": {
-    "url": "https://github.com/lamsa-ui/lamsa/issues"
+    "url": "https://github.com/ghazal-ui/ghazal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "url": "git+https://github.com/ghazal-ui/ghazal.git",
     "directory": "packages/vue"
   },
   "keywords": [
@@ -30,7 +30,7 @@
     "arabic",
     "dark-mode",
     "design-tokens",
-    "lamsa",
+    "ghazal",
     "ui",
     "components"
   ],
@@ -48,8 +48,8 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
-    "@lamsa-ui/css": "^0.0.0",
-    "@lamsa-ui/icons": "^0.0.0",
+    "@ghazal-ui/css": "^0.0.0",
+    "@ghazal-ui/icons": "^0.0.0",
     "reka-ui": "^2.11.0",
     "@internationalized/date": "^3.12.4"
   },

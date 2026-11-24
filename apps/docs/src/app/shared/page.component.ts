@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
-import { ButtonComponent, IconComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, IconComponent } from '@ghazal-ui/angular';
 import { A11Y, KEY_WORDS } from './a11y';
 import { CodeBlockComponent } from './code-block.component';
 import { DocsSettings, type FrameworkCode } from './docs-settings';
@@ -188,7 +188,7 @@ export class PageComponent {
 
   constructor() {
     const title = inject(Title);
-    queueMicrotask(() => title.setTitle(`${this.title()} · Lamsa`));
+    queueMicrotask(() => title.setTitle(`${this.title()} · Ghazal`));
     const host: HTMLElement = inject(ElementRef).nativeElement;
     afterNextRender(() => {
       const headings = [...host.querySelectorAll('h2')];

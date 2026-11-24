@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CalendarComponent, type DateRange } from '@lamsa-ui/angular';
+import { CalendarComponent, type DateRange } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -86,11 +86,11 @@ export class CalendarPageComponent {
     new Date(`${date}T00:00:00Z`).getUTCDay() === 5;
 
   protected readonly usage = {
-    angular: `import { CalendarComponent, type DateRange } from '@lamsa-ui/angular';
+    angular: `import { CalendarComponent, type DateRange } from '@ghazal-ui/angular';
 // Dates are ISO strings (YYYY-MM-DD), the same as <input type="date">.`,
-    react: `import { Calendar, RangeCalendar, type DateRange } from '@lamsa-ui/react';
+    react: `import { Calendar, RangeCalendar, type DateRange } from '@ghazal-ui/react';
 // Dates are ISO strings (YYYY-MM-DD). Language follows the nearest I18nProvider from react-aria-components.`,
-    vue: `import { Calendar, RangeCalendar, type DateRange } from '@lamsa-ui/vue';
+    vue: `import { Calendar, RangeCalendar, type DateRange } from '@ghazal-ui/vue';
 // Dates are ISO strings (YYYY-MM-DD). Language follows the nearest I18nProvider from react-aria-components.`,
     html: `<!-- The classes only. The keyboard, roving Tab stop and day names need script:
      use the Angular or React package, or copy the markup they render. -->

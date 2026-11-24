@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { type Language, LanguageSwitcherComponent } from '@lamsa-ui/angular';
+import { type Language, LanguageSwitcherComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -67,10 +67,10 @@ export class LanguageSwitcherPageComponent {
   protected readonly arabicLanguage = signal('ar');
 
   protected readonly usage = {
-    angular: `import { LanguageSwitcherComponent, type Language } from '@lamsa-ui/angular';
+    angular: `import { LanguageSwitcherComponent, type Language } from '@ghazal-ui/angular';
 // Three or more languages use the Angular CDK menu. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { LanguageSwitcher, type Language } from '@lamsa-ui/react';`,
-    vue: `import { LanguageSwitcher, type Language } from '@lamsa-ui/vue';`,
+    react: `import { LanguageSwitcher, type Language } from '@ghazal-ui/react';`,
+    vue: `import { LanguageSwitcher, type Language } from '@ghazal-ui/vue';`,
     html: `<!-- Two languages: a link to the other one, named in itself -->
 <a class="ui-button ui-button--secondary ui-button--md" href="/ar/" lang="ar" hreflang="ar">عربي</a>
 <!-- Three or more: the menu button pattern, see Menu, with role="menuitemradio" and aria-checked -->`,

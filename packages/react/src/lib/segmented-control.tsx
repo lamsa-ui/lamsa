@@ -1,6 +1,6 @@
 'use client';
 
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import type { Ref } from 'react';
 import { useId, useState } from 'react';
 import { cx } from './class-names.js';

@@ -1,19 +1,19 @@
 # Search field
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A box to search with: a magnifier, the text, and a × to clear it. Escape clears it too, and Enter searches. A real search input, so phones show a Search key and screen readers say search.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/search-field
+Docs: https://ghazal-ui.github.io/ghazal/components/search-field
 
 ```tsx
-import { SearchField } from '@lamsa-ui/react';
+import { SearchField } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- Search the whole app and run commands: [Command palette](https://lamsa-ui.github.io/lamsa/components/command-palette)
-- Pick one value from a list as you type: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
+- Search the whole app and run commands: [Command palette](https://ghazal-ui.github.io/ghazal/components/command-palette)
+- Pick one value from a list as you type: [Combobox](https://ghazal-ui.github.io/ghazal/components/combobox)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

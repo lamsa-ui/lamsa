@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SearchFieldComponent } from '@lamsa-ui/angular';
+import { SearchFieldComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -74,10 +74,10 @@ export class SearchFieldPageComponent {
   protected readonly searched = signal('');
 
   protected readonly usage = {
-    angular: `import { SearchFieldComponent } from '@lamsa-ui/angular';
+    angular: `import { SearchFieldComponent } from '@ghazal-ui/angular';
 // The value is the text. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { SearchField } from '@lamsa-ui/react';`,
-    vue: `import { SearchField } from '@lamsa-ui/vue';`,
+    react: `import { SearchField } from '@ghazal-ui/react';`,
+    vue: `import { SearchField } from '@ghazal-ui/vue';`,
     html: `<div class="ui-field">
   <label class="ui-field__label ui-visually-hidden" for="q">Search orders</label>
   <div class="ui-input-group">...</div>

@@ -1,19 +1,19 @@
 # App shell
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/app-shell
+Docs: https://ghazal-ui.github.io/ghazal/components/app-shell
 
 ```ts
-import { AppShell, Nav } from '@lamsa-ui/vue';
+import { AppShell, Nav } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- Links in a side bar only, inside your own layout: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Show where the page sits in the site: [Breadcrumbs](https://lamsa-ui.github.io/lamsa/components/breadcrumbs)
+- Links in a side bar only, inside your own layout: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Show where the page sits in the site: [Breadcrumbs](https://ghazal-ui.github.io/ghazal/components/breadcrumbs)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ This preview is narrower than 64rem, so the side bar starts folded. Press Menu. 
 
 ```vue
 <AppShell>
-  <template #brand><a class="ui-shell__brand" href="/">Lamsa</a></template>
+  <template #brand><a class="ui-shell__brand" href="/">Ghazal</a></template>
   <template #actions><LanguageSwitcher v-model:current="language" :languages="languages" /></template>
   <template #sidebar>
     <Nav label="Main">

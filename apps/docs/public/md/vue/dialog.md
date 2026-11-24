@@ -1,20 +1,20 @@
 # Dialog
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A modal window for a task that needs the reader's full attention: a short form, details, terms. Focus moves into it and stays there, the page behind stops scrolling, and Escape, the close button or a click outside closes it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/dialog
+Docs: https://ghazal-ui.github.io/ghazal/components/dialog
 
 ```ts
-import { Dialog } from '@lamsa-ui/vue';
+import { Dialog } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- A yes or no question that must be answered: [Alert dialog](https://lamsa-ui.github.io/lamsa/components/alert-dialog)
-- Content beside the page, such as filters: [Drawer](https://lamsa-ui.github.io/lamsa/components/drawer)
-- A short note next to the button: [Popover](https://lamsa-ui.github.io/lamsa/components/popover)
+- A yes or no question that must be answered: [Alert dialog](https://ghazal-ui.github.io/ghazal/components/alert-dialog)
+- Content beside the page, such as filters: [Drawer](https://ghazal-ui.github.io/ghazal/components/drawer)
+- A short note next to the button: [Popover](https://ghazal-ui.github.io/ghazal/components/popover)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TextareaComponent } from '@lamsa-ui/angular';
+import { TextareaComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -67,11 +67,11 @@ export class TextareaPageComponent {
   });
 
   protected readonly usage = {
-    angular: `import { TextareaComponent } from '@lamsa-ui/angular';
+    angular: `import { TextareaComponent } from '@ghazal-ui/angular';
 // Works with formControlName, [formControl] and ngModel.`,
-    react: `import { Textarea } from '@lamsa-ui/react';
+    react: `import { Textarea } from '@ghazal-ui/react';
 // Every other prop goes to the textarea: value, onChange, rows, maxLength, ref.`,
-    vue: `import { Textarea } from '@lamsa-ui/vue';
+    vue: `import { Textarea } from '@ghazal-ui/vue';
 // Bind it with v-model; every other attribute goes to the textarea: rows, maxlength.`,
     html: `<div class="ui-field">
   <label class="ui-field__label" for="notes">Delivery notes</label>

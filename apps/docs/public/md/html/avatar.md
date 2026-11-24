@@ -1,10 +1,10 @@
 # Avatar
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A person's photo, or their initials when there is no photo or it fails to load. Screen readers hear the person's name, never the file name.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/avatar
+Docs: https://ghazal-ui.github.io/ghazal/components/avatar
 
 ```html
 <span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>
@@ -12,8 +12,8 @@ Docs: https://lamsa-ui.github.io/lamsa/components/avatar
 
 When to use something else:
 
-- Show several people in a small space: [Avatar group](https://lamsa-ui.github.io/lamsa/components/avatar-group)
-- Show a status next to a person, such as online: [Status dot](https://lamsa-ui.github.io/lamsa/components/status-dot)
+- Show several people in a small space: [Avatar group](https://ghazal-ui.github.io/ghazal/components/avatar-group)
+- Show a status next to a person, such as online: [Status dot](https://ghazal-ui.github.io/ghazal/components/status-dot)
 - A logo or a product picture: A plain img with alt text
 
 | Name | Type | Default | What it does |

@@ -103,7 +103,7 @@ export { CalendarComponent } from './lib/calendar/calendar.component';
 export type { DateRange } from './lib/calendar/calendar.component';
 export { IconComponent } from './lib/icon/icon.component';
 export type { IconSize } from './lib/icon/icon.component';
-export type { IconName } from '@lamsa-ui/icons';
+export type { IconName } from '@ghazal-ui/icons';
 export { SearchFieldComponent } from './lib/search-field/search-field.component';
 export {
   NumberFieldComponent,

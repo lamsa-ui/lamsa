@@ -40,7 +40,7 @@ for (const project of projects) {
   const projectConfig = JSON.parse(
     await readFile(join(packageRoot, 'project.json'), 'utf8'),
   );
-  assert.equal(manifest.name, `@lamsa-ui/${project}`);
+  assert.equal(manifest.name, `@ghazal-ui/${project}`);
   assert.ok(projectConfig.targets?.build, `${project} has no build target`);
 }
 

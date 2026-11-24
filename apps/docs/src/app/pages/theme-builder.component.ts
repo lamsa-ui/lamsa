@@ -5,7 +5,7 @@ import { PageComponent } from '../shared/page.component';
 import { buildTheme, checks, normalizeHex, themeCss } from '../shared/theme';
 
 const PRESETS = [
-  { name: 'Lamsa blue', hex: '#0059ff' },
+  { name: 'Ghazal blue', hex: '#0059ff' },
   { name: 'Teal', hex: '#0f766e' },
   { name: 'Violet', hex: '#7c3aed' },
   { name: 'Forest', hex: '#15803d' },
@@ -256,7 +256,7 @@ export class ThemeBuilderComponent {
     );
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'lamsa-theme.css';
+    link.download = 'ghazal-theme.css';
     link.click();
     window.setTimeout(() => URL.revokeObjectURL(url), 0);
   }

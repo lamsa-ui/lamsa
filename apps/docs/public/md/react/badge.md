@@ -1,20 +1,20 @@
 # Badge
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A short status label, such as the state of an order. The words carry the meaning and the colour only repeats it, so every status reads the same without colour.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/badge
+Docs: https://ghazal-ui.github.io/ghazal/components/badge
 
 ```tsx
-import { Badge } from '@lamsa-ui/react';
+import { Badge } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A label the user added or can remove, such as a filter: [Tag](https://lamsa-ui.github.io/lamsa/components/tag)
-- A live state such as online or offline: [Status dot](https://lamsa-ui.github.io/lamsa/components/status-dot)
-- A message the reader must read: [Alert](https://lamsa-ui.github.io/lamsa/components/alert)
+- A label the user added or can remove, such as a filter: [Tag](https://ghazal-ui.github.io/ghazal/components/tag)
+- A live state such as online or offline: [Status dot](https://ghazal-ui.github.io/ghazal/components/status-dot)
+- A message the reader must read: [Alert](https://ghazal-ui.github.io/ghazal/components/alert)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

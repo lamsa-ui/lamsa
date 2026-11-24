@@ -1,20 +1,20 @@
 # Button group
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Buttons that belong together, joined into one bar. The group has a name, so a screen reader says what the buttons are for before it reads them.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/button-group
+Docs: https://ghazal-ui.github.io/ghazal/components/button-group
 
 ```tsx
-import { Button, ButtonGroup } from '@lamsa-ui/react';
+import { Button, ButtonGroup } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- One choice that changes the view: [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control)
-- Many controls with arrow-key movement, as in an editor: [Toolbar](https://lamsa-ui.github.io/lamsa/components/toolbar)
-- More actions than fit on a phone: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- One choice that changes the view: [Segmented control](https://ghazal-ui.github.io/ghazal/components/segmented-control)
+- Many controls with arrow-key movement, as in an editor: [Toolbar](https://ghazal-ui.github.io/ghazal/components/toolbar)
+- More actions than fit on a phone: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

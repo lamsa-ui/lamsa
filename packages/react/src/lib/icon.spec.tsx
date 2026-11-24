@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { ICONS } from '@lamsa-ui/icons';
+import { ICONS } from '@ghazal-ui/icons';
 import { Icon } from './icon.js';
 
 describe('Icon', () => {

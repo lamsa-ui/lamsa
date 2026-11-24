@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { PinInputComponent } from '@lamsa-ui/angular';
+import { PinInputComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -76,10 +76,10 @@ export class PinInputPageComponent {
     `الرقم ${n.toLocaleString('ar-EG')} من ${of.toLocaleString('ar-EG')}`;
 
   protected readonly usage = {
-    angular: `import { PinInputComponent } from '@lamsa-ui/angular';
+    angular: `import { PinInputComponent } from '@ghazal-ui/angular';
 // The value is the digits typed so far, as one string.`,
-    react: `import { PinInput } from '@lamsa-ui/react';`,
-    vue: `import { PinInput } from '@lamsa-ui/vue';`,
+    react: `import { PinInput } from '@ghazal-ui/react';`,
+    vue: `import { PinInput } from '@ghazal-ui/vue';`,
     html: `<div class="ui-field">
   <span class="ui-field__label" id="code-label">Verification code</span>
   <div class="ui-pin" role="group" aria-labelledby="code-label">...</div>

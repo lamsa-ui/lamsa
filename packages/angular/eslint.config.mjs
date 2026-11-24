@@ -17,7 +17,7 @@ export default [
             '{projectRoot}/vite.config.{js,ts,mjs,mts}',
           ],
           // Styles only: the components use its class names, not its code.
-          ignoredDependencies: ['@lamsa-ui/css'],
+          ignoredDependencies: ['@ghazal-ui/css'],
         },
       ],
     },

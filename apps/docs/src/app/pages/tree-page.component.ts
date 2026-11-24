@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { TreeComponent, type TreeNode } from '@lamsa-ui/angular';
+import { TreeComponent, type TreeNode } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -96,11 +96,11 @@ export class TreePageComponent {
   ];
 
   protected readonly usage = {
-    angular: `import { TreeComponent, type TreeNode } from '@lamsa-ui/angular';
+    angular: `import { TreeComponent, type TreeNode } from '@ghazal-ui/angular';
 // On the Angular CDK tree.`,
-    react: `import { Tree, type TreeNode } from '@lamsa-ui/react';
+    react: `import { Tree, type TreeNode } from '@ghazal-ui/react';
 // On the React Aria tree.`,
-    vue: `import { Tree, type TreeNode } from '@lamsa-ui/vue';
+    vue: `import { Tree, type TreeNode } from '@ghazal-ui/vue';
 // On the React Aria tree.`,
     html: `<!-- Keys, focus and opening need script: use the Angular or React component.
      The classes are ui-tree, ui-tree__item, ui-tree__chevron and --ui-tree-level. -->`,

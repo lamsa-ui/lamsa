@@ -416,7 +416,7 @@ test('theme builder: preview updates and exports CSS', async ({ page }) => {
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Download theme.css' }).click();
   const file = await download;
-  expect(file.suggestedFilename()).toBe('lamsa-theme.css');
+  expect(file.suggestedFilename()).toBe('ghazal-theme.css');
   expect(await readFile(await file.path(), 'utf8')).toBe(
     await css.textContent(),
   );

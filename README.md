@@ -1,20 +1,20 @@
-# Lamsa
+# Ghazal
 
-Lamsa (لمسة, "a touch") is an open-source design system: accessible, Arabic and English from the start, and built to work with any frontend.
+Ghazal (غزال, "gazelle") is an open-source design system: accessible, Arabic and English from the start, and built to work with any frontend.
 
-**[Read the docs](https://lamsa-ui.github.io/lamsa/)** ([setup guide](https://lamsa-ui.github.io/lamsa/getting-started)): every component live, with the code for your framework.
+**[Read the docs](https://ghazal-ui.github.io/ghazal/)** ([setup guide](https://ghazal-ui.github.io/ghazal/getting-started)): every component live, with the code for your framework.
 
-| Package                                 | What it is                                                                                          | Status                         |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`@lamsa-ui/css`](packages/css)         | Fonts, design tokens and every component style, in plain CSS. Works in any stack, framework or not. | Ready                          |
-| [`@lamsa-ui/angular`](packages/angular) | Angular 22 components on the Angular CDK.                                                           | Ready: all 61 components below |
-| [`@lamsa-ui/react`](packages/react)     | React 19 components on React Aria.                                                                  | Ready: all 61 components below |
-| [`@lamsa-ui/icons`](packages/icons)     | The kit's icon set, as SVG, CSS masks and typed names. Arrows flip in right-to-left text.           | Ready                          |
-| [`@lamsa-ui/vue`](packages/vue)         | Vue 3 components on Reka UI, styled by the shared CSS package.                                      | Ready: all 61 components below |
+| Package                                  | What it is                                                                                          | Status                         |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ |
+| [`@ghazal-ui/css`](packages/css)         | Fonts, design tokens and every component style, in plain CSS. Works in any stack, framework or not. | Ready                          |
+| [`@ghazal-ui/angular`](packages/angular) | Angular 22 components on the Angular CDK.                                                           | Ready: all 61 components below |
+| [`@ghazal-ui/react`](packages/react)     | React 19 components on React Aria.                                                                  | Ready: all 61 components below |
+| [`@ghazal-ui/icons`](packages/icons)     | The kit's icon set, as SVG, CSS masks and typed names. Arrows flip in right-to-left text.           | Ready                          |
+| [`@ghazal-ui/vue`](packages/vue)         | Vue 3 components on Reka UI, styled by the shared CSS package.                                      | Ready: all 61 components below |
 
 ## Components
 
-Every one ships in Angular, React and Vue with the same name, the same options and the same markup, and in plain HTML through `@lamsa-ui/css`.
+Every one ships in Angular, React and Vue with the same name, the same options and the same markup, and in plain HTML through `@ghazal-ui/css`.
 
 - **Actions:** button, button group, toggle, toolbar
 - **Forms:** calendar, checkbox, chip input, combobox, date picker, fieldset, file field, input group, number field, phone field, PIN input, radio group, rating, search field, segmented control, select, slider, switch, text field, textarea
@@ -32,7 +32,7 @@ Every one ships in Angular, React and Vue with the same name, the same options a
 
 ## The look
 
-Every value comes from the Lamsa palette:
+Every value comes from the Ghazal palette:
 
 - **Colour.** Brand blue `#0059FF` is the primary colour, brand red `#DC4B4B` carries danger, on ink `#0B1020` and paper `#F6F7FB` grounds, with slate `#586087` for secondary text. Product UI needs shades the palette doesn't name. Each one is the brand colour darkened or lightened along its own hue until small text reaches 7:1. Red and blue never meet as large areas.
 - **Type.** IBM Plex Sans and IBM Plex Sans Arabic for body text, Archivo Expanded and Alexandria for headlines, IBM Plex Mono for labels. The font files ship in the package (SIL Open Font License). Arabic is never letter-spaced.
@@ -47,63 +47,63 @@ Any stack, on Tailwind CSS 4 (the kit's tokens become the Tailwind theme: `p-4`,
 
 ```css
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 ```
 
-Without Tailwind, `@import '@lamsa-ui/css/ui.css';` and the kit's own `ui-*` classes.
+Without Tailwind, `@import '@ghazal-ui/css/ui.css';` and the kit's own `ui-*` classes.
 
-Icons: `<ui-icon>` in Angular and `<Icon>` in React come with those packages. In plain HTML, add `@lamsa-ui/icons` and `@import '@lamsa-ui/icons/icons.css';`, then write `<i class="ui-icon ui-icon-search"></i>`.
+Icons: `<ui-icon>` in Angular and `<Icon>` in React come with those packages. In plain HTML, add `@ghazal-ui/icons` and `@import '@ghazal-ui/icons/icons.css';`, then write `<i class="ui-icon ui-icon-search"></i>`.
 
 Angular:
 
 ```shell
-pnpm add @lamsa-ui/angular @lamsa-ui/css @angular/cdk
+pnpm add @ghazal-ui/angular @ghazal-ui/css @angular/cdk
 pnpm add -D tailwindcss @tailwindcss/postcss
 ```
 
 ```css
 /* styles.css; .postcssrc.json: { "plugins": { "@tailwindcss/postcss": {} } } */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 @import '@angular/cdk/overlay-prebuilt.css';
 @import '@angular/cdk/a11y-prebuilt.css';
 ```
 
 ```ts
-import { ButtonComponent, SelectComponent, TextFieldComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, SelectComponent, TextFieldComponent } from '@ghazal-ui/angular';
 ```
 
 React:
 
 ```shell
-pnpm add @lamsa-ui/react @lamsa-ui/css
+pnpm add @ghazal-ui/react @ghazal-ui/css
 pnpm add -D tailwindcss @tailwindcss/vite
 ```
 
 ```css
 /* src/index.css; add tailwindcss() from @tailwindcss/vite to the Vite plugins */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 ```
 
 ```tsx
 import './index.css';
-import { Button, Select, TextField } from '@lamsa-ui/react';
+import { Button, Select, TextField } from '@ghazal-ui/react';
 ```
 
 Vue:
 
 ```shell
-pnpm add @lamsa-ui/vue @lamsa-ui/css vue
+pnpm add @ghazal-ui/vue @ghazal-ui/css vue
 ```
 
 ```ts
-import { Button, TextField } from '@lamsa-ui/vue';
+import { Button, TextField } from '@ghazal-ui/vue';
 ```
 
 The Vue package ships every component, on Reka UI where Angular uses the CDK and React uses React Aria.
 
-A client re-brands by overriding `--ui-primary`, `--ui-focus`, `--ui-highlight` and their `--ui-on-*` pairs on `:root`; Tailwind classes and kit components follow. The [theme builder](https://lamsa-ui.github.io/lamsa/foundations/theme) makes those values from one brand colour and checks every pair.
+A client re-brands by overriding `--ui-primary`, `--ui-focus`, `--ui-highlight` and their `--ui-on-*` pairs on `:root`; Tailwind classes and kit components follow. The [theme builder](https://ghazal-ui.github.io/ghazal/foundations/theme) makes those values from one brand colour and checks every pair.
 
 ## Work on it
 

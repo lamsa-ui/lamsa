@@ -1,18 +1,18 @@
 # Divider
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/divider
+Docs: https://ghazal-ui.github.io/ghazal/components/divider
 
 ```ts
-import { Divider } from '@lamsa-ui/vue';
+import { Divider } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- A frame around a group: [Card](https://lamsa-ui.github.io/lamsa/components/card)
+- A frame around a group: [Card](https://ghazal-ui.github.io/ghazal/components/card)
 - Space between groups: Tailwind gap or margin classes
 
 | Name | Type | Default | What it does |

@@ -1,4 +1,4 @@
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import type { AlertTone } from '../dialog/alert-dialog';
 
 /** The icon for each tone. Shape tells the tones apart, not only colour. */

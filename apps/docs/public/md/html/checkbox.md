@@ -1,10 +1,10 @@
 # Checkbox
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A yes or no that is saved with the form, such as accepting the terms. The native checkbox in the primary colour; the whole label is the hit area, at least 44px tall.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/checkbox
+Docs: https://ghazal-ui.github.io/ghazal/components/checkbox
 
 ```html
 <label class="ui-check">
@@ -15,9 +15,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/checkbox
 
 When to use something else:
 
-- One choice from a few options: [Radio group](https://lamsa-ui.github.io/lamsa/components/radio-group)
-- A setting that takes effect at once: [Switch](https://lamsa-ui.github.io/lamsa/components/switch)
-- Several choices from a long list: [Combobox or Chip input](https://lamsa-ui.github.io/lamsa/components/chip-input)
+- One choice from a few options: [Radio group](https://ghazal-ui.github.io/ghazal/components/radio-group)
+- A setting that takes effect at once: [Switch](https://ghazal-ui.github.io/ghazal/components/switch)
+- Several choices from a long list: [Combobox or Chip input](https://ghazal-ui.github.io/ghazal/components/chip-input)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

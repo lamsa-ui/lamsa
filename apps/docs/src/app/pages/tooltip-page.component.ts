@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   TooltipDirective,
   IconComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -68,10 +68,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class TooltipPageComponent {
   protected readonly usage = {
-    angular: `import { TooltipDirective } from '@lamsa-ui/angular';
+    angular: `import { TooltipDirective } from '@ghazal-ui/angular';
 // On the Angular CDK overlay. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { Tooltip } from '@lamsa-ui/react';`,
-    vue: `import { Tooltip } from '@lamsa-ui/vue';`,
+    react: `import { Tooltip } from '@ghazal-ui/react';`,
+    vue: `import { Tooltip } from '@ghazal-ui/vue';`,
     html: `<!-- A tooltip needs script to show and hide. The markup it uses: -->
 <button class="ui-button ui-button--ghost" aria-label="Copy link" aria-describedby="tip">…</button>
 <span class="ui-tooltip" role="tooltip" id="tip">Copy link</span>`,

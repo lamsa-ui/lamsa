@@ -1,4 +1,4 @@
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import { Icon } from './icon.js';
 
 export type AlertTone = 'info' | 'success' | 'warning' | 'danger';

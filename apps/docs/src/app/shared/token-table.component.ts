@@ -4,7 +4,7 @@ export interface TokenRow {
   token: string;
   value: string;
   use: string;
-  /** The Tailwind class that reads this token, from @lamsa-ui/css/tailwind.css. */
+  /** The Tailwind class that reads this token, from @ghazal-ui/css/tailwind.css. */
   tw?: string;
   /** Styles for a small live sample of the token, e.g. `{ background: 'var(--ui-primary)' }`. */
   preview?: Record<string, string>;

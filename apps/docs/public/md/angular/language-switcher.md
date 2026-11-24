@@ -1,20 +1,20 @@
 # Language switcher
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Switches the interface language. Each language is named in itself, so someone who reads only that language can find it, and carries its lang, so screen readers say it in the right voice. No flags: a flag is a country, not a language. Set lang and dir on the html element when the language changes.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/language-switcher
+Docs: https://ghazal-ui.github.io/ghazal/components/language-switcher
 
 ```ts
-import { LanguageSwitcherComponent, type Language } from '@lamsa-ui/angular';
+import { LanguageSwitcherComponent, type Language } from '@ghazal-ui/angular';
 // Three or more languages use the Angular CDK menu. Add @angular/cdk/overlay-prebuilt.css.
 ```
 
 When to use something else:
 
-- Any other choice from a list: [Select](https://lamsa-ui.github.io/lamsa/components/select)
-- Switch between views of a page: [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control)
+- Any other choice from a list: [Select](https://ghazal-ui.github.io/ghazal/components/select)
+- Switch between views of a page: [Segmented control](https://ghazal-ui.github.io/ghazal/components/segmented-control)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

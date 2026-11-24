@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FieldsetComponent, TextFieldComponent } from '@lamsa-ui/angular';
+import { FieldsetComponent, TextFieldComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -50,10 +50,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class FieldsetPageComponent {
   protected readonly usage = {
-    angular: `import { FieldsetComponent } from '@lamsa-ui/angular';
+    angular: `import { FieldsetComponent } from '@ghazal-ui/angular';
 // An attribute on a native fieldset: <fieldset ui-fieldset legend="…">`,
-    react: `import { Fieldset } from '@lamsa-ui/react';`,
-    vue: `import { Fieldset } from '@lamsa-ui/vue';`,
+    react: `import { Fieldset } from '@ghazal-ui/react';`,
+    vue: `import { Fieldset } from '@ghazal-ui/vue';`,
     html: `<fieldset class="ui-fieldset">
   <legend class="ui-fieldset__legend">Delivery address</legend>
   …fields

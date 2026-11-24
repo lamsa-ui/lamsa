@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TimelineComponent, type TimelineItem } from '@lamsa-ui/angular';
+import { TimelineComponent, type TimelineItem } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -93,9 +93,9 @@ export class TimelinePageComponent {
   ];
 
   protected readonly usage = {
-    angular: `import { TimelineComponent } from '@lamsa-ui/angular';`,
-    react: `import { Timeline } from '@lamsa-ui/react';`,
-    vue: `import { Timeline } from '@lamsa-ui/vue';`,
+    angular: `import { TimelineComponent } from '@ghazal-ui/angular';`,
+    react: `import { Timeline } from '@ghazal-ui/react';`,
+    vue: `import { Timeline } from '@ghazal-ui/vue';`,
     html: `<ol class="ui-timeline" aria-label="Approval history">...</ol>`,
   };
 

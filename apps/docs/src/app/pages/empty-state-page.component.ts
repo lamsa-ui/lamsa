@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   CardComponent,
   EmptyStateComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -76,9 +76,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class EmptyStatePageComponent {
   protected readonly usage = {
-    angular: `import { EmptyStateComponent } from '@lamsa-ui/angular';`,
-    react: `import { EmptyState } from '@lamsa-ui/react';`,
-    vue: `import { EmptyState } from '@lamsa-ui/vue';`,
+    angular: `import { EmptyStateComponent } from '@ghazal-ui/angular';`,
+    react: `import { EmptyState } from '@ghazal-ui/react';`,
+    vue: `import { EmptyState } from '@ghazal-ui/vue';`,
     html: `<div class="ui-empty-state">...</div>`,
   };
 

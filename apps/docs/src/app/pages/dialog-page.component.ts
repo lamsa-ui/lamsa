@@ -8,7 +8,7 @@ import {
   TextFieldComponent,
   UiDialog,
   type UiDialogConfig,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -304,9 +304,9 @@ export class DialogPageComponent {
   DialogCloseDirective,
   DialogComponent,
   UiDialog,
-} from '@lamsa-ui/angular';`,
-    react: `import { Dialog } from '@lamsa-ui/react';`,
-    vue: `import { Dialog } from '@lamsa-ui/vue';`,
+} from '@ghazal-ui/angular';`,
+    react: `import { Dialog } from '@ghazal-ui/react';`,
+    vue: `import { Dialog } from '@ghazal-ui/vue';`,
     html: `<dialog class="ui-dialog" closedby="any" aria-labelledby="title">...</dialog>
 <!-- open it with dialog.showModal(), never show() -->`,
   };

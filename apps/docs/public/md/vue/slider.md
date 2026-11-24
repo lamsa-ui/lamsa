@@ -1,20 +1,20 @@
 # Slider
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A value picked along a range, such as a price limit or a volume. It is the browser's own range input, so arrow keys, Page Up and Down, Home and End all move it, and the value is written beside the label. For an exact number, use a number field.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/slider
+Docs: https://ghazal-ui.github.io/ghazal/components/slider
 
 ```ts
-import { Slider } from '@lamsa-ui/vue';
+import { Slider } from '@ghazal-ui/vue';
 // Every other prop goes to the input: step, name, disabled, ref.
 ```
 
 When to use something else:
 
-- An exact value: [Number field](https://lamsa-ui.github.io/lamsa/components/number-field)
-- Show a level the reader cannot change: [Meter](https://lamsa-ui.github.io/lamsa/components/meter)
+- An exact value: [Number field](https://ghazal-ui.github.io/ghazal/components/number-field)
+- Show a level the reader cannot change: [Meter](https://ghazal-ui.github.io/ghazal/components/meter)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

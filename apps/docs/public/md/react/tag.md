@@ -1,19 +1,19 @@
 # Tag
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A label the user added or can take away, such as an active filter or a topic. For a status like Paid or Late, use a badge.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/tag
+Docs: https://ghazal-ui.github.io/ghazal/components/tag
 
 ```tsx
-import { Tag } from '@lamsa-ui/react';
+import { Tag } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A status the user cannot remove: [Badge](https://lamsa-ui.github.io/lamsa/components/badge)
-- Let the user type new labels: [Chip input](https://lamsa-ui.github.io/lamsa/components/chip-input)
+- A status the user cannot remove: [Badge](https://ghazal-ui.github.io/ghazal/components/badge)
+- Let the user type new labels: [Chip input](https://ghazal-ui.github.io/ghazal/components/chip-input)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

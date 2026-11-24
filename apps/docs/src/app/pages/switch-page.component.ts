@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SwitchComponent } from '@lamsa-ui/angular';
+import { SwitchComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -54,11 +54,11 @@ export class SwitchPageComponent {
   );
 
   protected readonly usage = {
-    angular: `import { SwitchComponent } from '@lamsa-ui/angular';
+    angular: `import { SwitchComponent } from '@ghazal-ui/angular';
 // The value is true or false. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { Switch } from '@lamsa-ui/react';
+    react: `import { Switch } from '@ghazal-ui/react';
 // Every other prop goes to the input: checked, onChange, name, ref.`,
-    vue: `import { Switch } from '@lamsa-ui/vue';
+    vue: `import { Switch } from '@ghazal-ui/vue';
 // Bind it with v-model; every other attribute goes to the input: name, required.`,
     html: `<label class="ui-switch">
   Order updates

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RadioGroupComponent, type SelectOption } from '@lamsa-ui/angular';
+import { RadioGroupComponent, type SelectOption } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -78,10 +78,10 @@ export class RadioGroupPageComponent {
   );
 
   protected readonly usage = {
-    angular: `import { RadioGroupComponent } from '@lamsa-ui/angular';
+    angular: `import { RadioGroupComponent } from '@ghazal-ui/angular';
 // Options are { value, label, disabled? }, as for ui-select.`,
-    react: `import { RadioGroup } from '@lamsa-ui/react';`,
-    vue: `import { RadioGroup } from '@lamsa-ui/vue';`,
+    react: `import { RadioGroup } from '@ghazal-ui/react';`,
+    vue: `import { RadioGroup } from '@ghazal-ui/vue';`,
     html: `<div class="ui-field" role="radiogroup" aria-labelledby="speed-label">
   <span class="ui-field__label" id="speed-label">Delivery</span>
   <div class="ui-choices">

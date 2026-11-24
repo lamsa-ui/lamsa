@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SliderComponent } from '@lamsa-ui/angular';
+import { SliderComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -78,11 +78,11 @@ export class SliderPageComponent {
     `${v.toLocaleString('ar-EG')} جنيه`;
 
   protected readonly usage = {
-    angular: `import { SliderComponent } from '@lamsa-ui/angular';
+    angular: `import { SliderComponent } from '@ghazal-ui/angular';
 // The value is a number. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { Slider } from '@lamsa-ui/react';
+    react: `import { Slider } from '@ghazal-ui/react';
 // Every other prop goes to the input: step, name, disabled, ref.`,
-    vue: `import { Slider } from '@lamsa-ui/vue';
+    vue: `import { Slider } from '@ghazal-ui/vue';
 // Every other prop goes to the input: step, name, disabled, ref.`,
     html: `<input type="range" class="ui-slider" />`,
   };

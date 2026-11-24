@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BreadcrumbsComponent } from '@lamsa-ui/angular';
+import { BreadcrumbsComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -46,10 +46,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class BreadcrumbsPageComponent {
   protected readonly usage = {
-    angular: `import { BreadcrumbsComponent } from '@lamsa-ui/angular';
+    angular: `import { BreadcrumbsComponent } from '@ghazal-ui/angular';
 // Put each link in an <li>. Works with routerLink or href.`,
-    react: `import { Breadcrumbs } from '@lamsa-ui/react';`,
-    vue: `import { Breadcrumbs } from '@lamsa-ui/vue';`,
+    react: `import { Breadcrumbs } from '@ghazal-ui/react';`,
+    vue: `import { Breadcrumbs } from '@ghazal-ui/vue';`,
     html: `<nav class="ui-breadcrumbs" aria-label="Breadcrumb">
   <ol>
     <li><a href="/orders">Orders</a></li>

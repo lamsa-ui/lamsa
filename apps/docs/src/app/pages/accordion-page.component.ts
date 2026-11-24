@@ -3,7 +3,7 @@ import {
   AccordionComponent,
   AccordionContentDirective,
   AccordionItemComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -151,10 +151,10 @@ export class AccordionPageComponent {
   AccordionComponent,
   AccordionContentDirective,
   AccordionItemComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 // Each item is a native <details ui-accordion-item>.`,
-    react: `import { Accordion, AccordionItem } from '@lamsa-ui/react';`,
-    vue: `import { Accordion, AccordionItem } from '@lamsa-ui/vue';`,
+    react: `import { Accordion, AccordionItem } from '@ghazal-ui/react';`,
+    vue: `import { Accordion, AccordionItem } from '@ghazal-ui/vue';`,
     html: `<div class="ui-accordion">
   <details class="ui-accordion__item" name="faq">
     <summary><span class="ui-accordion__heading">Can I change my order?</span></summary>

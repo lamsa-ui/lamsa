@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent, ButtonGroupComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, ButtonGroupComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -50,9 +50,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class ButtonGroupPageComponent {
   protected readonly usage = {
-    angular: `import { ButtonComponent, ButtonGroupComponent } from '@lamsa-ui/angular';`,
-    react: `import { Button, ButtonGroup } from '@lamsa-ui/react';`,
-    vue: `import { Button, ButtonGroup } from '@lamsa-ui/vue';`,
+    angular: `import { ButtonComponent, ButtonGroupComponent } from '@ghazal-ui/angular';`,
+    react: `import { Button, ButtonGroup } from '@ghazal-ui/react';`,
+    vue: `import { Button, ButtonGroup } from '@ghazal-ui/vue';`,
     html: `<div class="ui-button-group" role="group" aria-label="Invoice">…</div>`,
   };
 

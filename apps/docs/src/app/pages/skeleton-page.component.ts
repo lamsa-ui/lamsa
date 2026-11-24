@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SkeletonComponent, SpinnerComponent } from '@lamsa-ui/angular';
+import { SkeletonComponent, SpinnerComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -43,9 +43,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class SkeletonPageComponent {
   protected readonly usage = {
-    angular: `import { SkeletonComponent } from '@lamsa-ui/angular';`,
-    react: `import { Skeleton } from '@lamsa-ui/react';`,
-    vue: `import { Skeleton } from '@lamsa-ui/vue';`,
+    angular: `import { SkeletonComponent } from '@ghazal-ui/angular';`,
+    react: `import { Skeleton } from '@ghazal-ui/react';`,
+    vue: `import { Skeleton } from '@ghazal-ui/vue';`,
     html: `<div class="ui-skeleton ui-skeleton--text" aria-hidden="true">
   <span class="ui-skeleton__shape"></span>
   <span class="ui-skeleton__shape"></span>

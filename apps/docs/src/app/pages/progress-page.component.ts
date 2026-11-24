@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProgressComponent } from '@lamsa-ui/angular';
+import { ProgressComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -50,9 +50,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class ProgressPageComponent {
   protected readonly usage = {
-    angular: `import { ProgressComponent } from '@lamsa-ui/angular';`,
-    react: `import { Progress } from '@lamsa-ui/react';`,
-    vue: `import { Progress } from '@lamsa-ui/vue';`,
+    angular: `import { ProgressComponent } from '@ghazal-ui/angular';`,
+    react: `import { Progress } from '@ghazal-ui/react';`,
+    vue: `import { Progress } from '@ghazal-ui/vue';`,
     html: `<div class="ui-progress">
   <div class="ui-progress__head">
     <span class="ui-progress__label" id="upload">Uploading invoice.pdf</span>

@@ -1,20 +1,20 @@
 # Data table
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Rows of records the reader scans and compares: orders, users, payments. A real table, named by its caption, so screen readers announce the row and column of every cell. Sorting is announced too.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/data-table
+Docs: https://ghazal-ui.github.io/ghazal/components/data-table
 
 ```tsx
-import { DataTable, type TableColumn, type TableSort } from '@lamsa-ui/react';
+import { DataTable, type TableColumn, type TableSort } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A few label and value pairs: [Property list](https://lamsa-ui.github.io/lamsa/components/property-list)
-- Events in time order: [Timeline](https://lamsa-ui.github.io/lamsa/components/timeline)
-- Nested items such as folders: [Tree](https://lamsa-ui.github.io/lamsa/components/tree)
+- A few label and value pairs: [Property list](https://ghazal-ui.github.io/ghazal/components/property-list)
+- Events in time order: [Timeline](https://ghazal-ui.github.io/ghazal/components/timeline)
+- Nested items such as folders: [Tree](https://ghazal-ui.github.io/ghazal/components/tree)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

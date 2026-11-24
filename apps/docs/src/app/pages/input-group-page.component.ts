@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -34,7 +34,7 @@ import { PageComponent } from '../shared/page.component';
           <ui-text-field
             label="Shop address"
             prefix="https://"
-            suffix=".lamsa.shop"
+            suffix=".ghazal.shop"
           />
         </div>
       </app-example>
@@ -52,22 +52,22 @@ import { PageComponent } from '../shared/page.component';
 })
 export class InputGroupPageComponent {
   protected readonly usage = {
-    angular: `import { TextFieldComponent } from '@lamsa-ui/angular';`,
-    react: `import { TextField } from '@lamsa-ui/react';`,
-    vue: `import { TextField } from '@lamsa-ui/vue';`,
+    angular: `import { TextFieldComponent } from '@ghazal-ui/angular';`,
+    react: `import { TextField } from '@ghazal-ui/react';`,
+    vue: `import { TextField } from '@ghazal-ui/vue';`,
     html: `<div class="ui-input-group">…<input class="ui-input-group__input" />…</div>`,
   };
 
   protected readonly affixes = {
     angular: `<ui-text-field label="Price" type="number" prefix="EGP" />
 <ui-text-field label="Weight" type="number" suffix="kg" />
-<ui-text-field label="Shop address" prefix="https://" suffix=".lamsa.shop" />`,
+<ui-text-field label="Shop address" prefix="https://" suffix=".ghazal.shop" />`,
     react: `<TextField label="Price" type="number" prefix="EGP" />
 <TextField label="Weight" type="number" suffix="kg" />
-<TextField label="Shop address" prefix="https://" suffix=".lamsa.shop" />`,
+<TextField label="Shop address" prefix="https://" suffix=".ghazal.shop" />`,
     vue: `<TextField v-model="price" label="Price" type="number" prefix="EGP" />
 <TextField v-model="weight" label="Weight" type="number" suffix="kg" />
-<TextField v-model="shop" label="Shop address" prefix="https://" suffix=".lamsa.shop" />`,
+<TextField v-model="shop" label="Shop address" prefix="https://" suffix=".ghazal.shop" />`,
     html: `<div class="ui-field">
   <label class="ui-field__label" for="price">Price</label>
   <div class="ui-input-group">

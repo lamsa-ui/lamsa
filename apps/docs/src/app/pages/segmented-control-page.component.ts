@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SegmentedControlComponent } from '@lamsa-ui/angular';
+import { SegmentedControlComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -98,10 +98,10 @@ export class SegmentedControlPageComponent {
   protected readonly periodArabic = new FormControl('day');
 
   protected readonly usage = {
-    angular: `import { SegmentedControlComponent } from '@lamsa-ui/angular';
+    angular: `import { SegmentedControlComponent } from '@ghazal-ui/angular';
 // Works with formControlName, [formControl] and ngModel.`,
-    react: `import { SegmentedControl } from '@lamsa-ui/react';`,
-    vue: `import { SegmentedControl } from '@lamsa-ui/vue';`,
+    react: `import { SegmentedControl } from '@ghazal-ui/react';`,
+    vue: `import { SegmentedControl } from '@ghazal-ui/vue';`,
     html: `<div class="ui-segmented" role="radiogroup" aria-label="Period">...</div>`,
   };
 

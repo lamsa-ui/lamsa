@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { RatingComponent } from '@lamsa-ui/angular';
+import { RatingComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -64,10 +64,10 @@ export class RatingPageComponent {
         : `${n.toLocaleString('ar-EG')} نجوم`;
 
   protected readonly usage = {
-    angular: `import { RatingComponent } from '@lamsa-ui/angular';
+    angular: `import { RatingComponent } from '@ghazal-ui/angular';
 // The value is a number, or null before a pick. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { Rating } from '@lamsa-ui/react';`,
-    vue: `import { Rating } from '@lamsa-ui/vue';`,
+    react: `import { Rating } from '@ghazal-ui/react';`,
+    vue: `import { Rating } from '@ghazal-ui/vue';`,
     html: `<fieldset class="ui-rating">...</fieldset>`,
   };
 

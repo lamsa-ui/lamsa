@@ -1,8 +1,8 @@
 /*
- * Lamsa for Tailwind CSS v4. After Tailwind, one import:
+ * Ghazal for Tailwind CSS v4. After Tailwind, one import:
  *
  *   @import 'tailwindcss';
- *   @import '@lamsa-ui/css/tailwind.css';
+ *   @import '@ghazal-ui/css/tailwind.css';
  *
  * It brings the whole kit (ui.css, in the components layer so a Tailwind
  * utility always wins over a kit class), and makes the kit's tokens the

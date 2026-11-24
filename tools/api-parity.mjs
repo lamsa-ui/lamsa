@@ -210,7 +210,7 @@ for (const file of files) {
   // Vue: every documented prop and event must exist on the Vue component the page imports.
   const usageText = initializers.get('usage')?.getText(source) ?? '';
   const vueImports = [
-    ...usageText.matchAll(/import \{([^}]+)\} from '@lamsa-ui\/vue'/g),
+    ...usageText.matchAll(/import \{([^}]+)\} from '@ghazal-ui\/vue'/g),
   ]
     .flatMap(([, names]) =>
       names
@@ -224,7 +224,7 @@ for (const file of files) {
   // Vue is at parity: every component page documents it.
   if (!vueImports.length || !api.vue) {
     failures.push(
-      `${file}: needs a Vue usage line (import from @lamsa-ui/vue) and a Vue API table.`,
+      `${file}: needs a Vue usage line (import from @ghazal-ui/vue) and a Vue API table.`,
     );
   }
   if (api.vue) {
@@ -232,7 +232,7 @@ for (const file of files) {
     for (const name of vueImports) {
       const names = vueComponents.get(name);
       if (!names && !/^use[A-Z]/.test(name))
-        failures.push(`${file}: @lamsa-ui/vue has no component "${name}".`);
+        failures.push(`${file}: @ghazal-ui/vue has no component "${name}".`);
       for (const n of names ?? []) known.add(n);
     }
     // A composable (useAlertDialog) documents functions and options, not props.
@@ -296,5 +296,5 @@ if (failures.length) {
 }
 
 console.log(
-  `✔ ${files.length} component API tables checked for Angular/React parity, Vue rows checked against @lamsa-ui/vue, every page says when to use something else, the built-in labels match in every package.`,
+  `✔ ${files.length} component API tables checked for Angular/React parity, Vue rows checked against @ghazal-ui/vue, every page says when to use something else, the built-in labels match in every package.`,
 );

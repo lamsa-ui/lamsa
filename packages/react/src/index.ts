@@ -117,7 +117,7 @@ export type {
 } from './lib/calendar.js';
 export { Icon } from './lib/icon.js';
 export type { IconProps, IconSize } from './lib/icon.js';
-export type { IconName } from '@lamsa-ui/icons';
+export type { IconName } from '@ghazal-ui/icons';
 export { latinDigits, NumberField, SearchField } from './lib/fields.js';
 export type { NumberFieldProps, SearchFieldProps } from './lib/fields.js';
 export { DatePicker } from './lib/date-picker.js';

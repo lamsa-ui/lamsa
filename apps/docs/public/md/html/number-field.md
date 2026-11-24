@@ -1,10 +1,10 @@
 # Number field
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A number with − and + either side. Type it, in Latin or Arabic digits, or step it with the buttons, the arrow keys, or Page Up and Down for ten steps. On leaving the field it stays inside its limits and is written in the reader's language.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/number-field
+Docs: https://ghazal-ui.github.io/ghazal/components/number-field
 
 ```html
 <div class="ui-field ui-number-field">...</div>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/number-field
 
 When to use something else:
 
-- A rough amount on a scale: [Slider](https://lamsa-ui.github.io/lamsa/components/slider)
-- A code such as an ID or a card number: [Text field](https://lamsa-ui.github.io/lamsa/components/text-field)
-- A price with a currency beside it: [Input group](https://lamsa-ui.github.io/lamsa/components/input-group)
+- A rough amount on a scale: [Slider](https://ghazal-ui.github.io/ghazal/components/slider)
+- A code such as an ID or a card number: [Text field](https://ghazal-ui.github.io/ghazal/components/text-field)
+- A price with a currency beside it: [Input group](https://ghazal-ui.github.io/ghazal/components/input-group)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

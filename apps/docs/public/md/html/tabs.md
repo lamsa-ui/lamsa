@@ -1,10 +1,10 @@
 # Tabs
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Views of one thing side by side, such as an order's details and its history. Tab reaches the chosen tab, the arrow keys move between tabs and show each one, Home and End go to the first and last. The chosen tab gets a bar and full-strength text, not only a colour.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/tabs
+Docs: https://ghazal-ui.github.io/ghazal/components/tabs
 
 ```html
 <!-- Tabs need script for the keyboard. Follow the WAI-ARIA tabs pattern with these classes: -->
@@ -20,9 +20,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/tabs
 
 When to use something else:
 
-- Links to other pages: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Change how the same content is shown: [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control)
-- Sections the reader may open together: [Accordion](https://lamsa-ui.github.io/lamsa/components/accordion)
+- Links to other pages: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Change how the same content is shown: [Segmented control](https://ghazal-ui.github.io/ghazal/components/segmented-control)
+- Sections the reader may open together: [Accordion](https://ghazal-ui.github.io/ghazal/components/accordion)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

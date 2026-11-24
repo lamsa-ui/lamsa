@@ -1,19 +1,19 @@
 # File field
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The browser's own file input, with a label, hint and error, in a zone that also takes files dropped on it. The native button and file names stay, so it works with the keyboard, screen readers and phone cameras as usual.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/file-field
+Docs: https://ghazal-ui.github.io/ghazal/components/file-field
 
 ```ts
-import { FileFieldComponent } from '@lamsa-ui/angular';
+import { FileFieldComponent } from '@ghazal-ui/angular';
 // The value is a File[]. Writing null or [] to the control clears the input.
 ```
 
 When to use something else:
 
-- Typed text or a link to a file: [Text field](https://lamsa-ui.github.io/lamsa/components/text-field)
+- Typed text or a link to a file: [Text field](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

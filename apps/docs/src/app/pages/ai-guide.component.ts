@@ -154,8 +154,8 @@ import { PageComponent } from '../shared/page.component';
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">Keep it current</h2>
         <p>
-          Update the <code>&#64;lamsa-ui/*</code> packages, then fetch the guide
-          again: it describes the version this site shows. Maintainers
+          Update the <code>&#64;ghazal-ui/*</code> packages, then fetch the
+          guide again: it describes the version this site shows. Maintainers
           regenerate it with <code>pnpm llms</code> after changing a component
           page; <code>pnpm llms --check</code> fails when it is stale.
         </p>
@@ -172,9 +172,9 @@ export class AiGuideComponent {
 
   protected readonly fullUrl = `${SITE_URL}llms-full.txt`;
 
-  protected readonly rule = `This project uses Lamsa. Before writing any UI, read ${this.fullUrl} and follow its rules.`;
+  protected readonly rule = `This project uses Ghazal. Before writing any UI, read ${this.fullUrl} and follow its rules.`;
 
-  protected readonly promptForm = `Using Lamsa (Angular), build a "Book a site visit" form: full name, city (select), a switch for SMS updates and a primary submit button that shows a loading state. Support English and Arabic with correct RTL. Use only components and props from ${this.fullUrl}.`;
+  protected readonly promptForm = `Using Ghazal (Angular), build a "Book a site visit" form: full name, city (select), a switch for SMS updates and a primary submit button that shows a loading state. Support English and Arabic with correct RTL. Use only components and props from ${this.fullUrl}.`;
 
   protected readonly promptReview = `Review this file against ${this.fullUrl}. List every hand-built control the kit already has, every raw colour or pixel value, every left/right instead of start/end, and every prop that does not exist. Then fix them.`;
 

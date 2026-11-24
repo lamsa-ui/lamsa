@@ -1,20 +1,20 @@
 # Drawer
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A side panel that slides in from the edge, for a form or the details of a row, while the list stays in sight. It is a dialog docked to the side: focus moves into it and stays there, the page behind stops scrolling, only the body scrolls, and Escape, the close button or a click outside closes it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/drawer
+Docs: https://ghazal-ui.github.io/ghazal/components/drawer
 
 ```tsx
-import { Dialog } from '@lamsa-ui/react';
+import { Dialog } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A focused task in the middle of the screen: [Dialog](https://lamsa-ui.github.io/lamsa/components/dialog)
-- A panel on a phone: [Bottom sheet](https://lamsa-ui.github.io/lamsa/components/bottom-sheet)
-- The main links of the app on a phone: [App shell](https://lamsa-ui.github.io/lamsa/components/app-shell)
+- A focused task in the middle of the screen: [Dialog](https://ghazal-ui.github.io/ghazal/components/dialog)
+- A panel on a phone: [Bottom sheet](https://ghazal-ui.github.io/ghazal/components/bottom-sheet)
+- The main links of the app on a phone: [App shell](https://ghazal-ui.github.io/ghazal/components/app-shell)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

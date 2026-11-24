@@ -1,20 +1,20 @@
 # Bottom sheet
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A panel that slides up from the bottom of the screen, for a short choice or the details of an item, mostly on phones. It is a dialog docked to the bottom: focus moves into it and stays there, the page behind stops scrolling, and Escape, the close button or a click above it closes it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/bottom-sheet
+Docs: https://ghazal-ui.github.io/ghazal/components/bottom-sheet
 
 ```tsx
-import { Dialog } from '@lamsa-ui/react';
+import { Dialog } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A task on a wide screen: [Dialog](https://lamsa-ui.github.io/lamsa/components/dialog)
-- Navigation or filters that slide in from the side: [Drawer](https://lamsa-ui.github.io/lamsa/components/drawer)
-- A short list of actions: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- A task on a wide screen: [Dialog](https://ghazal-ui.github.io/ghazal/components/dialog)
+- Navigation or filters that slide in from the side: [Drawer](https://ghazal-ui.github.io/ghazal/components/drawer)
+- A short list of actions: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

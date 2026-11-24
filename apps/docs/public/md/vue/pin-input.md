@@ -1,19 +1,19 @@
 # PIN input
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A code sent by text message, one box per digit. Typing moves along, Backspace goes back, and pasting the code fills every box. On a phone the keyboard offers the code from the message, and the boxes take it all at once.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/pin-input
+Docs: https://ghazal-ui.github.io/ghazal/components/pin-input
 
 ```ts
-import { PinInput } from '@lamsa-ui/vue';
+import { PinInput } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- A password: [Text field with type password](https://lamsa-ui.github.io/lamsa/components/text-field)
-- A phone number: [Phone field](https://lamsa-ui.github.io/lamsa/components/phone-field)
+- A password: [Text field with type password](https://ghazal-ui.github.io/ghazal/components/text-field)
+- A phone number: [Phone field](https://ghazal-ui.github.io/ghazal/components/phone-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

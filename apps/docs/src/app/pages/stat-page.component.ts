@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CardComponent, StatComponent } from '@lamsa-ui/angular';
+import { CardComponent, StatComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -82,9 +82,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class StatPageComponent {
   protected readonly usage = {
-    angular: `import { StatComponent } from '@lamsa-ui/angular';`,
-    react: `import { Stat } from '@lamsa-ui/react';`,
-    vue: `import { Stat } from '@lamsa-ui/vue';`,
+    angular: `import { StatComponent } from '@ghazal-ui/angular';`,
+    react: `import { Stat } from '@ghazal-ui/react';`,
+    vue: `import { Stat } from '@ghazal-ui/vue';`,
     html: `<div class="ui-stat">...</div>`,
   };
 

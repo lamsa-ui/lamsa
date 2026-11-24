@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { ChipInputComponent } from '@lamsa-ui/angular';
+import { ChipInputComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -70,10 +70,10 @@ export class ChipInputPageComponent {
   protected readonly removedArabic = (c: string) => `تمت إزالة ${c}`;
 
   protected readonly usage = {
-    angular: `import { ChipInputComponent } from '@lamsa-ui/angular';
+    angular: `import { ChipInputComponent } from '@ghazal-ui/angular';
 // The value is a string[]. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { ChipInput } from '@lamsa-ui/react';`,
-    vue: `import { ChipInput } from '@lamsa-ui/vue';`,
+    react: `import { ChipInput } from '@ghazal-ui/react';`,
+    vue: `import { ChipInput } from '@ghazal-ui/vue';`,
     html: `<div class="ui-chips">...</div>
 <!-- Adding, removing, focus and announcements need script: use the Angular or React component. -->`,
   };

@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { IconComponent } from '@lamsa-ui/angular';
-import { ICONS, ICON_TAGS, type IconName } from '@lamsa-ui/icons';
+import { IconComponent } from '@ghazal-ui/angular';
+import { ICONS, ICON_TAGS, type IconName } from '@ghazal-ui/icons';
 import { CodeBlockComponent } from '../shared/code-block.component';
 import { PageComponent } from '../shared/page.component';
 

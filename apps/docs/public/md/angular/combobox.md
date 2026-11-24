@@ -1,21 +1,21 @@
 # Combobox
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A text field that filters a list as you type, for a long list such as countries. Focus stays in the field: arrow keys move through the matches, Enter picks one and Escape closes the list. The value is always one of the options.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/combobox
+Docs: https://ghazal-ui.github.io/ghazal/components/combobox
 
 ```ts
-import { ComboboxComponent } from '@lamsa-ui/angular';
+import { ComboboxComponent } from '@ghazal-ui/angular';
 // Options are { value, label, disabled? }, as for ui-select. Add @angular/cdk/overlay-prebuilt.css.
 ```
 
 When to use something else:
 
-- One choice from fewer than about 10 options: [Select](https://lamsa-ui.github.io/lamsa/components/select)
-- Several values: [Chip input](https://lamsa-ui.github.io/lamsa/components/chip-input)
-- Find a page or run a command from anywhere: [Command palette](https://lamsa-ui.github.io/lamsa/components/command-palette)
+- One choice from fewer than about 10 options: [Select](https://ghazal-ui.github.io/ghazal/components/select)
+- Several values: [Chip input](https://ghazal-ui.github.io/ghazal/components/chip-input)
+- Find a page or run a command from anywhere: [Command palette](https://ghazal-ui.github.io/ghazal/components/command-palette)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

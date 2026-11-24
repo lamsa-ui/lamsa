@@ -1,19 +1,19 @@
 # Empty state
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 What a list, table or page shows while it has nothing in it. It says what will appear here, why it is empty now, and offers the one action that fills it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/empty-state
+Docs: https://ghazal-ui.github.io/ghazal/components/empty-state
 
 ```ts
-import { EmptyStateComponent } from '@lamsa-ui/angular';
+import { EmptyStateComponent } from '@ghazal-ui/angular';
 ```
 
 When to use something else:
 
-- Content that is still loading: [Skeleton](https://lamsa-ui.github.io/lamsa/components/skeleton)
-- Something went wrong: [Alert](https://lamsa-ui.github.io/lamsa/components/alert)
+- Content that is still loading: [Skeleton](https://ghazal-ui.github.io/ghazal/components/skeleton)
+- Something went wrong: [Alert](https://ghazal-ui.github.io/ghazal/components/alert)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

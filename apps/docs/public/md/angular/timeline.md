@@ -1,19 +1,19 @@
 # Timeline
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A chronological record of decisions and updates. Each event can show who acted, when it happened, and the outcome, so a case's approval history is easy to scan.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/timeline
+Docs: https://ghazal-ui.github.io/ghazal/components/timeline
 
 ```ts
-import { TimelineComponent } from '@lamsa-ui/angular';
+import { TimelineComponent } from '@ghazal-ui/angular';
 ```
 
 When to use something else:
 
-- Steps still to do: [Stepper](https://lamsa-ui.github.io/lamsa/components/stepper)
-- Many records to sort and filter: [Data table](https://lamsa-ui.github.io/lamsa/components/data-table)
+- Steps still to do: [Stepper](https://ghazal-ui.github.io/ghazal/components/stepper)
+- Many records to sort and filter: [Data table](https://ghazal-ui.github.io/ghazal/components/data-table)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

@@ -13,7 +13,7 @@ import {
   TabContentDirective,
   TabNavComponent,
   TabsComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -235,10 +235,10 @@ export class TabsPageComponent {
   TabNavComponent, // tabs that are pages, with the router
   TabsComponent,
   KeepRouteStrategy, // keeps a routed tab's page between visits
-} from '@lamsa-ui/angular';`,
-    react: `import { TabNav, Tabs } from '@lamsa-ui/react';
+} from '@ghazal-ui/angular';`,
+    react: `import { TabNav, Tabs } from '@ghazal-ui/react';
 // Arrow keys follow the locale's direction: wrap Arabic pages in <I18nProvider locale="ar">.`,
-    vue: `import { TabNav, Tabs } from '@lamsa-ui/vue';
+    vue: `import { TabNav, Tabs } from '@ghazal-ui/vue';
 // Arrow keys follow the locale's direction: wrap Arabic pages in <I18nProvider locale="ar">.`,
     html: `<!-- Tabs need script for the keyboard. Follow the WAI-ARIA tabs pattern with these classes: -->
 <div class="ui-tabs">

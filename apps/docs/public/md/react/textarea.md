@@ -1,19 +1,19 @@
 # Textarea
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/textarea
+Docs: https://ghazal-ui.github.io/ghazal/components/textarea
 
 ```tsx
-import { Textarea } from '@lamsa-ui/react';
+import { Textarea } from '@ghazal-ui/react';
 // Every other prop goes to the textarea: value, onChange, rows, maxLength, ref.
 ```
 
 When to use something else:
 
-- One line of text: [Text field](https://lamsa-ui.github.io/lamsa/components/text-field)
+- One line of text: [Text field](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

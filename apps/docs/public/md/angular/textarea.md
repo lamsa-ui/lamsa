@@ -1,19 +1,19 @@
 # Textarea
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/textarea
+Docs: https://ghazal-ui.github.io/ghazal/components/textarea
 
 ```ts
-import { TextareaComponent } from '@lamsa-ui/angular';
+import { TextareaComponent } from '@ghazal-ui/angular';
 // Works with formControlName, [formControl] and ngModel.
 ```
 
 When to use something else:
 
-- One line of text: [Text field](https://lamsa-ui.github.io/lamsa/components/text-field)
+- One line of text: [Text field](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

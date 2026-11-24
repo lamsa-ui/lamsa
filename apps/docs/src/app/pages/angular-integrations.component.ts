@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormField, form, required } from '@angular/forms/signals';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 import { CodeBlockComponent } from '../shared/code-block.component';
 import { ExampleComponent } from '../shared/example.component';
 import { PageComponent } from '../shared/page.component';
@@ -17,7 +17,7 @@ import { PageComponent } from '../shared/page.component';
   template: `
     <app-page
       title="Angular integrations"
-      lead="Use Lamsa controls with Angular 22+ Signal Forms, while keeping Reactive Forms and ngModel available for existing applications."
+      lead="Use Ghazal controls with Angular 22+ Signal Forms, while keeping Reactive Forms and ngModel available for existing applications."
     >
       <app-example
         title="Signal Forms"
@@ -46,7 +46,7 @@ import { PageComponent } from '../shared/page.component';
       <section class="doc-section">
         <h2 class="ui-heading doc-h2">ng-forge custom field</h2>
         <p>
-          This is a copyable custom-field integration example, not an Lamsa
+          This is a copyable custom-field integration example, not an Ghazal
           adapter package. Install <code>@ng-forge/dynamic-forms</code>, connect
           its field contract to <code>ui-text-field</code>, then register the
           field type in your dynamic form.
@@ -61,7 +61,7 @@ import { PageComponent } from '../shared/page.component';
           text="pnpm add @ng-forge/dynamic-forms"
         />
         <app-code-block
-          caption="Lamsa text-field adapter"
+          caption="Ghazal text-field adapter"
           [text]="ngForgeField"
         />
         <app-code-block
@@ -86,7 +86,7 @@ export class AngularIntegrationsPageComponent {
 
   protected readonly signalForms = `import { Component, signal } from '@angular/core';
 import { FormField, form, required } from '@angular/forms/signals';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 
 @Component({
   selector: 'app-profile-form',
@@ -110,7 +110,7 @@ export class ProfileForm {
 }`;
 
   protected readonly reactiveForms = `import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 
 @Component({
   imports: [ReactiveFormsModule, TextFieldComponent],
@@ -139,7 +139,7 @@ export class ProfileForm {
   protected readonly ngForgeField = `import { AsyncPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { FormField } from '@angular/forms/signals';
-import { TextFieldComponent } from '@lamsa-ui/angular';
+import { TextFieldComponent } from '@ghazal-ui/angular';
 import {
   DynamicTextPipe,
   injectNgForgeField,
@@ -147,12 +147,12 @@ import {
   NgForgeFieldHost,
 } from '@ng-forge/dynamic-forms/integration';
 
-interface LamsaInputProps extends Record<string, unknown> {
+interface GhazalInputProps extends Record<string, unknown> {
   type?: 'text' | 'email';
 }
 
 @Component({
-  selector: 'lamsa-input-field',
+  selector: 'ghazal-input-field',
   imports: [AsyncPipe, DynamicTextPipe, FormField, NgForgeControl, TextFieldComponent],
   hostDirectives: [NgForgeFieldHost],
   template: \`
@@ -167,9 +167,9 @@ interface LamsaInputProps extends Record<string, unknown> {
     />
   \`,
 })
-export default class LamsaInputField {
+export default class GhazalInputField {
   protected readonly ngf = injectNgForgeField<string>();
-  readonly props = input<LamsaInputProps>();
+  readonly props = input<GhazalInputProps>();
 }`;
 
   protected readonly ngForgeSetup = `import { Component } from '@angular/core';
@@ -185,22 +185,22 @@ import type {
   InputField,
 } from '@ng-forge/dynamic-forms/integration';
 
-type LamsaInputDefinition = InputField<{ type?: 'text' | 'email' }>;
+type GhazalInputDefinition = InputField<{ type?: 'text' | 'email' }>;
 
 declare module '@ng-forge/dynamic-forms' {
   interface FieldRegistryLeaves {
-    'lamsa-input': LamsaInputDefinition;
+    'ghazal-input': GhazalInputDefinition;
   }
 }
 
-const lamsaInput: FieldTypeDefinition<LamsaInputDefinition> = {
-  name: 'lamsa-input',
-  loadComponent: () => import('./lamsa-input-field'),
+const ghazalInput: FieldTypeDefinition<GhazalInputDefinition> = {
+  name: 'ghazal-input',
+  loadComponent: () => import('./ghazal-input-field'),
   mapper: valueFieldMapper,
 };
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideDynamicForm(lamsaInput)],
+  providers: [provideDynamicForm(ghazalInput)],
 };
 
 @Component({
@@ -211,7 +211,7 @@ export class ProfileForm {
   readonly config = {
     fields: [{
       key: 'email',
-      type: 'lamsa-input',
+      type: 'ghazal-input',
       value: '',
       label: 'Email',
       required: true,

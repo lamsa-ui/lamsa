@@ -1,21 +1,21 @@
 # Date picker
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A date to type or pick, or a range of dates for a stay. Type dates in the reader's own order, or open the calendar beside them or with Alt + Down. Unlike the browser's own picker, this calendar can close off days, such as a shop's day off. For ordinary dates and times, the native fields below use the browser's localized pickers. Date values stay plain ISO dates.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/date-picker
+Docs: https://ghazal-ui.github.io/ghazal/components/date-picker
 
 ```ts
-import { DatePickerComponent, TextFieldComponent } from '@lamsa-ui/angular';
+import { DatePickerComponent, TextFieldComponent } from '@ghazal-ui/angular';
 // The value is an ISO date (YYYY-MM-DD), or null.
 // For the browser's own date and time pickers, use TextFieldComponent.
 ```
 
 When to use something else:
 
-- Pick days by looking at a month, or a range: [Calendar](https://lamsa-ui.github.io/lamsa/components/calendar)
-- A time only: [Text field with type time](https://lamsa-ui.github.io/lamsa/components/text-field)
+- Pick days by looking at a month, or a range: [Calendar](https://ghazal-ui.github.io/ghazal/components/calendar)
+- A time only: [Text field with type time](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

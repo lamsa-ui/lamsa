@@ -1,20 +1,20 @@
 # Tooltip
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A short label for a control, shown on hover and on keyboard focus and read by screen readers as its description. The pointer can move onto it and Escape hides it. Touch screens never show tooltips, so never put anything needed in one.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/tooltip
+Docs: https://ghazal-ui.github.io/ghazal/components/tooltip
 
 ```tsx
-import { Tooltip } from '@lamsa-ui/react';
+import { Tooltip } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- Content with links or buttons: [Popover](https://lamsa-ui.github.io/lamsa/components/popover)
-- Help the reader needs to fill a field: [The field’s hint](https://lamsa-ui.github.io/lamsa/components/text-field)
-- Show a keyboard shortcut: [Keyboard key inside the tooltip](https://lamsa-ui.github.io/lamsa/components/kbd)
+- Content with links or buttons: [Popover](https://ghazal-ui.github.io/ghazal/components/popover)
+- Help the reader needs to fill a field: [The field’s hint](https://ghazal-ui.github.io/ghazal/components/text-field)
+- Show a keyboard shortcut: [Keyboard key inside the tooltip](https://ghazal-ui.github.io/ghazal/components/kbd)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

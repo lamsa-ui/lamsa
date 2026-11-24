@@ -28,7 +28,7 @@ import {
   UiDialog,
   type IconName,
   type Command,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { filter } from 'rxjs';
 import {
   DocsSettings,
@@ -68,8 +68,8 @@ import { NAV } from './shared/nav';
       </button>
       <a class="doc-brand" routerLink="/">
         <img class="doc-mark" src="mark.svg" alt="" />
-        <span class="doc-brand__name">Lamsa</span>
-        <span class="doc-brand__ar" lang="ar" dir="rtl">لمسة</span>
+        <span class="doc-brand__name">Ghazal</span>
+        <span class="doc-brand__ar" lang="ar" dir="rtl">غزال</span>
       </a>
       <button
         ui-button

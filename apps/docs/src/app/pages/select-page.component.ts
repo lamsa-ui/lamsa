@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SelectComponent, type SelectOption } from '@lamsa-ui/angular';
+import { SelectComponent, type SelectOption } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -140,9 +140,9 @@ export class SelectPageComponent {
   ];
 
   protected readonly usage = {
-    react: `import { Select, type SelectOption } from '@lamsa-ui/react';`,
-    vue: `import { Select, type SelectOption } from '@lamsa-ui/vue';`,
-    angular: `import { SelectComponent, type SelectOption } from '@lamsa-ui/angular';
+    react: `import { Select, type SelectOption } from '@ghazal-ui/react';`,
+    vue: `import { Select, type SelectOption } from '@ghazal-ui/vue';`,
+    angular: `import { SelectComponent, type SelectOption } from '@ghazal-ui/angular';
 // Works with formControlName, [formControl] and ngModel.`,
     html: `<select class="ui-input" id="city">...</select>`,
   };
@@ -162,7 +162,7 @@ const [city, setCity] = useState<string | null>(null);
   onChange={setCity}
 />`,
     vue: `<script setup lang="ts">
-import { Select, type SelectOption } from '@lamsa-ui/vue';
+import { Select, type SelectOption } from '@ghazal-ui/vue';
 import { ref } from 'vue';
 
 const cities: SelectOption[] = [

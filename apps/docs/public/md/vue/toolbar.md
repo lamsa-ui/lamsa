@@ -1,20 +1,20 @@
 # Toolbar
 
-Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Vue 3. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A row of controls that counts as one stop for the Tab key. Inside it the arrow keys move from control to control, flipped in Arabic; Home and End jump to the ends. Tab again leaves it.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/toolbar
+Docs: https://ghazal-ui.github.io/ghazal/components/toolbar
 
 ```ts
-import { Toolbar, ToolbarSeparator } from '@lamsa-ui/vue';
+import { Toolbar, ToolbarSeparator } from '@ghazal-ui/vue';
 ```
 
 When to use something else:
 
-- Two or three buttons that sit together: [Button group](https://lamsa-ui.github.io/lamsa/components/button-group)
-- Links to other pages: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
-- Actions that do not fit, behind one button: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- Two or three buttons that sit together: [Button group](https://ghazal-ui.github.io/ghazal/components/button-group)
+- Links to other pages: [Navigation](https://ghazal-ui.github.io/ghazal/components/nav)
+- Actions that do not fit, behind one button: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

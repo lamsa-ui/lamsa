@@ -18,7 +18,7 @@ export default [
           ],
           // css: styles only, the components use its class names, not its code.
           // react-dom: needed by React Aria at run time, never imported here.
-          ignoredDependencies: ['@lamsa-ui/css', 'react-dom'],
+          ignoredDependencies: ['@ghazal-ui/css', 'react-dom'],
         },
       ],
     },

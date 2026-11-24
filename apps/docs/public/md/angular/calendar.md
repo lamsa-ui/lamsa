@@ -1,20 +1,20 @@
 # Calendar
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A month grid to pick a day or a range, such as a delivery day or a stay. One Tab stop: arrow keys move by day and week, Home and End go to the ends of the week, Page Up and Page Down change the month, with Shift the year. Each day is read in full, Thursday, 19 November 2026. Today is underlined and picked days are filled, so neither depends on colour. Use it when seeing the month helps: open and closed days, a range, or the weekday. For a date people already know, such as a birthday, use the date field.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/calendar
+Docs: https://ghazal-ui.github.io/ghazal/components/calendar
 
 ```ts
-import { CalendarComponent, type DateRange } from '@lamsa-ui/angular';
+import { CalendarComponent, type DateRange } from '@ghazal-ui/angular';
 // Dates are ISO strings (YYYY-MM-DD), the same as <input type="date">.
 ```
 
 When to use something else:
 
-- A date the reader already knows, such as a birthday: [Date picker](https://lamsa-ui.github.io/lamsa/components/date-picker)
-- A time or a date and time: [Text field with type time](https://lamsa-ui.github.io/lamsa/components/text-field)
+- A date the reader already knows, such as a birthday: [Date picker](https://ghazal-ui.github.io/ghazal/components/date-picker)
+- A time or a date and time: [Text field with type time](https://ghazal-ui.github.io/ghazal/components/text-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

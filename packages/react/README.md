@@ -1,20 +1,20 @@
-# @lamsa-ui/react
+# @ghazal-ui/react
 
-Accessible React 19 components in the Lamsa design system, right to left ready: 61 components, from button, text field and date picker to data table, dialog and app shell. Built on React Aria; styles come from [`@lamsa-ui/css`](../css). See [every component](https://lamsa-ui.github.io/lamsa/) with its code.
+Accessible React 19 components in the Ghazal design system, right to left ready: 61 components, from button, text field and date picker to data table, dialog and app shell. Built on React Aria; styles come from [`@ghazal-ui/css`](../css). See [every component](https://ghazal-ui.github.io/ghazal/) with its code.
 
 ```shell
-pnpm add @lamsa-ui/react @lamsa-ui/css
+pnpm add @ghazal-ui/react @ghazal-ui/css
 pnpm add -D tailwindcss @tailwindcss/vite
 ```
 
 ```css
 /* src/index.css, imported once in main.tsx; add tailwindcss() from @tailwindcss/vite to the Vite plugins */
 @import 'tailwindcss';
-@import '@lamsa-ui/css/tailwind.css';
+@import '@ghazal-ui/css/tailwind.css';
 ```
 
 ```tsx
-import { Button, Dialog, Select, TextField, useAlertDialog } from '@lamsa-ui/react';
+import { Button, Dialog, Select, TextField, useAlertDialog } from '@ghazal-ui/react';
 ```
 
 Works with React Server Components: the files that need the browser start with `'use client'`.
@@ -29,7 +29,7 @@ pnpm add react-hook-form
 
 ```tsx
 import { Controller, useForm } from 'react-hook-form';
-import { Select, TextField } from '@lamsa-ui/react';
+import { Select, TextField } from '@ghazal-ui/react';
 
 type Checkout = { email: string; city: string };
 
@@ -72,4 +72,4 @@ function CheckoutForm() {
 
 Validation rules and translated messages belong to the application. Controlled components expose `onBlur` and a ref to their focusable element for touched-state and focus-on-error behavior.
 
-[Docs](https://lamsa-ui.github.io/lamsa/) · [Source](https://github.com/lamsa-ui/lamsa). MIT licence.
+[Docs](https://ghazal-ui.github.io/ghazal/) · [Source](https://github.com/ghazal-ui/ghazal). MIT licence.

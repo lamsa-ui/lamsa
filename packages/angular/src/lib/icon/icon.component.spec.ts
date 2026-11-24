@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ICONS, type IconName } from '@lamsa-ui/icons';
+import { ICONS, type IconName } from '@ghazal-ui/icons';
 import { IconComponent, type IconSize } from './icon.component';
 
 @Component({

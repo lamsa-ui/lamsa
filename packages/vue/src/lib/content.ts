@@ -1,4 +1,4 @@
-import { ICONS, MIRRORED_ICONS, type IconName } from '@lamsa-ui/icons';
+import { ICONS, MIRRORED_ICONS, type IconName } from '@ghazal-ui/icons';
 import { defineComponent, h, mergeProps, ref, useId, type PropType } from 'vue';
 import { useUiLabels } from './labels';
 

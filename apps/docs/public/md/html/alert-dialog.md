@@ -1,10 +1,10 @@
 # Alert dialog
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes. Only its buttons answer: Escape and a click outside do nothing, because the reader has to choose. Focus starts on the safest button.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/alert-dialog
+Docs: https://ghazal-ui.github.io/ghazal/components/alert-dialog
 
 ```html
 <dialog class="ui-dialog ui-dialog--sm ui-dialog--alert" role="alertdialog"
@@ -14,9 +14,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/alert-dialog
 
 When to use something else:
 
-- Ask for more than a yes or no, such as a form: [Dialog](https://lamsa-ui.github.io/lamsa/components/dialog)
-- Confirm something that can be undone: [Toast with an Undo action](https://lamsa-ui.github.io/lamsa/components/toast)
-- Warn about something on the page without stopping the reader: [Alert](https://lamsa-ui.github.io/lamsa/components/alert)
+- Ask for more than a yes or no, such as a form: [Dialog](https://ghazal-ui.github.io/ghazal/components/dialog)
+- Confirm something that can be undone: [Toast with an Undo action](https://ghazal-ui.github.io/ghazal/components/toast)
+- Warn about something on the page without stopping the reader: [Alert](https://ghazal-ui.github.io/ghazal/components/alert)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

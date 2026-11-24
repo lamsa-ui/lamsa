@@ -21,7 +21,7 @@ import { DatePickerComponent } from './date-picker.component';
       [(range)]="stay"
     />
     <ui-app-shell [landmarks]="false">
-      <a uiShellBrand class="ui-shell__brand" href="/">Lamsa</a>
+      <a uiShellBrand class="ui-shell__brand" href="/">Ghazal</a>
       <nav uiShellSidebar aria-label="Main">
         <a href="#orders" data-testid="orders">Orders</a>
       </nav>

@@ -152,7 +152,7 @@ import {
                 <input
                   id="radius-demo-input"
                   class="ui-input"
-                  value="LAMSA10"
+                  value="GHAZAL10"
                 />
               </div>
               <div class="mt-4 flex flex-wrap gap-2">

@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     // Tests read the icons package from source, as tsconfig.base.json does.
     alias: {
-      '@lamsa-ui/icons': resolve(import.meta.dirname, '../icons/src/index.ts'),
+      '@ghazal-ui/icons': resolve(import.meta.dirname, '../icons/src/index.ts'),
     },
   },
   test: {

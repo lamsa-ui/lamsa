@@ -1,20 +1,20 @@
 # Progress
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 How far a long task has got, such as an upload. The native progress bar, named by its label, with the amount in words beside it. Without a value it shows a moving band: work is going on but its length is not known.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/progress
+Docs: https://ghazal-ui.github.io/ghazal/components/progress
 
 ```tsx
-import { Progress } from '@lamsa-ui/react';
+import { Progress } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- A level that is not work being done, such as storage used: [Meter](https://lamsa-ui.github.io/lamsa/components/meter)
-- Waiting with no idea how long: [Spinner](https://lamsa-ui.github.io/lamsa/components/spinner)
-- Steps the reader goes through: [Stepper](https://lamsa-ui.github.io/lamsa/components/stepper)
+- A level that is not work being done, such as storage used: [Meter](https://ghazal-ui.github.io/ghazal/components/meter)
+- Waiting with no idea how long: [Spinner](https://ghazal-ui.github.io/ghazal/components/spinner)
+- Steps the reader goes through: [Stepper](https://ghazal-ui.github.io/ghazal/components/stepper)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

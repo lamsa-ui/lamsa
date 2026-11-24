@@ -1,21 +1,21 @@
 # Radio group
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 One choice from a short list, with every option in view. Native radios: Tab reaches the group, arrow keys move the choice. For more than five or six options, use a select.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/radio-group
+Docs: https://ghazal-ui.github.io/ghazal/components/radio-group
 
 ```ts
-import { RadioGroupComponent } from '@lamsa-ui/angular';
+import { RadioGroupComponent } from '@ghazal-ui/angular';
 // Options are { value, label, disabled? }, as for ui-select.
 ```
 
 When to use something else:
 
-- Several choices at once: [Checkbox](https://lamsa-ui.github.io/lamsa/components/checkbox)
-- More than about 7 options: [Select](https://lamsa-ui.github.io/lamsa/components/select)
-- Switch the view of the page: [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control)
+- Several choices at once: [Checkbox](https://ghazal-ui.github.io/ghazal/components/checkbox)
+- More than about 7 options: [Select](https://ghazal-ui.github.io/ghazal/components/select)
+- Switch the view of the page: [Segmented control](https://ghazal-ui.github.io/ghazal/components/segmented-control)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

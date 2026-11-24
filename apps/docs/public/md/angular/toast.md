@@ -1,13 +1,13 @@
 # Toast
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A short note after an action, such as Saved, at the bottom end of the screen. Screen readers hear it as it comes. It closes by itself after 6 seconds, but never while the pointer or focus is on it, and never when it holds an action, so nobody loses the Undo to a timer.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/toast
+Docs: https://ghazal-ui.github.io/ghazal/components/toast
 
 ```ts
-import { UiToast } from '@lamsa-ui/angular';
+import { UiToast } from '@ghazal-ui/angular';
 
 const toast = inject(UiToast);
 // The region and close buttons take their words from provideUiLabels.
@@ -15,8 +15,8 @@ const toast = inject(UiToast);
 
 When to use something else:
 
-- A message that must stay until it is fixed: [Alert](https://lamsa-ui.github.io/lamsa/components/alert)
-- A decision the reader must make now: [Alert dialog](https://lamsa-ui.github.io/lamsa/components/alert-dialog)
+- A message that must stay until it is fixed: [Alert](https://ghazal-ui.github.io/ghazal/components/alert)
+- A decision the reader must make now: [Alert dialog](https://ghazal-ui.github.io/ghazal/components/alert-dialog)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

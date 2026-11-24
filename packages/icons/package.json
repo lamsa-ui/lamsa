@@ -1,16 +1,16 @@
 {
-  "name": "@lamsa-ui/icons",
+  "name": "@ghazal-ui/icons",
   "version": "0.0.0",
-  "description": "Icons for the Lamsa design system: 24 px stroke SVGs as data, as CSS classes (<i class=\"ui-icon ui-icon-search\">) and as the icon components of @lamsa-ui/angular and @lamsa-ui/react. Right to left ready.",
+  "description": "Icons for the Ghazal design system: 24 px stroke SVGs as data, as CSS classes (<i class=\"ui-icon ui-icon-search\">) and as the icon components of @ghazal-ui/angular and @ghazal-ui/react. Right to left ready.",
   "license": "MIT",
-  "author": "Lamsa contributors",
-  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "author": "Ghazal contributors",
+  "homepage": "https://ghazal-ui.github.io/ghazal/",
   "bugs": {
-    "url": "https://github.com/lamsa-ui/lamsa/issues"
+    "url": "https://github.com/ghazal-ui/ghazal/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "url": "git+https://github.com/ghazal-ui/ghazal.git",
     "directory": "packages/icons"
   },
   "keywords": [
@@ -29,7 +29,7 @@
     "arabic",
     "dark-mode",
     "design-tokens",
-    "lamsa",
+    "ghazal",
     "css"
   ],
   "type": "module",

@@ -14,10 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
-      "@lamsa-ui/angular": ["./packages/angular/src/index.ts"],
-      "@lamsa-ui/icons": ["./packages/icons/src/index.ts"],
-      "@lamsa-ui/react": ["./packages/react/src/index.ts"],
-      "@lamsa-ui/vue": ["./packages/vue/src/index.ts"]
+      "@ghazal-ui/angular": ["./packages/angular/src/index.ts"],
+      "@ghazal-ui/icons": ["./packages/icons/src/index.ts"],
+      "@ghazal-ui/react": ["./packages/react/src/index.ts"],
+      "@ghazal-ui/vue": ["./packages/vue/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

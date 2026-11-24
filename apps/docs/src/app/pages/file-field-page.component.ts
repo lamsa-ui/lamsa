@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FileFieldComponent } from '@lamsa-ui/angular';
+import { FileFieldComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -62,11 +62,11 @@ import { PageComponent } from '../shared/page.component';
 })
 export class FileFieldPageComponent {
   protected readonly usage = {
-    angular: `import { FileFieldComponent } from '@lamsa-ui/angular';
+    angular: `import { FileFieldComponent } from '@ghazal-ui/angular';
 // The value is a File[]. Writing null or [] to the control clears the input.`,
-    react: `import { FileField } from '@lamsa-ui/react';
+    react: `import { FileField } from '@ghazal-ui/react';
 // onFiles gets a File[] for a pick or a drop. Every other prop goes to the input.`,
-    vue: `import { FileField } from '@lamsa-ui/vue';
+    vue: `import { FileField } from '@ghazal-ui/vue';
 // onFiles gets a File[] for a pick or a drop. Every other prop goes to the input.`,
     html: `<input class="ui-file" type="file" id="invoice" accept=".pdf" />`,
   };

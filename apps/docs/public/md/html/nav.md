@@ -1,10 +1,10 @@
 # Navigation
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 The app's main links, in a side bar. A named navigation landmark, links at least 44px tall, and the current page marked with a bar and bold text, not only a fill. On a phone, put the same links in a drawer.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/nav
+Docs: https://ghazal-ui.github.io/ghazal/components/nav
 
 ```html
 <nav class="ui-nav" aria-label="Main">
@@ -17,9 +17,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/nav
 
 When to use something else:
 
-- A whole app layout with header and side bar: [App shell](https://lamsa-ui.github.io/lamsa/components/app-shell)
-- Views of one page: [Tabs](https://lamsa-ui.github.io/lamsa/components/tabs)
-- Where the page sits in the site: [Breadcrumbs](https://lamsa-ui.github.io/lamsa/components/breadcrumbs)
+- A whole app layout with header and side bar: [App shell](https://ghazal-ui.github.io/ghazal/components/app-shell)
+- Views of one page: [Tabs](https://ghazal-ui.github.io/ghazal/components/tabs)
+- Where the page sits in the site: [Breadcrumbs](https://ghazal-ui.github.io/ghazal/components/breadcrumbs)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

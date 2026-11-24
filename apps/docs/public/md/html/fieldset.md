@@ -1,10 +1,10 @@
 # Fieldset
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A titled group of fields inside a longer form. Screen readers read the legend as they enter the group, so a field called Street is heard as part of the delivery address.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/fieldset
+Docs: https://ghazal-ui.github.io/ghazal/components/fieldset
 
 ```html
 <fieldset class="ui-fieldset">
@@ -15,8 +15,8 @@ Docs: https://lamsa-ui.github.io/lamsa/components/fieldset
 
 When to use something else:
 
-- A frame around content that is not a form: [Card](https://lamsa-ui.github.io/lamsa/components/card)
-- One choice from a few, with a group label: [Radio group](https://lamsa-ui.github.io/lamsa/components/radio-group)
+- A frame around content that is not a form: [Card](https://ghazal-ui.github.io/ghazal/components/card)
+- One choice from a few, with a group label: [Radio group](https://ghazal-ui.github.io/ghazal/components/radio-group)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

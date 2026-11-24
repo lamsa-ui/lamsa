@@ -3,7 +3,7 @@ import {
   ContextMenuTriggerDirective,
   MenuComponent,
   MenuItemComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -70,9 +70,9 @@ export class ContextMenuPageComponent {
   ContextMenuTriggerDirective,
   MenuComponent,
   MenuItemComponent,
-} from '@lamsa-ui/angular';`,
-    react: `import { ContextMenu } from '@lamsa-ui/react';`,
-    vue: `import { ContextMenu } from '@lamsa-ui/vue';`,
+} from '@ghazal-ui/angular';`,
+    react: `import { ContextMenu } from '@ghazal-ui/react';`,
+    vue: `import { ContextMenu } from '@ghazal-ui/vue';`,
     html: `<!-- Plain HTML: listen for contextmenu and open a .ui-menu list in a popover. -->`,
   };
 

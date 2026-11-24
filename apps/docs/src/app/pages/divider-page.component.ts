@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent, DividerComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, DividerComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -73,9 +73,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class DividerPageComponent {
   protected readonly usage = {
-    angular: `import { DividerComponent } from '@lamsa-ui/angular';`,
-    react: `import { Divider } from '@lamsa-ui/react';`,
-    vue: `import { Divider } from '@lamsa-ui/vue';`,
+    angular: `import { DividerComponent } from '@ghazal-ui/angular';`,
+    react: `import { Divider } from '@ghazal-ui/react';`,
+    vue: `import { Divider } from '@ghazal-ui/vue';`,
     html: `<hr class="ui-divider" />`,
   };
 

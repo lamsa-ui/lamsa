@@ -3,7 +3,7 @@ import {
   BadgeComponent,
   PropertyComponent,
   PropertyListComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -59,9 +59,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class PropertyListPageComponent {
   protected readonly usage = {
-    angular: `import { PropertyComponent, PropertyListComponent } from '@lamsa-ui/angular';`,
-    react: `import { Property, PropertyList } from '@lamsa-ui/react';`,
-    vue: `import { Property, PropertyList } from '@lamsa-ui/vue';`,
+    angular: `import { PropertyComponent, PropertyListComponent } from '@ghazal-ui/angular';`,
+    react: `import { Property, PropertyList } from '@ghazal-ui/react';`,
+    vue: `import { Property, PropertyList } from '@ghazal-ui/vue';`,
     html: `<dl class="ui-property-list">…</dl>`,
   };
 

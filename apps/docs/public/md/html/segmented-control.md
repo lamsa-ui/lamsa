@@ -1,10 +1,10 @@
 # Segmented control
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 One choice from two to five short options, side by side: a view, a period, a size. Radio buttons underneath, so Tab reaches the group and the arrow keys move the choice. The chosen one is lifted onto a tile with an edge, not just coloured.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/segmented-control
+Docs: https://ghazal-ui.github.io/ghazal/components/segmented-control
 
 ```html
 <div class="ui-segmented" role="radiogroup" aria-label="Period">...</div>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/segmented-control
 
 When to use something else:
 
-- Show different panels of content: [Tabs](https://lamsa-ui.github.io/lamsa/components/tabs)
-- A choice sent with a form: [Radio group](https://lamsa-ui.github.io/lamsa/components/radio-group)
-- One option that is on or off: [Toggle](https://lamsa-ui.github.io/lamsa/components/toggle)
+- Show different panels of content: [Tabs](https://ghazal-ui.github.io/ghazal/components/tabs)
+- A choice sent with a form: [Radio group](https://ghazal-ui.github.io/ghazal/components/radio-group)
+- One option that is on or off: [Toggle](https://ghazal-ui.github.io/ghazal/components/toggle)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

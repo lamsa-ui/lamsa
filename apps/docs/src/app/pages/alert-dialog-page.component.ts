@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   UiAlertDialog,
   IconComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -173,14 +173,14 @@ export class AlertDialogPageComponent {
   }
 
   protected readonly usage = {
-    angular: `import { UiAlertDialog } from '@lamsa-ui/angular';
+    angular: `import { UiAlertDialog } from '@ghazal-ui/angular';
 
 private readonly alerts = inject(UiAlertDialog);`,
-    react: `import { useAlertDialog } from '@lamsa-ui/react';
+    react: `import { useAlertDialog } from '@ghazal-ui/react';
 
 const { alert, confirm, dialog } = useAlertDialog();
 // render {dialog} once in the component, then await alert() or confirm()`,
-    vue: `import { useAlertDialog } from '@lamsa-ui/vue';
+    vue: `import { useAlertDialog } from '@ghazal-ui/vue';
 
 const { alert, confirm, dialog } = useAlertDialog();
 // render <component :is="dialog" /> once in the template, then await alert() or confirm()`,
@@ -218,7 +218,7 @@ return (
   </>
 );`,
     vue: `<script setup lang="ts">
-import { Button, useAlertDialog } from '@lamsa-ui/vue';
+import { Button, useAlertDialog } from '@ghazal-ui/vue';
 
 const { confirm, dialog } = useAlertDialog();
 

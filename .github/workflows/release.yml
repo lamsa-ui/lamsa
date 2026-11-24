@@ -1,12 +1,12 @@
 name: Release
 
-# Manual release of the npm packages (@lamsa-ui/css, /icons, /angular, /react, /vue).
+# Manual release of the npm packages (@ghazal-ui/css, /icons, /angular, /react, /vue).
 # Each package is versioned on its own from the conventional commits that touch it;
 # see tools/release.mjs and "release" in nx.json.
 #
 # Real releases are off until the repo variable RELEASE_ENABLED is "true"
 # (Settings > Secrets and variables > Actions > Variables). Until then only dry runs pass.
-# A real release also needs the repo secret NPM_TOKEN (npm token with write access to @lamsa-ui).
+# A real release also needs the repo secret NPM_TOKEN (npm token with write access to @ghazal-ui).
 on:
   workflow_dispatch:
     inputs:

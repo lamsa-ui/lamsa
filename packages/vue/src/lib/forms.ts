@@ -1,4 +1,4 @@
-import type { IconName } from '@lamsa-ui/icons';
+import type { IconName } from '@ghazal-ui/icons';
 import {
   computed,
   defineComponent,

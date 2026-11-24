@@ -1,10 +1,10 @@
 # Card
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A surface that groups related content: a summary, a list, a form. Cards are flat, with a thin border; shadows are kept for things that float, like menus and dialogs.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/card
+Docs: https://ghazal-ui.github.io/ghazal/components/card
 
 ```html
 <div class="ui-card">...</div>
@@ -12,9 +12,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/card
 
 When to use something else:
 
-- Separate two groups with a line only: [Divider](https://lamsa-ui.github.io/lamsa/components/divider)
-- Label and value pairs, such as order details: [Property list](https://lamsa-ui.github.io/lamsa/components/property-list)
-- One number and how it changed: [Stat](https://lamsa-ui.github.io/lamsa/components/stat)
+- Separate two groups with a line only: [Divider](https://ghazal-ui.github.io/ghazal/components/divider)
+- Label and value pairs, such as order details: [Property list](https://ghazal-ui.github.io/ghazal/components/property-list)
+- One number and how it changed: [Stat](https://ghazal-ui.github.io/ghazal/components/stat)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

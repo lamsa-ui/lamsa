@@ -7,7 +7,7 @@ import {
   TooltipDirective,
   UiDialog,
   UiToast,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { CodeBlockComponent } from '../shared/code-block.component';
 import { DocsSettings, markup } from '../shared/docs-settings';
 import { ExampleComponent } from '../shared/example.component';

@@ -1,23 +1,23 @@
 # Text field
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Label, input, hint and error as one control. The label, hint and error are tied to the input, so screen readers read all three.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/text-field
+Docs: https://ghazal-ui.github.io/ghazal/components/text-field
 
 ```tsx
-import { TextField } from '@lamsa-ui/react';
+import { TextField } from '@ghazal-ui/react';
 // Every other prop goes to the input: value, onChange, name, ref,
 // so it works with React Hook Form's register() too.
 ```
 
 When to use something else:
 
-- Several lines of text: [Textarea](https://lamsa-ui.github.io/lamsa/components/textarea)
-- A unit or currency beside the value: [Input group](https://lamsa-ui.github.io/lamsa/components/input-group)
-- A number with − and + buttons: [Number field](https://lamsa-ui.github.io/lamsa/components/number-field)
-- Search with a clear button: [Search field](https://lamsa-ui.github.io/lamsa/components/search-field)
+- Several lines of text: [Textarea](https://ghazal-ui.github.io/ghazal/components/textarea)
+- A unit or currency beside the value: [Input group](https://ghazal-ui.github.io/ghazal/components/input-group)
+- A number with − and + buttons: [Number field](https://ghazal-ui.github.io/ghazal/components/number-field)
+- Search with a clear button: [Search field](https://ghazal-ui.github.io/ghazal/components/search-field)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

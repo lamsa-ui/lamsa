@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CheckboxComponent } from '@lamsa-ui/angular';
+import { CheckboxComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -68,11 +68,11 @@ export class CheckboxPageComponent {
   });
 
   protected readonly usage = {
-    angular: `import { CheckboxComponent } from '@lamsa-ui/angular';
+    angular: `import { CheckboxComponent } from '@ghazal-ui/angular';
 // The value is true or false. Works with formControlName, [formControl] and ngModel.`,
-    react: `import { Checkbox } from '@lamsa-ui/react';
+    react: `import { Checkbox } from '@ghazal-ui/react';
 // Every other prop goes to the input: checked, onChange, name, ref.`,
-    vue: `import { Checkbox } from '@lamsa-ui/vue';
+    vue: `import { Checkbox } from '@ghazal-ui/vue';
 // Bind it with v-model; every other attribute goes to the input: name, required.`,
     html: `<label class="ui-check">
   <input type="checkbox" name="updates" />

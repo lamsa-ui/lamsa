@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ButtonComponent, IconComponent } from '@lamsa-ui/angular';
+import { ButtonComponent, IconComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -101,9 +101,9 @@ export class ButtonPageComponent {
   }
 
   protected readonly usage = {
-    react: `import { Button } from '@lamsa-ui/react';`,
-    vue: `import { Button } from '@lamsa-ui/vue';`,
-    angular: `import { ButtonComponent } from '@lamsa-ui/angular';`,
+    react: `import { Button } from '@ghazal-ui/react';`,
+    vue: `import { Button } from '@ghazal-ui/vue';`,
+    angular: `import { ButtonComponent } from '@ghazal-ui/angular';`,
     html: `<button class="ui-button ui-button--primary ui-button--md">Save</button>`,
   };
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ComboboxComponent, type SelectOption } from '@lamsa-ui/angular';
+import { ComboboxComponent, type SelectOption } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -89,10 +89,10 @@ export class ComboboxPageComponent {
   );
 
   protected readonly usage = {
-    angular: `import { ComboboxComponent } from '@lamsa-ui/angular';
+    angular: `import { ComboboxComponent } from '@ghazal-ui/angular';
 // Options are { value, label, disabled? }, as for ui-select. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { Combobox } from '@lamsa-ui/react';`,
-    vue: `import { Combobox } from '@lamsa-ui/vue';`,
+    react: `import { Combobox } from '@ghazal-ui/react';`,
+    vue: `import { Combobox } from '@ghazal-ui/vue';`,
     html: `<!-- A combobox needs script for the keyboard and the list. Use a framework package,
      or follow the WAI-ARIA combobox pattern with these classes: -->
 <input class="ui-input" role="combobox" aria-expanded="true" aria-controls="list" />

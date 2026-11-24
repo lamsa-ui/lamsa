@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { NumberFieldComponent } from '@lamsa-ui/angular';
+import { NumberFieldComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -79,10 +79,10 @@ export class NumberFieldPageComponent {
   protected readonly guestsArabic = new FormControl<number | null>(4);
 
   protected readonly usage = {
-    angular: `import { NumberFieldComponent } from '@lamsa-ui/angular';
+    angular: `import { NumberFieldComponent } from '@ghazal-ui/angular';
 // The value is a number, or null when empty.`,
-    react: `import { NumberField } from '@lamsa-ui/react';`,
-    vue: `import { NumberField } from '@lamsa-ui/vue';`,
+    react: `import { NumberField } from '@ghazal-ui/react';`,
+    vue: `import { NumberField } from '@ghazal-ui/vue';`,
     html: `<div class="ui-field ui-number-field">...</div>`,
   };
 

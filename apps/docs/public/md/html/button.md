@@ -1,10 +1,10 @@
 # Button
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 Styles the native button, so it keeps everything the browser gives a button: focus, Enter and Space, form submit. Nine variants, three sizes, icons, and hover, press and focus feedback.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/button
+Docs: https://ghazal-ui.github.io/ghazal/components/button
 
 ```html
 <button class="ui-button ui-button--primary ui-button--md">Save</button>
@@ -13,9 +13,9 @@ Docs: https://lamsa-ui.github.io/lamsa/components/button
 When to use something else:
 
 - Go to another page: A link (a href)
-- A state that stays on or off, such as bold: [Toggle](https://lamsa-ui.github.io/lamsa/components/toggle)
-- Several actions that belong together: [Button group](https://lamsa-ui.github.io/lamsa/components/button-group)
-- More actions than fit, behind one button: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+- A state that stays on or off, such as bold: [Toggle](https://ghazal-ui.github.io/ghazal/components/toggle)
+- Several actions that belong together: [Button group](https://ghazal-ui.github.io/ghazal/components/button-group)
+- More actions than fit, behind one button: [Menu](https://ghazal-ui.github.io/ghazal/components/menu)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

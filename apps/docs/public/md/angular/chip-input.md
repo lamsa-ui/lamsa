@@ -1,21 +1,21 @@
 # Chip input
 
-Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Angular. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A text field that collects several short values, such as toppings, email addresses or skills. Each value becomes a tag with its own named remove button. Screen readers hear each value being added and removed, and focus never falls off the field.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/chip-input
+Docs: https://ghazal-ui.github.io/ghazal/components/chip-input
 
 ```ts
-import { ChipInputComponent } from '@lamsa-ui/angular';
+import { ChipInputComponent } from '@ghazal-ui/angular';
 // The value is a string[]. Works with formControlName, [formControl] and ngModel.
 ```
 
 When to use something else:
 
-- One value from a known list: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
-- A few choices that fit on screen: [Checkbox](https://lamsa-ui.github.io/lamsa/components/checkbox)
-- Show labels the user cannot type: [Tag](https://lamsa-ui.github.io/lamsa/components/tag)
+- One value from a known list: [Combobox](https://ghazal-ui.github.io/ghazal/components/combobox)
+- A few choices that fit on screen: [Checkbox](https://ghazal-ui.github.io/ghazal/components/checkbox)
+- Show labels the user cannot type: [Tag](https://ghazal-ui.github.io/ghazal/components/tag)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

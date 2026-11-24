@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { AlertComponent, ButtonComponent } from '@lamsa-ui/angular';
+import { AlertComponent, ButtonComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -86,10 +86,10 @@ export class AlertPageComponent {
   protected readonly shown = signal(true);
 
   protected readonly usage = {
-    angular: `import { AlertComponent } from '@lamsa-ui/angular';
+    angular: `import { AlertComponent } from '@ghazal-ui/angular';
 // Not announced on page load. Shown after an action? Add role="alert" or role="status".`,
-    react: `import { Alert } from '@lamsa-ui/react';`,
-    vue: `import { Alert } from '@lamsa-ui/vue';`,
+    react: `import { Alert } from '@ghazal-ui/react';`,
+    vue: `import { Alert } from '@ghazal-ui/vue';`,
     html: `<div class="ui-alert ui-alert--success">
   <i class="ui-icon ui-icon-circle-check ui-alert__icon" aria-hidden="true"></i>
   <div class="ui-alert__body">

@@ -5,7 +5,7 @@ import {
   ToggleComponent,
   ToolbarComponent,
   ToolbarSeparatorComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -87,9 +87,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class ToolbarPageComponent {
   protected readonly usage = {
-    angular: `import { ToolbarComponent, ToolbarSeparatorComponent } from '@lamsa-ui/angular';`,
-    react: `import { Toolbar, ToolbarSeparator } from '@lamsa-ui/react';`,
-    vue: `import { Toolbar, ToolbarSeparator } from '@lamsa-ui/vue';`,
+    angular: `import { ToolbarComponent, ToolbarSeparatorComponent } from '@ghazal-ui/angular';`,
+    react: `import { Toolbar, ToolbarSeparator } from '@ghazal-ui/react';`,
+    vue: `import { Toolbar, ToolbarSeparator } from '@ghazal-ui/vue';`,
     html: `<div class="ui-toolbar" role="toolbar" aria-label="Note">…</div>`,
   };
 

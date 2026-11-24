@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppShellComponent, NavComponent } from '@lamsa-ui/angular';
+import { AppShellComponent, NavComponent } from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -30,7 +30,7 @@ import { PageComponent } from '../shared/page.component';
         [code]="basic"
       >
         <ui-app-shell class="doc-shell" [landmarks]="false" mainId="demo-main">
-          <a uiShellBrand class="ui-shell__brand" href="#top">Lamsa</a>
+          <a uiShellBrand class="ui-shell__brand" href="#top">Ghazal</a>
           <ui-nav uiShellSidebar label="Shop">
             <ul>
               <li><a href="#orders" aria-current="page">Orders</a></li>
@@ -69,10 +69,10 @@ import { PageComponent } from '../shared/page.component';
 })
 export class AppShellPageComponent {
   protected readonly usage = {
-    angular: `import { AppShellComponent, NavComponent } from '@lamsa-ui/angular';
+    angular: `import { AppShellComponent, NavComponent } from '@ghazal-ui/angular';
 // Put it once, in the root component, around the router outlet.`,
-    react: `import { AppShell, Nav } from '@lamsa-ui/react';`,
-    vue: `import { AppShell, Nav } from '@lamsa-ui/vue';`,
+    react: `import { AppShell, Nav } from '@ghazal-ui/react';`,
+    vue: `import { AppShell, Nav } from '@ghazal-ui/vue';`,
     html: `<div class="ui-shell">
   <header class="ui-shell__header">...</header>
   <div class="ui-shell__body">
@@ -85,7 +85,7 @@ export class AppShellPageComponent {
   protected readonly basic = {
     angular: `<a class="doc-skip" href="#main">Skip to content</a>
 <ui-app-shell>
-  <a uiShellBrand class="ui-shell__brand" routerLink="/">Lamsa</a>
+  <a uiShellBrand class="ui-shell__brand" routerLink="/">Ghazal</a>
   <ui-language-switcher uiShellActions [languages]="languages" />
   <ui-nav uiShellSidebar label="Main">
     <ul>
@@ -96,7 +96,7 @@ export class AppShellPageComponent {
   <router-outlet />
 </ui-app-shell>`,
     react: `<AppShell
-  brand={<a className="ui-shell__brand" href="/">Lamsa</a>}
+  brand={<a className="ui-shell__brand" href="/">Ghazal</a>}
   actions={<LanguageSwitcher languages={languages} />}
   sidebar={
     <Nav label="Main">
@@ -110,7 +110,7 @@ export class AppShellPageComponent {
   <Outlet />
 </AppShell>`,
     vue: `<AppShell>
-  <template #brand><a class="ui-shell__brand" href="/">Lamsa</a></template>
+  <template #brand><a class="ui-shell__brand" href="/">Ghazal</a></template>
   <template #actions><LanguageSwitcher v-model:current="language" :languages="languages" /></template>
   <template #sidebar>
     <Nav label="Main">
@@ -129,7 +129,7 @@ export class AppShellPageComponent {
       aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
       <i class="ui-icon ui-icon-menu"></i>
     </button>
-    <a class="ui-shell__brand" href="/">Lamsa</a>
+    <a class="ui-shell__brand" href="/">Ghazal</a>
   </header>
   <div class="ui-shell__body">
     <div class="ui-shell__sidebar" id="sidebar">

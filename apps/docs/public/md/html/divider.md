@@ -1,10 +1,10 @@
 # Divider
 
-Framework: Plain HTML and CSS. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: Plain HTML and CSS. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/divider
+Docs: https://ghazal-ui.github.io/ghazal/components/divider
 
 ```html
 <hr class="ui-divider" />
@@ -12,7 +12,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/divider
 
 When to use something else:
 
-- A frame around a group: [Card](https://lamsa-ui.github.io/lamsa/components/card)
+- A frame around a group: [Card](https://ghazal-ui.github.io/ghazal/components/card)
 - Space between groups: Tailwind gap or margin classes
 
 | Name | Type | Default | What it does |

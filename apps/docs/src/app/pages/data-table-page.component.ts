@@ -10,7 +10,7 @@ import {
   type BadgeVariant,
   type TableColumn,
   type TableSort,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -223,9 +223,9 @@ export class DataTablePageComponent {
   TableCellDirective,
   type TableColumn,
   type TableSort,
-} from '@lamsa-ui/angular';`,
-    react: `import { DataTable, type TableColumn, type TableSort } from '@lamsa-ui/react';`,
-    vue: `import { DataTable, type TableColumn, type TableSort } from '@lamsa-ui/vue';`,
+} from '@ghazal-ui/angular';`,
+    react: `import { DataTable, type TableColumn, type TableSort } from '@ghazal-ui/react';`,
+    vue: `import { DataTable, type TableColumn, type TableSort } from '@ghazal-ui/vue';`,
     html: `<div class="ui-table-wrap">
   <table class="ui-table">
     <caption class="ui-table__caption">Orders</caption>
@@ -270,7 +270,7 @@ const [page, setPage] = useState(1);
   <Pagination page={page} onPageChange={setPage} total={total} pageSize={8} />
 </Card>`,
     vue: `<script setup lang="ts">
-import { Badge, Card, DataTable, Pagination, type TableColumn, type TableSort } from '@lamsa-ui/vue';
+import { Badge, Card, DataTable, Pagination, type TableColumn, type TableSort } from '@ghazal-ui/vue';
 import { ref } from 'vue';
 
 const columns: TableColumn<Order>[] = [

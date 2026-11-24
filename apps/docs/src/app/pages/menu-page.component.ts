@@ -4,7 +4,7 @@ import {
   MenuComponent,
   MenuItemComponent,
   MenuTriggerDirective,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -74,10 +74,10 @@ export class MenuPageComponent {
   protected readonly last = signal('');
 
   protected readonly usage = {
-    angular: `import { MenuComponent, MenuItemComponent, MenuTriggerDirective } from '@lamsa-ui/angular';
+    angular: `import { MenuComponent, MenuItemComponent, MenuTriggerDirective } from '@ghazal-ui/angular';
 // On the Angular CDK menu. Add @angular/cdk/overlay-prebuilt.css.`,
-    react: `import { Menu } from '@lamsa-ui/react';`,
-    vue: `import { Menu } from '@lamsa-ui/vue';`,
+    react: `import { Menu } from '@ghazal-ui/react';`,
+    vue: `import { Menu } from '@ghazal-ui/vue';`,
     html: `<!-- A menu needs script for the keyboard. Follow the WAI-ARIA menu button pattern with these classes: -->
 <button class="ui-button ui-button--secondary" aria-haspopup="menu" aria-expanded="true">Actions</button>
 <div class="ui-menu" role="menu">

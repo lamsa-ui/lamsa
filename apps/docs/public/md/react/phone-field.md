@@ -1,19 +1,19 @@
 # Phone field
 
-Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+Framework: React. Rules for AI assistants: https://ghazal-ui.github.io/ghazal/llms.txt
 
 A phone number with its country code. The number reads left to right in every language, Arabic digits are welcome, and the 0 people type before a mobile number out of habit is dropped. What the form gets is one international number, ready to send a text to.
 
-Docs: https://lamsa-ui.github.io/lamsa/components/phone-field
+Docs: https://ghazal-ui.github.io/ghazal/components/phone-field
 
 ```tsx
-import { PhoneField, PHONE_COUNTRIES } from '@lamsa-ui/react';
+import { PhoneField, PHONE_COUNTRIES } from '@ghazal-ui/react';
 ```
 
 When to use something else:
 
-- Any other number: [Number field](https://lamsa-ui.github.io/lamsa/components/number-field)
-- A one-time code sent by SMS: [PIN input](https://lamsa-ui.github.io/lamsa/components/pin-input)
+- Any other number: [Number field](https://ghazal-ui.github.io/ghazal/components/number-field)
+- A one-time code sent by SMS: [PIN input](https://ghazal-ui.github.io/ghazal/components/pin-input)
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |

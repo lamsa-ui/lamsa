@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { KbdComponent } from '@lamsa-ui/angular';
+import { KbdComponent } from '@ghazal-ui/angular';
 import {
   AlternativesComponent,
   type Alternative,
@@ -45,9 +45,9 @@ import { PageComponent } from '../shared/page.component';
 })
 export class KbdPageComponent {
   protected readonly usage = {
-    angular: `import { KbdComponent } from '@lamsa-ui/angular';`,
-    react: `import { Kbd } from '@lamsa-ui/react';`,
-    vue: `import { Kbd } from '@lamsa-ui/vue';`,
+    angular: `import { KbdComponent } from '@ghazal-ui/angular';`,
+    react: `import { Kbd } from '@ghazal-ui/react';`,
+    vue: `import { Kbd } from '@ghazal-ui/vue';`,
     html: `<kbd class="ui-kbd">Esc</kbd>`,
   };
 

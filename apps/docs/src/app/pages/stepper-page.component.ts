@@ -22,7 +22,7 @@ import {
   StepperComponent,
   SwitchComponent,
   TextFieldComponent,
-} from '@lamsa-ui/angular';
+} from '@ghazal-ui/angular';
 import { ApiTableComponent } from '../shared/api-table.component';
 import {
   AlternativesComponent,
@@ -329,9 +329,9 @@ export class StepperPageComponent {
   protected readonly arabicDigits = (n: number) => n.toLocaleString('ar-EG');
 
   protected readonly usage = {
-    angular: `import { StepComponent, StepperComponent } from '@lamsa-ui/angular';`,
-    react: `import { Stepper } from '@lamsa-ui/react';`,
-    vue: `import { Stepper } from '@lamsa-ui/vue';`,
+    angular: `import { StepComponent, StepperComponent } from '@ghazal-ui/angular';`,
+    react: `import { Stepper } from '@ghazal-ui/react';`,
+    vue: `import { Stepper } from '@ghazal-ui/vue';`,
     html: `<div class="ui-stepper">
   <ol class="ui-steps" aria-label="Checkout">...</ol>
   <section class="ui-stepper__panel">...</section>
