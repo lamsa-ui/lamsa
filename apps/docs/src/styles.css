@@ -1111,65 +1111,66 @@ ol.doc-list {
     opacity: 0;
   }
 }
-/* The pin board: a round bed of pins on the floor. Each pin is a shaft that always faces you and
-   a flat head; --h (0–1, set per frame by home-pins.component) is how far it stands out. */
-.doc-pins__bed {
-  inline-size: 86cqi;
-  block-size: 86cqi;
-  margin: -43cqi 0 0 -43cqi;
-  border: 0.3cqi solid var(--ui-border);
-  border-radius: 50%;
-  background: color-mix(in oklab, var(--ui-surface) 70%, transparent);
-  box-shadow: 0 0 0 1.2cqi
-    color-mix(in oklab, var(--ui-border) 35%, transparent);
-  transform: translateZ(0.1cqi);
-}
-.doc-pins__pin {
-  --h: 0.06;
+/* The globe: one tile per component on a sphere of radius --r, centred --lift over the floor.
+   A tile on the day side carries data-theme="light", on the night side "dark". The core is a
+   disc that always faces you, so the gaps between tiles read as a solid world. */
+.doc-globe {
   transform-style: preserve-3d;
-  transform: translate3d(calc(var(--x) * 1cqi), calc(var(--y) * 1cqi), 0);
+  transform: translateZ(calc(var(--lift) * 1cqi));
 }
-.doc-pins__shaft {
+.doc-globe__core {
   position: absolute;
-  inset-block-end: 0;
-  left: -0.4cqi;
-  inline-size: 0.8cqi;
-  block-size: 22cqi;
-  background: linear-gradient(
-    var(--ui-primary),
-    color-mix(in oklab, var(--ui-primary) 25%, var(--ui-border))
-  );
-  transform-origin: 50% 100%;
-  transform: rotateZ(calc(var(--rz) * -1)) rotateX(-90deg) scaleY(var(--h));
-}
-.doc-pins__head {
-  position: absolute;
-  inset-block-start: -1.6cqi;
-  left: -1.6cqi;
-  inline-size: 3.2cqi;
-  block-size: 3.2cqi;
-  border: 0.25cqi solid
-    color-mix(
-      in oklab,
-      var(--ui-primary) calc(var(--h) * 100%),
-      var(--ui-border)
-    );
+  inline-size: calc(var(--r) * 1.9cqi);
+  block-size: calc(var(--r) * 1.9cqi);
+  margin: calc(var(--r) * -0.95cqi) 0 0 calc(var(--r) * -0.95cqi);
   border-radius: 50%;
-  background: color-mix(
-    in oklab,
-    var(--ui-primary) calc(var(--h) * 100%),
-    var(--ui-surface)
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in oklab, var(--ui-primary) 18%, var(--ui-surface)),
+    color-mix(in oklab, var(--ui-primary) 45%, #0b1020)
   );
-  transform: translateZ(calc(var(--h) * 22cqi));
+  transform: rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
 }
-/* Orbits round the board: one per framework, each on its own tilt, and the two languages on the
+.doc-globe__tile {
+  --out: 0;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inline-size: 11.5cqi;
+  block-size: 6.8cqi;
+  margin: -3.4cqi 0 0 -5.75cqi;
+  padding: 0.4cqi;
+  border: 0.2cqi solid var(--ui-border);
+  border-radius: 1cqi;
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font: var(--ui-body-sm);
+  font-size: 1.7cqi;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  backface-visibility: hidden;
+  cursor: pointer;
+  transform: rotateZ(var(--lon)) rotateX(calc(var(--lat) - 90deg))
+    translateZ(calc((var(--r) + var(--out)) * 1cqi));
+}
+.doc-globe__tile:hover {
+  --out: 2.5;
+  border-color: var(--ui-primary);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-globe__tile {
+    transition: transform var(--ui-duration-fast) var(--ui-ease);
+  }
+}
+/* Orbits round the globe: one per framework, each on its own tilt, and the two languages on the
    floor. A moon runs round its ring by --spin and always turns its face to you. */
 @property --spin {
   syntax: '<angle>';
   inherits: false;
   initial-value: 0deg;
 }
-.doc-pins__orbit {
+.doc-orbit {
   inline-size: calc(var(--r) * 2cqi);
   block-size: calc(var(--r) * 2cqi);
   margin: calc(var(--r) * -1cqi) 0 0 calc(var(--r) * -1cqi);
@@ -1181,10 +1182,10 @@ ol.doc-list {
     rotateX(var(--tilt));
   pointer-events: none;
 }
-.doc-pins__orbit--flat {
+.doc-orbit--flat {
   border-style: dashed;
 }
-.doc-pins__moon {
+.doc-orbit__moon {
   --a: calc(var(--at) + var(--spin));
   position: absolute;
   inset-block-start: 50%;
@@ -1208,20 +1209,20 @@ ol.doc-list {
     rotateX(calc(var(--tilt) * -1)) rotateZ(calc(var(--yaw) * -1))
     rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
 }
-.doc-pins__moon svg {
+.doc-orbit__moon svg {
   inline-size: 3.6cqi;
   block-size: 3.6cqi;
 }
 /* HTML + CSS shows only its first mark here. */
-.doc-pins__moon .doc-segment__second {
+.doc-orbit__moon .doc-segment__second {
   display: none;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .doc-pins__moon {
-    animation: doc-pins-spin var(--period) linear infinite;
+  .doc-orbit__moon {
+    animation: doc-orbit-spin var(--period) linear infinite;
   }
 }
-@keyframes doc-pins-spin {
+@keyframes doc-orbit-spin {
   to {
     --spin: 360deg;
   }

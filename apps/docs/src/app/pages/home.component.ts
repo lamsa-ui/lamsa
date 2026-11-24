@@ -1,17 +1,17 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { HomePinsComponent } from './home-pins.component';
+import { HomeGlobeComponent } from './home-globe.component';
 import { FRAMEWORKS } from '../shared/docs-settings';
 import { COMPONENTS, NAV } from '../shared/nav';
 
 const foundationCount =
   NAV.find((g) => g.title === 'Foundations')?.links.length ?? 0;
 
-/** The landing page: one first screen, the pitch beside a pin board you press. */
+/** The landing page: one first screen, the pitch beside the library as a globe. */
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, HomePinsComponent],
+  imports: [RouterLink, HomeGlobeComponent],
   host: { class: 'doc-home' },
   template: `
     <section class="doc-home__hero" aria-labelledby="home-title">
@@ -39,9 +39,8 @@ const foundationCount =
           </span>
         </h1>
         <p class="ui-body-lg doc-home__lead">
-          Lamsa, <span lang="ar">لمسة</span>, means a touch. Accessible
-          components for Angular, React, Vue and plain HTML, drawn from one
-          stylesheet, in Arabic and English, light and dark.
+          Accessible components for Angular, React, Vue and plain HTML, drawn
+          from one stylesheet, in Arabic and English, light and dark.
         </p>
         <div class="doc-home__actions">
           <a
@@ -65,7 +64,7 @@ const foundationCount =
         </dl>
       </div>
 
-      <app-home-pins />
+      <app-home-globe />
     </section>
   `,
 })

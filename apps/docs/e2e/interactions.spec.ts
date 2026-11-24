@@ -183,21 +183,14 @@ test('home hero: drag turns the floor, a tap sends a ripple', async ({
   await expect(page.locator('.doc-ripple__wave')).toHaveCount(0);
 });
 
-test('home hero: press and hold raises the pins, a tap lets them down', async ({
+test('home hero: a tap on a globe tile opens that component', async ({
   page,
 }) => {
-  // Reduced motion (the default here): pressed pins jump up at once and stay.
-  // Events straight to a pin: Playwright's WebKit on Windows flattens 3D. Safari itself draws it.
+  // Events straight to the tile: Playwright's WebKit on Windows flattens 3D. Safari itself draws it.
   await openDocs(page, '');
-  const pin = page.locator('.doc-pins__pin').nth(40);
-  const height = () =>
-    pin.evaluate((el) => Number(el.style.getPropertyValue('--h')));
-  await pin.dispatchEvent('pointerdown', { button: 0 });
-  await expect.poll(height).toBeGreaterThan(0.4);
-  await page.waitForTimeout(300);
-  await pin.dispatchEvent('pointerup', { button: 0 });
-  await expect.poll(height).toBeGreaterThan(0.4);
-  await pin.dispatchEvent('pointerdown', { button: 0 });
-  await pin.dispatchEvent('pointerup', { button: 0 });
-  await expect.poll(height).toBeLessThan(0.1);
+  const tile = page.locator('.doc-globe__tile').first();
+  const path = (await tile.getAttribute('data-path'))!;
+  await tile.dispatchEvent('pointerdown', { button: 0 });
+  await tile.dispatchEvent('pointerup', { button: 0 });
+  await expect(page).toHaveURL(new RegExp(`${path}$`));
 });

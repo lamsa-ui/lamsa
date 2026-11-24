@@ -6,34 +6,56 @@ import {
   inject,
   signal,
   viewChild,
-  viewChildren,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Framework } from '../shared/docs-settings';
 import { FrameworkIconComponent } from '../shared/framework-icon.component';
+import { COMPONENTS } from '../shared/nav';
 
 /** Where the view starts, in degrees: tipped back, turned a little. */
-const RX = 58;
+const RX = 66;
 const RZ = -20;
-/** Tilt range: near 20° you look down on the pins, near 80° you are level with them. */
+/** Tilt range: near 20° you look down on the globe, near 84° you are level with the floor. */
 const RX_MIN = 20;
-const RX_MAX = 80;
+const RX_MAX = 84;
 /** Ripples on the floor, each one wider and later than the last. */
 const RINGS = [0, 1, 2, 3, 4, 5];
 /** A tap moves less than this, in px; more is a drag. */
 const TAP = 6;
 /** After a drag the scene rests this long before it turns on its own again, in ms. */
 const REST = 4000;
-/** Pins sit this far apart, inside a bed of this radius, in cqi. */
-const PITCH = 4.6;
-const BED = 40;
-/** Every pin shows at least this much, as a share of its full height. */
-const STUB = 0.06;
+/** The globe's radius and the height of its centre over the floor, in cqi. */
+const R = 24;
+const LIFT = 26;
+/** Where the light comes from, as longitude and latitude in degrees: that half is day. */
+const SUN = { lon: -70, lat: 20 };
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
 
 /**
- * What circles the board. The pins are the one stylesheet; each framework orbits it on its own
- * tilt and speed, and the two languages run round the floor. r and z in cqi, angles in degrees.
+ * One tile per component, spread evenly over the globe (a Fibonacci sphere). Tiles on the sunny
+ * side are drawn in the light theme, the rest in the dark theme.
+ */
+const TILES = COMPONENTS.map((c, i, all) => {
+  const lat = Math.asin(1 - (2 * (i + 0.5)) / all.length);
+  const lon = rad(i * 137.508);
+  const sun = [rad(SUN.lon), rad(SUN.lat)];
+  const light =
+    Math.cos(lat) * Math.cos(sun[1]) * Math.cos(lon - sun[0]) +
+      Math.sin(lat) * Math.sin(sun[1]) >
+    0;
+  return {
+    label: c.label,
+    path: c.path,
+    lat: (lat * 180) / Math.PI,
+    lon: (lon * 180) / Math.PI,
+    light,
+  };
+});
+
+/**
+ * What circles the globe: each framework on its own tilted ring and speed, and the two languages
+ * on the floor. r and z in cqi, angles in degrees.
  */
 const ORBITS: {
   id: string;
@@ -46,8 +68,8 @@ const ORBITS: {
 }[] = [
   {
     id: 'angular',
-    r: 34,
-    z: 16,
+    r: 32,
+    z: LIFT,
     tilt: 72,
     yaw: 0,
     period: 26,
@@ -55,17 +77,17 @@ const ORBITS: {
   },
   {
     id: 'react',
-    r: 38,
-    z: 14,
-    tilt: 66,
+    r: 36,
+    z: LIFT,
+    tilt: 64,
     yaw: 55,
     period: 31,
     moons: [{ at: 120, fw: 'react' }],
   },
   {
     id: 'vue',
-    r: 42,
-    z: 12,
+    r: 40,
+    z: LIFT,
     tilt: 68,
     yaw: 110,
     period: 37,
@@ -73,16 +95,16 @@ const ORBITS: {
   },
   {
     id: 'html',
-    r: 46,
-    z: 12,
-    tilt: 62,
+    r: 44,
+    z: LIFT,
+    tilt: 60,
     yaw: 155,
     period: 43,
     moons: [{ at: 300, fw: 'html' }],
   },
   {
     id: 'languages',
-    r: 49,
+    r: 48,
     z: 1,
     tilt: 0,
     yaw: 0,
@@ -94,28 +116,15 @@ const ORBITS: {
   },
 ];
 
-/** The pins of a round bed, as x, y on the floor in cqi from the centre. */
-const PINS = (() => {
-  const out: { x: number; y: number }[] = [];
-  const n = Math.floor(BED / PITCH);
-  for (let i = -n; i <= n; i++)
-    for (let j = -n; j <= n; j++) {
-      // Every other row shifts half a pitch, so the pins pack like a real pin board.
-      const x = (j + (i % 2 ? 0.5 : 0)) * PITCH;
-      const y = i * PITCH * 0.87;
-      if (Math.hypot(x, y) <= BED) out.push({ x, y });
-    }
-  return out;
-})();
-
 /**
- * A pin board, the touch toy, standing for the one stylesheet, with the frameworks and the two
- * languages on orbits round it: press and hold anywhere on the bed and the pins rise in the shape
- * of the touch, then settle back slowly. A quick tap sends a wave through them. Drag to turn and
- * tilt the board; it glides on, then turns slowly. Decorative (aria-hidden).
+ * The library as a globe: every component is a tile on it, the light theme on its day side and
+ * the dark theme on its night side; the frameworks circle it as moons and the two languages run
+ * round the floor. Drag to turn and tilt it; it glides on, then turns slowly. Tap a tile to open
+ * that component's page, or the floor to send a ripple. Decorative (aria-hidden): every page is
+ * also in the side bar.
  */
 @Component({
-  selector: 'app-home-pins',
+  selector: 'app-home-globe',
   imports: [FrameworkIconComponent],
   template: `
     <div class="doc-ripple">
@@ -144,8 +153,8 @@ const PINS = (() => {
           }
           @for (o of orbits; track o.id) {
             <div
-              class="doc-pins__orbit"
-              [class.doc-pins__orbit--flat]="!o.tilt"
+              class="doc-orbit"
+              [class.doc-orbit--flat]="!o.tilt"
               [style.--r]="o.r"
               [style.--z]="o.z"
               [style.--tilt]="o.tilt + 'deg'"
@@ -153,7 +162,7 @@ const PINS = (() => {
               [style.--period]="o.period + 's'"
             >
               @for (m of o.moons; track m.at) {
-                <span class="doc-pins__moon" [style.--at]="m.at + 'deg'">
+                <span class="doc-orbit__moon" [style.--at]="m.at + 'deg'">
                   @if (m.fw; as fw) {
                     <app-framework-icon [id]="fw" [where]="'orbit'" />
                   } @else {
@@ -163,33 +172,36 @@ const PINS = (() => {
               }
             </div>
           }
-          <div class="doc-pins__bed"></div>
-          @for (p of pins; track $index) {
-            <span
-              #pin
-              class="doc-pins__pin"
-              [attr.data-i]="$index"
-              [style.--x]="p.x"
-              [style.--y]="p.y"
-              ><span class="doc-pins__shaft"></span
-              ><span class="doc-pins__head"></span
-            ></span>
-          }
+          <div class="doc-globe" [style.--r]="radius" [style.--lift]="lift">
+            <span class="doc-globe__core"></span>
+            @for (t of tiles; track t.path) {
+              <span
+                class="doc-globe__tile"
+                [attr.data-theme]="t.light ? 'light' : 'dark'"
+                [attr.data-path]="t.path"
+                [style.--lat]="t.lat + 'deg'"
+                [style.--lon]="t.lon + 'deg'"
+                >{{ t.label }}</span
+              >
+            }
+          </div>
         </div>
       </div>
     </div>
   `,
 })
-export class HomePinsComponent {
+export class HomeGlobeComponent {
   protected readonly rings = RINGS;
-  protected readonly pins = PINS;
+  protected readonly tiles = TILES;
   protected readonly orbits = ORBITS;
+  protected readonly radius = R;
+  protected readonly lift = LIFT;
   protected readonly waves = signal<{ id: number; x: number; y: number }[]>([]);
   protected readonly dragging = signal(false);
 
+  private readonly router = inject(Router);
   private readonly stage = viewChild.required<ElementRef<HTMLElement>>('stage');
   private readonly world = viewChild.required<ElementRef<HTMLElement>>('world');
-  private readonly pinEls = viewChildren<ElementRef<HTMLElement>>('pin');
   private readonly still = matchMedia('(prefers-reduced-motion: reduce)');
 
   private rx = RX;
@@ -204,19 +216,12 @@ export class HomePinsComponent {
   private waveId = 0;
   private frame = 0;
 
-  /** Where the finger presses on the floor, and since when; null when nothing is pressed. */
-  private press: { x: number; y: number; at: number } | null = null;
-  /** How far each pin is pushed up by touches (0–1), and what was last drawn. */
-  private readonly held = new Float32Array(PINS.length);
-  private readonly drawn = new Float32Array(PINS.length).fill(-1);
-  /** Waves running through the pins after a tap. */
-  private pinWaves: { x: number; y: number; at: number }[] = [];
-
   constructor() {
     const destroy = inject(DestroyRef);
     afterNextRender(() => {
       this.turn(0, 0);
-      this.frame = requestAnimationFrame(this.tick);
+      // Reduced motion: no turning on its own and no glide; dragging still works.
+      if (!this.still.matches) this.frame = requestAnimationFrame(this.tick);
     });
     destroy.onDestroy(() => cancelAnimationFrame(this.frame));
   }
@@ -228,7 +233,6 @@ export class HomePinsComponent {
     this.start = this.last = { x: e.clientX, y: e.clientY };
     this.moved = false;
     this.vx = this.vz = 0;
-    this.press = { ...this.floorPoint(e), at: performance.now() };
   }
 
   protected move(e: PointerEvent): void {
@@ -236,9 +240,7 @@ export class HomePinsComponent {
     if (!this.moved) {
       if (Math.hypot(e.clientX - this.start.x, e.clientY - this.start.y) < TAP)
         return;
-      // It is a drag, not a press.
       this.moved = true;
-      this.press = null;
       this.dragging.set(true);
       this.stage().nativeElement.setPointerCapture(e.pointerId);
     }
@@ -251,63 +253,21 @@ export class HomePinsComponent {
   }
 
   protected up(e: PointerEvent | null): void {
-    const press = this.press;
-    this.press = null;
+    const tap = this.start && !this.moved;
     this.start = null;
     this.dragging.set(false);
-    // A quick tap: a wave through the pins and a ring on the floor.
-    if (e && press && !this.moved && performance.now() - press.at < 220)
-      this.tap(press);
+    if (tap && e) this.touch(e);
   }
 
-  /** One frame: turn the board, then raise and settle the pins. */
+  /** One frame: glide after a drag, or turn slowly once it has rested. */
   private readonly tick = (t: number): void => {
-    const still = this.still.matches;
-    if (!this.start && !still) {
+    if (!this.start) {
       if (Math.abs(this.vz) > 0.02 || Math.abs(this.vx) > 0.02) {
         this.turn(this.vz, this.vx);
         this.vz *= 0.94;
         this.vx *= 0.88;
       } else if (t > this.restUntil) {
-        this.turn(0.06, 0);
-      }
-    }
-    this.pinWaves = this.pinWaves.filter((w) => t - w.at < 1600);
-
-    // A press pushes deeper and wider the longer it is held.
-    const p = this.press;
-    const hold = p ? Math.min(1, (t - p.at) / 1400) : 0;
-    const reach = 5 + hold * 7;
-    const lift = 0.45 + hold * 0.55;
-    const els = this.pinEls();
-    for (let i = 0; i < PINS.length; i++) {
-      const pin = PINS[i];
-      if (p) {
-        const d = Math.hypot(pin.x - p.x, pin.y - p.y);
-        const want = lift * Math.exp(-(d * d) / (reach * reach));
-        if (want > this.held[i])
-          this.held[i] = still
-            ? want
-            : this.held[i] + (want - this.held[i]) * 0.2;
-      } else if (!still) {
-        // Let go: the pins sink back slowly, like the real toy.
-        this.held[i] *= 0.985;
-      }
-      let h = this.held[i];
-      if (!still) {
-        const d = Math.hypot(pin.x, pin.y);
-        // At rest the bed breathes: a slow, low swell from the centre out.
-        h += 0.035 * (1 + Math.sin(d * 0.22 - t * 0.0014));
-        for (const w of this.pinWaves) {
-          const age = t - w.at;
-          const r = Math.hypot(pin.x - w.x, pin.y - w.y) - age * 0.045;
-          h += 0.32 * Math.exp(-(r * r) / 14) * (1 - age / 1600);
-        }
-      }
-      h = STUB + Math.min(1 - STUB, h);
-      if (Math.abs(h - this.drawn[i]) > 0.002) {
-        this.drawn[i] = h;
-        els[i]?.nativeElement.style.setProperty('--h', h.toFixed(3));
+        this.turn(0.08, 0);
       }
     }
     this.frame = requestAnimationFrame(this.tick);
@@ -321,36 +281,26 @@ export class HomePinsComponent {
     s.setProperty('--rz', `${this.rz.toFixed(2)}deg`);
   }
 
-  /** The point on the floor under the finger, in cqi from the centre. */
-  private floorPoint(e: PointerEvent): { x: number; y: number } {
-    // On a pin: exactly that pin.
-    const pin = (e.target as Element).closest<HTMLElement>('[data-i]');
-    if (pin) return PINS[Number(pin.dataset['i'])];
-    // Elsewhere: undo the tilt and the turn (perspective left out, close enough).
+  /** A tap: a tile opens its page; anywhere else sends a ring out on the floor. */
+  private touch(e: PointerEvent): void {
+    const tile = (e.target as Element).closest<HTMLElement>('[data-path]');
+    if (tile) {
+      this.router.navigateByUrl(tile.dataset['path'] ?? '/');
+      return;
+    }
+    if (this.still.matches) return;
+
     const r = this.stage().nativeElement.getBoundingClientRect();
     const cq = r.width / 100;
+    // Undo the tilt and the turn to find the point on the floor under the finger.
     const dx = (e.clientX - r.left - r.width / 2) / cq;
     const dy = (e.clientY - r.top - r.height / 2) / cq / Math.cos(rad(this.rx));
     const a = -rad(this.rz);
-    return {
-      x: dx * Math.cos(a) - dy * Math.sin(a),
-      y: dx * Math.sin(a) + dy * Math.cos(a),
-    };
-  }
-
-  private tap(at: { x: number; y: number }): void {
-    if (this.still.matches) {
-      // Reduced motion: no waves; a tap lets the pressed pins down at once.
-      this.held.fill(0);
-      return;
-    }
-    this.pinWaves.push({ ...at, at: performance.now() });
     const clamp = (v: number) => Math.max(-48, Math.min(48, v));
+    const x = clamp(dx * Math.cos(a) - dy * Math.sin(a));
+    const y = clamp(dx * Math.sin(a) + dy * Math.cos(a));
     const id = ++this.waveId;
-    this.waves.update((list) => [
-      ...list,
-      { id, x: clamp(at.x), y: clamp(at.y) },
-    ]);
+    this.waves.update((list) => [...list, { id, x, y }]);
     // A timer, not animationend: WebKit did not always fire it for this ring.
     setTimeout(
       () => this.waves.update((list) => list.filter((w) => w.id !== id)),
