@@ -395,8 +395,8 @@
 .doc-main:focus {
   outline: none;
 }
-/* Below 64rem (the header needs ~1000px for its pickers): one slim sticky bar (menu, mark, settings chip); the side bar is a drawer. */
-@media (width < 64rem) {
+/* Below 80rem (the desktop header measures ~1206px wide): one slim sticky bar (menu, mark, settings chip); the side bar is a drawer. */
+@media (width < 80rem) {
   :root {
     --doc-header-height: 3.75rem;
   }
