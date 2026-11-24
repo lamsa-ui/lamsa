@@ -182,3 +182,29 @@ test('home hero: drag turns the floor, a tap sends a ripple', async ({
   await page.mouse.click(box.x + box.width * 0.5, box.y + box.height * 0.5);
   await expect(page.locator('.doc-ripple__wave')).toHaveCount(0);
 });
+
+test('home hero: a tap lights the part on the back and in Arabic', async ({
+  page,
+}) => {
+  // Reduced motion (the default here): the pane stays front on.
+  await openDocs(page, '');
+  // Events straight to the part: Playwright's WebKit on Windows flattens 3D, so the standing
+  // pane has no area to click there. Safari itself draws it.
+  const paid = page.locator('.doc-faces__face--front [data-key=paid]');
+  await paid.dispatchEvent('pointerdown', { button: 0 });
+  await paid.dispatchEvent('pointerup', { button: 0 });
+  await expect(
+    page.locator('.doc-faces__face--back [data-key=paid]'),
+  ).toHaveClass(/doc-faces--lit/);
+  await expect(
+    page.locator('.doc-faces__mirror [data-key=paid]'),
+  ).toContainText('مدفوعة فقط');
+  await expect(page.locator('.doc-ripple__hint a')).toHaveAttribute(
+    'href',
+    /\/components\/switch$/,
+  );
+  // The back shows contrast measured from the live tokens.
+  await expect(
+    page.locator('.doc-faces__face--back [data-key=add] b'),
+  ).toHaveText(/^\d+\.\d:1$/);
+});

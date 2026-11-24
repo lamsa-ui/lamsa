@@ -1004,7 +1004,7 @@ ol.doc-list {
 }
 
 /* The home scene: a blueprint floor with ripples and orbits, sized in cqi of the stage.
-   --rx/--rz (tilt, spin) are set per frame by home-layers.component. */
+   --rx/--rz (tilt, spin) are set per frame by home-faces.component. */
 /* Clip top and bottom only: sideways the floor runs to the window edge, where .doc-layout--home
    clips it. Clipping both ways cut it at the hero's 84rem box on wide screens. */
 .doc-home__hero {
@@ -1141,153 +1141,146 @@ ol.doc-list {
     opacity: 0;
   }
 }
-/* The exploded model: four slabs (tokens, ui.css, components, frameworks) stacked over the floor.
-   The model is drawn 40rem wide and scaled to the stage by --k (set by home-layers.component);
-   --open (0–1, from the tilt) sets how far apart the slabs stand. */
-.doc-layers {
-  --gap: calc(1.5rem + var(--open, 0.6) * 6rem);
-  inline-size: 26rem;
-  block-size: 19rem;
-  margin: -9.5rem 0 0 -13rem;
-  transform-style: preserve-3d;
-  transform: scale(var(--k, 1));
+/* The pane: one live screen standing on the floor, English on the front, the screen reader's view
+   on the back, and its reflection under the floor in Arabic, right to left. Drawn 24rem wide and
+   scaled to the stage by --k (set by home-faces.component); the bottom edge sits on the floor. */
+.doc-faces,
+.doc-faces__mirror {
+  inline-size: 24rem;
+  block-size: 18rem;
+  margin: -18rem 0 0 -12rem;
+  transform-origin: 50% 100%;
   pointer-events: none;
 }
-.doc-layers__slab {
+.doc-faces {
+  transform-style: preserve-3d;
+  transform: scale3d(var(--k, 1), var(--k, 1), var(--k, 1)) rotateX(-90deg);
+}
+/* The reflection: the pane turned over the floor line, fading as it goes down. */
+.doc-faces__mirror {
+  transform: scale3d(var(--k, 1), var(--k, 1), calc(var(--k, 1) * -1))
+    rotateX(-90deg);
+  filter: blur(0.5px);
+  /* Faint by the mask, not opacity: it is a decorative echo of the front, which carries the text. */
+  mask-image: linear-gradient(to top, rgb(0 0 0 / 0.5), transparent 80%);
+}
+.doc-faces__face {
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
   padding: var(--ui-space-4);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-lg);
   background: var(--ui-surface);
+  color: var(--ui-text);
   box-shadow: 0 1.5rem 3rem -1rem var(--ui-shadow-color);
-  transform: translateZ(calc(1rem + var(--i) * var(--gap)));
   pointer-events: auto;
 }
-/* A tapped part lifts its whole layer and rings it in brand blue. */
-.doc-layers__slab--lifted {
-  border-color: var(--ui-primary);
-  outline: 2px solid var(--ui-primary);
-  transform: translateZ(calc(3rem + var(--i) * var(--gap)));
+.doc-faces .doc-faces__face {
+  backface-visibility: hidden;
 }
-.doc-layers__slab--tokens,
-.doc-layers__slab--css {
-  background: color-mix(in srgb, var(--ui-surface) 88%, var(--ui-primary));
+.doc-faces__face--back {
+  transform: rotateY(180deg) translateZ(1px);
 }
-/* The framework layer is glass: the screen shows through it. */
-.doc-layers__slab--frameworks {
-  place-items: stretch;
-  background: color-mix(in srgb, var(--ui-primary) 6%, transparent);
-  border-color: color-mix(in srgb, var(--ui-primary) 60%, transparent);
-  box-shadow: none;
-  backdrop-filter: blur(1px);
+/* Seen from behind, the reflection shows its other side: draw it reversed so it reads. */
+.doc-faces__face--flip {
+  transform: scaleX(-1);
 }
-.doc-layers__tag {
-  position: absolute;
-  inset-block-start: var(--ui-space-2);
-  inset-inline-end: var(--ui-space-2);
-  padding: var(--ui-space-0-5) var(--ui-space-2);
-  border-radius: var(--ui-radius-full);
-  background: var(--ui-text);
-  color: var(--ui-surface);
-  font: var(--ui-body-sm);
-  font-weight: 700;
-  cursor: pointer;
-}
-.doc-layers__tokens {
+.doc-faces__screen {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--ui-space-4);
-  align-items: center;
-  inline-size: 100%;
-}
-.doc-layers__swatches {
-  display: flex;
-  gap: var(--ui-space-2);
-}
-.doc-layers__swatches span {
-  inline-size: 2.25rem;
-  block-size: 2.25rem;
-  border-radius: var(--ui-radius-md);
-}
-.doc-layers__aa {
-  font: var(--ui-head-2xl);
-  color: var(--ui-text);
-}
-.doc-layers__space {
-  display: grid;
-  gap: var(--ui-space-1);
-}
-.doc-layers__space span {
-  block-size: 0.5rem;
-  border-radius: var(--ui-radius-full);
-  background: var(--ui-primary);
-}
-.doc-layers__css {
-  margin: 0;
-  inline-size: 100%;
-  color: var(--ui-text);
-  font: 0.875rem/1.6 var(--ui-font-mono);
-  white-space: pre;
-}
-.doc-layers__screen {
-  display: grid;
+  align-content: start;
   gap: var(--ui-space-3);
-  inline-size: 100%;
+  min-inline-size: 0;
 }
-.doc-layers__bar,
-.doc-layers__filters {
+.doc-faces__bar,
+.doc-faces__filters {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--ui-space-3);
 }
-.doc-layers__filters .ui-input {
+.doc-faces__filters .ui-input {
   flex: 1;
+  min-inline-size: 0;
 }
-.doc-layers__screen .ui-table td {
+.doc-faces__screen .ui-table td {
   padding-block: var(--ui-space-1-5);
 }
-.doc-layers__glass {
-  display: grid;
-  align-content: space-between;
-  block-size: 100%;
-}
-.doc-layers__tabs {
-  display: flex;
-  gap: var(--ui-space-1);
-  justify-self: start;
-  padding: var(--ui-space-1);
-  border-radius: var(--ui-radius-full);
-  background: var(--ui-surface);
-  border: 1px solid var(--ui-border);
-}
-.doc-layers__tabs span {
-  padding: var(--ui-space-1) var(--ui-space-3);
-  border-radius: var(--ui-radius-full);
-  color: var(--ui-text);
+/* The screen reader's view: each part as a dashed box with its role, name, state, focus order
+   (the numbers) and measured contrast. */
+.doc-faces__tree {
+  gap: var(--ui-space-2);
   font: var(--ui-body-sm);
-  font-weight: 700;
-  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1.35;
 }
-.doc-layers__tabs .doc-layers__tab--on {
+.doc-faces__node {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1) var(--ui-space-2);
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border: 1px dashed var(--ui-primary);
+  border-radius: var(--ui-radius-md);
+}
+.doc-faces__bar .doc-faces__node,
+.doc-faces__filters .doc-faces__node {
+  flex: 1;
+}
+.doc-faces__node--table {
+  display: grid;
+}
+.doc-faces__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+  padding-block-start: var(--ui-space-0-5);
+  border-block-start: 1px solid var(--ui-border);
+}
+.doc-faces__node i {
+  display: grid;
+  place-items: center;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--ui-radius-full);
   background: var(--ui-primary);
   color: var(--ui-on-primary);
+  font-style: normal;
+  font-weight: 700;
 }
-.doc-layers__code {
-  justify-self: stretch;
-  padding: var(--ui-space-2) var(--ui-space-3);
-  border-radius: var(--ui-radius-md);
-  background: var(--ui-text);
-  color: var(--ui-surface);
-  font: 0.8125rem/1.5 var(--ui-font-mono);
-  overflow-wrap: anywhere;
+.doc-faces__node b {
+  font-family: var(--ui-font-mono);
+}
+/* A tapped part is ringed on every face. */
+.doc-faces--lit {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
+}
+/* Kit pieces floating round the pane, always turned to face you. */
+.doc-faces__chip {
+  transform: translate3d(
+      calc(var(--x) * 1cqi),
+      calc(var(--y) * 1cqi),
+      calc(var(--z) * 1cqi)
+    )
+    rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
+  pointer-events: none;
+}
+.doc-faces__chip > * {
+  display: inline-block;
+  transform: translate(-50%, -50%) scale(var(--k, 1));
 }
 @media (prefers-reduced-motion: no-preference) {
-  .doc-layers__slab {
-    transition: transform var(--ui-duration-slow) var(--ui-ease);
+  .doc-faces__chip > * {
+    animation: doc-faces-bob 5s ease-in-out infinite alternate;
+  }
+  .doc-faces__chip:nth-of-type(odd) > * {
+    animation-duration: 6.5s;
+  }
+}
+@keyframes doc-faces-bob {
+  to {
+    translate: 0 -2cqi;
   }
 }
 .doc-ripple__hint {
