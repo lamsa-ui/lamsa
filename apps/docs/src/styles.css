@@ -1162,6 +1162,70 @@ ol.doc-list {
   );
   transform: translateZ(calc(var(--h) * 22cqi));
 }
+/* Orbits round the board: one per framework, each on its own tilt, and the two languages on the
+   floor. A moon runs round its ring by --spin and always turns its face to you. */
+@property --spin {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.doc-pins__orbit {
+  inline-size: calc(var(--r) * 2cqi);
+  block-size: calc(var(--r) * 2cqi);
+  margin: calc(var(--r) * -1cqi) 0 0 calc(var(--r) * -1cqi);
+  border: 0.25cqi solid
+    color-mix(in oklab, var(--ui-primary) 30%, var(--ui-border));
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--z) * 1cqi)) rotateZ(var(--yaw))
+    rotateX(var(--tilt));
+  pointer-events: none;
+}
+.doc-pins__orbit--flat {
+  border-style: dashed;
+}
+.doc-pins__moon {
+  --a: calc(var(--at) + var(--spin));
+  position: absolute;
+  inset-block-start: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  inline-size: 6.5cqi;
+  block-size: 6.5cqi;
+  margin: -3.25cqi 0 0 -3.25cqi;
+  border: 0.25cqi solid var(--ui-border);
+  border-radius: 50%;
+  background: var(--ui-surface);
+  box-shadow: 0 0.6cqi 1.6cqi var(--ui-shadow-color);
+  color: var(--ui-text);
+  font: var(--ui-head-xs);
+  font-size: 3cqi;
+  transform: translate(
+      calc(cos(var(--a)) * var(--r) * 1cqi),
+      calc(sin(var(--a)) * var(--r) * 1cqi)
+    )
+    rotateX(calc(var(--tilt) * -1)) rotateZ(calc(var(--yaw) * -1))
+    rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
+}
+.doc-pins__moon svg {
+  inline-size: 3.6cqi;
+  block-size: 3.6cqi;
+}
+/* HTML + CSS shows only its first mark here. */
+.doc-pins__moon .doc-segment__second {
+  display: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-pins__moon {
+    animation: doc-pins-spin var(--period) linear infinite;
+  }
+}
+@keyframes doc-pins-spin {
+  to {
+    --spin: 360deg;
+  }
+}
 .doc-ripple__hint {
   margin: 0;
   color: var(--ui-text-muted);

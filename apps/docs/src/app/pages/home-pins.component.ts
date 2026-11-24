@@ -8,6 +8,8 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
+import { Framework } from '../shared/docs-settings';
+import { FrameworkIconComponent } from '../shared/framework-icon.component';
 
 /** Where the view starts, in degrees: tipped back, turned a little. */
 const RX = 58;
@@ -29,6 +31,69 @@ const STUB = 0.06;
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
 
+/**
+ * What circles the board. The pins are the one stylesheet; each framework orbits it on its own
+ * tilt and speed, and the two languages run round the floor. r and z in cqi, angles in degrees.
+ */
+const ORBITS: {
+  id: string;
+  r: number;
+  z: number;
+  tilt: number;
+  yaw: number;
+  period: number;
+  moons: { at: number; fw?: Framework; text?: string; lang?: string }[];
+}[] = [
+  {
+    id: 'angular',
+    r: 34,
+    z: 16,
+    tilt: 72,
+    yaw: 0,
+    period: 26,
+    moons: [{ at: 0, fw: 'angular' }],
+  },
+  {
+    id: 'react',
+    r: 38,
+    z: 14,
+    tilt: 66,
+    yaw: 55,
+    period: 31,
+    moons: [{ at: 120, fw: 'react' }],
+  },
+  {
+    id: 'vue',
+    r: 42,
+    z: 12,
+    tilt: 68,
+    yaw: 110,
+    period: 37,
+    moons: [{ at: 220, fw: 'vue' }],
+  },
+  {
+    id: 'html',
+    r: 46,
+    z: 12,
+    tilt: 62,
+    yaw: 155,
+    period: 43,
+    moons: [{ at: 300, fw: 'html' }],
+  },
+  {
+    id: 'languages',
+    r: 49,
+    z: 1,
+    tilt: 0,
+    yaw: 0,
+    period: 60,
+    moons: [
+      { at: 0, text: 'ع', lang: 'ar' },
+      { at: 180, text: 'A', lang: 'en' },
+    ],
+  },
+];
+
 /** The pins of a round bed, as x, y on the floor in cqi from the centre. */
 const PINS = (() => {
   const out: { x: number; y: number }[] = [];
@@ -44,13 +109,15 @@ const PINS = (() => {
 })();
 
 /**
- * A pin board, the touch toy: press and hold anywhere on the bed and the pins rise in the shape
+ * A pin board, the touch toy, standing for the one stylesheet, with the frameworks and the two
+ * languages on orbits round it: press and hold anywhere on the bed and the pins rise in the shape
  * of the touch, then settle back slowly. A quick tap sends a wave through them. Drag to turn and
  * tilt the board; it glides on, then turns slowly. Decorative (aria-hidden); the line under it
  * says how to use it.
  */
 @Component({
   selector: 'app-home-pins',
+  imports: [FrameworkIconComponent],
   template: `
     <div class="doc-ripple">
       <div
@@ -76,6 +143,27 @@ const PINS = (() => {
               [style.--y]="w.y"
             ></span>
           }
+          @for (o of orbits; track o.id) {
+            <div
+              class="doc-pins__orbit"
+              [class.doc-pins__orbit--flat]="!o.tilt"
+              [style.--r]="o.r"
+              [style.--z]="o.z"
+              [style.--tilt]="o.tilt + 'deg'"
+              [style.--yaw]="o.yaw + 'deg'"
+              [style.--period]="o.period + 's'"
+            >
+              @for (m of o.moons; track m.at) {
+                <span class="doc-pins__moon" [style.--at]="m.at + 'deg'">
+                  @if (m.fw; as fw) {
+                    <app-framework-icon [id]="fw" [where]="'orbit'" />
+                  } @else {
+                    <span [attr.lang]="m.lang">{{ m.text }}</span>
+                  }
+                </span>
+              }
+            </div>
+          }
           <div class="doc-pins__bed"></div>
           @for (p of pins; track $index) {
             <span
@@ -99,6 +187,7 @@ const PINS = (() => {
 export class HomePinsComponent {
   protected readonly rings = RINGS;
   protected readonly pins = PINS;
+  protected readonly orbits = ORBITS;
   protected readonly waves = signal<{ id: number; x: number; y: number }[]>([]);
   protected readonly dragging = signal(false);
 
