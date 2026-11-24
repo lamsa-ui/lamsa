@@ -1,0 +1,92 @@
+{
+  "name": "docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/docs/src",
+  "tags": ["scope:docs", "type:app"],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/docs",
+        "browser": "apps/docs/src/main.ts",
+        "tsConfig": "apps/docs/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/docs/public"
+          }
+        ],
+        "styles": ["apps/docs/src/styles.css"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "650kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "docs:build:production"
+        },
+        "development": {
+          "buildTarget": "docs:build:development"
+        }
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"],
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "docs:build",
+        "staticFilePath": "dist/apps/docs/browser",
+        "spa": true
+      }
+    },
+    "e2e": {
+      "command": "playwright test -c apps/docs/playwright.config.ts",
+      "dependsOn": ["build"],
+      "inputs": [
+        "production",
+        "^production",
+        "{projectRoot}/e2e/**/*",
+        "{projectRoot}/playwright.config.ts",
+        "{workspaceRoot}/tools/serve-docs.mjs"
+      ],
+      "outputs": ["{workspaceRoot}/dist/.playwright"],
+      "cache": true
+    }
+  },
+  "implicitDependencies": ["css", "icons", "angular"]
+}

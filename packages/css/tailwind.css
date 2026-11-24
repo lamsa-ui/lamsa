@@ -1,0 +1,188 @@
+/*
+ * Lamsa for Tailwind CSS v4. After Tailwind, one import:
+ *
+ *   @import 'tailwindcss';
+ *   @import '@lamsa-ui/css/tailwind.css';
+ *
+ * It brings the whole kit (ui.css, in the components layer so a Tailwind
+ * utility always wins over a kit class), and makes the kit's tokens the
+ * Tailwind theme: p-4 is --ui-space-4, bg-primary is --ui-primary, rounded-xl
+ * is --ui-radius-xl. Extend or override in your own @theme after this import.
+ *
+ * Every mapping points at the --ui-* token (`inline`), so dark mode, a
+ * data-theme ancestor and a client re-brand all reach Tailwind classes too.
+ */
+/* Tailwind's own layer order, stated here too, so the kit lands in components even if this file is imported first. */
+@layer theme, base, components, utilities;
+@import './ui.css' layer(components);
+
+@theme inline {
+  /* Colour: the kit's measured pairs. bg-primary + text-on-primary is 7:1. */
+  --color-brand-red: var(--ui-brand-red);
+  --color-brand-blue: var(--ui-brand-blue);
+  --color-ink: var(--ui-ink);
+  --color-paper: var(--ui-paper);
+  --color-slate: var(--ui-slate);
+  --color-bg: var(--ui-bg);
+  --color-surface: var(--ui-surface);
+  --color-text: var(--ui-text);
+  --color-text-muted: var(--ui-text-muted);
+  --color-border: var(--ui-border);
+  --color-divider: var(--ui-divider);
+  --color-primary: var(--ui-primary);
+  --color-on-primary: var(--ui-on-primary);
+  --color-secondary: var(--ui-secondary);
+  --color-on-secondary: var(--ui-on-secondary);
+  --color-highlight: var(--ui-highlight);
+  --color-on-highlight: var(--ui-on-highlight);
+  --color-focus: var(--ui-focus);
+  --color-danger: var(--ui-danger);
+  --color-on-danger: var(--ui-on-danger);
+  --color-danger-soft: var(--ui-danger-soft);
+  --color-success: var(--ui-success);
+  --color-on-success: var(--ui-on-success);
+  --color-success-soft: var(--ui-success-soft);
+  --color-warning: var(--ui-warning);
+  --color-on-warning: var(--ui-on-warning);
+  --color-warning-soft: var(--ui-warning-soft);
+  --color-backdrop: var(--ui-backdrop);
+
+  /* Space: Tailwind's step is a quarter rem, the same as the kit's, so p-4 = --ui-space-4. */
+  --spacing: var(--ui-space-1);
+
+  /* Type. text-* sets the size alone; the head-* and body-* utilities below set the whole style. */
+  --font-sans: var(--ui-font);
+  --font-display: var(--ui-font-display);
+  --font-mono: var(--ui-font-mono);
+  --text-sm: var(--ui-text-sm);
+  --text-base: var(--ui-font-size);
+  --text-lg: var(--ui-text-lg);
+  --text-xl: var(--ui-text-xl);
+  --text-2xl: var(--ui-text-2xl);
+  --text-3xl: var(--ui-text-3xl);
+
+  /* Radius: the kit's names. rounded-ui is the base, --ui-radius. */
+  --radius-ui: var(--ui-radius);
+  --radius-xs: var(--ui-radius-xs);
+  --radius-sm: var(--ui-radius-sm);
+  --radius-md: var(--ui-radius-md);
+  --radius-lg: var(--ui-radius-lg);
+  --radius-xl: var(--ui-radius-xl);
+  --radius-2xl: var(--ui-radius-2xl);
+
+  /* Depth and motion. */
+  --shadow-ui: var(--ui-shadow);
+  --ease-ui: var(--ui-ease);
+}
+
+/* Breakpoints: the kit's are Tailwind's own values. A query cannot read a custom property, so they are written out. */
+@theme {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+/* Type styles, so they take variants: md:head-xl. */
+@utility head-3xl {
+  font: var(--ui-head-3xl);
+}
+@utility head-2xl {
+  font: var(--ui-head-2xl);
+}
+@utility head-xl {
+  font: var(--ui-head-xl);
+}
+@utility head-lg {
+  font: var(--ui-head-lg);
+}
+@utility head-md {
+  font: var(--ui-head-md);
+}
+@utility head-sm {
+  font: var(--ui-head-sm);
+}
+@utility head-xs {
+  font: var(--ui-head-xs);
+}
+@utility head-2xs {
+  font: var(--ui-head-2xs);
+}
+@utility body-lg {
+  font: var(--ui-body-lg);
+}
+@utility body-md {
+  font: var(--ui-body-md);
+}
+@utility body-sm {
+  font: var(--ui-body-sm);
+}
+
+/* Layers: Tailwind's z-* takes numbers only, so each kit layer is a named utility. */
+@utility z-below {
+  z-index: var(--ui-layer-below);
+}
+@utility z-base {
+  z-index: var(--ui-layer-base);
+}
+@utility z-raised {
+  z-index: var(--ui-layer-raised);
+}
+@utility z-cover {
+  z-index: var(--ui-layer-cover);
+}
+@utility z-sticky {
+  z-index: var(--ui-layer-sticky);
+}
+@utility z-fixed {
+  z-index: var(--ui-layer-fixed);
+}
+@utility z-dialog {
+  z-index: var(--ui-layer-dialog);
+}
+@utility z-popover {
+  z-index: var(--ui-layer-popover);
+}
+@utility z-tooltip {
+  z-index: var(--ui-layer-tooltip);
+}
+@utility z-toast {
+  z-index: var(--ui-layer-toast);
+}
+@utility z-skip-link {
+  z-index: var(--ui-layer-skip-link);
+}
+
+/* Durations: Tailwind's duration-* takes milliseconds only. */
+@utility duration-fast {
+  transition-duration: var(--ui-duration-fast);
+}
+@utility duration-ui {
+  transition-duration: var(--ui-duration);
+}
+@utility duration-slow {
+  transition-duration: var(--ui-duration-slow);
+}
+
+/* The kit's focus ring, for your own controls: focus-visible:focus-ring. */
+@utility focus-ring {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+@utility focus-ring-inset {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+
+/* dark: follows the kit: the system setting, unless an ancestor has data-theme. */
+@custom-variant dark {
+  &:where([data-theme='dark'], [data-theme='dark'] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:not(:where([data-theme='light'], [data-theme='light'] *)) {
+      @slot;
+    }
+  }
+}

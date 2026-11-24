@@ -1,0 +1,53 @@
+{
+  "name": "@lamsa-ui/icons",
+  "version": "0.0.0",
+  "description": "Icons for the Lamsa design system: 24 px stroke SVGs as data, as CSS classes (<i class=\"ui-icon ui-icon-search\">) and as the icon components of @lamsa-ui/angular and @lamsa-ui/react. Right to left ready.",
+  "license": "MIT",
+  "author": "Lamsa contributors",
+  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "bugs": {
+    "url": "https://github.com/lamsa-ui/lamsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "directory": "packages/icons"
+  },
+  "keywords": [
+    "icons",
+    "svg",
+    "svg-icons",
+    "icon-font",
+    "lucide",
+    "design-system",
+    "ui-kit",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "rtl",
+    "arabic",
+    "dark-mode",
+    "design-tokens",
+    "lamsa",
+    "css"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "style": "./icons.css",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./icons.css": "./icons.css",
+    "./svg/*": "./svg/*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

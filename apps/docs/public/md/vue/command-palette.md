@@ -1,0 +1,38 @@
+# Command palette
+
+Framework: Vue 3. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+
+A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
+Docs: https://lamsa-ui.github.io/lamsa/components/command-palette
+
+```ts
+import { CommandPalette, type Command } from '@lamsa-ui/vue';
+```
+
+When to use something else:
+
+- Pick a value inside a form: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
+- Search the items of one list: [Search field](https://lamsa-ui.github.io/lamsa/components/search-field)
+- A few actions on one thing: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+
+| Name | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
+| `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
+| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
+| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `v-model:open` | `boolean` |  | Required. Set to false by Escape, the backdrop or a run command. |
+| `@run` | `event` |  | Gets the chosen command, after the palette has closed. |
+
+## Examples
+
+### Commands
+
+Press Ctrl+K (⌘K on a Mac) on this page, or the button. Try typing invoice: keywords find New order.
+
+```vue
+<Button variant="secondary" @click="open = true">Commands</Button>
+<CommandPalette v-model:open="open" :commands="commands" @run="go" />
+```

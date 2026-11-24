@@ -1,0 +1,32 @@
+{
+  "name": "vue",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vue/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:ui"],
+  "implicitDependencies": ["css", "icons"],
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"]
+    }
+  },
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/vue",
+        "main": "packages/vue/src/index.ts",
+        "tsConfig": "packages/vue/tsconfig.lib.json",
+        "rootDir": "packages/vue/src",
+        "assets": ["packages/vue/README.md"]
+      },
+      "dependsOn": ["^build"]
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

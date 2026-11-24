@@ -1,0 +1,68 @@
+name: CI
+
+# Every push and pull request: lint, test and build the packages and the docs site,
+# then audit the docs site for accessibility.
+# Pushes to main also publish the docs site to GitHub Pages
+# (one-time setup: Settings > Pages > Build and deployment > Source: GitHub Actions).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm nx format:check
+      - run: pnpm api:parity
+      - run: node tools/release-check.mjs
+      - run: pnpm llms --check
+      - run: pnpm nx run-many -t lint test build
+      # The docs site lives under /lamsa/ on Pages; 404.html lets deep links load the app.
+      - run: pnpm nx build docs --base-href=/lamsa/ --skip-nx-cache
+      - run: cp dist/apps/docs/browser/index.html dist/apps/docs/browser/404.html
+      # Playwright: axe (WCAG 2.2 AA + best practice) on every page, keyboard checks in
+      # Chromium, Firefox and WebKit, and screenshots, on the site as it will be published.
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - run: pnpm exec playwright test -c apps/docs/playwright.config.ts
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: dist/.playwright/report
+          retention-days: 14
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/apps/docs/browser
+
+  pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

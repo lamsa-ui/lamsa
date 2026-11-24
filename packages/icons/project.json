@@ -1,0 +1,48 @@
+{
+  "name": "icons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/icons/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:ui"],
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"]
+    }
+  },
+  "targets": {
+    "sync": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/icons.mjs sync && node tools/icons.mjs generate"
+      }
+    },
+    "generate": {
+      "executor": "nx:run-commands",
+      "inputs": ["{projectRoot}/svg/*.svg", "{workspaceRoot}/tools/icons.mjs"],
+      "outputs": ["{projectRoot}/icons.css", "{projectRoot}/src/data.ts"],
+      "options": { "command": "node tools/icons.mjs generate" }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "dependsOn": ["generate"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/icons",
+        "main": "packages/icons/src/index.ts",
+        "tsConfig": "packages/icons/tsconfig.lib.json",
+        "rootDir": "packages/icons/src",
+        "assets": [
+          "packages/icons/README.md",
+          "packages/icons/NOTICE",
+          { "input": "packages/icons", "glob": "icons.css", "output": "." },
+          { "input": "packages/icons", "glob": "svg/*.svg", "output": "." }
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

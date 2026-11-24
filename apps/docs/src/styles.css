@@ -1,0 +1,1910 @@
+/*
+ * The docs site: built on the kit's own stylesheet and tokens, no colour of its own.
+ * One file for the whole site (no per-component styles).
+ */
+@import 'tailwindcss';
+@import '../../../packages/css/tailwind.css';
+@import '@angular/cdk/overlay-prebuilt.css';
+@import '@angular/cdk/a11y-prebuilt.css';
+
+/* Classes the live demos build at run time, which Tailwind's scan cannot see in the source. */
+@source inline('{p,mb,gap,ps}-{0,0.5,1,1.5,2,2.5,3,4,5,6,7,8,10,12,16,20,24,32}');
+@source inline('{head-{3xl,2xl,xl,lg,md,sm,xs,2xs},body-{lg,md,sm}}');
+
+/* The header is one row on wide screens; the side bar sticks just under it. */
+:root {
+  --doc-header-height: 5rem;
+  /* Keyboard focus and anchor jumps land below the sticky header, not under it. */
+  scroll-padding-block-start: var(--doc-header-height);
+}
+/* Element defaults in the base layer, so a kit class (a ui-button on a link) always wins. */
+@layer base {
+  body {
+    margin: 0;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--ui-primary);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  a:focus-visible,
+  pre:focus-visible,
+  .doc-table-wrap:focus-visible,
+  input[type='radio']:focus-visible {
+    outline: var(--ui-focus-width) solid var(--ui-focus);
+    outline-offset: var(--ui-focus-offset);
+  }
+
+  code {
+    font-family: var(--ui-font-mono);
+    font-size: 0.95em;
+  }
+}
+
+.doc-skip {
+  position: absolute;
+  inset-inline-start: var(--ui-space-4);
+  inset-block-start: -4rem;
+  z-index: var(--ui-layer-skip-link);
+  padding: var(--ui-space-2) var(--ui-space-4);
+  border-radius: var(--ui-radius);
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+.doc-skip:focus {
+  inset-block-start: var(--ui-space-2);
+}
+
+.doc-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Header */
+.doc-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ui-layer-sticky);
+  box-sizing: border-box;
+  block-size: var(--doc-header-height);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-block-end: 1px solid var(--ui-divider);
+  background: var(--ui-surface);
+}
+.doc-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  color: var(--ui-text);
+  text-decoration: none;
+}
+.doc-brand .doc-mark {
+  block-size: 2rem;
+  inline-size: 2rem;
+}
+.doc-brand__name {
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-text-xl);
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.01em;
+}
+.doc-brand__ar {
+  padding-inline-start: var(--ui-space-3);
+  border-inline-start: 2px solid var(--ui-divider);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-lg);
+  font-weight: 600;
+}
+@media (max-width: 30rem) {
+  .doc-brand__ar {
+    display: none;
+  }
+}
+/* Menu and settings chip: small screens only. */
+.doc-header__button {
+  display: none;
+}
+
+.doc-settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-2) var(--ui-space-3);
+  margin-inline-start: 0;
+}
+.doc-search-trigger {
+  gap: var(--ui-space-2);
+  margin-inline-start: auto;
+  white-space: nowrap;
+}
+.doc-search-trigger__shortcut {
+  padding-inline-start: var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-family: var(--ui-font-mono);
+  font-size: var(--ui-text-sm);
+}
+/* Prevent focusing a clipped radio from scrolling a sticky header to its original position. */
+.doc-header input.ui-visually-hidden {
+  position: fixed;
+}
+.doc-picker {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/*
+ * Header pickers: native radios under a segmented control. The chosen segment is raised
+ * (border, surface, bold) and its logo takes its brand colour; the others are grey until
+ * hovered, so the choice never rests on colour alone.
+ */
+.doc-segmented {
+  display: flex;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0.1875rem;
+  border: 1px solid var(--ui-divider);
+  border-radius: calc(var(--ui-radius) + 0.1875rem);
+  background: var(--ui-bg);
+}
+.doc-segment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  min-block-size: var(--ui-control-height);
+  padding-inline: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.doc-segment__icon {
+  display: inline-flex;
+  flex: none;
+  filter: grayscale(1);
+  opacity: 0.75;
+  transition:
+    filter 200ms ease,
+    opacity 200ms ease,
+    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.doc-segment__second {
+  margin-inline-start: -0.3125rem;
+}
+.doc-segment:hover {
+  color: var(--ui-text);
+}
+.doc-segment:hover .doc-segment__icon {
+  filter: none;
+  opacity: 1;
+}
+.doc-segment:has(:checked) {
+  border-color: var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-weight: 600;
+  box-shadow: 0 1px 2px var(--ui-shadow-color);
+}
+.doc-segment:has(:checked) .doc-segment__icon {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.12) rotate(-6deg);
+}
+.doc-segment:has(:focus-visible) {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+@media (prefers-reduced-motion: reduce) {
+  .doc-segment,
+  .doc-segment__icon {
+    transition: none;
+  }
+  .doc-segment:has(:checked) .doc-segment__icon {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  .doc-segment:has(:checked) {
+    border: 2px solid Highlight;
+  }
+}
+/*
+ * Small screens: the pickers live in a bottom sheet. The header keeps one chip that
+ * shows what is chosen (framework logo | theme icon), so the state stays in sight.
+ */
+.doc-settings-button {
+  gap: var(--ui-space-2);
+  margin-inline-start: auto;
+  padding-inline: var(--ui-space-3);
+}
+.doc-settings-button__icon {
+  display: inline-flex;
+}
+.doc-settings-button__divider {
+  inline-size: 1px;
+  block-size: 1.25rem;
+  background: currentColor;
+  opacity: 0.3;
+}
+/* In the sheet: visible legends, and wide segments with the icon over the label. */
+.doc-settings-sheet .ui-dialog__body {
+  gap: var(--ui-space-6);
+}
+.doc-settings-sheet .doc-picker__legend {
+  margin-block-end: var(--ui-space-2);
+  padding: 0;
+  color: var(--ui-text-muted);
+}
+.doc-settings-sheet .doc-segment {
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--ui-space-1);
+  padding: var(--ui-space-3) var(--ui-space-2);
+  white-space: normal;
+  text-align: center;
+}
+/* The nav drawer opens from the inline start, where the side bar sits, and leaves a
+   strip of page in sight to tap away. */
+.doc-nav-drawer {
+  --ui-drawer-from: -100%;
+  inset-inline: 0 auto;
+  inline-size: min(20rem, 85vw);
+}
+.doc-nav-drawer:dir(rtl) {
+  --ui-drawer-from: 100%;
+}
+
+/* Layout */
+.doc-layout {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  max-inline-size: 84rem;
+  margin-inline: auto;
+}
+/* The side bar floats: a raised panel inset from the edges, lifted by the kit's own shadow. */
+.doc-nav--side {
+  position: sticky;
+  inset-block-start: calc(var(--doc-header-height) + var(--ui-space-4));
+  align-self: start;
+  box-sizing: border-box;
+  max-block-size: calc(100dvh - var(--doc-header-height) - var(--ui-space-8));
+  margin-block: var(--ui-space-4);
+  margin-inline: var(--ui-space-4) 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--ui-space-5) var(--ui-space-3);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-xl);
+  background:
+    radial-gradient(
+      circle at 0 0,
+      color-mix(in oklab, var(--ui-primary) 14%, transparent),
+      transparent 14rem
+    ),
+    var(--ui-surface);
+  box-shadow:
+    var(--ui-shadow),
+    inset 0 1px 0 color-mix(in oklab, white 55%, transparent);
+  scrollbar-width: thin;
+}
+.doc-nav {
+  counter-reset: chapter;
+  /* One hue per chapter: the nav dot, the hero glow and the pattern all read it. */
+  --doc-hue: 262;
+}
+.doc-nav__title {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  margin: var(--ui-space-6) 0 var(--ui-space-2);
+  padding-inline: var(--ui-space-3);
+  color: var(--ui-text-muted);
+  counter-increment: chapter;
+}
+.doc-nav__title::before {
+  content: counter(chapter, decimal-leading-zero);
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: 1.75rem;
+  block-size: 1.25rem;
+  border-radius: var(--ui-radius-full);
+  background: light-dark(
+    oklch(0.93 0.05 var(--doc-hue)),
+    oklch(0.32 0.08 var(--doc-hue))
+  );
+  color: light-dark(
+    oklch(0.38 0.14 var(--doc-hue)),
+    oklch(0.9 0.08 var(--doc-hue))
+  );
+  font-variant-numeric: tabular-nums;
+  font-size: 0.7rem;
+}
+.doc-nav__title:first-child {
+  margin-block-start: 0;
+}
+.doc-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.doc-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border-radius: var(--ui-radius-lg);
+  color: var(--ui-text);
+  text-decoration: none;
+  transition:
+    background-color 0.15s,
+    transform 0.15s;
+}
+.doc-nav a:hover {
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+}
+.doc-nav a[aria-current='page'] {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-weight: 600;
+}
+/* The page you are on gets a lit bar on the inline start edge. */
+.doc-nav a[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  inset-block: 0.5rem;
+  inset-inline-start: 0;
+  inline-size: 3px;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-nav a:hover {
+    transform: translateX(2px);
+  }
+  .doc-nav a:dir(rtl):hover {
+    transform: translateX(-2px);
+  }
+}
+.doc-main {
+  min-inline-size: 0;
+  padding: var(--ui-space-8) var(--ui-space-6) var(--ui-space-12);
+}
+.doc-main:focus {
+  outline: none;
+}
+/* Small screens: one slim sticky bar (menu, mark, settings chip); the side bar is a drawer. */
+@media (max-width: 56rem) {
+  :root {
+    --doc-header-height: 3.75rem;
+  }
+  .doc-header {
+    flex-wrap: nowrap;
+    gap: var(--ui-space-2);
+    padding-block: var(--ui-space-2);
+  }
+  .doc-header__button {
+    display: inline-flex;
+  }
+  .doc-search-trigger {
+    gap: 0;
+    min-inline-size: var(--ui-control-height);
+    padding-inline: var(--ui-space-2);
+    margin-inline-start: auto;
+  }
+  .doc-settings-button {
+    margin-inline-start: 0;
+  }
+  .doc-search-trigger__label,
+  .doc-search-trigger__shortcut {
+    display: none;
+  }
+  .doc-settings,
+  .doc-nav--side {
+    display: none;
+  }
+  .doc-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .doc-main {
+    padding-inline: var(--ui-space-4);
+  }
+}
+
+/* Page */
+.doc-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ui-space-8);
+  max-inline-size: 60rem;
+}
+.doc-section {
+  display: grid;
+  gap: var(--ui-space-4);
+}
+.doc-section > p,
+.doc-card > p {
+  margin: 0;
+  max-inline-size: 44rem;
+}
+.doc-h1 {
+  font-size: clamp(2rem, 9vw, var(--ui-text-3xl));
+  overflow-wrap: break-word;
+}
+.doc-h2 {
+  font-size: var(--ui-text-xl);
+}
+.doc-lead {
+  margin: 0;
+  max-inline-size: 44rem;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-lg);
+}
+.doc-muted {
+  color: var(--ui-text-muted);
+}
+.doc-note {
+  margin: 0;
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-inline-start: 4px solid var(--ui-primary);
+  border-radius: var(--ui-radius);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.doc-framework-guides__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ui-space-3);
+}
+.doc-framework-guide {
+  display: grid;
+  width: 100%;
+  text-align: start;
+  font: inherit;
+  gap: var(--ui-space-1);
+  min-inline-size: 0;
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s,
+    transform 0.15s;
+}
+.doc-framework-guide--active,
+.doc-framework-guide:hover {
+  border-color: var(--ui-primary);
+  background: var(--ui-highlight);
+  transform: translateY(-1px);
+}
+.doc-framework-guide__name {
+  font-weight: 700;
+}
+.doc-framework-guide__copy {
+  color: var(--ui-text-muted);
+  font-size: 0.875rem;
+}
+@media (max-width: 40rem) {
+  .doc-framework-guides__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.doc-list {
+  display: grid;
+  gap: var(--ui-space-2);
+  margin: 0;
+  padding-inline-start: var(--ui-space-6);
+  max-inline-size: 44rem;
+  list-style: disc; /* Tailwind's reset removes markers */
+}
+ol.doc-list {
+  list-style: decimal;
+}
+
+/* Example card */
+.doc-card {
+  display: grid;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-6);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-xl);
+  background: var(--ui-surface);
+}
+.doc-card__title {
+  margin: 0;
+  font-size: var(--ui-text-lg);
+  font-weight: 700;
+}
+.doc-card__text {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+.doc-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-6);
+  border-radius: var(--ui-radius);
+  background: var(--ui-bg);
+}
+.doc-preview > * {
+  min-inline-size: 0;
+}
+/* On a phone the example gets the width, not the padding. */
+@media (max-width: 30rem) {
+  .doc-card {
+    padding: var(--ui-space-4);
+  }
+  .doc-preview {
+    padding: var(--ui-space-3);
+  }
+}
+/* Grid content may shrink below its widest part, so wide tables and code scroll inside. */
+.doc-card,
+.doc-section,
+.doc-stack {
+  grid-template-columns: minmax(0, 1fr);
+}
+.doc-field {
+  inline-size: min(100%, 22rem);
+}
+/* A whole app inside a preview: contain keeps its fixed side bar and shade inside the box. */
+.doc-shell {
+  contain: layout;
+  inline-size: 100%;
+  min-block-size: 0;
+  block-size: 24rem;
+  overflow: auto;
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius);
+}
+.doc-shell .ui-shell__sidebar {
+  block-size: auto;
+}
+/* Theme builder: the colour well, example swatches, and the light and dark previews side by side. */
+.doc-colour {
+  inline-size: var(--ui-control-height);
+  block-size: var(--ui-control-height);
+  padding: var(--ui-space-0-5);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  cursor: pointer;
+}
+.doc-colour:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.doc-swatch {
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: var(--ui-radius-full);
+}
+.doc-theme-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--ui-space-4);
+}
+.doc-theme-preview__pane {
+  display: grid;
+  align-content: start;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+.doc-theme-preview__pane > * {
+  margin: 0;
+}
+.doc-theme-preview__pane a {
+  color: var(--ui-primary);
+}
+.doc-flat {
+  margin: 0;
+}
+.doc-wide {
+  inline-size: 100%;
+}
+.doc-grow {
+  flex: 1;
+  min-inline-size: 8rem;
+}
+.doc-stack {
+  display: grid;
+  gap: var(--ui-space-4);
+}
+.doc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-3);
+}
+
+/* Code */
+.doc-code {
+  display: grid;
+  gap: var(--ui-space-2);
+  min-inline-size: 0;
+}
+.doc-code__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+  color: var(--ui-text-muted);
+}
+.doc-code pre {
+  margin: 0;
+  padding: var(--ui-space-4);
+  overflow-x: auto;
+  border-radius: var(--ui-radius);
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+  font-size: var(--ui-text-sm);
+  line-height: 1.7;
+}
+.doc-code pre code {
+  font-size: inherit;
+}
+
+/* Tables */
+.doc-table-wrap {
+  position: relative; /* clips visually hidden headers too, which are absolutely placed */
+  overflow-x: auto;
+}
+.doc-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+.doc-table th,
+.doc-table td {
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border-block-end: 1px solid var(--ui-divider);
+  text-align: start;
+  vertical-align: top;
+}
+.doc-table th {
+  color: var(--ui-text-muted);
+  font-weight: 600;
+}
+
+/* Foundations */
+.doc-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--ui-space-4);
+}
+/* Square, so a full radius reads as a circle. */
+/* Space demos: one step slider that stays in view, and tinted boxes that show the space. */
+.doc-step {
+  position: sticky;
+  inset-block-start: var(--doc-header-height);
+  z-index: var(--ui-layer-raised);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-2) var(--ui-space-4);
+  margin-block-end: var(--ui-space-6);
+  padding-block: var(--ui-space-3);
+  border-block-end: 1px solid var(--ui-divider);
+  background: var(--ui-bg);
+}
+.doc-step__range {
+  flex: 1 1 10rem;
+  min-block-size: var(--ui-control-height);
+  margin: 0;
+  accent-color: var(--ui-primary);
+}
+.doc-step__range:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.doc-step__value {
+  min-inline-size: 10rem;
+  font-variant-numeric: tabular-nums;
+}
+.doc-tint {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  border: 1px dashed var(--ui-primary);
+  border-radius: var(--ui-radius);
+  background: var(--ui-highlight);
+}
+.doc-tint--flow {
+  display: flow-root;
+}
+.doc-tint--row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.doc-block {
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.doc-pairs {
+  display: grid;
+  gap: var(--ui-space-2);
+}
+.doc-pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--ui-space-2) var(--ui-space-4);
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius);
+}
+.doc-space__bar {
+  display: block;
+  block-size: 1rem;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-primary);
+}
+
+/* Foundations: depth, motion, focus, direction */
+.doc-depth,
+.doc-focus {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
+  gap: var(--ui-space-6);
+  align-items: start;
+}
+.doc-depth p,
+.doc-depth__float {
+  display: grid;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-6);
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius-xl);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow);
+}
+/* A still picture of the ring, which otherwise shows only for the keyboard. */
+.doc-ring {
+  justify-self: start;
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.doc-ring--inset {
+  justify-self: stretch;
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+.doc-focus__list {
+  display: grid;
+  padding: var(--ui-space-2);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+}
+.doc-focus__item {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border-radius: var(--ui-radius);
+}
+/* Breakpoint demo: a box at its real width, scaled down when wider than the page.
+   The chips and cards answer to the box with @container. */
+.doc-bp {
+  flex: 1 1 100%;
+  overflow: hidden;
+}
+.doc-bp__frame {
+  /* The slider sets the content box: the screen the page sits on. */
+  box-sizing: content-box;
+  padding-block: var(--ui-space-4);
+  border: 1px dashed var(--ui-primary);
+  border-radius: var(--ui-radius);
+  background: var(--ui-highlight);
+  transform-origin: 0 0;
+}
+.doc-bp__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-2);
+}
+/* Passed: solid fill and border. Not passed: dashed and muted. Shape, not colour alone. */
+.doc-bp__chip {
+  padding: var(--ui-space-1) var(--ui-space-3);
+  border: 1px dashed var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+@container (width >= 40rem) {
+  .doc-bp__chip--sm {
+    border-style: solid;
+    border-color: var(--ui-primary);
+    background: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+}
+@container (width >= 48rem) {
+  .doc-bp__chip--md {
+    border-style: solid;
+    border-color: var(--ui-primary);
+    background: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+}
+@container (width >= 64rem) {
+  .doc-bp__chip--lg {
+    border-style: solid;
+    border-color: var(--ui-primary);
+    background: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+}
+@container (width >= 80rem) {
+  .doc-bp__chip--xl {
+    border-style: solid;
+    border-color: var(--ui-primary);
+    background: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+}
+@container (width >= 96rem) {
+  .doc-bp__chip--2xl {
+    border-style: solid;
+    border-color: var(--ui-primary);
+    background: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+}
+
+/* Home: one full-width interactive hero. */
+.doc-layout--home {
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: none;
+  /* The dot grid runs edge to edge (100vw counts the scrollbar): never scroll sideways. */
+  overflow-x: clip;
+}
+.doc-layout--home .doc-main {
+  padding: 0;
+}
+.doc-home {
+  display: block;
+}
+.doc-home__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ui-space-12);
+  align-items: center;
+  box-sizing: border-box;
+  min-block-size: calc(100dvh - var(--doc-header-height));
+  max-inline-size: 84rem;
+  margin-inline: auto;
+  padding: var(--ui-space-12) var(--ui-space-6);
+  isolation: isolate;
+}
+.doc-home__intro {
+  display: grid;
+  gap: var(--ui-space-6);
+  justify-items: start;
+}
+.doc-home__title {
+  font-size: clamp(2.25rem, 5.2vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.doc-home__accent {
+  color: var(--ui-primary);
+}
+.doc-home__underlined {
+  position: relative;
+  display: block;
+  inline-size: fit-content;
+  min-block-size: 1.1em;
+}
+/* A hand-drawn brand-red underline that draws itself in. */
+.doc-home__scribble {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -0.28em;
+  inline-size: 100%;
+  block-size: 0.3em;
+  overflow: visible;
+  fill: none;
+  stroke: #dc4b4b;
+  stroke-width: 5;
+  stroke-linecap: round;
+  --d: 6;
+}
+.doc-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+/* The word that swaps in the title. */
+.doc-swap {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-draw {
+    animation: doc-draw 1.6s var(--ui-ease) backwards;
+    animation-delay: calc(var(--d, 0) * 80ms + 200ms);
+  }
+  .doc-swap {
+    animation: doc-word 500ms var(--ui-ease) backwards;
+  }
+}
+@keyframes doc-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes doc-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em) rotateX(-70deg);
+  }
+}
+.doc-home__lead {
+  margin: 0;
+  max-inline-size: 34rem;
+}
+.doc-home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-3);
+}
+.doc-home__actions a {
+  text-decoration: none;
+}
+.doc-home__counts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, auto));
+  gap: var(--ui-space-8);
+  margin: var(--ui-space-6) 0 0;
+}
+.doc-home__count {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--ui-space-1);
+}
+.doc-home__count dt {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+.doc-home__count dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The mark as a frozen ripple: the dot, ring and arc of the Lamsa mark, each extruded from stacked
+   layers, on a blueprint floor with ripples, orbits and a pin field. Sizes are cqi of
+   the stage. --rx/--rz (tilt, spin) are set per frame by home-ripple.component.
+   --glow (0–1) is the wave a tap sends: it lifts a piece and brightens its layers. */
+@property --glow {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+/* Clip top and bottom only: sideways the floor runs to the window edge, where .doc-layout--home
+   clips it. Clipping both ways cut it at the hero's 84rem box on wide screens. */
+.doc-home__hero {
+  overflow-x: visible;
+  overflow-y: clip;
+}
+/* The text sits above the scene's floor, which runs on under it. */
+.doc-home__intro {
+  position: relative;
+  z-index: 1;
+}
+.doc-ripple {
+  display: grid;
+  gap: var(--ui-space-2);
+  justify-items: center;
+  min-inline-size: 0;
+}
+.doc-ripple__stage {
+  position: relative;
+  container-type: inline-size;
+  inline-size: min(100%, 40rem);
+  aspect-ratio: 1;
+  perspective: 160cqi;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.doc-ripple__stage--dragging {
+  cursor: grabbing;
+}
+.doc-ripple__world {
+  --rx: 58deg;
+  --rz: -14deg;
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateZ(var(--rz));
+}
+.doc-ripple__world > * {
+  position: absolute;
+  inset-block-start: 50%;
+  left: 50%;
+}
+/* The blueprint floor: a grid that fades out well before the text. */
+.doc-ripple__grid {
+  inline-size: 220cqi;
+  block-size: 220cqi;
+  margin: -110cqi 0 0 -110cqi;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--ui-border) 0 0.25cqi,
+      transparent 0.25cqi 10cqi
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--ui-border) 0 0.25cqi,
+      transparent 0.25cqi 10cqi
+    );
+  mask-image: radial-gradient(circle, #000 20%, transparent 58%);
+}
+/* A pool of brand light under the mark: red at the centre, blue around it. */
+.doc-ripple__floor {
+  inline-size: 110cqi;
+  block-size: 110cqi;
+  margin: -55cqi 0 0 -55cqi;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      color-mix(in srgb, #dc4b4b 22%, transparent),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--ui-primary) 22%, transparent),
+      transparent 68%
+    );
+}
+/* Rings at rest: wider and fainter the further out. With motion they run out from the mark instead. */
+.doc-ripple__ring {
+  inline-size: 96cqi;
+  block-size: 96cqi;
+  margin: -48cqi 0 0 -48cqi;
+  border: 0.35cqi solid var(--ui-primary);
+  border-radius: 50%;
+  opacity: calc(0.5 - var(--i) * 0.07);
+  transform: scale(calc(0.22 + var(--i) * 0.15));
+}
+/* Orbits: one lies on the floor, one stands tipped up around the mark like a gyroscope. */
+.doc-ripple__orbit {
+  border: 0.25cqi solid var(--ui-border);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.doc-ripple__orbit--a {
+  inline-size: 84cqi;
+  block-size: 84cqi;
+  margin: -42cqi 0 0 -42cqi;
+  transform: translateZ(1cqi);
+}
+.doc-ripple__orbit--b {
+  inline-size: 62cqi;
+  block-size: 62cqi;
+  margin: -31cqi 0 0 -31cqi;
+  transform: translateZ(8cqi) rotateX(68deg) rotateY(24deg);
+}
+.doc-ripple__moon {
+  position: absolute;
+  inset-block-start: -1.4cqi;
+  left: calc(50% - 1.4cqi);
+  inline-size: 2.8cqi;
+  block-size: 2.8cqi;
+  border-radius: 50%;
+  background: var(--ui-primary);
+}
+.doc-ripple__orbit--b .doc-ripple__moon {
+  background: #dc4b4b;
+}
+.doc-ripple__wave {
+  inline-size: 60cqi;
+  block-size: 60cqi;
+  margin: -30cqi 0 0 -30cqi;
+  border: 0.8cqi solid var(--ui-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(calc(var(--x) * 1cqi), calc(var(--y) * 1cqi)) scale(0.12);
+  animation: doc-ripple-wave 1100ms var(--ui-ease) forwards;
+}
+@keyframes doc-ripple-wave {
+  to {
+    transform: translate(calc(var(--x) * 1cqi), calc(var(--y) * 1cqi)) scale(1);
+    opacity: 0;
+  }
+}
+.doc-ripple__mark {
+  inline-size: 46cqi;
+  block-size: 46cqi;
+  margin: -23cqi 0 0 -23cqi;
+  transform-style: preserve-3d;
+}
+.doc-ripple__piece,
+.doc-ripple__inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.doc-ripple__inner svg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  /* Layers are the piece's sides: darker towards the floor, the top layer in full colour. */
+  transform: translateZ(calc(var(--i) * (0.75cqi + var(--glow) * 1.2cqi)));
+  filter: brightness(calc(0.4 + 0.6 * var(--i) / var(--n) + var(--glow) * 0.3));
+}
+.doc-ripple__inner svg:last-child {
+  filter: brightness(calc(1 + var(--glow) * 0.25));
+}
+/* The pin field, one pin per component: each pin is a dot on the floor and a cap held above it. --wave is the ripple
+   running out from the mark, --glow the one a tap sends; both raise the cap and turn it blue. */
+@property --wave {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.doc-pin {
+  --lift: calc(var(--wave) * 3 + var(--glow) * 7);
+  transform-style: preserve-3d;
+  transform: translate(calc(var(--x) * 1cqi), calc(var(--y) * 1cqi));
+  pointer-events: none;
+}
+.doc-pin::before,
+.doc-pin::after {
+  content: '';
+  position: absolute;
+  inline-size: 2.6cqi;
+  block-size: 2.6cqi;
+  margin: -1.3cqi 0 0 -1.3cqi;
+  border-radius: 0.6cqi;
+}
+/* The tapped component's pin stays up, in brand red. */
+.doc-pin--picked {
+  --glow: 1;
+}
+.doc-pin--picked::after {
+  background: #dc4b4b;
+}
+.doc-pin::before {
+  background: var(--ui-border);
+  opacity: 0.6;
+}
+.doc-pin::after {
+  background: color-mix(
+    in srgb,
+    var(--ui-primary) min(100%, calc(var(--lift) * 18%)),
+    var(--ui-border)
+  );
+  transform: translateZ(calc((0.8 + var(--lift)) * 1cqi));
+  filter: brightness(calc(0.85 + var(--glow) * 0.35));
+}
+.doc-ripple__hint {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-ripple__ring {
+    animation: doc-ripple-run 7.2s linear infinite;
+    animation-delay: calc(var(--i) * -1.2s);
+  }
+  .doc-ripple__orbit--a {
+    animation: doc-ripple-orbit-a 18s linear infinite;
+  }
+  .doc-ripple__orbit--b {
+    animation: doc-ripple-orbit-b 11s linear infinite;
+  }
+  /* The pieces drop onto the floor one after another, then settle. */
+  .doc-ripple__piece {
+    animation: doc-ripple-lock 1.4s var(--ui-ease) backwards;
+  }
+  .doc-ripple__piece--ring {
+    animation-delay: 150ms;
+  }
+  .doc-ripple__piece--dot {
+    animation-delay: 300ms;
+  }
+  .doc-ripple__inner {
+    animation: doc-ripple-breathe 5s ease-in-out infinite alternate;
+  }
+  .doc-ripple__piece--ring .doc-ripple__inner {
+    animation-delay: -1.7s;
+  }
+  .doc-ripple__piece--dot .doc-ripple__inner {
+    animation-delay: -3.4s;
+  }
+  .doc-ripple__piece--arc .doc-ripple__inner {
+    animation:
+      doc-ripple-breathe 5s ease-in-out infinite alternate,
+      doc-ripple-turn 28s linear infinite;
+  }
+  .doc-ripple__inner svg {
+    transition: transform var(--ui-duration-fast) var(--ui-ease);
+  }
+  /* Rings run out at about 150ms per cqi, one every 1.2s: each pin rises as a ring passes it. */
+  .doc-pin {
+    animation: doc-pin-wave 1.2s linear infinite;
+    animation-delay: calc(var(--r) * 150ms - 7.2s);
+  }
+}
+@keyframes doc-ripple-run {
+  from {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes doc-ripple-orbit-a {
+  to {
+    transform: translateZ(1cqi) rotate(360deg);
+  }
+}
+@keyframes doc-ripple-orbit-b {
+  to {
+    transform: translateZ(8cqi) rotateX(68deg) rotateY(24deg) rotate(360deg);
+  }
+}
+@keyframes doc-ripple-lock {
+  from {
+    translate: 0 0 40cqi;
+  }
+}
+@keyframes doc-ripple-breathe {
+  to {
+    transform: translateZ(1.2cqi);
+  }
+}
+@keyframes doc-ripple-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes doc-pin-wave {
+  0%,
+  100% {
+    --wave: 0;
+  }
+  30% {
+    --wave: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doc-ripple__wave {
+    display: none;
+  }
+}
+
+@media (min-width: 64rem) {
+  .doc-home__hero {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    padding-block: var(--ui-space-10);
+  }
+}
+@media (max-width: 40rem) {
+  .doc-home__hero {
+    padding: var(--ui-space-8) var(--ui-space-4);
+  }
+  .doc-home__counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Token tables: a live sample of each token in the last column. */
+.doc-token__cell {
+  min-inline-size: 8.5rem;
+  vertical-align: middle;
+}
+.doc-token__preview {
+  display: inline-block;
+  max-inline-size: 100%;
+}
+.doc-token__box {
+  inline-size: 3rem;
+  block-size: 2rem;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+}
+.doc-token__chip {
+  inline-size: 3rem;
+  block-size: 2rem;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+}
+
+/* Typography demo: the same line in both languages. */
+.doc-type-demo {
+  display: grid;
+  gap: var(--ui-space-4);
+  inline-size: 100%;
+  overflow-wrap: break-word;
+}
+.doc-type-demo > p {
+  margin: 0;
+}
+
+/* Motion demo: a switch, a panel and a fade, all at --doc-duration. */
+.doc-motion-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-4);
+  inline-size: 100%;
+}
+.doc-motion-demo__switch {
+  display: inline-flex;
+  inline-size: 2.75rem;
+  block-size: 1.5rem;
+  padding: 0.125rem;
+  box-sizing: border-box;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+  transition: background-color var(--doc-duration) var(--ui-ease);
+}
+.doc-motion-demo__knob {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  box-sizing: border-box;
+  transition: translate var(--doc-duration) var(--ui-ease);
+}
+.doc-motion-demo__track {
+  flex: 1 1 10rem;
+  overflow: hidden;
+  padding: var(--ui-space-1);
+  border: 1px dashed var(--ui-border);
+  border-radius: var(--ui-radius);
+  container-type: inline-size;
+}
+.doc-motion-demo__panel {
+  display: block;
+  inline-size: 5rem;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+  text-align: center;
+  transition: translate var(--doc-duration) var(--ui-ease);
+}
+.doc-motion-demo__fade {
+  opacity: 0; /* faint text would fail contrast; hidden until it fades in */
+  transition: opacity var(--doc-duration) var(--ui-ease);
+}
+.doc-motion-demo--on .doc-motion-demo__switch {
+  background: var(--ui-primary);
+}
+.doc-motion-demo--on .doc-motion-demo__knob {
+  translate: 1.25rem;
+}
+.doc-motion-demo--on .doc-motion-demo__panel {
+  translate: calc(100cqi - 5rem);
+}
+:dir(rtl) .doc-motion-demo--on .doc-motion-demo__knob {
+  translate: -1.25rem;
+}
+:dir(rtl) .doc-motion-demo--on .doc-motion-demo__panel {
+  translate: calc(-100cqi + 5rem);
+}
+.doc-motion-demo--on .doc-motion-demo__fade {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .doc-motion-demo * {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------
+   Story chrome: every page opens on a chapter hero with its own pattern and hue.
+   --------------------------------------------------------------------------------------- */
+[data-chapter='Start'] {
+  --doc-hue: 262;
+  --doc-art: stars;
+}
+[data-chapter='Foundations'] {
+  --doc-hue: 200;
+  --doc-art: ruler;
+}
+[data-chapter='Actions'] {
+  --doc-hue: 95;
+  --doc-art: switches;
+}
+[data-chapter='Forms'] {
+  --doc-hue: 160;
+  --doc-art: dots;
+}
+[data-chapter='Feedback'] {
+  --doc-hue: 35;
+  --doc-art: rings;
+}
+[data-chapter='Navigation'] {
+  --doc-hue: 300;
+  --doc-art: contour;
+}
+[data-chapter='Overlays'] {
+  --doc-hue: 15;
+  --doc-art: layers;
+}
+[data-chapter='Content'] {
+  --doc-hue: 235;
+  --doc-art: bricks;
+}
+[data-chapter='Data'] {
+  --doc-hue: 335;
+  --doc-art: rows;
+}
+
+.doc-hero {
+  --doc-line: light-dark(
+    oklch(0.55 0.12 var(--doc-hue) / 0.28),
+    oklch(0.8 0.1 var(--doc-hue) / 0.22)
+  );
+  --doc-glow: light-dark(
+    oklch(0.9 0.09 var(--doc-hue) / 0.9),
+    oklch(0.42 0.14 var(--doc-hue) / 0.55)
+  );
+  --doc-ink: light-dark(
+    oklch(0.4 0.15 var(--doc-hue)),
+    oklch(0.88 0.1 var(--doc-hue))
+  );
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-10) var(--ui-space-8);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-2xl);
+  background:
+    radial-gradient(60% 90% at 100% 0%, var(--doc-glow), transparent 70%),
+    radial-gradient(
+      40% 60% at 0% 100%,
+      color-mix(in oklab, var(--doc-glow) 55%, transparent),
+      transparent 70%
+    ),
+    var(--ui-surface);
+}
+/* The pattern sits behind the words and fades before it reaches them. */
+.doc-hero__art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--doc-pattern);
+  background-size: var(--doc-pattern-size, 28px 28px);
+  mask-image: linear-gradient(
+    to var(--doc-fade-to, right),
+    transparent 45%,
+    #000 100%
+  );
+  pointer-events: none;
+}
+.doc-hero:dir(rtl) .doc-hero__art {
+  --doc-fade-to: left;
+}
+.doc-hero > :not(.doc-hero__art) {
+  position: relative;
+}
+.doc-hero[data-chapter='Start'] .doc-hero__art {
+  /* Constellation: sparse bright dots over a finer scatter. */
+  --doc-pattern:
+    radial-gradient(circle, var(--doc-ink) 1.5px, transparent 2px),
+    radial-gradient(circle, var(--doc-line) 1px, transparent 1.5px);
+  --doc-pattern-size: 83px 71px, 23px 29px;
+  background-position:
+    0 0,
+    11px 7px;
+}
+.doc-hero[data-chapter='Foundations'] .doc-hero__art {
+  /* Blueprint ruler: a fine grid with a heavier line every fifth step. */
+  --doc-pattern:
+    linear-gradient(var(--doc-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--doc-line) 1px, transparent 1px),
+    linear-gradient(
+      color-mix(in oklab, var(--doc-ink) 45%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--doc-ink) 45%, transparent) 1px,
+      transparent 1px
+    );
+  --doc-pattern-size: 16px 16px, 16px 16px, 80px 80px, 80px 80px;
+}
+.doc-icon-canvas {
+  isolation: isolate;
+  background: var(--ui-surface);
+}
+.doc-icon-canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M16 0V80M32 0V80M48 0V80M64 0V80M0 16H80M0 32H80M0 48H80M0 64H80' fill='none' stroke='%23777777' stroke-opacity='.16'/%3E%3Cpath d='M80 0H0V80' fill='none' stroke='%23777777' stroke-opacity='.3'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.doc-hero[data-chapter='Actions'] .doc-hero__art {
+  /* Keys: rounded caps in rows, the things you press. */
+  --doc-pattern:
+    radial-gradient(circle at 50% 50%, var(--doc-ink) 1.5px, transparent 2px),
+    linear-gradient(var(--doc-line) 1.5px, transparent 1.5px);
+  --doc-pattern-size: 36px 36px, 36px 18px;
+}
+.doc-hero[data-chapter='Forms'] .doc-hero__art {
+  /* Field dots: the grid every input sits on. */
+  --doc-pattern: radial-gradient(
+    circle,
+    var(--doc-ink) 1.25px,
+    transparent 1.75px
+  );
+  --doc-pattern-size: 18px 18px;
+}
+.doc-hero[data-chapter='Feedback'] .doc-hero__art {
+  /* Ripples: signal spreading out from the corner. */
+  --doc-pattern: repeating-radial-gradient(
+    circle at 100% 0%,
+    transparent 0 22px,
+    var(--doc-line) 22px 23.5px
+  );
+  --doc-pattern-size: auto;
+}
+.doc-hero[data-chapter='Navigation'] .doc-hero__art {
+  /* Contours: a map, because this chapter is about finding the way. */
+  --doc-pattern:
+    repeating-radial-gradient(
+      ellipse 120% 70% at 85% 120%,
+      transparent 0 14px,
+      var(--doc-line) 14px 15.5px
+    ),
+    repeating-radial-gradient(
+      ellipse 70% 120% at 10% -20%,
+      transparent 0 18px,
+      var(--doc-line) 18px 19px
+    );
+  --doc-pattern-size: auto;
+}
+.doc-hero[data-chapter='Overlays'] .doc-hero__art {
+  /* Layers: slanted sheets stacked above the page. */
+  --doc-pattern: repeating-linear-gradient(
+    135deg,
+    transparent 0 20px,
+    var(--doc-line) 20px 21.5px,
+    transparent 21.5px 26px
+  );
+  --doc-pattern-size: auto;
+}
+.doc-hero[data-chapter='Content'] .doc-hero__art {
+  /* Bricks: blocks that build into a page. */
+  --doc-pattern:
+    linear-gradient(var(--doc-line) 2px, transparent 2px),
+    linear-gradient(90deg, var(--doc-line) 2px, transparent 2px),
+    linear-gradient(90deg, var(--doc-line) 2px, transparent 2px);
+  --doc-pattern-size: 64px 24px, 64px 48px, 64px 48px;
+  background-position:
+    0 0,
+    0 0,
+    32px 24px;
+}
+.doc-hero[data-chapter='Data'] .doc-hero__art {
+  /* Rows and columns: a ledger. */
+  --doc-pattern:
+    linear-gradient(var(--doc-line) 1.5px, transparent 1.5px),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--doc-ink) 40%, transparent) 1px,
+      transparent 1px
+    );
+  --doc-pattern-size: 100% 22px, 96px 100%;
+}
+.doc-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  margin: 0;
+  color: var(--doc-ink);
+}
+.doc-hero__chapter {
+  padding: 0.125rem var(--ui-space-2);
+  border-radius: var(--ui-radius-full);
+  background: var(--doc-ink);
+  color: var(--ui-surface);
+}
+.doc-hero__copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-3);
+  margin: 0;
+}
+.doc-hero .doc-h1 {
+  margin: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .doc-hero__art {
+    animation: doc-art-drift 40s linear infinite;
+  }
+  @keyframes doc-art-drift {
+    to {
+      background-position: 120px 60px;
+    }
+  }
+}
+@media (max-width: 40rem) {
+  .doc-hero {
+    padding: var(--ui-space-6) var(--ui-space-4);
+    border-radius: var(--ui-radius-xl);
+  }
+}
+
+/* The page behind it all: a faint dotted sheet that fades out down the page. */
+.doc-layout:not(.doc-layout--home) {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--ui-text) 14%, transparent) 1px,
+    transparent 1.5px
+  );
+  background-size: 24px 24px;
+}
+.doc-layout:not(.doc-layout--home) .doc-main {
+  background: linear-gradient(to bottom, transparent, var(--ui-bg) 28rem);
+}
+
+/* "On this page": a fixed list beside the page where there is room for it. */
+.doc-toc {
+  display: none;
+}
+@media (min-width: 84rem) {
+  .doc-main:has(.doc-toc) {
+    padding-inline-end: 17rem;
+  }
+  .doc-toc {
+    display: grid;
+    gap: var(--ui-space-2);
+    position: fixed;
+    inset-block-start: calc(var(--doc-header-height) + var(--ui-space-8));
+    inset-inline-end: var(--ui-space-6);
+    inline-size: 14rem;
+    max-block-size: calc(
+      100dvh - var(--doc-header-height) - var(--ui-space-16)
+    );
+    overflow-y: auto;
+    padding-inline-start: var(--ui-space-4);
+    border-inline-start: 1px solid var(--ui-divider);
+  }
+}
+.doc-toc__title {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+.doc-toc ol {
+  display: grid;
+  gap: var(--ui-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.doc-toc a {
+  display: block;
+  padding-block: var(--ui-space-1);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  text-decoration: none;
+}
+.doc-toc a:hover {
+  color: var(--ui-text);
+  text-decoration: underline;
+}
+
+/* Previous and next page, in side-bar order. */
+.doc-pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--ui-space-4);
+  padding-block-start: var(--ui-space-8);
+  border-block-start: 1px solid var(--ui-divider);
+}
+.doc-pager__link {
+  display: grid;
+  gap: var(--ui-space-1);
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+.doc-pager__link .ui-label {
+  color: var(--ui-text-muted);
+}
+.doc-pager__link--next {
+  grid-column: -2;
+  text-align: end;
+}
+.doc-pager__link:hover {
+  border-color: var(--ui-primary);
+}
+
+/* Sections are beats in the story: a numbered heading, one after another. */
+.doc-page {
+  counter-reset: beat;
+}
+.doc-page > .doc-section:not(.doc-hero) {
+  counter-increment: beat;
+}
+.doc-page > .doc-section:not(.doc-hero) > .doc-h2:first-child {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+}
+.doc-page > .doc-section:not(.doc-hero) > .doc-h2:first-child::before {
+  content: counter(beat);
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-size: var(--ui-text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Animation gallery. */
+.doc-anim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--ui-space-4);
+}
+.doc-anim-card {
+  display: grid;
+  gap: var(--ui-space-2);
+  padding: var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  align-content: start;
+}
+.doc-anim-card__stage {
+  display: grid;
+  place-items: center;
+  min-block-size: 4.5rem;
+  overflow: hidden;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-secondary);
+}
+.doc-anim-card__use {
+  color: var(--ui-text-muted, inherit);
+  font-size: var(--ui-text-sm);
+}
+.doc-anim-chip {
+  padding: var(--ui-space-1) var(--ui-space-3);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+.doc-anim-chip.ui-anim-shimmer {
+  background-color: var(--ui-text);
+  color: var(--ui-bg);
+}
+.doc-anim-bars {
+  display: grid;
+  gap: var(--ui-space-1);
+  inline-size: 6rem;
+}
+.doc-anim-bars span {
+  block-size: 0.5rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+.doc-anim-dot {
+  position: relative;
+  display: inline-flex;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+.doc-anim-dot__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+
+/* Z-index demo: a fan of real layers and your element across them. */
+.doc-layers {
+  position: relative;
+  isolation: isolate;
+  inline-size: 100%;
+  block-size: 8rem;
+}
+.doc-layers__card {
+  position: absolute;
+  inline-size: 28%;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow);
+  font-size: var(--ui-text-sm);
+}
+.doc-layers__card--you {
+  inset-block-start: 2.5rem;
+  inset-inline: 10%;
+  inline-size: auto;
+  block-size: 4.5rem;
+  border: 2px dashed var(--ui-primary);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-weight: 600;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Direction demo. */
+.doc-direction__demo {
+  display: grid;
+  gap: var(--ui-space-4);
+  inline-size: 100%;
+}
+.doc-direction__note {
+  margin: 0;
+  border-inline-start: 4px solid var(--ui-primary);
+}
+
+/* Token tables keep names on one line; on a phone the table scrolls in its own frame. */
+.doc-token-table {
+  min-inline-size: 44rem;
+}
+.doc-token-table td code {
+  white-space: nowrap;
+}
+/* Two sliders for one demo: only the last one sticks, so they never cover each other. */
+.doc-step:has(+ .doc-step) {
+  position: static;
+  margin-block-end: 0;
+  border-block-end: 0;
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@lamsa-ui/css",
+  "version": "0.0.0",
+  "description": "The Lamsa design system in plain CSS: brand fonts, light and dark tokens measured to 7:1, and the component styles. Works in any stack.",
+  "license": "MIT",
+  "author": "Lamsa contributors",
+  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "bugs": {
+    "url": "https://github.com/lamsa-ui/lamsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "directory": "packages/css"
+  },
+  "keywords": [
+    "css",
+    "tailwind",
+    "tailwindcss",
+    "tailwind-plugin",
+    "fonts",
+    "theming",
+    "design-system",
+    "ui-kit",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "rtl",
+    "arabic",
+    "dark-mode",
+    "design-tokens",
+    "lamsa"
+  ],
+  "files": [
+    "ui.css",
+    "tailwind.css",
+    "fonts",
+    "README.md"
+  ],
+  "style": "./ui.css",
+  "exports": {
+    "./ui.css": "./ui.css",
+    "./tailwind.css": "./tailwind.css",
+    "./fonts/*": "./fonts/*"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.1.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,45 @@
+# Command palette
+
+Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+
+A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
+Docs: https://lamsa-ui.github.io/lamsa/components/command-palette
+
+```ts
+import { CommandPaletteComponent, type Command } from '@lamsa-ui/angular';
+// Built on the kit's dialog. Add @angular/cdk/overlay-prebuilt.css.
+```
+
+When to use something else:
+
+- Pick a value inside a form: [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox)
+- Search the items of one list: [Search field](https://lamsa-ui.github.io/lamsa/components/search-field)
+- A few actions on one thing: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+
+| Name | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
+| `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
+| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
+| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `[(open)]` | `boolean` | `false` | Open or closed; Ctrl+K and Escape change it. |
+| `(run)` | `Command` |  | The command to run, after the dialog has closed and focus is back. |
+
+## Examples
+
+### Commands
+
+Press Ctrl+K (⌘K on a Mac) on this page, or the button. Try typing invoice: keywords find New order.
+
+```html
+<button ui-button variant="secondary" (click)="open.set(true)">Commands</button>
+<ui-command-palette [commands]="commands" [(open)]="open" (run)="go($event)" />
+
+commands: Command[] = [
+  { id: 'new', label: 'New order', keywords: ['invoice', 'bill'], shortcut: 'Ctrl N' },
+  { id: 'find', label: 'Find a customer', keywords: ['search', 'client'] },
+  { id: 'out', label: 'Sign out' },
+];
+```

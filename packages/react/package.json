@@ -1,0 +1,59 @@
+{
+  "name": "@lamsa-ui/react",
+  "version": "0.0.0",
+  "description": "Accessible React 19 components for the Lamsa design system, built on React Aria and right to left ready. Forms, overlays, navigation, data table, calendar and more, styled by @lamsa-ui/css.",
+  "license": "MIT",
+  "author": "Lamsa contributors",
+  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "bugs": {
+    "url": "https://github.com/lamsa-ui/lamsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "react",
+    "react-components",
+    "react-aria",
+    "hooks",
+    "tailwind",
+    "design-system",
+    "ui-kit",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "rtl",
+    "arabic",
+    "dark-mode",
+    "design-tokens",
+    "lamsa",
+    "ui",
+    "components"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "dependencies": {
+    "@lamsa-ui/css": "^0.0.0",
+    "@internationalized/date": "^3.12.4",
+    "react-aria-components": "^1.22.1",
+    "@lamsa-ui/icons": "^0.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

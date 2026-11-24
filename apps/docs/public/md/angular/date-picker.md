@@ -1,0 +1,116 @@
+# Date picker
+
+Framework: Angular. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+
+A date to type or pick, or a range of dates for a stay. Type dates in the reader's own order, or open the calendar beside them or with Alt + Down. Unlike the browser's own picker, this calendar can close off days, such as a shop's day off. For ordinary dates and times, the native fields below use the browser's localized pickers. Date values stay plain ISO dates.
+
+Docs: https://lamsa-ui.github.io/lamsa/components/date-picker
+
+```ts
+import { DatePickerComponent, TextFieldComponent } from '@lamsa-ui/angular';
+// The value is an ISO date (YYYY-MM-DD), or null.
+// For the browser's own date and time pickers, use TextFieldComponent.
+```
+
+When to use something else:
+
+- Pick days by looking at a month, or a range: [Calendar](https://lamsa-ui.github.io/lamsa/components/calendar)
+- A time only: [Text field with type time](https://lamsa-ui.github.io/lamsa/components/text-field)
+
+| Name | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `label` | `string` |  | Names the field and the calendar. |
+| `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
+| `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
+| `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
+| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `selection` | `'single' \| 'range'` | `'single'` | Shows one date field, or two fields for a date range. |
+| `range` | `DateRange \| null` |  | Two-way model for range mode. start is an ISO date; end is null until the second date is picked. |
+| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date'` | Accessible names for the two fields in range mode. |
+| `type (ui-text-field)` | `'date' \| 'time' \| 'datetime-local' \| 'number'` |  | Use the browser native picker for dates and times, or a basic number input. |
+| `min, max (ui-text-field)` | `string \| number` |  | The range: '2026-01-31' for a date, '09:00' for a time, 1 for a number. |
+| `step (ui-text-field)` | `string \| number` |  | The steps: seconds for a time, units for a number. |
+| `locale` | `string` | `LOCALE_ID` | The calendar's month and day names. |
+| `previousLabel \| nextLabel` | `string` |  | The calendar's month buttons. Translate them. |
+
+## Examples
+
+### A delivery day
+
+No deliveries on Fridays, and none in the past. Picking a day closes the calendar and returns to the button.
+
+```html
+<ui-date-picker
+  label="Delivery day"
+  min="2026-11-20"
+  hint="We deliver Saturday to Thursday."
+  [isDisabled]="isFriday"
+  formControlName="day"
+/>
+
+isFriday = (date: string) => new Date(date + 'T00:00:00Z').getUTCDay() === 5;
+```
+
+### A stay
+
+Type the check-in and check-out dates, or choose them in the calendar. The range starts with its first date and ends when you pick the second.
+
+```html
+<ui-date-picker
+  label="Stay"
+  selection="range"
+  rangeStartLabel="Check-in"
+  rangeEndLabel="Check-out"
+  [(range)]="stay"
+/>
+```
+
+### A native date
+
+Use the browser's own picker for a straightforward date. min and max keep it to dates that make sense.
+
+```html
+<ui-text-field
+  label="Move-in date"
+  type="date"
+  min="2026-01-01"
+  hint="Any day from January 2026."
+  formControlName="moveIn"
+/>
+```
+
+### A native time
+
+The browser provides a localized time picker; step offers quarter-hour increments.
+
+```html
+<!-- step in seconds: 900 offers quarter hours -->
+<ui-text-field label="Delivery time" type="time" step="900" formControlName="time" />
+```
+
+### A native number
+
+For a basic quantity, the browser's number input steps and checks its limits.
+
+```html
+<ui-text-field label="Rooms" type="number" [min]="1" [max]="12" formControlName="rooms" />
+```
+
+### In Arabic
+
+```html
+<ui-date-picker
+  label="يوم التوصيل"
+  locale="ar-EG"
+  calendarLabel="اختر التاريخ"
+  previousLabel="الشهر السابق"
+  nextLabel="الشهر التالي"
+  formControlName="day"
+/>
+```
+
+### Native date in Arabic
+
+```html
+<ui-text-field label="تاريخ الاستلام" type="date" formControlName="date" />
+```

@@ -1,0 +1,54 @@
+{
+  "name": "@lamsa-ui/angular",
+  "version": "0.0.0",
+  "peerDependencies": {
+    "@angular/cdk": "^22.2.0",
+    "@angular/common": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "rxjs": "^7.8.0"
+  },
+  "sideEffects": false,
+  "description": "Accessible Angular 22 components for the Lamsa design system: standalone, signal based, right to left ready. Forms, overlays, navigation, data table, calendar and more, styled by @lamsa-ui/css.",
+  "license": "MIT",
+  "author": "Lamsa contributors",
+  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "bugs": {
+    "url": "https://github.com/lamsa-ui/lamsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "directory": "packages/angular"
+  },
+  "keywords": [
+    "angular",
+    "angular-components",
+    "angular-cdk",
+    "signals",
+    "standalone-components",
+    "tailwind",
+    "design-system",
+    "ui-kit",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "rtl",
+    "arabic",
+    "dark-mode",
+    "design-tokens",
+    "lamsa",
+    "ui",
+    "components"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lamsa-ui/css": "^0.0.0",
+    "@lamsa-ui/icons": "^0.0.0"
+  }
+}

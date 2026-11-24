@@ -1,0 +1,59 @@
+{
+  "name": "@lamsa-ui/vue",
+  "version": "0.0.0",
+  "description": "Accessible Vue 3.5 components for the Lamsa design system, right to left ready: forms, overlays, navigation, data table, calendar and more, built on Reka UI and styled by @lamsa-ui/css.",
+  "license": "MIT",
+  "author": "Lamsa contributors",
+  "homepage": "https://lamsa-ui.github.io/lamsa/",
+  "bugs": {
+    "url": "https://github.com/lamsa-ui/lamsa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamsa-ui/lamsa.git",
+    "directory": "packages/vue"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vue-components",
+    "composition-api",
+    "reka-ui",
+    "tailwind",
+    "design-system",
+    "ui-kit",
+    "component-library",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "rtl",
+    "arabic",
+    "dark-mode",
+    "design-tokens",
+    "lamsa",
+    "ui",
+    "components"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@lamsa-ui/css": "^0.0.0",
+    "@lamsa-ui/icons": "^0.0.0",
+    "reka-ui": "^2.11.0",
+    "@internationalized/date": "^3.12.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

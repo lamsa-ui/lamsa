@@ -1,0 +1,80 @@
+name: Release
+
+# Manual release of the npm packages (@lamsa-ui/css, /icons, /angular, /react, /vue).
+# Each package is versioned on its own from the conventional commits that touch it;
+# see tools/release.mjs and "release" in nx.json.
+#
+# Real releases are off until the repo variable RELEASE_ENABLED is "true"
+# (Settings > Secrets and variables > Actions > Variables). Until then only dry runs pass.
+# A real release also needs the repo secret NPM_TOKEN (npm token with write access to @lamsa-ui).
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Package to release (all = every package with releasable commits)
+        type: choice
+        options: [all, css, icons, angular, react, vue]
+        default: all
+      first_release:
+        description: First publish (requires a version or bump in specifier)
+        type: boolean
+        default: false
+      specifier:
+        description: Version or bump (e.g. 0.1.0, minor). Empty = from conventional commits; required for a first release.
+        type: string
+        default: ''
+      dry_run:
+        description: Dry run (no version bump, publish, commit, tag or GitHub release)
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - run: node tools/release-check.mjs
+      - run: pnpm nx run-many -t lint test build
+      - name: Release
+        env:
+          PACKAGE: ${{ inputs.package }}
+          FIRST_RELEASE: ${{ inputs.first_release }}
+          SPECIFIER: ${{ inputs.specifier }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          RELEASE_ENABLED: ${{ vars.RELEASE_ENABLED }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: 'true'
+        run: |
+          set -- --verbose
+          if [ "$PACKAGE" != "all" ]; then set -- "$@" "--projects=$PACKAGE"; fi
+          if [ "$FIRST_RELEASE" = "true" ]; then
+            if [ -z "$SPECIFIER" ]; then
+              echo "A first release requires a version or bump in specifier." >&2
+              exit 1
+            fi
+            set -- "$@" --first-release
+          fi
+          if [ -n "$SPECIFIER" ]; then set -- "$@" "--specifier=$SPECIFIER"; fi
+          if [ "$DRY_RUN" = "true" ]; then set -- "$@" --dry-run; fi
+          node tools/release.mjs "$@"

@@ -1,0 +1,4851 @@
+/*
+ * @lamsa-ui/css — the Lamsa design system: fonts, tokens, component styles.
+ *
+ * Source of every value: the Lamsa palette (colour, type). Product UI needs shades the brand
+ * book doesn't name, so each one below is the brand colour itself, or the brand colour darkened
+ * or lightened along its own hue until it reaches 7:1 for small text. Status colours (success,
+ * warning) are not brand colours; they are chosen to pass 7:1 and to stay clear of brand red.
+ *
+ * Every colour is a light-dark() pair; the contrast of each pair is checked in tokens.spec.ts.
+ * Pick a theme with color-scheme on any ancestor, or data-theme="light" / "dark".
+ * A client re-brands by overriding --ui-primary, --ui-focus, --ui-highlight and their "on" pairs.
+ */
+
+/* Fonts: the brand's five faces, all SIL Open Font License (licences in fonts/licenses). */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('./fonts/plex-sans.woff2') format('woff2');
+  font-weight: 100 700;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./fonts/plex-sans-arabic-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./fonts/plex-sans-arabic-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  src: url('./fonts/plex-sans-arabic-600.woff2') format('woff2');
+  font-weight: 600 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('./fonts/archivo.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alexandria';
+  src: url('./fonts/alexandria.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('./fonts/plex-mono-500.woff2') format('woff2');
+  font-weight: 500 900;
+  font-display: swap;
+}
+
+/* Border-box everywhere, as Tailwind's reset sets it, so the kit measures the same with or
+   without Tailwind: a 2.75rem control is 2.75rem, border and padding included. */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* The brand, as is. Fills, borders, logo and large text only (white on blue 5.4, white on red 4.1). */
+  --ui-brand-red: #dc4b4b;
+  --ui-brand-blue: #0059ff;
+  --ui-ink: #0b1020;
+  --ui-paper: #f6f7fb;
+  --ui-slate: #586087;
+
+  /* Neutrals: paper/ink grounds, slate for secondary text (darkened/lightened to 7:1). */
+  --ui-bg: light-dark(#f6f7fb, #0b1020);
+  --ui-surface: light-dark(#ffffff, #151b30);
+  --ui-text: light-dark(#0b1020, #f6f7fb);
+  --ui-text-muted: light-dark(#454c6e, #c9cee3);
+  --ui-border: light-dark(#586087, #9fa5c0);
+  --ui-divider: light-dark(#e4e7f2, #262d48);
+  --ui-secondary: light-dark(#e4e7f2, #232a45);
+  --ui-on-secondary: light-dark(#0b1020, #f6f7fb);
+
+  /* Primary is brand blue: darkened on light, the brand's own #8fb4ff tint on dark. */
+  --ui-primary: light-dark(#0047cc, #8fb4ff);
+  --ui-on-primary: light-dark(#ffffff, #0b1020);
+  --ui-focus: light-dark(#0047cc, #8fb4ff);
+  --ui-highlight: light-dark(#dbe6ff, #1d3a8a);
+  --ui-on-highlight: light-dark(#0b1020, #f6f7fb);
+
+  /*
+   * Brand red carries danger in product UI. Red and blue never meet as large areas (brand rule),
+   * so red stays for errors, destructive actions and alerts, and blue carries everything else.
+   */
+  --ui-danger: light-dark(#9a1d1d, #f2a3a3);
+  --ui-on-danger: light-dark(#ffffff, #0b1020);
+  --ui-danger-soft: light-dark(#fdeeee, #3a1418);
+  --ui-success: light-dark(#14532d, #86efac);
+  --ui-on-success: light-dark(#ffffff, #0b1020);
+  --ui-success-soft: light-dark(#e3f5e9, #0f2e1c);
+  --ui-warning: light-dark(#7a3a0a, #fcd34d);
+  --ui-on-warning: light-dark(#ffffff, #0b1020);
+  --ui-warning-soft: light-dark(#fdf1dc, #33260a);
+  --ui-backdrop: rgb(11 16 32 / 0.6);
+
+  /* Type: Plex for body, Archivo Expanded / Alexandria for headlines, Plex Mono for labels.
+     Each stack lists a Latin face then an Arabic one, so mixed text picks the right face per glyph. */
+  --ui-font: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --ui-font-display:
+    'Archivo', 'Alexandria', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --ui-font-mono:
+    'IBM Plex Mono', 'IBM Plex Sans Arabic', ui-monospace, monospace;
+  --ui-font-size: 1rem;
+  --ui-text-sm: 0.875rem;
+  --ui-text-lg: 1.25rem;
+  --ui-text-xl: 1.5rem;
+  --ui-text-2xl: 2rem;
+  --ui-text-3xl: 2.75rem;
+
+  /* Type styles: face, weight, size and line height in one token, for the `font` property.
+     Markup uses the class of the same name (ui-head-md); your own CSS uses font: var(--ui-head-md).
+     The three biggest shrink on narrow screens so long words still fit at 320px. */
+  --ui-head-3xl: 800 expanded clamp(2.25rem, 1.5rem + 3vw, 3.5rem) / 1.1
+    var(--ui-font-display);
+  --ui-head-2xl: 800 expanded clamp(2rem, 1.25rem + 3vw, var(--ui-text-3xl)) /
+    1.15 var(--ui-font-display);
+  --ui-head-xl: 800 expanded clamp(1.625rem, 1rem + 2.5vw, var(--ui-text-2xl)) /
+    1.2 var(--ui-font-display);
+  --ui-head-lg: 800 expanded 1.75rem / 1.25 var(--ui-font-display);
+  --ui-head-md: 800 expanded var(--ui-text-xl) / 1.3 var(--ui-font-display);
+  --ui-head-sm: 800 expanded var(--ui-text-lg) / 1.3 var(--ui-font-display);
+  --ui-head-xs: 800 expanded 1.125rem / 1.4 var(--ui-font-display);
+  --ui-head-2xs: 800 expanded var(--ui-font-size) / 1.4 var(--ui-font-display);
+  --ui-body-lg: 400 var(--ui-text-lg) / 1.5 var(--ui-font);
+  --ui-body-md: 400 var(--ui-font-size) / 1.5 var(--ui-font);
+  --ui-body-sm: 400 var(--ui-text-sm) / 1.5 var(--ui-font);
+
+  /* Space: every padding, margin and gap. The number is quarters of a rem (4px each):
+     --ui-space-4 = 1rem, --ui-space-0-5 = 0.125rem. Half steps only inside small controls. */
+  --ui-space-0: 0;
+  --ui-space-0-5: 0.125rem;
+  --ui-space-1: 0.25rem;
+  --ui-space-1-5: 0.375rem;
+  --ui-space-2: 0.5rem;
+  --ui-space-2-5: 0.625rem;
+  --ui-space-3: 0.75rem;
+  --ui-space-4: 1rem;
+  --ui-space-5: 1.25rem;
+  --ui-space-6: 1.5rem;
+  --ui-space-7: 1.75rem;
+  --ui-space-8: 2rem;
+  --ui-space-10: 2.5rem;
+  --ui-space-12: 3rem;
+  --ui-space-16: 4rem;
+  --ui-space-20: 5rem;
+  --ui-space-24: 6rem;
+  --ui-space-32: 8rem;
+  --ui-gap: var(--ui-space-2);
+
+  /* Radius: one base, the rest follow it, so a client re-shapes everything by
+     overriding --ui-radius alone. */
+  --ui-radius: 0.5rem;
+  --ui-radius-none: 0;
+  --ui-radius-xs: calc(var(--ui-radius) / 4);
+  --ui-radius-sm: calc(var(--ui-radius) / 2);
+  --ui-radius-md: calc(var(--ui-radius) * 0.75);
+  --ui-radius-lg: calc(var(--ui-radius) * 1.5);
+  --ui-radius-xl: calc(var(--ui-radius) * 2);
+  --ui-radius-2xl: calc(var(--ui-radius) * 3);
+  --ui-radius-full: 9999px;
+  --ui-control-height: 2.75rem;
+
+  /* Breakpoints: Tailwind's five, in rem so they move with the reader's text size.
+     CSS cannot read a custom property inside a query, so @container writes the
+     value out; these are for max widths and scripts. */
+  --ui-breakpoint-sm: 40rem;
+  --ui-breakpoint-md: 48rem;
+  --ui-breakpoint-lg: 64rem;
+  --ui-breakpoint-xl: 80rem;
+  --ui-breakpoint-2xl: 96rem;
+
+  /* Page: cqi is the screen's width here, or a parent ui-container's, so the
+     padding and gap grow with the space the page has. */
+  --ui-page-max: var(--ui-breakpoint-2xl);
+  --ui-page-gutter: clamp(var(--ui-space-4), 4cqi, var(--ui-space-12));
+  --ui-grid-gap: clamp(var(--ui-space-4), 2cqi, var(--ui-space-8));
+
+  /* Shadow. A dark shadow vanishes on a dark page, so in dark mode the
+     shadow is a light slate glow: still a shade, never white. */
+  --ui-shadow-color: light-dark(rgb(11 16 32 / 0.18), rgb(159 165 192 / 0.4));
+  --ui-shadow: 0 8px 24px var(--ui-shadow-color);
+
+  /* Layers, lowest first, so any mix can be open at once: a popover or tooltip inside a
+     drawer sits on the drawer, and a toast is never hidden. Browsers that put overlays
+     in the top layer (Angular CDK, <dialog>, [popover]) stack them in opening order.
+     Below 100: inside one component. 100-999: the page's own bars. 1000 and up: overlays. */
+  --ui-layer-below: -1;
+  --ui-layer-base: 0;
+  --ui-layer-raised: 1;
+  --ui-layer-cover: 2;
+  --ui-layer-sticky: 100;
+  --ui-layer-fixed: 200;
+  --ui-layer-dialog: 1000;
+  --ui-layer-popover: 1100;
+  --ui-layer-tooltip: 1200;
+  --ui-layer-toast: 1300;
+  --ui-layer-skip-link: 1400;
+
+  /* Focus: one ring for every control. Outside the control, or inset for items
+     inside a list or a bar, where an outside ring would be clipped. */
+  --ui-focus-width: 3px;
+  --ui-focus-offset: 2px;
+
+  /* Motion: short, and only to show where something came from. Fast for a state
+     change in place, base for fades, slow for panels that travel. */
+  --ui-duration-fast: 150ms;
+  --ui-duration: 250ms;
+  --ui-duration-slow: 400ms;
+  --ui-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  font-family: var(--ui-font);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Headline: Archivo Expanded ExtraBold in English, Alexandria ExtraBold in Arabic. */
+.ui-heading {
+  margin: 0;
+  font-family: var(--ui-font-display);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1.15;
+}
+
+/* Label: the lab-report detail, small upper-case mono. Arabic is never letter-spaced. */
+.ui-label {
+  font-family: var(--ui-font-mono);
+  font-size: var(--ui-text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.ui-label:lang(ar) {
+  letter-spacing: 0;
+}
+
+/* Type style classes: one class instead of size + line height + weight + face.
+   Heads are always ExtraBold (the brand) and drop the heading's default margin.
+   Body takes a weight suffix: -m 500, -s 600, -b 700. */
+.ui-head-3xl {
+  margin: 0;
+  font: var(--ui-head-3xl);
+}
+.ui-head-2xl {
+  margin: 0;
+  font: var(--ui-head-2xl);
+}
+.ui-head-xl {
+  margin: 0;
+  font: var(--ui-head-xl);
+}
+.ui-head-lg {
+  margin: 0;
+  font: var(--ui-head-lg);
+}
+.ui-head-md {
+  margin: 0;
+  font: var(--ui-head-md);
+}
+.ui-head-sm {
+  margin: 0;
+  font: var(--ui-head-sm);
+}
+.ui-head-xs {
+  margin: 0;
+  font: var(--ui-head-xs);
+}
+.ui-head-2xs {
+  margin: 0;
+  font: var(--ui-head-2xs);
+}
+.ui-body-lg,
+.ui-body-lg-m,
+.ui-body-lg-s,
+.ui-body-lg-b {
+  font: var(--ui-body-lg);
+}
+.ui-body-md,
+.ui-body-md-m,
+.ui-body-md-s,
+.ui-body-md-b {
+  font: var(--ui-body-md);
+}
+.ui-body-sm,
+.ui-body-sm-m,
+.ui-body-sm-s,
+.ui-body-sm-b {
+  font: var(--ui-body-sm);
+}
+.ui-body-lg-m,
+.ui-body-md-m,
+.ui-body-sm-m {
+  font-weight: 500;
+}
+.ui-body-lg-s,
+.ui-body-md-s,
+.ui-body-sm-s {
+  font-weight: 600;
+}
+.ui-body-lg-b,
+.ui-body-md-b,
+.ui-body-sm-b {
+  font-weight: 700;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Focus ring shared by every control */
+.ui-button:focus-visible,
+.ui-input:focus-visible,
+.ui-select__trigger:focus-visible,
+.ui-listbox:focus-visible,
+.ui-check input:focus-visible,
+.ui-switch__input:focus-visible,
+.ui-file:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+
+/* Button */
+.ui-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-gap);
+  min-block-size: var(--ui-control-height);
+  min-inline-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius);
+  font: inherit;
+  font-size: var(--ui-font-size);
+  font-weight: 600;
+  cursor: pointer;
+  --ui-button-bg: transparent;
+  --ui-button-fg: var(--ui-text);
+  --ui-button-hover: color-mix(
+    in srgb,
+    var(--ui-button-bg),
+    var(--ui-button-fg) 10%
+  );
+  --ui-button-active: color-mix(
+    in srgb,
+    var(--ui-button-bg),
+    var(--ui-button-fg) 18%
+  );
+  background: var(--ui-button-bg);
+  color: var(--ui-button-fg);
+  transition:
+    background-color var(--ui-duration-fast) var(--ui-ease),
+    border-color var(--ui-duration-fast) var(--ui-ease),
+    color var(--ui-duration-fast) var(--ui-ease);
+}
+/* Ripple: a wave of the text colour that grows from the centre while pressed. */
+.ui-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    var(--ui-button-fg) 0 50%,
+    transparent 51%
+  );
+  opacity: 0;
+  transform: scale(0.2);
+  pointer-events: none;
+}
+.ui-button:not(:disabled):not([aria-disabled='true']):not(
+    [aria-busy='true']
+  ):hover {
+  background: var(--ui-button-hover);
+}
+.ui-button:not(:disabled):not([aria-disabled='true']):not(
+    [aria-busy='true']
+  ):active {
+  background: var(--ui-button-active);
+}
+.ui-button:not(:disabled):not([aria-disabled='true']):not(
+    [aria-busy='true']
+  ):active::after {
+  opacity: 0.14;
+  transform: scale(2.5);
+  transition:
+    transform var(--ui-duration-slow) var(--ui-ease),
+    opacity var(--ui-duration-slow) var(--ui-ease);
+}
+.ui-button--primary {
+  --ui-button-bg: var(--ui-primary);
+  --ui-button-fg: var(--ui-on-primary);
+}
+.ui-button--secondary {
+  --ui-button-bg: var(--ui-secondary);
+  --ui-button-fg: var(--ui-on-secondary);
+  border-color: var(--ui-border);
+}
+.ui-button--ghost {
+  --ui-button-bg: transparent;
+  --ui-button-fg: var(--ui-text);
+  --ui-button-hover: var(--ui-secondary);
+  --ui-button-active: color-mix(
+    in srgb,
+    var(--ui-secondary),
+    var(--ui-text) 10%
+  );
+}
+.ui-button--danger {
+  --ui-button-bg: var(--ui-danger);
+  --ui-button-fg: var(--ui-on-danger);
+}
+.ui-button--success {
+  --ui-button-bg: var(--ui-success);
+  --ui-button-fg: var(--ui-on-success);
+}
+.ui-button--warning {
+  --ui-button-bg: var(--ui-warning);
+  --ui-button-fg: var(--ui-on-warning);
+}
+.ui-button--outline {
+  --ui-button-bg: transparent;
+  --ui-button-fg: var(--ui-primary);
+  --ui-button-hover: var(--ui-highlight);
+  --ui-button-active: color-mix(
+    in srgb,
+    var(--ui-highlight),
+    var(--ui-primary) 15%
+  );
+  border-color: var(--ui-primary);
+}
+.ui-button--soft {
+  --ui-button-bg: var(--ui-highlight);
+  --ui-button-fg: var(--ui-on-highlight);
+}
+.ui-button--link {
+  --ui-button-bg: transparent;
+  --ui-button-fg: var(--ui-primary);
+  --ui-button-hover: transparent;
+  --ui-button-active: transparent;
+  min-inline-size: 0;
+  padding-inline: var(--ui-space-1);
+}
+.ui-button--link:not(:disabled):not([aria-disabled='true']):hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.ui-button--link::after {
+  display: none;
+}
+.ui-button--sm {
+  --ui-control-height: 2.75rem;
+  padding-inline: var(--ui-space-3);
+}
+.ui-button--lg {
+  --ui-control-height: 3.25rem;
+  padding-inline: var(--ui-space-6);
+  font-size: 1.125rem;
+}
+/* Icons: start and end sit either side of the label; flex order follows the writing direction. */
+.ui-button__icon,
+.ui-button > [ui-button-start],
+.ui-button > [ui-button-end] {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+.ui-button__icon > svg,
+.ui-button > svg,
+.ui-button > [ui-button-start] > svg,
+.ui-button > [ui-button-end] > svg {
+  inline-size: 1.25em;
+  block-size: 1.25em;
+}
+/* The spinner takes the place of the start icon while busy. */
+.ui-button[aria-busy='true'] > [ui-button-start] {
+  display: none;
+}
+.ui-button--icon {
+  inline-size: var(--ui-control-height);
+  padding-inline: 0;
+}
+.ui-button[aria-disabled='true'],
+.ui-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-button[aria-busy='true'] {
+  cursor: progress;
+}
+.ui-spinner {
+  inline-size: 1em;
+  block-size: 1em;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: var(--ui-radius-full);
+  animation: ui-spin 0.8s linear infinite;
+}
+@keyframes ui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Field: label, control, hint, error */
+.ui-field {
+  display: grid;
+  gap: var(--ui-space-1-5);
+  color: var(--ui-text);
+}
+.ui-field__label {
+  font-weight: 600;
+}
+.ui-field__hint {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+.ui-field__error {
+  margin: 0;
+  color: var(--ui-danger);
+  font-weight: 600;
+}
+.ui-input,
+.ui-select__trigger {
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font: inherit;
+  font-size: var(--ui-font-size);
+}
+.ui-input[aria-invalid='true'],
+.ui-select__trigger[aria-invalid='true'],
+.ui-field--invalid .ui-select__trigger {
+  border-color: var(--ui-danger);
+  border-width: 2px;
+}
+.ui-input:disabled,
+.ui-select__trigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Textarea: the same .ui-input, with room for lines. */
+textarea.ui-input {
+  padding-block: var(--ui-space-2-5);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Select */
+.ui-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-gap);
+  inline-size: 100%;
+  text-align: start;
+  cursor: pointer;
+}
+.ui-select__placeholder {
+  color: var(--ui-text-muted);
+}
+.ui-select__chevron {
+  --ui-icon-size: 1rem;
+  flex: none;
+}
+.ui-listbox,
+.ui-listbox__empty {
+  /* The CDK overlay pane is a flex row as wide as the field; fill it instead of shrinking to the labels. */
+  flex: 1;
+}
+.ui-listbox {
+  margin: var(--ui-space-1) 0 0;
+  padding: var(--ui-space-1);
+  list-style: none;
+  max-block-size: 16rem;
+  overflow-y: auto;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow);
+}
+.ui-option {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border-radius: var(--ui-radius-md);
+  cursor: pointer;
+  outline: none;
+}
+/* The option the keyboard is on. The highlight alone is too faint to mark focus, so a ring in the focus colour marks it. */
+.ui-option--active {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+.ui-option[aria-selected='true'] {
+  font-weight: 600;
+}
+.ui-option[aria-selected='true']::after {
+  content: '✓';
+  margin-inline-start: auto;
+}
+.ui-option[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Badge: a short status label. The text carries the meaning; the colour only repeats it. */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  inline-size: fit-content; /* never stretched by a grid or flex parent */
+  gap: var(--ui-space-1);
+  padding: var(--ui-space-0-5) var(--ui-space-2-5);
+  border: 1px solid transparent; /* shows as an outline in forced-colours mode */
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.ui-badge--info {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-badge--success {
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+.ui-badge--warning {
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+}
+.ui-badge--danger {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+
+/* Visually hidden, still read by screen readers. */
+.ui-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Avatar: a photo, or the person's initials when there is none or it fails to load. */
+.ui-avatar {
+  --ui-avatar-size: 2.5rem;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--ui-avatar-size);
+  block-size: var(--ui-avatar-size);
+  overflow: hidden;
+  border: 1px solid transparent; /* shows as an outline in forced-colours mode */
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-size: calc(var(--ui-avatar-size) * 0.4);
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+}
+.ui-avatar--sm {
+  --ui-avatar-size: 2rem;
+}
+.ui-avatar--lg {
+  --ui-avatar-size: 3.5rem;
+}
+.ui-avatar img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Divider: a thin rule between groups. With words ("or") the line runs on both sides of them. */
+.ui-divider {
+  flex: none;
+  margin: 0;
+  border: 0;
+  border-block-start: 1px solid var(--ui-divider);
+}
+.ui-divider--vertical {
+  align-self: stretch;
+  border-block-start: 0;
+  border-inline-start: 1px solid var(--ui-divider);
+}
+.ui-divider--label {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  border: 0;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+.ui-divider--label::before,
+.ui-divider--label::after {
+  content: '';
+  flex: 1;
+  border-block-start: 1px solid var(--ui-divider);
+}
+
+/* Empty state: what goes here, why it is empty, and the one action that fills it. */
+.ui-empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-10) var(--ui-space-6);
+  text-align: center;
+  color: var(--ui-text-muted);
+}
+.ui-empty-state > * {
+  margin: 0;
+  max-inline-size: 40ch;
+}
+.ui-empty-state__title {
+  color: var(--ui-text);
+  font-size: var(--ui-text-lg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ui-empty-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ui-space-2);
+  margin-block-start: var(--ui-space-2);
+}
+.ui-empty-state__actions:empty {
+  display: none;
+}
+[ui-empty-state-actions] {
+  display: contents;
+}
+
+/* Stat: one number with its label, and how it changed. The change is written out in words
+   or with its sign; the arrow and colour only repeat it. */
+.ui-stat {
+  display: grid;
+  align-content: start;
+  gap: var(--ui-space-1);
+}
+.ui-stat > * {
+  margin: 0;
+}
+.ui-stat__label {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+.ui-stat__value {
+  font: var(--ui-head-lg);
+  font-variant-numeric: tabular-nums;
+}
+.ui-stat__change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+}
+.ui-stat__change {
+  --ui-icon-size: 1rem;
+}
+.ui-stat__change--positive {
+  color: var(--ui-success);
+}
+.ui-stat__change--negative {
+  color: var(--ui-danger);
+}
+
+/* Tag: a label the user added or can remove, such as a filter. Status belongs in a badge. */
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  inline-size: fit-content;
+  gap: var(--ui-space-1);
+  min-block-size: 1.75rem;
+  padding-inline: var(--ui-space-2-5);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-sm);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.ui-tag:has(.ui-tag__remove) {
+  padding-inline-end: var(--ui-space-0-5);
+}
+/* 24px: the WCAG 2.2 minimum target, inside a 28px tag. */
+.ui-tag__remove {
+  --ui-icon-size: 0.875rem;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-full);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.ui-tag__remove:hover {
+  background: var(--ui-secondary);
+}
+.ui-tag__remove:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: 0;
+}
+
+/*
+ * Data table. A real <table> with a caption that names it. The wrapper scrolls
+ * sideways on narrow screens and takes focus while it does, so the keyboard can scroll it.
+ */
+.ui-table-wrap {
+  position: relative;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow-x: auto;
+}
+.ui-table-wrap:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  color: var(--ui-text);
+}
+.ui-table__caption {
+  padding-block-end: var(--ui-space-3);
+  caption-side: top;
+  text-align: start;
+  font-weight: 600;
+}
+.ui-table th,
+.ui-table td {
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-block-end: 1px solid var(--ui-divider);
+  text-align: start;
+  vertical-align: middle;
+}
+.ui-table th {
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ui-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ui-layer-raised);
+  border-block-end-color: var(--ui-border);
+}
+.ui-table tbody tr:hover {
+  background: var(--ui-bg);
+}
+.ui-table .ui-table__cell--center {
+  text-align: center;
+}
+.ui-table .ui-table__cell--end {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+.ui-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  min-block-size: 2.75rem;
+  margin-block: calc(var(--ui-space-3) * -1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.ui-table__sort:hover {
+  color: var(--ui-text);
+}
+.ui-table__sort:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-table__sort-icon {
+  --ui-icon-size: 1rem;
+  flex: none;
+}
+.ui-table__empty {
+  padding-block: var(--ui-space-8);
+  color: var(--ui-text-muted);
+  text-align: center;
+}
+.ui-table__loading {
+  position: absolute;
+  inset: 0;
+  z-index: var(--ui-layer-cover);
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--ui-surface) 70%, transparent);
+  color: var(--ui-primary);
+  font-size: 1.5rem;
+}
+
+/*
+ * Pagination. Previous and next stay focusable at the first and last page
+ * (aria-disabled, not disabled), so focus never jumps away from the reader.
+ */
+.ui-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-3) var(--ui-space-6);
+}
+.ui-pagination__summary {
+  margin: 0;
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ui-pagination__size {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+.ui-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-pagination__page,
+.ui-pagination__step {
+  padding-inline: var(--ui-space-2);
+  font-variant-numeric: tabular-nums;
+}
+.ui-pagination__page[aria-current='page'] {
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+.ui-pagination__gap {
+  display: inline-block;
+  min-inline-size: 1.5rem;
+  color: var(--ui-text-muted);
+  text-align: center;
+}
+.ui-pagination__arrow {
+  --ui-icon-size: 1rem;
+}
+@media (max-width: 40rem) {
+  .ui-pagination__page:not([aria-current='page']),
+  .ui-pagination__gap {
+    display: none;
+  }
+}
+
+/* Card: a surface that groups related content. Flat: shadows are for floating layers only. */
+.ui-card {
+  display: grid;
+  /* Content may shrink below its widest part, so a wide table scrolls inside the card. */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-6);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-xl);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-card--lg {
+  padding: var(--ui-space-8);
+}
+.ui-card__title {
+  margin: 0;
+  font-size: var(--ui-text-lg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/*
+ * Dialog. The look lives on .ui-dialog itself, so it is the same whatever opens it:
+ * the Angular CDK, React Aria, or a native <dialog> opened with showModal().
+ * Header and actions stay put; only the body scrolls when the content is long.
+ */
+.ui-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ui-layer-dialog);
+  display: grid;
+  place-items: center;
+  padding: var(--ui-space-4);
+  background: var(--ui-backdrop);
+  animation: ui-fade-in var(--ui-duration) var(--ui-ease);
+}
+.ui-dialog {
+  --ui-dialog-size: 32rem;
+  display: flex;
+  flex-direction: column;
+  inline-size: min(var(--ui-dialog-size), calc(100vw - 2rem));
+  max-block-size: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid transparent; /* the dialog's edge in forced-colours mode */
+  border-radius: var(--ui-radius-xl);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow);
+  animation: ui-dialog-in var(--ui-duration) var(--ui-ease);
+}
+.ui-dialog:focus {
+  outline: none;
+}
+.ui-dialog--sm {
+  --ui-dialog-size: 24rem;
+}
+.ui-dialog--lg {
+  --ui-dialog-size: 48rem;
+}
+/* A native <form method="dialog"> around body and actions keeps the same layout. */
+.ui-dialog > form:not(.ui-dialog__actions) {
+  display: contents;
+}
+dialog.ui-dialog:not([open]) {
+  display: none;
+}
+dialog.ui-dialog::backdrop {
+  background: var(--ui-backdrop);
+  animation: ui-fade-in var(--ui-duration) var(--ui-ease);
+}
+.ui-dialog__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-6) var(--ui-space-6) 0;
+}
+.ui-dialog__heading {
+  display: grid;
+  gap: var(--ui-space-1);
+}
+.ui-dialog__title {
+  margin: 0;
+  font-family: var(--ui-font-display);
+  font-size: var(--ui-text-lg);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1.3;
+}
+.ui-dialog__title:focus {
+  outline: none;
+}
+.ui-dialog__description {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+/* Alert layout: icon, heading and actions centred. */
+.ui-dialog--alert .ui-dialog__header {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ui-dialog--alert .ui-dialog__actions {
+  justify-content: center;
+}
+.ui-dialog__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-dialog__icon {
+  --ui-icon-size: 1.5rem;
+}
+.ui-dialog__icon--success {
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+.ui-dialog__icon--warning {
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+}
+.ui-dialog__icon--danger {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+.ui-dialog__close {
+  flex: none;
+  margin-block-start: calc(var(--ui-space-2) * -1);
+  margin-inline-end: calc(var(--ui-space-3) * -1);
+}
+.ui-dialog__body {
+  display: grid;
+  gap: var(--ui-space-4);
+  padding: var(--ui-space-4) var(--ui-space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.ui-dialog__body:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+.ui-dialog__body:empty {
+  display: none;
+}
+/* The body's gap spaces its children, so their own margins go. */
+.ui-dialog__body > * {
+  margin-block: 0;
+}
+.ui-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: var(--ui-gap);
+  padding: 0 var(--ui-space-6) var(--ui-space-6);
+}
+.ui-dialog__actions:empty {
+  display: none;
+}
+/* Without a body (an alert), keep the actions clear of the heading. */
+.ui-dialog__header + .ui-dialog__actions,
+.ui-dialog__body:empty + .ui-dialog__actions {
+  padding-block-start: var(--ui-space-6);
+}
+/* The wrapper that marks projected actions takes no box, so the gap spaces the buttons. */
+[ui-dialog-actions] {
+  display: contents;
+}
+
+/*
+ * Drawer and bottom sheet: the same dialog, docked to an edge. They place themselves,
+ * so the CDK pane, React Aria's modal and a native <dialog> all put them in the same spot.
+ * Drawer: full height on the inline end (right in English, left in Arabic).
+ * Sheet: from the bottom, as tall as its content up to 85% of the screen.
+ */
+.ui-dialog--drawer,
+.ui-dialog--sheet {
+  box-sizing: border-box;
+  position: fixed;
+  max-inline-size: none;
+  margin: 0;
+  pointer-events: auto;
+}
+.ui-dialog--drawer {
+  --ui-drawer-from: 100%;
+  inset-block: 0;
+  inset-inline: auto 0;
+  inline-size: min(var(--ui-dialog-size), 100vw);
+  block-size: 100dvh;
+  max-block-size: none;
+  border-radius: var(--ui-radius-none);
+  animation: ui-drawer-in var(--ui-duration-slow) var(--ui-ease);
+}
+.ui-dialog--drawer:dir(rtl) {
+  --ui-drawer-from: -100%;
+}
+/* Full width on a phone; centred at the dialog size on a wider screen. */
+.ui-dialog--sheet {
+  inset-block: auto 0;
+  inset-inline: 0;
+  inline-size: min(var(--ui-dialog-size), 100vw);
+  max-block-size: 85dvh;
+  margin-inline: auto;
+  padding-block-end: env(safe-area-inset-bottom);
+  border-end-start-radius: var(--ui-radius-none);
+  border-end-end-radius: var(--ui-radius-none);
+  animation: ui-sheet-in var(--ui-duration-slow) var(--ui-ease);
+}
+/*
+ * When the dialog role sits on a wrapper (the Angular CDK container), the wrapper
+ * covers the screen so it keeps the panel's area; clicks pass through to the backdrop.
+ */
+.ui-dialog-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+:is(.ui-dialog--drawer, .ui-dialog--sheet) .ui-dialog__header {
+  padding-block-end: var(--ui-space-4);
+  border-block-end: 1px solid var(--ui-divider);
+}
+:is(.ui-dialog--drawer, .ui-dialog--sheet) .ui-dialog__body {
+  flex: 1;
+  align-content: start;
+  padding-block: var(--ui-space-6);
+}
+:is(.ui-dialog--drawer, .ui-dialog--sheet) .ui-dialog__actions {
+  padding-block-start: var(--ui-space-4);
+  border-block-start: 1px solid var(--ui-divider);
+}
+@keyframes ui-drawer-in {
+  from {
+    transform: translateX(var(--ui-drawer-from));
+  }
+}
+@keyframes ui-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes ui-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ui-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+}
+
+/*
+ * Checkbox and radio: the native inputs in the primary colour. The whole label is the
+ * hit area and at least 44px tall, so the small box is never the only target.
+ */
+.ui-check {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  inline-size: fit-content;
+  min-block-size: var(--ui-control-height);
+  color: var(--ui-text);
+  cursor: pointer;
+}
+.ui-check input {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  margin: 0;
+  accent-color: var(--ui-primary);
+  cursor: inherit;
+}
+.ui-check:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+/* The options of a radio group, one per line or side by side. */
+.ui-choices {
+  display: grid;
+}
+.ui-choices--inline {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--ui-space-6);
+}
+.ui-field--invalid .ui-choices {
+  padding-inline-start: var(--ui-space-3);
+  border-inline-start: 3px solid var(--ui-danger);
+}
+
+/*
+ * Switch: an on/off setting that applies at once. A checkbox with role="switch";
+ * the knob's side shows the state, so colour is never the only sign.
+ */
+.ui-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-4);
+  min-block-size: var(--ui-control-height);
+  color: var(--ui-text);
+  cursor: pointer;
+}
+.ui-switch__input {
+  appearance: none;
+  position: relative;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 1.5rem;
+  margin: 0;
+  border: 2px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  cursor: inherit;
+  transition: background-color var(--ui-duration-fast);
+}
+.ui-switch__input::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-start: 2px;
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-border);
+  transition: translate var(--ui-duration-fast);
+}
+.ui-switch__input:checked {
+  border-color: var(--ui-primary);
+  background: var(--ui-primary);
+}
+.ui-switch__input:checked::before {
+  background: var(--ui-on-primary);
+  translate: 1.25rem 0;
+}
+.ui-switch__input:checked:dir(rtl)::before {
+  translate: -1.25rem 0;
+}
+.ui-switch:has(.ui-switch__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+@media (forced-colors: active) {
+  .ui-switch__input {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background: Canvas;
+  }
+  .ui-switch__input::before {
+    background: CanvasText;
+  }
+  .ui-switch__input:checked {
+    border-color: Highlight;
+    background: Highlight;
+  }
+  .ui-switch__input:checked::before {
+    background: HighlightText;
+  }
+}
+
+/* Fieldset: a titled group of fields, such as an address inside a longer form. */
+.ui-fieldset {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ui-space-4);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ui-text);
+}
+/* A legend sits outside the fieldset's grid, so it brings its own space. */
+.ui-fieldset__legend {
+  padding: 0 0 var(--ui-space-4);
+  font-size: var(--ui-text-lg);
+  font-weight: 600;
+}
+.ui-fieldset__legend + .ui-field__hint {
+  margin-block-start: calc(var(--ui-space-3) * -1);
+}
+
+/* Combobox: a text field that filters a list. The list is the select's .ui-listbox. */
+.ui-field--invalid .ui-input {
+  border-color: var(--ui-danger);
+  border-width: 2px;
+}
+.ui-listbox__empty {
+  margin: var(--ui-space-1) 0 0;
+  padding: var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  box-shadow: var(--ui-shadow);
+}
+
+/*
+ * File field: the native file input, so the picker, the chosen names and form submit
+ * all work as usual. The zone around it also takes files dropped on it.
+ */
+.ui-dropzone {
+  display: grid;
+  justify-items: start;
+  gap: var(--ui-space-2);
+  padding: var(--ui-space-4);
+  border: 2px dashed var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-dropzone--over {
+  border-style: solid;
+  border-color: var(--ui-focus);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-dropzone__text {
+  margin: 0;
+  color: var(--ui-text-muted);
+}
+.ui-dropzone--over .ui-dropzone__text {
+  color: inherit;
+}
+.ui-field--invalid .ui-dropzone {
+  border-color: var(--ui-danger);
+}
+.ui-file {
+  max-inline-size: 100%;
+  border-radius: var(--ui-radius);
+  color: inherit;
+  font: inherit;
+}
+.ui-file::file-selector-button {
+  min-block-size: var(--ui-control-height);
+  margin-inline-end: var(--ui-space-3);
+  padding-inline: var(--ui-space-4);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ui-file:disabled,
+.ui-file:disabled::file-selector-button {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/*
+ * Alert: a message in the page, such as a problem with the whole form. The title and
+ * icon say the tone in words and shape; the colour only repeats it.
+ */
+.ui-alert {
+  --ui-alert-tone: var(--ui-primary);
+  display: flex;
+  align-items: start;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-4);
+  border: 1px solid transparent; /* the edge in forced-colours mode */
+  border-inline-start: 4px solid var(--ui-alert-tone);
+  border-radius: var(--ui-radius);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-alert--success {
+  --ui-alert-tone: var(--ui-success);
+  background: var(--ui-success-soft);
+  color: var(--ui-text);
+}
+.ui-alert--warning {
+  --ui-alert-tone: var(--ui-warning);
+  background: var(--ui-warning-soft);
+  color: var(--ui-text);
+}
+.ui-alert--danger {
+  --ui-alert-tone: var(--ui-danger);
+  background: var(--ui-danger-soft);
+  color: var(--ui-text);
+}
+.ui-alert__icon {
+  --ui-icon-size: 1.25rem;
+  flex: none;
+  margin-block-start: var(--ui-space-0-5);
+  color: var(--ui-alert-tone);
+}
+.ui-alert__body {
+  display: grid;
+  flex: 1;
+  gap: var(--ui-space-1);
+  min-inline-size: 0;
+}
+.ui-alert__body > * {
+  margin: 0;
+}
+.ui-alert__title {
+  font-weight: 600;
+}
+.ui-alert__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-gap);
+  margin-block-start: var(--ui-space-2);
+}
+.ui-alert__actions:empty {
+  display: none;
+}
+[ui-alert-actions] {
+  display: contents;
+}
+.ui-alert__close {
+  flex: none;
+  margin-block: calc(var(--ui-space-3) * -1);
+  margin-inline-end: calc(var(--ui-space-3) * -1);
+}
+
+/*
+ * Toast: a short note after an action ("Saved"), on top of the page at the bottom end.
+ * Each toast is a .ui-alert; the region is a landmark, so it can be reached.
+ */
+.ui-toast-region {
+  position: fixed;
+  /* Also a manual popover in the top layer: clear the browser's popover box. */
+  inset: auto;
+  overflow: visible;
+  border: 0;
+  background: none;
+  color: inherit;
+  inset-block-end: var(--ui-space-4);
+  inset-inline-end: var(--ui-space-4);
+  z-index: var(--ui-layer-toast);
+  display: grid;
+  gap: var(--ui-space-2);
+  inline-size: min(24rem, calc(100vw - 2rem));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-toast {
+  box-shadow: var(--ui-shadow);
+  animation: ui-toast-in var(--ui-duration-slow) var(--ui-ease);
+}
+@keyframes ui-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+/* Spinner with its words: hidden for a busy button, shown or read for a loading area. */
+.ui-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  color: var(--ui-text-muted);
+}
+.ui-loading--lg {
+  flex-direction: column;
+  gap: var(--ui-space-3);
+}
+.ui-loading--lg .ui-spinner {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-width: 3px;
+  color: var(--ui-primary);
+}
+
+/*
+ * Progress: the native <progress>, named by its label, with the amount in words beside it.
+ * Without a value it shows a moving band: work is going on but its length is unknown.
+ */
+.ui-progress {
+  display: grid;
+  gap: var(--ui-space-1-5);
+  color: var(--ui-text);
+}
+.ui-progress__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+}
+.ui-progress__label {
+  font-weight: 600;
+}
+.ui-progress__value {
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ui-progress__bar {
+  appearance: none;
+  inline-size: 100%;
+  block-size: 0.625rem;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+  color: var(--ui-primary);
+}
+.ui-progress__bar::-webkit-progress-bar {
+  background: var(--ui-secondary);
+}
+.ui-progress__bar::-webkit-progress-value {
+  background: var(--ui-primary);
+}
+.ui-progress__bar::-moz-progress-bar {
+  background: var(--ui-primary);
+}
+.ui-progress__bar:indeterminate {
+  background: linear-gradient(
+      to right,
+      transparent 0 35%,
+      var(--ui-primary) 35% 65%,
+      transparent 65%
+    )
+    var(--ui-secondary);
+  background-size: 250% 100%;
+  animation: ui-progress-band 1.4s linear infinite;
+}
+.ui-progress__bar:indeterminate::-webkit-progress-bar {
+  background: transparent;
+}
+.ui-progress__bar:indeterminate::-moz-progress-bar {
+  background: transparent;
+}
+@keyframes ui-progress-band {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Skeleton: grey shapes where content is loading. Hidden from screen readers. */
+.ui-skeleton {
+  display: grid;
+  gap: var(--ui-space-2);
+}
+.ui-skeleton__shape {
+  block-size: 1em;
+  border: 1px solid transparent; /* shows in forced-colours mode */
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-secondary);
+  animation: ui-pulse 1.6s ease-in-out infinite;
+}
+.ui-skeleton--text .ui-skeleton__shape:last-child:not(:first-child) {
+  inline-size: 60%;
+}
+.ui-skeleton--circle .ui-skeleton__shape {
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: var(--ui-radius-full);
+}
+.ui-skeleton--block .ui-skeleton__shape {
+  block-size: 8rem;
+  border-radius: var(--ui-radius);
+}
+@keyframes ui-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/*
+ * Tabs: views of one thing side by side, such as an order's details and history.
+ * The chosen tab gets a bar and full-strength text, not only a colour.
+ */
+.ui-tabs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--ui-space-4);
+}
+.ui-tabs__list {
+  display: flex;
+  gap: var(--ui-space-1);
+  overflow-x: auto;
+  border-block-end: 1px solid var(--ui-divider);
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* The chosen tab glides to the middle when the tabs scroll; it jumps under reduced motion. */
+  .ui-tabs__list {
+    scroll-behavior: smooth;
+  }
+}
+/* The list with an arrow at each end, shown only while the tabs are wider than it. */
+.ui-tabs__bar {
+  display: flex;
+  min-inline-size: 0;
+  border-block-end: 1px solid var(--ui-divider);
+}
+.ui-tabs__bar > .ui-tabs__list {
+  flex: 1;
+  min-inline-size: 0;
+  border-block-end: 0;
+}
+.ui-tabs__scroll {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+}
+.ui-tabs__scroll:hover:not(:disabled) {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+.ui-tabs__scroll:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+.ui-tabs__scroll {
+  --ui-icon-size: 1rem;
+}
+/* A kept panel that is not chosen (React Aria leaves it in the page, inert). */
+.ui-tabs__panel[data-inert='true'] {
+  display: none;
+}
+.ui-tab {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  min-block-size: var(--ui-control-height);
+  text-decoration: none;
+  padding-inline: var(--ui-space-4);
+  border: 0;
+  border-block-end: 3px solid transparent;
+  background: none;
+  color: var(--ui-text-muted);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ui-tab:hover {
+  color: var(--ui-text);
+}
+.ui-tab[aria-selected='true'],
+.ui-tab[aria-current='page'] {
+  border-block-end-color: var(--ui-primary);
+  color: var(--ui-text);
+}
+.ui-tab:disabled,
+.ui-tab[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-tab:focus-visible,
+.ui-tabs__panel:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+@media (forced-colors: active) {
+  .ui-tab {
+    border-block-end-color: Canvas;
+  }
+  .ui-tab[aria-selected='true'],
+  .ui-tab[aria-current='page'] {
+    border-block-end-color: Highlight;
+  }
+}
+
+/* Breadcrumbs: where the page sits. The last item is the page itself, not a link. */
+.ui-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1) var(--ui-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ui-text-muted);
+}
+.ui-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+/* The slash is drawn, not read: screen readers already hear a list. */
+.ui-breadcrumbs li + li::before {
+  content: '/';
+  content: '/' / '';
+}
+.ui-breadcrumbs a {
+  color: var(--ui-primary);
+  text-decoration-line: underline; /* a link is never colour alone, also under a reset */
+  text-underline-offset: 0.2em;
+}
+.ui-breadcrumbs a:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-breadcrumbs [aria-current='page'] {
+  color: var(--ui-text);
+  font-weight: 600;
+}
+
+/* Menu: a list of actions that opens from a button. */
+.ui-menu {
+  display: grid;
+  min-inline-size: 12rem;
+  margin-block: var(--ui-space-1);
+  padding: var(--ui-space-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow);
+}
+.ui-menu--trigger-width {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+.ui-menu:focus {
+  outline: none;
+}
+.ui-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  inline-size: 100%;
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border: 0;
+  border-radius: var(--ui-radius-md);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  outline: none;
+}
+.ui-menu__item--danger {
+  color: var(--ui-danger);
+}
+.ui-menu__item:hover,
+.ui-menu__item:focus {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-menu__item:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+.ui-menu__item:disabled,
+.ui-menu__item[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+/* The chosen one of a set, such as the current language: a check mark, not only colour. */
+.ui-menu__item[aria-checked='true'] {
+  font-weight: 600;
+}
+.ui-menu__item[aria-checked='true']::after {
+  content: '✓';
+  content: '✓' / '';
+  margin-inline-start: auto;
+}
+.ui-menu__separator {
+  block-size: 1px;
+  margin: var(--ui-space-1);
+  background: var(--ui-divider);
+}
+
+/*
+ * Navigation: the app's main links, in a side bar. The current page gets a bar on its
+ * inline start and bold text, not only a fill. On a phone, put it in a drawer.
+ */
+.ui-nav,
+.ui-nav ul {
+  display: grid;
+  gap: var(--ui-space-1);
+}
+.ui-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-nav__title {
+  margin: var(--ui-space-4) 0 var(--ui-space-1);
+  padding-inline: var(--ui-space-3);
+  color: var(--ui-text-muted);
+}
+.ui-nav__title:first-child {
+  margin-block-start: 0;
+}
+.ui-nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  min-block-size: var(--ui-control-height);
+  padding-inline: var(--ui-space-3);
+  border-inline-start: 3px solid transparent;
+  border-radius: var(--ui-radius);
+  color: var(--ui-text);
+  text-decoration: none;
+}
+.ui-nav a:hover {
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+}
+.ui-nav a:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+.ui-nav a[aria-current='page'] {
+  border-inline-start-color: var(--ui-primary);
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-weight: 600;
+}
+@media (forced-colors: active) {
+  .ui-nav a {
+    border-inline-start-color: Canvas;
+  }
+  .ui-nav a[aria-current='page'] {
+    border-inline-start-color: Highlight;
+  }
+}
+
+/*
+ * Accordion: native <details> and <summary>, so it opens with Enter and Space, works
+ * without script, and find-in-page opens the section that holds the match. Give the
+ * items one name to keep only one open at a time. The section grows and shrinks both
+ * ways (the closed state waits for the motion to end), and the chevron turns.
+ */
+.ui-accordion {
+  display: grid;
+  border-block-start: 1px solid var(--ui-divider);
+  color: var(--ui-text);
+}
+.ui-accordion__item {
+  border-block-end: 1px solid var(--ui-divider);
+}
+.ui-accordion__item > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  /* A touch target plus room above and below: a list of questions reads airy, not packed. */
+  min-block-size: calc(var(--ui-control-height) + 2 * var(--ui-space-2));
+  padding-block: var(--ui-space-2);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+.ui-accordion__item > summary::-webkit-details-marker {
+  display: none;
+}
+.ui-accordion__item > summary:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+/* The heading text takes the room, so the chevron sits at the end (or the start). */
+.ui-accordion__heading {
+  flex: 1;
+  min-inline-size: 0;
+}
+.ui-accordion__description {
+  display: block;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-weight: 400;
+}
+/*
+ * The chevron, drawn with two physical borders so it never mirrors by itself: down when
+ * closed, up when open. A down chevron reads the same in both directions.
+ */
+.ui-accordion__item > summary::after {
+  content: '';
+  flex: none;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  margin-inline: var(--ui-space-2);
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -0.125rem;
+  transition:
+    rotate var(--ui-duration-slow) var(--ui-ease),
+    translate var(--ui-duration-slow) var(--ui-ease);
+}
+.ui-accordion__item[open]:not([data-closing]) > summary::after {
+  rotate: 225deg;
+  translate: 0 0.125rem;
+}
+/*
+ * Chevron at the start, as in a tree: it points to where the text reads on (right, or
+ * left in Arabic) and turns down to open, clockwise left to right and the other way
+ * right to left.
+ */
+.ui-accordion--icon-start .ui-accordion__item > summary::after,
+.ui-accordion__item--icon-start > summary::after {
+  order: -1;
+  rotate: -45deg;
+  translate: 0;
+}
+.ui-accordion--icon-start .ui-accordion__item > summary:dir(rtl)::after,
+.ui-accordion__item--icon-start > summary:dir(rtl)::after {
+  rotate: 135deg;
+}
+.ui-accordion--icon-start
+  .ui-accordion__item[open]:not([data-closing])
+  > summary::after,
+.ui-accordion__item--icon-start[open]:not([data-closing]) > summary::after {
+  rotate: 45deg;
+  translate: 0 -0.125rem;
+}
+/* No chevron, for a heading that brings its own icon. */
+.ui-accordion__item--no-icon > summary::after {
+  content: none;
+}
+.ui-accordion__item > summary[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+/*
+ * The motion: the content box goes from no rows to its own height. The browser hides it
+ * on close with content-visibility; allow-discrete holds that back until the rows have
+ * closed, so closing is as smooth as opening (Chrome, Edge, Firefox). Safari hides it at
+ * once, so the Angular and React items close in two steps: data-closing runs the closing
+ * motion while the details is still open, then they close it.
+ */
+.ui-accordion__item::details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--ui-duration-slow) var(--ui-ease),
+    content-visibility var(--ui-duration-slow) allow-discrete;
+}
+.ui-accordion__item[open]:not([data-closing])::details-content {
+  grid-template-rows: 1fr;
+}
+.ui-accordion__content {
+  min-block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity var(--ui-duration-slow) var(--ui-ease);
+}
+.ui-accordion__item[open]:not([data-closing]) > .ui-accordion__content {
+  opacity: 1;
+}
+/* The space under the content, inside the clip, so it grows and shrinks with it. */
+.ui-accordion__content::after {
+  content: '';
+  display: block;
+  block-size: var(--ui-space-4);
+}
+.ui-accordion--icon-start .ui-accordion__content,
+.ui-accordion__item--icon-start .ui-accordion__content {
+  padding-inline-start: calc(
+    0.5rem + 2 * var(--ui-space-2) + var(--ui-space-3)
+  );
+}
+.ui-accordion__content > * {
+  margin-block: 0 var(--ui-space-3);
+}
+.ui-accordion__content > :last-child {
+  margin-block-end: 0;
+}
+
+/*
+ * Tooltip: a short label for a control, shown on hover and on keyboard focus. The pointer
+ * can move onto it, and Escape hides it. Ink on paper, flipped: the text pair at 7:1.
+ */
+.ui-tooltip {
+  display: block;
+  max-inline-size: 18rem;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border: 1px solid transparent; /* the edge in forced-colours mode */
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-text);
+  color: var(--ui-bg);
+  font-size: var(--ui-text-sm);
+  line-height: 1.4;
+  box-shadow: var(--ui-shadow);
+}
+
+/* Popover: a small panel next to its button, for a few details or settings. Not modal. */
+.ui-popover {
+  display: grid;
+  gap: var(--ui-space-3);
+  inline-size: max-content;
+  max-inline-size: min(22rem, calc(100vw - 2rem));
+  padding: var(--ui-space-4);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow);
+}
+.ui-popover:focus {
+  outline: none;
+}
+.ui-popover > * {
+  margin: 0;
+}
+.ui-popover__title {
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-accordion__item > summary::after,
+  .ui-accordion__item::details-content,
+  .ui-accordion__content {
+    transition: none;
+  }
+  .ui-toast,
+  .ui-skeleton__shape,
+  .ui-progress__bar:indeterminate {
+    animation: none;
+  }
+  .ui-switch__input,
+  .ui-switch__input::before {
+    transition: none;
+  }
+  .ui-dialog,
+  .ui-dialog-backdrop,
+  dialog.ui-dialog::backdrop {
+    animation: none;
+  }
+  .ui-spinner {
+    animation: none;
+    border-inline-end-color: currentColor;
+    opacity: 0.6;
+  }
+  .ui-button,
+  .ui-button:active::after {
+    transition: none;
+  }
+  .ui-button::after {
+    display: none;
+  }
+}
+
+/*
+ * Animation utilities: one-shot entrances and feedback, plus two attention loops.
+ * Add the class when the thing appears (or toggle it to replay). Each uses opacity and
+ * transform only, stays within --ui-duration-slow (400ms), and stops under reduced motion.
+ * Loops (ping, shimmer) are for waiting, never for decoration.
+ */
+.ui-anim-fade-in {
+  animation: ui-fade-in var(--ui-duration) var(--ui-ease) both;
+}
+.ui-anim-slide-up {
+  animation: ui-slide-up var(--ui-duration-slow) var(--ui-ease) both;
+}
+.ui-anim-slide-down {
+  animation: ui-slide-down var(--ui-duration-slow) var(--ui-ease) both;
+}
+.ui-anim-slide-start {
+  animation: ui-slide-start var(--ui-duration-slow) var(--ui-ease) both;
+}
+.ui-anim-scale-in {
+  animation: ui-scale-in var(--ui-duration) var(--ui-ease) both;
+}
+.ui-anim-pop {
+  animation: ui-pop var(--ui-duration-slow) var(--ui-ease) both;
+}
+.ui-anim-shake {
+  animation: ui-shake var(--ui-duration-slow) linear both;
+}
+.ui-anim-ping {
+  animation: ui-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.ui-anim-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, currentColor 14%, transparent),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: ui-shimmer 1.4s linear infinite;
+}
+/* Stagger: put on a parent; children enter one after another. */
+.ui-anim-stagger > * {
+  animation: ui-slide-up var(--ui-duration-slow) var(--ui-ease) both;
+  animation-delay: calc(var(--ui-stagger, 40ms) * var(--ui-i, 0));
+}
+.ui-anim-stagger > :nth-child(2) {
+  --ui-i: 1;
+}
+.ui-anim-stagger > :nth-child(3) {
+  --ui-i: 2;
+}
+.ui-anim-stagger > :nth-child(4) {
+  --ui-i: 3;
+}
+.ui-anim-stagger > :nth-child(5) {
+  --ui-i: 4;
+}
+.ui-anim-stagger > :nth-child(6) {
+  --ui-i: 5;
+}
+.ui-anim-stagger > :nth-child(7) {
+  --ui-i: 6;
+}
+.ui-anim-stagger > :nth-child(8) {
+  --ui-i: 7;
+}
+
+@keyframes ui-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+@keyframes ui-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+@keyframes ui-slide-start {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--ui-dir, 1) * -0.75rem));
+  }
+}
+@keyframes ui-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+@keyframes ui-pop {
+  50% {
+    transform: scale(1.06);
+  }
+}
+@keyframes ui-shake {
+  20%,
+  60% {
+    transform: translateX(-4px);
+  }
+  40%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+@keyframes ui-ping {
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@keyframes ui-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+:dir(rtl) .ui-anim-slide-start {
+  --ui-dir: -1;
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*='ui-anim-'],
+  .ui-anim-stagger > * {
+    animation: none;
+  }
+}
+
+/*
+ * Page and grid: put ui-page on the wrapper and every page starts the same way.
+ * Centred, at most --ui-page-max wide, side padding and a 12-column grid with
+ * a gap that both grow with the screen, no media query.
+ * A child fills the row; ui-col-6 takes half, ui-col-md-4 a third from md up.
+ * The breakpoints read the grid's own width, so a ui-grid nested in a narrow
+ * column switches by its own width, not the screen's.
+ */
+.ui-page,
+.ui-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ui-grid-gap);
+  container-type: inline-size;
+}
+.ui-page {
+  /* Content box: --ui-page-max is the width the columns get, whatever box-sizing the app sets. */
+  box-sizing: content-box;
+  max-inline-size: var(--ui-page-max);
+  margin-inline: auto;
+  padding-inline: var(--ui-page-gutter);
+}
+.ui-page > *,
+.ui-grid > * {
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+}
+.ui-col-1 {
+  grid-column: span 1;
+}
+.ui-col-2 {
+  grid-column: span 2;
+}
+.ui-col-3 {
+  grid-column: span 3;
+}
+.ui-col-4 {
+  grid-column: span 4;
+}
+.ui-col-5 {
+  grid-column: span 5;
+}
+.ui-col-6 {
+  grid-column: span 6;
+}
+.ui-col-7 {
+  grid-column: span 7;
+}
+.ui-col-8 {
+  grid-column: span 8;
+}
+.ui-col-9 {
+  grid-column: span 9;
+}
+.ui-col-10 {
+  grid-column: span 10;
+}
+.ui-col-11 {
+  grid-column: span 11;
+}
+.ui-col-12 {
+  grid-column: span 12;
+}
+@container (width >= 40rem) {
+  .ui-col-sm-1 {
+    grid-column: span 1;
+  }
+  .ui-col-sm-2 {
+    grid-column: span 2;
+  }
+  .ui-col-sm-3 {
+    grid-column: span 3;
+  }
+  .ui-col-sm-4 {
+    grid-column: span 4;
+  }
+  .ui-col-sm-5 {
+    grid-column: span 5;
+  }
+  .ui-col-sm-6 {
+    grid-column: span 6;
+  }
+  .ui-col-sm-7 {
+    grid-column: span 7;
+  }
+  .ui-col-sm-8 {
+    grid-column: span 8;
+  }
+  .ui-col-sm-9 {
+    grid-column: span 9;
+  }
+  .ui-col-sm-10 {
+    grid-column: span 10;
+  }
+  .ui-col-sm-11 {
+    grid-column: span 11;
+  }
+  .ui-col-sm-12 {
+    grid-column: span 12;
+  }
+}
+@container (width >= 48rem) {
+  .ui-col-md-1 {
+    grid-column: span 1;
+  }
+  .ui-col-md-2 {
+    grid-column: span 2;
+  }
+  .ui-col-md-3 {
+    grid-column: span 3;
+  }
+  .ui-col-md-4 {
+    grid-column: span 4;
+  }
+  .ui-col-md-5 {
+    grid-column: span 5;
+  }
+  .ui-col-md-6 {
+    grid-column: span 6;
+  }
+  .ui-col-md-7 {
+    grid-column: span 7;
+  }
+  .ui-col-md-8 {
+    grid-column: span 8;
+  }
+  .ui-col-md-9 {
+    grid-column: span 9;
+  }
+  .ui-col-md-10 {
+    grid-column: span 10;
+  }
+  .ui-col-md-11 {
+    grid-column: span 11;
+  }
+  .ui-col-md-12 {
+    grid-column: span 12;
+  }
+}
+@container (width >= 64rem) {
+  .ui-col-lg-1 {
+    grid-column: span 1;
+  }
+  .ui-col-lg-2 {
+    grid-column: span 2;
+  }
+  .ui-col-lg-3 {
+    grid-column: span 3;
+  }
+  .ui-col-lg-4 {
+    grid-column: span 4;
+  }
+  .ui-col-lg-5 {
+    grid-column: span 5;
+  }
+  .ui-col-lg-6 {
+    grid-column: span 6;
+  }
+  .ui-col-lg-7 {
+    grid-column: span 7;
+  }
+  .ui-col-lg-8 {
+    grid-column: span 8;
+  }
+  .ui-col-lg-9 {
+    grid-column: span 9;
+  }
+  .ui-col-lg-10 {
+    grid-column: span 10;
+  }
+  .ui-col-lg-11 {
+    grid-column: span 11;
+  }
+  .ui-col-lg-12 {
+    grid-column: span 12;
+  }
+}
+@container (width >= 80rem) {
+  .ui-col-xl-1 {
+    grid-column: span 1;
+  }
+  .ui-col-xl-2 {
+    grid-column: span 2;
+  }
+  .ui-col-xl-3 {
+    grid-column: span 3;
+  }
+  .ui-col-xl-4 {
+    grid-column: span 4;
+  }
+  .ui-col-xl-5 {
+    grid-column: span 5;
+  }
+  .ui-col-xl-6 {
+    grid-column: span 6;
+  }
+  .ui-col-xl-7 {
+    grid-column: span 7;
+  }
+  .ui-col-xl-8 {
+    grid-column: span 8;
+  }
+  .ui-col-xl-9 {
+    grid-column: span 9;
+  }
+  .ui-col-xl-10 {
+    grid-column: span 10;
+  }
+  .ui-col-xl-11 {
+    grid-column: span 11;
+  }
+  .ui-col-xl-12 {
+    grid-column: span 12;
+  }
+}
+@container (width >= 96rem) {
+  .ui-col-2xl-1 {
+    grid-column: span 1;
+  }
+  .ui-col-2xl-2 {
+    grid-column: span 2;
+  }
+  .ui-col-2xl-3 {
+    grid-column: span 3;
+  }
+  .ui-col-2xl-4 {
+    grid-column: span 4;
+  }
+  .ui-col-2xl-5 {
+    grid-column: span 5;
+  }
+  .ui-col-2xl-6 {
+    grid-column: span 6;
+  }
+  .ui-col-2xl-7 {
+    grid-column: span 7;
+  }
+  .ui-col-2xl-8 {
+    grid-column: span 8;
+  }
+  .ui-col-2xl-9 {
+    grid-column: span 9;
+  }
+  .ui-col-2xl-10 {
+    grid-column: span 10;
+  }
+  .ui-col-2xl-11 {
+    grid-column: span 11;
+  }
+  .ui-col-2xl-12 {
+    grid-column: span 12;
+  }
+}
+
+/*
+ * Slider: a native range input, so arrow keys, Page Up/Down, Home and End all work and screen
+ * readers say the value. The value is also written beside the label. --ui-slider-fill paints the
+ * chosen part of the track in WebKit; Firefox paints it itself.
+ */
+.ui-slider__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+}
+.ui-slider__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.ui-slider {
+  --ui-slider-fill: 0%;
+  --ui-slider-track: 0.375rem;
+  --ui-slider-thumb: 1.5rem;
+  appearance: none;
+  inline-size: 100%;
+  block-size: var(--ui-control-height);
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.ui-slider:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-slider:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+  border-radius: var(--ui-radius-sm);
+}
+.ui-slider::-webkit-slider-runnable-track {
+  block-size: var(--ui-slider-track);
+  border: 1px solid var(--ui-border); /* the empty part shows at 3:1 */
+  border-radius: var(--ui-radius-full);
+  background: linear-gradient(
+    to right,
+    var(--ui-primary) var(--ui-slider-fill),
+    var(--ui-secondary) var(--ui-slider-fill)
+  );
+}
+.ui-slider:dir(rtl)::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to left,
+    var(--ui-primary) var(--ui-slider-fill),
+    var(--ui-secondary) var(--ui-slider-fill)
+  );
+}
+.ui-slider::-webkit-slider-thumb {
+  appearance: none;
+  inline-size: var(--ui-slider-thumb);
+  block-size: var(--ui-slider-thumb);
+  margin-block-start: calc(
+    (var(--ui-slider-track) - var(--ui-slider-thumb)) / 2 - 1px
+  );
+  border: 2px solid var(--ui-primary);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+}
+.ui-slider::-moz-range-track {
+  block-size: var(--ui-slider-track);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+}
+.ui-slider::-moz-range-progress {
+  block-size: var(--ui-slider-track);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+.ui-slider::-moz-range-thumb {
+  box-sizing: border-box;
+  inline-size: var(--ui-slider-thumb);
+  block-size: var(--ui-slider-thumb);
+  border: 2px solid var(--ui-primary);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+}
+
+/*
+ * Rating. To pick: native radios in a fieldset, so arrow keys move between stars and screen
+ * readers say "3 stars, 3 of 5". Stars up to the picked or hovered one fill, by :has().
+ * To show: one image named "4 out of 5 stars". Filled stars are solid, empty ones an outline,
+ * so the shape carries the value, not colour alone.
+ */
+.ui-rating {
+  display: grid;
+  gap: var(--ui-space-1-5);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ui-text);
+}
+.ui-rating legend {
+  padding: 0;
+}
+.ui-rating__stars {
+  display: inline-flex;
+  inline-size: fit-content;
+}
+.ui-rating__star {
+  --ui-icon-size: 1.75rem;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--ui-radius-sm);
+  color: var(--ui-border);
+  cursor: pointer;
+}
+.ui-rating--readonly .ui-rating__star {
+  --ui-icon-size: 1.25rem;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  cursor: default;
+}
+.ui-rating__star svg {
+  inline-size: var(--ui-icon-size);
+  block-size: var(--ui-icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.ui-rating__star:has(input:focus-visible) {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(var(--ui-focus-width) * -1);
+}
+.ui-rating__star--on,
+.ui-rating__star:has(input:checked),
+.ui-rating__star:has(~ .ui-rating__star input:checked) {
+  color: var(--ui-primary);
+}
+.ui-rating__star--on svg,
+.ui-rating__star:has(input:checked) svg,
+.ui-rating__star:has(~ .ui-rating__star input:checked) svg {
+  fill: currentColor;
+}
+/* While hovering, the stars show what a click would pick. */
+@media (hover: hover) {
+  .ui-rating__stars:hover .ui-rating__star {
+    color: var(--ui-border);
+  }
+  .ui-rating__stars:hover .ui-rating__star svg {
+    fill: none;
+  }
+  .ui-rating__stars:hover .ui-rating__star:hover,
+  .ui-rating__stars:hover .ui-rating__star:has(~ .ui-rating__star:hover) {
+    color: var(--ui-primary);
+  }
+  .ui-rating__stars:hover .ui-rating__star:hover svg,
+  .ui-rating__stars:hover .ui-rating__star:has(~ .ui-rating__star:hover) svg {
+    fill: currentColor;
+  }
+}
+.ui-rating:disabled .ui-rating__star {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/*
+ * Stepper: a flow split into steps (checkout, sign up). The steps are an ordered list of
+ * buttons; the current one has aria-current="step" and done steps say "Done" to screen
+ * readers. Done steps show a tick, so the state is in the shape, not only the colour. A
+ * step that cannot be reached yet is a disabled button. Below the list, the current step's
+ * panel and the Back and Next buttons. Under 30rem wide each name sits under its circle.
+ */
+.ui-stepper {
+  display: grid;
+  gap: var(--ui-space-6);
+  /* The step list is a size container, which has no width of its own to size the stepper by. */
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+.ui-stepper__panel:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-stepper__panel[hidden] {
+  display: none;
+}
+.ui-stepper__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-2);
+}
+.ui-steps {
+  container-type: inline-size;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-steps__item {
+  --ui-steps-line: var(--ui-space-4);
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--ui-space-2);
+  /* Never narrower than its circle and line, so steps cannot overlap. */
+  min-inline-size: 2rem;
+  color: var(--ui-text-muted);
+}
+.ui-steps__item:not(:last-child) {
+  min-inline-size: calc(2rem + var(--ui-space-2) + var(--ui-steps-line));
+}
+.ui-steps__item:last-child {
+  flex: none;
+}
+.ui-steps__item:not(:last-child)::after {
+  content: '';
+  flex: 1;
+  min-inline-size: var(--ui-steps-line);
+  border-block-start: 2px solid var(--ui-border);
+}
+.ui-steps__item--done:not(:last-child)::after {
+  border-color: var(--ui-primary);
+}
+.ui-steps__step {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  min-inline-size: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-full);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.ui-steps__step:disabled {
+  cursor: default;
+}
+.ui-steps__step:not(:disabled):hover .ui-steps__label {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.ui-steps__step:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-steps__marker {
+  --ui-icon-size: 1rem;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border: 2px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+/* The done tick, a little heavier than other icons so it reads at marker size. */
+.ui-steps__marker svg {
+  stroke-width: 2.5;
+}
+.ui-steps__item--current {
+  color: var(--ui-text);
+}
+.ui-steps__item--current .ui-steps__marker {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+}
+.ui-steps__item--done {
+  color: var(--ui-text);
+}
+.ui-steps__item--done .ui-steps__marker {
+  border-color: var(--ui-primary);
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+.ui-steps__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-steps__item--current .ui-steps__label {
+  font-weight: 600;
+}
+@container (max-width: 30rem) {
+  /* Each step gets an equal share of the width, its name under its circle. */
+  .ui-steps__item,
+  .ui-steps__item:not(:last-child),
+  .ui-steps__item:last-child {
+    position: relative;
+    flex: 1 1 0;
+    min-inline-size: 0;
+  }
+  .ui-steps__step {
+    flex-direction: column;
+    gap: var(--ui-space-1);
+    inline-size: 100%;
+    min-inline-size: 0;
+    padding-inline: var(--ui-space-1);
+    text-align: center;
+  }
+  .ui-steps__label {
+    max-inline-size: 100%;
+    font-size: var(--ui-text-sm);
+  }
+  /* The line runs from this circle to the next, at the circles' middle. */
+  .ui-steps__item:not(:last-child)::after {
+    position: absolute;
+    inset-block-start: calc(1rem - 1px);
+    inset-inline-start: calc(50% + 1rem + var(--ui-space-1));
+    inset-inline-end: calc(1rem + var(--ui-space-1) - 50%);
+    min-inline-size: 0;
+  }
+}
+
+/*
+ * Timeline: a read-only ordered history. Status icons and labels pair shape with colour,
+ * while the connector shows the order of events.
+ */
+.ui-timeline-host {
+  display: block;
+}
+.ui-timeline {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: var(--ui-space-3);
+  min-inline-size: 0;
+}
+.ui-timeline__item:not(:last-child) {
+  padding-block-end: var(--ui-space-6);
+}
+.ui-timeline__item:not(:last-child)::before {
+  position: absolute;
+  inset-block: 2rem 0;
+  inset-inline-start: calc(1rem - 1px);
+  border-inline-start: 2px solid var(--ui-divider);
+  content: '';
+}
+.ui-timeline__marker {
+  --ui-icon-size: 1rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border: 2px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+}
+.ui-timeline__marker--approved {
+  border-color: var(--ui-success);
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+.ui-timeline__marker--pending {
+  border-color: var(--ui-warning);
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+}
+.ui-timeline__marker--rejected {
+  border-color: var(--ui-danger);
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+.ui-timeline__content {
+  min-inline-size: 0;
+  padding-block-start: var(--ui-space-0-5);
+}
+.ui-timeline__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+.ui-timeline__title {
+  margin: 0;
+  font-size: var(--ui-font-size);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.ui-timeline__status {
+  padding: var(--ui-space-0-5) var(--ui-space-2);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.ui-timeline__status--approved {
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+.ui-timeline__status--pending {
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+}
+.ui-timeline__status--rejected {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+.ui-timeline__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-1) var(--ui-space-3);
+  margin: var(--ui-space-1) 0 0;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+.ui-timeline__description {
+  margin: var(--ui-space-2) 0 0;
+}
+
+/*
+ * Chip input: a text field that collects several short values (toppings, emails, skills).
+ * Enter or a comma adds the text as a tag; each tag has its own named × button. The box looks
+ * like .ui-input and shows the focus ring while its text field has focus.
+ */
+.ui-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1-5);
+  min-block-size: var(--ui-control-height);
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-chips:has(.ui-chips__input:focus-visible) {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-chips:has(.ui-chips__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-chips__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-chips__list:empty {
+  display: none;
+}
+.ui-chips__input {
+  flex: 1;
+  min-inline-size: 8rem;
+  min-block-size: 2rem;
+  padding: 0 var(--ui-space-1);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--ui-font-size);
+}
+
+/*
+ * Command palette: a dialog with a search field over a list of actions (Ctrl+K or ⌘K).
+ * The field is a combobox whose list is always shown: arrow keys move the highlight, Enter
+ * runs it, and the number of matches is announced as you type. Items reuse .ui-option.
+ */
+.ui-command {
+  display: grid;
+  gap: var(--ui-space-2);
+}
+.ui-command .ui-input {
+  inline-size: 100%;
+}
+.ui-command__list {
+  max-block-size: min(20rem, 50dvh);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+.ui-command__shortcut {
+  margin-inline-start: auto;
+  padding-inline-start: var(--ui-space-3);
+  color: var(--ui-text-muted);
+  font-family: var(--ui-font-mono);
+  font-size: var(--ui-text-sm);
+}
+.ui-option--active .ui-command__shortcut {
+  color: inherit;
+}
+/* aria-selected follows the highlight here (combobox pattern); it is not a choice, so no tick. */
+.ui-command .ui-option[aria-selected='true'] {
+  font-weight: inherit;
+}
+.ui-command .ui-option[aria-selected='true']::after {
+  content: none;
+}
+.ui-command__empty {
+  margin: 0;
+  padding: var(--ui-space-6) var(--ui-space-3);
+  color: var(--ui-text-muted);
+  text-align: center;
+}
+
+/*
+ * Tree: nested items that open and close, such as folders or categories. Arrow keys move,
+ * Right and Left open and close, typing jumps to a name, Enter or Space selects.
+ * --ui-tree-level indents each level; the selected item is bold as well as highlighted.
+ */
+.ui-tree {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-tree__item {
+  --ui-tree-level: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  min-block-size: var(--ui-control-height);
+  padding-inline: calc(var(--ui-tree-level) * var(--ui-space-6))
+    var(--ui-space-3);
+  border-radius: var(--ui-radius-md);
+  color: var(--ui-text);
+  cursor: pointer;
+  user-select: none;
+}
+.ui-tree__item:hover {
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+}
+.ui-tree__item:focus {
+  outline: none;
+}
+.ui-tree__item:focus-visible,
+.ui-tree__item--focus {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(var(--ui-focus-width) * -1);
+}
+.ui-tree__item--selected,
+.ui-tree__item--selected:hover {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+  font-weight: 600;
+}
+.ui-tree__chevron {
+  --ui-icon-size: 1rem;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-sm);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.ui-tree__chevron svg {
+  transition: rotate var(--ui-duration-fast) var(--ui-ease);
+}
+.ui-tree__item--expanded .ui-tree__chevron svg {
+  rotate: 90deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-tree__chevron svg {
+    transition: none;
+  }
+}
+
+/*
+ * Calendar: a month grid to pick a date or a range. Arrow keys move by day and week
+ * (flipped in Arabic), Home and End go to the week's ends, Page Up and Down change the month
+ * (with Shift, the year). Each day is named in full ("Thursday, 19 November 2026"). Today is
+ * underlined, the picked days are filled, so neither depends on colour alone.
+ */
+.ui-calendar {
+  /* Fills its container up to seven 44px days, so it fits a 320px screen at any padding. */
+  display: grid;
+  max-inline-size: calc(7 * 2.75rem + 2 * var(--ui-space-3) + 2px);
+  gap: var(--ui-space-2);
+  padding: var(--ui-space-3);
+  border: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius-xl);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+}
+.ui-calendar__title {
+  margin: 0;
+  font-size: var(--ui-font-size);
+  font-weight: 600;
+}
+.ui-calendar__nav {
+  --ui-icon-size: 1rem;
+}
+.ui-calendar__grid {
+  inline-size: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.ui-calendar__grid th {
+  padding: 0 0 var(--ui-space-1);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-weight: 600;
+}
+.ui-calendar__grid td {
+  padding: 0;
+}
+.ui-calendar__day {
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-md);
+  background: transparent;
+  color: var(--ui-text);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.ui-calendar__day:hover {
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+}
+.ui-calendar__day:focus {
+  outline: none;
+}
+.ui-calendar__day:focus-visible,
+.ui-calendar__day--focus {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(var(--ui-focus-width) * -1);
+}
+.ui-calendar__day--today {
+  font-weight: 700;
+  text-decoration: underline 2px;
+  text-underline-offset: 0.25em;
+}
+.ui-calendar__day--in-range,
+.ui-calendar__day--in-range:hover {
+  border-radius: 0;
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-calendar__day--selected,
+.ui-calendar__day--selected:hover {
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+  font-weight: 600;
+}
+.ui-calendar__day--focus.ui-calendar__day--selected,
+.ui-calendar__day--selected:focus-visible {
+  outline-color: var(--ui-text);
+}
+.ui-calendar__day--disabled,
+.ui-calendar__day--disabled:hover {
+  background: transparent;
+  color: var(--ui-text-muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.ui-calendar__day--outside {
+  visibility: hidden;
+}
+
+/*
+ * Input group: one bordered box around an input and what belongs to it: a search icon,
+ * a clear button, − and + steps, a country code, a calendar button. It looks like .ui-input
+ * and shows the focus ring while its input has focus; its buttons ring on their own.
+ */
+.ui-input-group {
+  display: flex;
+  align-items: stretch;
+  min-block-size: var(--ui-control-height);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-input-group:has(
+  .ui-input-group__input:focus-visible,
+  .ui-phone-field__country:focus-visible,
+  .ui-date-input__segment:focus
+) {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-input-group:has([aria-invalid='true']),
+.ui-field--invalid .ui-input-group {
+  border-color: var(--ui-danger);
+  border-width: 2px;
+}
+.ui-input-group:has(.ui-input-group__input:disabled),
+.ui-input-group[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-input-group__input {
+  flex: 1;
+  min-inline-size: 0;
+  padding-inline: var(--ui-space-3);
+  border: 0;
+  border-radius: var(--ui-radius);
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--ui-font-size);
+}
+.ui-input-group__input:disabled {
+  cursor: not-allowed;
+}
+/* The group brings its own clear button, steps and calendar. */
+.ui-input-group__input::-webkit-search-cancel-button,
+.ui-input-group__input::-webkit-inner-spin-button,
+.ui-input-group__input::-webkit-outer-spin-button,
+.ui-input-group__input::-webkit-calendar-picker-indicator {
+  display: none;
+  appearance: none;
+  margin: 0;
+}
+.ui-input-group__input[type='number'] {
+  appearance: textfield;
+}
+/* A search icon or a fixed prefix such as a currency: seen, not read twice. */
+.ui-input-group__addon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding-inline-start: var(--ui-space-3);
+  color: var(--ui-text-muted);
+}
+.ui-input-group__addon + .ui-input-group__input {
+  padding-inline-start: var(--ui-space-2);
+}
+.ui-input-group__button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: calc(var(--ui-control-height) - 2px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--ui-radius-md);
+  background: none;
+  color: var(--ui-text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+.ui-input-group__button:hover:not(:disabled) {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+.ui-input-group__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.ui-input-group__button:focus-visible {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: calc(-1 * var(--ui-focus-width));
+}
+/* A country picker inside the phone field's input group. */
+.ui-phone-field__select {
+  flex: none;
+  min-inline-size: 0;
+  max-inline-size: 45%;
+}
+.ui-phone-field__select .ui-phone-field__country {
+  inline-size: 100%;
+  max-inline-size: 100%;
+}
+.ui-phone-field__country {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+  flex: none;
+  max-inline-size: 45%;
+  padding-inline: var(--ui-space-3) var(--ui-space-2);
+  border: 0;
+  border-inline-end: 1px solid var(--ui-divider);
+  border-radius: var(--ui-radius) 0 0 var(--ui-radius);
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--ui-font-size);
+  text-align: start;
+  cursor: pointer;
+}
+.ui-phone-field__name {
+  flex: 1;
+  min-inline-size: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ui-phone-field__flag,
+.ui-phone-field__flag-icon {
+  flex: none;
+}
+.ui-phone-field__flag {
+  inline-size: 1.35rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+}
+.ui-phone-field__flag-icon {
+  --ui-icon-size: 1rem;
+}
+.ui-phone-field__country:hover:not(:disabled) {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+.ui-phone-field__country:disabled {
+  cursor: not-allowed;
+}
+.ui-phone-field__listbox {
+  min-inline-size: min(15rem, calc(100vw - 1rem));
+  max-inline-size: calc(100vw - 1rem);
+}
+.ui-phone-field__popover {
+  inline-size: max-content;
+  max-inline-size: calc(100vw - 1rem);
+}
+
+/* Number field: − and + either side of the number. The number itself is the one Tab stop. */
+.ui-number-field .ui-input-group__input {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Phone field: numbers read left to right in every language, so the box does too. */
+.ui-phone-field .ui-input-group {
+  direction: ltr;
+}
+.ui-phone-field .ui-input-group__input {
+  text-align: start;
+}
+
+/*
+ * Date picker: a date typed into the field, or picked from a calendar that opens from the
+ * button. React Aria types it in segments (day, month, year), each one a spin button.
+ */
+.ui-date-input {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-inline-size: 0;
+  padding-inline: var(--ui-space-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.ui-date-picker__separator {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--ui-text-muted);
+}
+.ui-date-input__segment {
+  padding-inline: 1px;
+  border-radius: var(--ui-radius-xs);
+  outline: 0;
+}
+.ui-date-input__segment[data-type='literal'] {
+  padding-inline: 0;
+  color: var(--ui-text-muted);
+}
+.ui-date-input__segment[data-placeholder] {
+  color: var(--ui-text-muted);
+}
+.ui-date-input__segment:focus {
+  background: var(--ui-highlight);
+  color: var(--ui-on-highlight);
+}
+.ui-date-picker__popover {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.ui-date-picker__popover .ui-calendar {
+  box-shadow: var(--ui-shadow);
+}
+
+/*
+ * PIN input: a one-time code, one box per digit. Codes read left to right in every
+ * language. Typing moves on, Backspace goes back, and a pasted or autofilled code fills
+ * every box.
+ */
+.ui-pin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-2);
+  direction: ltr;
+}
+.ui-pin__cell {
+  inline-size: var(--ui-control-height);
+  block-size: calc(var(--ui-control-height) + var(--ui-space-2));
+  padding: 0;
+  font: 600 var(--ui-text-lg) / 1 var(--ui-font-mono);
+  text-align: center;
+  caret-color: var(--ui-primary);
+}
+.ui-pin__cell:not(:placeholder-shown) {
+  border-color: var(--ui-text);
+}
+
+/*
+ * Segmented control: one choice from two to five short options, side by side, such as a
+ * view (List, Grid) or a period (Day, Week, Month). Native radios, so arrow keys move the
+ * choice. The chosen segment is raised on a white tile with an edge, not only coloured.
+ */
+.ui-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-1);
+  max-inline-size: 100%;
+  padding: var(--ui-space-1);
+  border-radius: var(--ui-radius);
+  background: var(--ui-secondary);
+}
+.ui-segmented--block {
+  display: flex;
+}
+.ui-segmented--block > .ui-segmented__option {
+  flex: 1;
+}
+.ui-segmented__option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-1-5);
+  min-block-size: calc(var(--ui-control-height) - 2 * var(--ui-space-1));
+  padding-inline: var(--ui-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius-md);
+  color: var(--ui-on-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--ui-duration-fast);
+}
+.ui-segmented__option > input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+.ui-segmented__option:hover {
+  background: var(--ui-bg);
+}
+.ui-segmented__option:has(input:checked) {
+  border-color: var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+}
+.ui-segmented__option:has(input:focus-visible) {
+  outline: var(--ui-focus-width) solid var(--ui-focus);
+  outline-offset: var(--ui-focus-offset);
+}
+.ui-segmented__option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.ui-segmented__option .ui-icon {
+  --ui-icon-size: 1.125rem;
+}
+@media (forced-colors: active) {
+  .ui-segmented__option:has(input:checked) {
+    border-color: Highlight;
+    border-width: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-segmented__option {
+    transition: none;
+  }
+}
+
+/*
+ * App shell: the frame of an app. A header across the top, the main links in a side bar,
+ * the page beside them. When the shell is narrower than 64rem the side bar folds behind
+ * the header's menu button and opens over the page.
+ */
+.ui-shell {
+  --ui-shell-header: 4rem;
+  --ui-shell-sidebar: 16rem;
+  container: ui-shell / inline-size;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+.ui-shell__header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--ui-layer-sticky);
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  min-block-size: var(--ui-shell-header);
+  padding-inline: var(--ui-page-gutter);
+  border-block-end: 1px solid var(--ui-divider);
+  background: var(--ui-surface);
+}
+.ui-shell__brand {
+  margin: 0;
+  margin-inline-end: auto;
+  font: var(--ui-head-2xs);
+  color: inherit;
+  text-decoration: none;
+}
+.ui-shell__body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-block-size: 0;
+}
+.ui-shell__sidebar {
+  display: none;
+  flex: none;
+  box-sizing: border-box;
+  inline-size: var(--ui-shell-sidebar);
+  max-inline-size: 85%;
+  padding: var(--ui-space-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-inline-end: 1px solid var(--ui-divider);
+  background: var(--ui-surface);
+}
+.ui-shell__main {
+  flex: 1;
+  min-inline-size: 0;
+  padding: var(--ui-page-gutter);
+}
+.ui-shell__main:focus {
+  outline: none;
+}
+/* Narrow: the side bar opens over the page, below the header. */
+.ui-shell--open .ui-shell__sidebar {
+  position: fixed;
+  inset-block: var(--ui-shell-header) 0;
+  inset-inline-start: 0;
+  z-index: var(--ui-layer-fixed);
+  display: block;
+  box-shadow: var(--ui-shadow);
+}
+.ui-shell__scrim {
+  position: fixed;
+  inset: var(--ui-shell-header) 0 0;
+  z-index: calc(var(--ui-layer-fixed) - 1);
+  background: var(--ui-backdrop);
+}
+@container ui-shell (min-width: 64rem) {
+  .ui-shell__menu,
+  .ui-shell__scrim {
+    display: none;
+  }
+  .ui-shell__sidebar,
+  .ui-shell--open .ui-shell__sidebar {
+    position: sticky;
+    inset-block-start: var(--ui-shell-header);
+    z-index: auto;
+    display: block;
+    max-inline-size: none;
+    block-size: calc(100dvh - var(--ui-shell-header));
+    box-shadow: none;
+  }
+}
+@media print {
+  .ui-shell__header,
+  .ui-shell__sidebar {
+    display: none;
+  }
+}
+
+/*
+ * Button group: buttons that belong together, joined into one bar. Named by role="group"
+ * and aria-label. Only the outer corners are round; the shared borders overlap.
+ */
+.ui-button-group {
+  display: inline-flex;
+  isolation: isolate;
+}
+.ui-button-group > .ui-button:not(:first-child) {
+  margin-inline-start: -1px;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.ui-button-group > .ui-button:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+/* The focused or hovered button draws over its neighbours, so its ring is never cut. */
+.ui-button-group > .ui-button:hover,
+.ui-button-group > .ui-button:focus-visible {
+  z-index: var(--ui-layer-raised);
+}
+
+/*
+ * Toggle: a button that stays pressed (aria-pressed). Pressed is shown three ways at once:
+ * a filled highlight, a thicker primary border and the screen reader's "pressed".
+ */
+.ui-toggle[aria-pressed='true'] {
+  --ui-button-bg: var(--ui-highlight);
+  --ui-button-fg: var(--ui-on-highlight);
+  border-color: var(--ui-primary);
+  box-shadow: inset 0 0 0 1px var(--ui-primary);
+}
+@media (forced-colors: active) {
+  .ui-toggle[aria-pressed='true'] {
+    border-color: Highlight;
+    box-shadow: inset 0 0 0 2px Highlight;
+  }
+}
+
+/* Toolbar: one tab stop, arrow keys move between its controls. */
+.ui-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1);
+  padding: var(--ui-space-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+}
+.ui-toolbar[aria-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+  inline-size: fit-content;
+}
+.ui-toolbar__separator {
+  align-self: stretch;
+  inline-size: 1px;
+  margin-inline: var(--ui-space-1);
+  background: var(--ui-divider);
+}
+.ui-toolbar[aria-orientation='vertical'] .ui-toolbar__separator {
+  inline-size: auto;
+  block-size: 1px;
+  margin: var(--ui-space-1) 0;
+}
+
+/* Keyboard key: a key or shortcut, in the mono face, raised like a key cap. */
+.ui-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 1.75em;
+  padding: 0 var(--ui-space-1-5);
+  border: 1px solid var(--ui-border);
+  border-block-end-width: 2px;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+  font-family: var(--ui-font-mono);
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/*
+ * Meter: a level inside a known range (storage used, a score), not work in progress.
+ * role="meter" on the track; the value is written beside the label, so colour only repeats it.
+ */
+.ui-meter {
+  display: grid;
+  gap: var(--ui-space-1-5);
+  color: var(--ui-text);
+  --ui-meter-fill: var(--ui-primary);
+}
+.ui-meter--success {
+  --ui-meter-fill: var(--ui-success);
+}
+.ui-meter--warning {
+  --ui-meter-fill: var(--ui-warning);
+}
+.ui-meter--danger {
+  --ui-meter-fill: var(--ui-danger);
+}
+.ui-meter__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+}
+.ui-meter__label {
+  font-weight: 600;
+}
+.ui-meter__value {
+  color: var(--ui-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ui-meter__bar {
+  block-size: 0.625rem;
+  overflow: hidden;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-secondary);
+}
+.ui-meter__fill {
+  display: block;
+  inline-size: var(--ui-meter-value, 0%);
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--ui-meter-fill);
+}
+@media (forced-colors: active) {
+  .ui-meter__fill {
+    background: CanvasText;
+  }
+}
+
+/* Status dot: a coloured dot before a word that says the status ("Online"). Never the dot alone. */
+.ui-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  --ui-status-dot: var(--ui-text-muted);
+}
+.ui-status-dot::before {
+  content: '';
+  flex: none;
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border: 1px solid transparent; /* shows in forced-colours mode */
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-status-dot);
+}
+.ui-status-dot--info {
+  --ui-status-dot: var(--ui-primary);
+}
+.ui-status-dot--success {
+  --ui-status-dot: var(--ui-success);
+}
+.ui-status-dot--warning {
+  --ui-status-dot: var(--ui-warning);
+}
+.ui-status-dot--danger {
+  --ui-status-dot: var(--ui-danger);
+}
+
+/*
+ * Property list: label and value pairs on a native <dl>, such as order details.
+ * Two columns when there is room, label above value when the list is narrow.
+ */
+.ui-property-list {
+  container-type: inline-size;
+  display: grid;
+  margin: 0;
+}
+.ui-property-list__item {
+  display: grid;
+  grid-template-columns: minmax(8rem, 30%) 1fr;
+  gap: var(--ui-space-1) var(--ui-space-4);
+  padding-block: var(--ui-space-3);
+  border-block-end: 1px solid var(--ui-divider);
+}
+.ui-property-list__item:last-child {
+  border-block-end: 0;
+}
+.ui-property-list__item > dt {
+  color: var(--ui-text-muted);
+  font-weight: 600;
+}
+.ui-property-list__item > dd {
+  margin: 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+.ui-property-list--stacked .ui-property-list__item {
+  grid-template-columns: 1fr;
+}
+@container (max-width: 28rem) {
+  .ui-property-list__item {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Avatar group: overlapping avatars with a "+3" for the rest. Each one is still named. */
+.ui-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+.ui-avatar-group > .ui-avatar {
+  box-shadow: 0 0 0 2px var(--ui-surface);
+}
+.ui-avatar-group > .ui-avatar:not(:first-child) {
+  margin-inline-start: calc(var(--ui-avatar-size) * -0.3);
+}
+.ui-avatar-group__more {
+  background: var(--ui-secondary);
+  color: var(--ui-on-secondary);
+}
+
+/* Input group with text before or after the value: a currency, a unit, a domain. */
+.ui-input-group__addon--end {
+  padding-inline: 0 var(--ui-space-3);
+}
+.ui-input-group__input:has(+ .ui-input-group__addon--end) {
+  padding-inline-end: var(--ui-space-2);
+}
+
+/*
+ * Spacing utilities: one class per space token, for padding, margin and gap.
+ * ui-p-4 = padding: var(--ui-space-4). Sides are logical, so they flip in Arabic:
+ *   x inline (both sides)   y block (top and bottom)
+ *   t top   b bottom        s start (left in English, right in Arabic)   e end
+ * Margin also takes auto (ui-ms-auto pushes an item to the end of a row).
+ * Gap: ui-gap-4 both ways, ui-gap-x-4 between columns, ui-gap-y-4 between rows.
+ * They come last in this file, so they win over a component class of the same weight.
+ */
+.ui-p-0 {
+  padding: var(--ui-space-0);
+}
+.ui-p-0-5 {
+  padding: var(--ui-space-0-5);
+}
+.ui-p-1 {
+  padding: var(--ui-space-1);
+}
+.ui-p-1-5 {
+  padding: var(--ui-space-1-5);
+}
+.ui-p-2 {
+  padding: var(--ui-space-2);
+}
+.ui-p-2-5 {
+  padding: var(--ui-space-2-5);
+}
+.ui-p-3 {
+  padding: var(--ui-space-3);
+}
+.ui-p-4 {
+  padding: var(--ui-space-4);
+}
+.ui-p-5 {
+  padding: var(--ui-space-5);
+}
+.ui-p-6 {
+  padding: var(--ui-space-6);
+}
+.ui-p-7 {
+  padding: var(--ui-space-7);
+}
+.ui-p-8 {
+  padding: var(--ui-space-8);
+}
+.ui-p-10 {
+  padding: var(--ui-space-10);
+}
+.ui-p-12 {
+  padding: var(--ui-space-12);
+}
+.ui-p-16 {
+  padding: var(--ui-space-16);
+}
+.ui-p-20 {
+  padding: var(--ui-space-20);
+}
+.ui-p-24 {
+  padding: var(--ui-space-24);
+}
+.ui-p-32 {
+  padding: var(--ui-space-32);
+}
+.ui-px-0 {
+  padding-inline: var(--ui-space-0);
+}
+.ui-px-0-5 {
+  padding-inline: var(--ui-space-0-5);
+}
+.ui-px-1 {
+  padding-inline: var(--ui-space-1);
+}
+.ui-px-1-5 {
+  padding-inline: var(--ui-space-1-5);
+}
+.ui-px-2 {
+  padding-inline: var(--ui-space-2);
+}
+.ui-px-2-5 {
+  padding-inline: var(--ui-space-2-5);
+}
+.ui-px-3 {
+  padding-inline: var(--ui-space-3);
+}
+.ui-px-4 {
+  padding-inline: var(--ui-space-4);
+}
+.ui-px-5 {
+  padding-inline: var(--ui-space-5);
+}
+.ui-px-6 {
+  padding-inline: var(--ui-space-6);
+}
+.ui-px-7 {
+  padding-inline: var(--ui-space-7);
+}
+.ui-px-8 {
+  padding-inline: var(--ui-space-8);
+}
+.ui-px-10 {
+  padding-inline: var(--ui-space-10);
+}
+.ui-px-12 {
+  padding-inline: var(--ui-space-12);
+}
+.ui-px-16 {
+  padding-inline: var(--ui-space-16);
+}
+.ui-px-20 {
+  padding-inline: var(--ui-space-20);
+}
+.ui-px-24 {
+  padding-inline: var(--ui-space-24);
+}
+.ui-px-32 {
+  padding-inline: var(--ui-space-32);
+}
+.ui-py-0 {
+  padding-block: var(--ui-space-0);
+}
+.ui-py-0-5 {
+  padding-block: var(--ui-space-0-5);
+}
+.ui-py-1 {
+  padding-block: var(--ui-space-1);
+}
+.ui-py-1-5 {
+  padding-block: var(--ui-space-1-5);
+}
+.ui-py-2 {
+  padding-block: var(--ui-space-2);
+}
+.ui-py-2-5 {
+  padding-block: var(--ui-space-2-5);
+}
+.ui-py-3 {
+  padding-block: var(--ui-space-3);
+}
+.ui-py-4 {
+  padding-block: var(--ui-space-4);
+}
+.ui-py-5 {
+  padding-block: var(--ui-space-5);
+}
+.ui-py-6 {
+  padding-block: var(--ui-space-6);
+}
+.ui-py-7 {
+  padding-block: var(--ui-space-7);
+}
+.ui-py-8 {
+  padding-block: var(--ui-space-8);
+}
+.ui-py-10 {
+  padding-block: var(--ui-space-10);
+}
+.ui-py-12 {
+  padding-block: var(--ui-space-12);
+}
+.ui-py-16 {
+  padding-block: var(--ui-space-16);
+}
+.ui-py-20 {
+  padding-block: var(--ui-space-20);
+}
+.ui-py-24 {
+  padding-block: var(--ui-space-24);
+}
+.ui-py-32 {
+  padding-block: var(--ui-space-32);
+}
+.ui-pt-0 {
+  padding-block-start: var(--ui-space-0);
+}
+.ui-pt-0-5 {
+  padding-block-start: var(--ui-space-0-5);
+}
+.ui-pt-1 {
+  padding-block-start: var(--ui-space-1);
+}
+.ui-pt-1-5 {
+  padding-block-start: var(--ui-space-1-5);
+}
+.ui-pt-2 {
+  padding-block-start: var(--ui-space-2);
+}
+.ui-pt-2-5 {
+  padding-block-start: var(--ui-space-2-5);
+}
+.ui-pt-3 {
+  padding-block-start: var(--ui-space-3);
+}
+.ui-pt-4 {
+  padding-block-start: var(--ui-space-4);
+}
+.ui-pt-5 {
+  padding-block-start: var(--ui-space-5);
+}
+.ui-pt-6 {
+  padding-block-start: var(--ui-space-6);
+}
+.ui-pt-7 {
+  padding-block-start: var(--ui-space-7);
+}
+.ui-pt-8 {
+  padding-block-start: var(--ui-space-8);
+}
+.ui-pt-10 {
+  padding-block-start: var(--ui-space-10);
+}
+.ui-pt-12 {
+  padding-block-start: var(--ui-space-12);
+}
+.ui-pt-16 {
+  padding-block-start: var(--ui-space-16);
+}
+.ui-pt-20 {
+  padding-block-start: var(--ui-space-20);
+}
+.ui-pt-24 {
+  padding-block-start: var(--ui-space-24);
+}
+.ui-pt-32 {
+  padding-block-start: var(--ui-space-32);
+}
+.ui-pb-0 {
+  padding-block-end: var(--ui-space-0);
+}
+.ui-pb-0-5 {
+  padding-block-end: var(--ui-space-0-5);
+}
+.ui-pb-1 {
+  padding-block-end: var(--ui-space-1);
+}
+.ui-pb-1-5 {
+  padding-block-end: var(--ui-space-1-5);
+}
+.ui-pb-2 {
+  padding-block-end: var(--ui-space-2);
+}
+.ui-pb-2-5 {
+  padding-block-end: var(--ui-space-2-5);
+}
+.ui-pb-3 {
+  padding-block-end: var(--ui-space-3);
+}
+.ui-pb-4 {
+  padding-block-end: var(--ui-space-4);
+}
+.ui-pb-5 {
+  padding-block-end: var(--ui-space-5);
+}
+.ui-pb-6 {
+  padding-block-end: var(--ui-space-6);
+}
+.ui-pb-7 {
+  padding-block-end: var(--ui-space-7);
+}
+.ui-pb-8 {
+  padding-block-end: var(--ui-space-8);
+}
+.ui-pb-10 {
+  padding-block-end: var(--ui-space-10);
+}
+.ui-pb-12 {
+  padding-block-end: var(--ui-space-12);
+}
+.ui-pb-16 {
+  padding-block-end: var(--ui-space-16);
+}
+.ui-pb-20 {
+  padding-block-end: var(--ui-space-20);
+}
+.ui-pb-24 {
+  padding-block-end: var(--ui-space-24);
+}
+.ui-pb-32 {
+  padding-block-end: var(--ui-space-32);
+}
+.ui-ps-0 {
+  padding-inline-start: var(--ui-space-0);
+}
+.ui-ps-0-5 {
+  padding-inline-start: var(--ui-space-0-5);
+}
+.ui-ps-1 {
+  padding-inline-start: var(--ui-space-1);
+}
+.ui-ps-1-5 {
+  padding-inline-start: var(--ui-space-1-5);
+}
+.ui-ps-2 {
+  padding-inline-start: var(--ui-space-2);
+}
+.ui-ps-2-5 {
+  padding-inline-start: var(--ui-space-2-5);
+}
+.ui-ps-3 {
+  padding-inline-start: var(--ui-space-3);
+}
+.ui-ps-4 {
+  padding-inline-start: var(--ui-space-4);
+}
+.ui-ps-5 {
+  padding-inline-start: var(--ui-space-5);
+}
+.ui-ps-6 {
+  padding-inline-start: var(--ui-space-6);
+}
+.ui-ps-7 {
+  padding-inline-start: var(--ui-space-7);
+}
+.ui-ps-8 {
+  padding-inline-start: var(--ui-space-8);
+}
+.ui-ps-10 {
+  padding-inline-start: var(--ui-space-10);
+}
+.ui-ps-12 {
+  padding-inline-start: var(--ui-space-12);
+}
+.ui-ps-16 {
+  padding-inline-start: var(--ui-space-16);
+}
+.ui-ps-20 {
+  padding-inline-start: var(--ui-space-20);
+}
+.ui-ps-24 {
+  padding-inline-start: var(--ui-space-24);
+}
+.ui-ps-32 {
+  padding-inline-start: var(--ui-space-32);
+}
+.ui-pe-0 {
+  padding-inline-end: var(--ui-space-0);
+}
+.ui-pe-0-5 {
+  padding-inline-end: var(--ui-space-0-5);
+}
+.ui-pe-1 {
+  padding-inline-end: var(--ui-space-1);
+}
+.ui-pe-1-5 {
+  padding-inline-end: var(--ui-space-1-5);
+}
+.ui-pe-2 {
+  padding-inline-end: var(--ui-space-2);
+}
+.ui-pe-2-5 {
+  padding-inline-end: var(--ui-space-2-5);
+}
+.ui-pe-3 {
+  padding-inline-end: var(--ui-space-3);
+}
+.ui-pe-4 {
+  padding-inline-end: var(--ui-space-4);
+}
+.ui-pe-5 {
+  padding-inline-end: var(--ui-space-5);
+}
+.ui-pe-6 {
+  padding-inline-end: var(--ui-space-6);
+}
+.ui-pe-7 {
+  padding-inline-end: var(--ui-space-7);
+}
+.ui-pe-8 {
+  padding-inline-end: var(--ui-space-8);
+}
+.ui-pe-10 {
+  padding-inline-end: var(--ui-space-10);
+}
+.ui-pe-12 {
+  padding-inline-end: var(--ui-space-12);
+}
+.ui-pe-16 {
+  padding-inline-end: var(--ui-space-16);
+}
+.ui-pe-20 {
+  padding-inline-end: var(--ui-space-20);
+}
+.ui-pe-24 {
+  padding-inline-end: var(--ui-space-24);
+}
+.ui-pe-32 {
+  padding-inline-end: var(--ui-space-32);
+}
+.ui-m-0 {
+  margin: var(--ui-space-0);
+}
+.ui-m-0-5 {
+  margin: var(--ui-space-0-5);
+}
+.ui-m-1 {
+  margin: var(--ui-space-1);
+}
+.ui-m-1-5 {
+  margin: var(--ui-space-1-5);
+}
+.ui-m-2 {
+  margin: var(--ui-space-2);
+}
+.ui-m-2-5 {
+  margin: var(--ui-space-2-5);
+}
+.ui-m-3 {
+  margin: var(--ui-space-3);
+}
+.ui-m-4 {
+  margin: var(--ui-space-4);
+}
+.ui-m-5 {
+  margin: var(--ui-space-5);
+}
+.ui-m-6 {
+  margin: var(--ui-space-6);
+}
+.ui-m-7 {
+  margin: var(--ui-space-7);
+}
+.ui-m-8 {
+  margin: var(--ui-space-8);
+}
+.ui-m-10 {
+  margin: var(--ui-space-10);
+}
+.ui-m-12 {
+  margin: var(--ui-space-12);
+}
+.ui-m-16 {
+  margin: var(--ui-space-16);
+}
+.ui-m-20 {
+  margin: var(--ui-space-20);
+}
+.ui-m-24 {
+  margin: var(--ui-space-24);
+}
+.ui-m-32 {
+  margin: var(--ui-space-32);
+}
+.ui-m-auto {
+  margin: auto;
+}
+.ui-mx-0 {
+  margin-inline: var(--ui-space-0);
+}
+.ui-mx-0-5 {
+  margin-inline: var(--ui-space-0-5);
+}
+.ui-mx-1 {
+  margin-inline: var(--ui-space-1);
+}
+.ui-mx-1-5 {
+  margin-inline: var(--ui-space-1-5);
+}
+.ui-mx-2 {
+  margin-inline: var(--ui-space-2);
+}
+.ui-mx-2-5 {
+  margin-inline: var(--ui-space-2-5);
+}
+.ui-mx-3 {
+  margin-inline: var(--ui-space-3);
+}
+.ui-mx-4 {
+  margin-inline: var(--ui-space-4);
+}
+.ui-mx-5 {
+  margin-inline: var(--ui-space-5);
+}
+.ui-mx-6 {
+  margin-inline: var(--ui-space-6);
+}
+.ui-mx-7 {
+  margin-inline: var(--ui-space-7);
+}
+.ui-mx-8 {
+  margin-inline: var(--ui-space-8);
+}
+.ui-mx-10 {
+  margin-inline: var(--ui-space-10);
+}
+.ui-mx-12 {
+  margin-inline: var(--ui-space-12);
+}
+.ui-mx-16 {
+  margin-inline: var(--ui-space-16);
+}
+.ui-mx-20 {
+  margin-inline: var(--ui-space-20);
+}
+.ui-mx-24 {
+  margin-inline: var(--ui-space-24);
+}
+.ui-mx-32 {
+  margin-inline: var(--ui-space-32);
+}
+.ui-mx-auto {
+  margin-inline: auto;
+}
+.ui-my-0 {
+  margin-block: var(--ui-space-0);
+}
+.ui-my-0-5 {
+  margin-block: var(--ui-space-0-5);
+}
+.ui-my-1 {
+  margin-block: var(--ui-space-1);
+}
+.ui-my-1-5 {
+  margin-block: var(--ui-space-1-5);
+}
+.ui-my-2 {
+  margin-block: var(--ui-space-2);
+}
+.ui-my-2-5 {
+  margin-block: var(--ui-space-2-5);
+}
+.ui-my-3 {
+  margin-block: var(--ui-space-3);
+}
+.ui-my-4 {
+  margin-block: var(--ui-space-4);
+}
+.ui-my-5 {
+  margin-block: var(--ui-space-5);
+}
+.ui-my-6 {
+  margin-block: var(--ui-space-6);
+}
+.ui-my-7 {
+  margin-block: var(--ui-space-7);
+}
+.ui-my-8 {
+  margin-block: var(--ui-space-8);
+}
+.ui-my-10 {
+  margin-block: var(--ui-space-10);
+}
+.ui-my-12 {
+  margin-block: var(--ui-space-12);
+}
+.ui-my-16 {
+  margin-block: var(--ui-space-16);
+}
+.ui-my-20 {
+  margin-block: var(--ui-space-20);
+}
+.ui-my-24 {
+  margin-block: var(--ui-space-24);
+}
+.ui-my-32 {
+  margin-block: var(--ui-space-32);
+}
+.ui-my-auto {
+  margin-block: auto;
+}
+.ui-mt-0 {
+  margin-block-start: var(--ui-space-0);
+}
+.ui-mt-0-5 {
+  margin-block-start: var(--ui-space-0-5);
+}
+.ui-mt-1 {
+  margin-block-start: var(--ui-space-1);
+}
+.ui-mt-1-5 {
+  margin-block-start: var(--ui-space-1-5);
+}
+.ui-mt-2 {
+  margin-block-start: var(--ui-space-2);
+}
+.ui-mt-2-5 {
+  margin-block-start: var(--ui-space-2-5);
+}
+.ui-mt-3 {
+  margin-block-start: var(--ui-space-3);
+}
+.ui-mt-4 {
+  margin-block-start: var(--ui-space-4);
+}
+.ui-mt-5 {
+  margin-block-start: var(--ui-space-5);
+}
+.ui-mt-6 {
+  margin-block-start: var(--ui-space-6);
+}
+.ui-mt-7 {
+  margin-block-start: var(--ui-space-7);
+}
+.ui-mt-8 {
+  margin-block-start: var(--ui-space-8);
+}
+.ui-mt-10 {
+  margin-block-start: var(--ui-space-10);
+}
+.ui-mt-12 {
+  margin-block-start: var(--ui-space-12);
+}
+.ui-mt-16 {
+  margin-block-start: var(--ui-space-16);
+}
+.ui-mt-20 {
+  margin-block-start: var(--ui-space-20);
+}
+.ui-mt-24 {
+  margin-block-start: var(--ui-space-24);
+}
+.ui-mt-32 {
+  margin-block-start: var(--ui-space-32);
+}
+.ui-mt-auto {
+  margin-block-start: auto;
+}
+.ui-mb-0 {
+  margin-block-end: var(--ui-space-0);
+}
+.ui-mb-0-5 {
+  margin-block-end: var(--ui-space-0-5);
+}
+.ui-mb-1 {
+  margin-block-end: var(--ui-space-1);
+}
+.ui-mb-1-5 {
+  margin-block-end: var(--ui-space-1-5);
+}
+.ui-mb-2 {
+  margin-block-end: var(--ui-space-2);
+}
+.ui-mb-2-5 {
+  margin-block-end: var(--ui-space-2-5);
+}
+.ui-mb-3 {
+  margin-block-end: var(--ui-space-3);
+}
+.ui-mb-4 {
+  margin-block-end: var(--ui-space-4);
+}
+.ui-mb-5 {
+  margin-block-end: var(--ui-space-5);
+}
+.ui-mb-6 {
+  margin-block-end: var(--ui-space-6);
+}
+.ui-mb-7 {
+  margin-block-end: var(--ui-space-7);
+}
+.ui-mb-8 {
+  margin-block-end: var(--ui-space-8);
+}
+.ui-mb-10 {
+  margin-block-end: var(--ui-space-10);
+}
+.ui-mb-12 {
+  margin-block-end: var(--ui-space-12);
+}
+.ui-mb-16 {
+  margin-block-end: var(--ui-space-16);
+}
+.ui-mb-20 {
+  margin-block-end: var(--ui-space-20);
+}
+.ui-mb-24 {
+  margin-block-end: var(--ui-space-24);
+}
+.ui-mb-32 {
+  margin-block-end: var(--ui-space-32);
+}
+.ui-mb-auto {
+  margin-block-end: auto;
+}
+.ui-ms-0 {
+  margin-inline-start: var(--ui-space-0);
+}
+.ui-ms-0-5 {
+  margin-inline-start: var(--ui-space-0-5);
+}
+.ui-ms-1 {
+  margin-inline-start: var(--ui-space-1);
+}
+.ui-ms-1-5 {
+  margin-inline-start: var(--ui-space-1-5);
+}
+.ui-ms-2 {
+  margin-inline-start: var(--ui-space-2);
+}
+.ui-ms-2-5 {
+  margin-inline-start: var(--ui-space-2-5);
+}
+.ui-ms-3 {
+  margin-inline-start: var(--ui-space-3);
+}
+.ui-ms-4 {
+  margin-inline-start: var(--ui-space-4);
+}
+.ui-ms-5 {
+  margin-inline-start: var(--ui-space-5);
+}
+.ui-ms-6 {
+  margin-inline-start: var(--ui-space-6);
+}
+.ui-ms-7 {
+  margin-inline-start: var(--ui-space-7);
+}
+.ui-ms-8 {
+  margin-inline-start: var(--ui-space-8);
+}
+.ui-ms-10 {
+  margin-inline-start: var(--ui-space-10);
+}
+.ui-ms-12 {
+  margin-inline-start: var(--ui-space-12);
+}
+.ui-ms-16 {
+  margin-inline-start: var(--ui-space-16);
+}
+.ui-ms-20 {
+  margin-inline-start: var(--ui-space-20);
+}
+.ui-ms-24 {
+  margin-inline-start: var(--ui-space-24);
+}
+.ui-ms-32 {
+  margin-inline-start: var(--ui-space-32);
+}
+.ui-ms-auto {
+  margin-inline-start: auto;
+}
+.ui-me-0 {
+  margin-inline-end: var(--ui-space-0);
+}
+.ui-me-0-5 {
+  margin-inline-end: var(--ui-space-0-5);
+}
+.ui-me-1 {
+  margin-inline-end: var(--ui-space-1);
+}
+.ui-me-1-5 {
+  margin-inline-end: var(--ui-space-1-5);
+}
+.ui-me-2 {
+  margin-inline-end: var(--ui-space-2);
+}
+.ui-me-2-5 {
+  margin-inline-end: var(--ui-space-2-5);
+}
+.ui-me-3 {
+  margin-inline-end: var(--ui-space-3);
+}
+.ui-me-4 {
+  margin-inline-end: var(--ui-space-4);
+}
+.ui-me-5 {
+  margin-inline-end: var(--ui-space-5);
+}
+.ui-me-6 {
+  margin-inline-end: var(--ui-space-6);
+}
+.ui-me-7 {
+  margin-inline-end: var(--ui-space-7);
+}
+.ui-me-8 {
+  margin-inline-end: var(--ui-space-8);
+}
+.ui-me-10 {
+  margin-inline-end: var(--ui-space-10);
+}
+.ui-me-12 {
+  margin-inline-end: var(--ui-space-12);
+}
+.ui-me-16 {
+  margin-inline-end: var(--ui-space-16);
+}
+.ui-me-20 {
+  margin-inline-end: var(--ui-space-20);
+}
+.ui-me-24 {
+  margin-inline-end: var(--ui-space-24);
+}
+.ui-me-32 {
+  margin-inline-end: var(--ui-space-32);
+}
+.ui-me-auto {
+  margin-inline-end: auto;
+}
+.ui-gap-0 {
+  gap: var(--ui-space-0);
+}
+.ui-gap-0-5 {
+  gap: var(--ui-space-0-5);
+}
+.ui-gap-1 {
+  gap: var(--ui-space-1);
+}
+.ui-gap-1-5 {
+  gap: var(--ui-space-1-5);
+}
+.ui-gap-2 {
+  gap: var(--ui-space-2);
+}
+.ui-gap-2-5 {
+  gap: var(--ui-space-2-5);
+}
+.ui-gap-3 {
+  gap: var(--ui-space-3);
+}
+.ui-gap-4 {
+  gap: var(--ui-space-4);
+}
+.ui-gap-5 {
+  gap: var(--ui-space-5);
+}
+.ui-gap-6 {
+  gap: var(--ui-space-6);
+}
+.ui-gap-7 {
+  gap: var(--ui-space-7);
+}
+.ui-gap-8 {
+  gap: var(--ui-space-8);
+}
+.ui-gap-10 {
+  gap: var(--ui-space-10);
+}
+.ui-gap-12 {
+  gap: var(--ui-space-12);
+}
+.ui-gap-16 {
+  gap: var(--ui-space-16);
+}
+.ui-gap-20 {
+  gap: var(--ui-space-20);
+}
+.ui-gap-24 {
+  gap: var(--ui-space-24);
+}
+.ui-gap-32 {
+  gap: var(--ui-space-32);
+}
+.ui-gap-x-0 {
+  column-gap: var(--ui-space-0);
+}
+.ui-gap-x-0-5 {
+  column-gap: var(--ui-space-0-5);
+}
+.ui-gap-x-1 {
+  column-gap: var(--ui-space-1);
+}
+.ui-gap-x-1-5 {
+  column-gap: var(--ui-space-1-5);
+}
+.ui-gap-x-2 {
+  column-gap: var(--ui-space-2);
+}
+.ui-gap-x-2-5 {
+  column-gap: var(--ui-space-2-5);
+}
+.ui-gap-x-3 {
+  column-gap: var(--ui-space-3);
+}
+.ui-gap-x-4 {
+  column-gap: var(--ui-space-4);
+}
+.ui-gap-x-5 {
+  column-gap: var(--ui-space-5);
+}
+.ui-gap-x-6 {
+  column-gap: var(--ui-space-6);
+}
+.ui-gap-x-7 {
+  column-gap: var(--ui-space-7);
+}
+.ui-gap-x-8 {
+  column-gap: var(--ui-space-8);
+}
+.ui-gap-x-10 {
+  column-gap: var(--ui-space-10);
+}
+.ui-gap-x-12 {
+  column-gap: var(--ui-space-12);
+}
+.ui-gap-x-16 {
+  column-gap: var(--ui-space-16);
+}
+.ui-gap-x-20 {
+  column-gap: var(--ui-space-20);
+}
+.ui-gap-x-24 {
+  column-gap: var(--ui-space-24);
+}
+.ui-gap-x-32 {
+  column-gap: var(--ui-space-32);
+}
+.ui-gap-y-0 {
+  row-gap: var(--ui-space-0);
+}
+.ui-gap-y-0-5 {
+  row-gap: var(--ui-space-0-5);
+}
+.ui-gap-y-1 {
+  row-gap: var(--ui-space-1);
+}
+.ui-gap-y-1-5 {
+  row-gap: var(--ui-space-1-5);
+}
+.ui-gap-y-2 {
+  row-gap: var(--ui-space-2);
+}
+.ui-gap-y-2-5 {
+  row-gap: var(--ui-space-2-5);
+}
+.ui-gap-y-3 {
+  row-gap: var(--ui-space-3);
+}
+.ui-gap-y-4 {
+  row-gap: var(--ui-space-4);
+}
+.ui-gap-y-5 {
+  row-gap: var(--ui-space-5);
+}
+.ui-gap-y-6 {
+  row-gap: var(--ui-space-6);
+}
+.ui-gap-y-7 {
+  row-gap: var(--ui-space-7);
+}
+.ui-gap-y-8 {
+  row-gap: var(--ui-space-8);
+}
+.ui-gap-y-10 {
+  row-gap: var(--ui-space-10);
+}
+.ui-gap-y-12 {
+  row-gap: var(--ui-space-12);
+}
+.ui-gap-y-16 {
+  row-gap: var(--ui-space-16);
+}
+.ui-gap-y-20 {
+  row-gap: var(--ui-space-20);
+}
+.ui-gap-y-24 {
+  row-gap: var(--ui-space-24);
+}
+.ui-gap-y-32 {
+  row-gap: var(--ui-space-32);
+}
+
+/* Container: children answer to this box's width with @container, not the screen's. */
+.ui-container {
+  container-type: inline-size;
+}
+
+/* Icon: draws in the text colour, sized from the font. <ui-icon> and <Icon> render an svg inside it;
+   <i class="ui-icon ui-icon-search"> uses the masks from @lamsa-ui/icons/icons.css. */
+.ui-icon {
+  inline-size: var(--ui-icon-size, 1.25em);
+  block-size: var(--ui-icon-size, 1.25em);
+  display: inline-block;
+  flex: none;
+  vertical-align: -0.2em;
+}
+.ui-icon > svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+.ui-icon--sm {
+  --ui-icon-size: 1em;
+}
+.ui-icon--lg {
+  --ui-icon-size: 1.75em;
+}
+/* Arrows and chevrons that point the way text runs flip in right-to-left text. */
+.ui-icon--mirror:dir(rtl) {
+  transform: scaleX(-1);
+}

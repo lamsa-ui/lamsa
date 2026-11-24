@@ -1,0 +1,50 @@
+# Toolbar
+
+Framework: React. Rules for AI assistants: https://lamsa-ui.github.io/lamsa/llms.txt
+
+A row of controls that counts as one stop for the Tab key. Inside it the arrow keys move from control to control, flipped in Arabic; Home and End jump to the ends. Tab again leaves it.
+
+Docs: https://lamsa-ui.github.io/lamsa/components/toolbar
+
+```tsx
+import { Toolbar, ToolbarSeparator } from '@lamsa-ui/react';
+```
+
+When to use something else:
+
+- Two or three buttons that sit together: [Button group](https://lamsa-ui.github.io/lamsa/components/button-group)
+- Links to other pages: [Navigation](https://lamsa-ui.github.io/lamsa/components/nav)
+- Actions that do not fit, behind one button: [Menu](https://lamsa-ui.github.io/lamsa/components/menu)
+
+| Name | Type | Default | What it does |
+| --- | --- | --- | --- |
+| `label` | `string` |  | Required. What the controls act on, for screen readers. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which arrow keys move: left and right, or up and down. |
+| `<ToolbarSeparator>` | `component` |  | A line between groups of controls. |
+
+## Examples
+
+### Editor actions
+
+Tab in, then use the arrow keys. Tab out and back: focus returns to the last control you used.
+
+```tsx
+<Toolbar label="Note">
+  <Button variant="ghost" iconOnly aria-label="Undo"><Icon name="undo-2" /></Button>
+  <Button variant="ghost" iconOnly aria-label="Redo"><Icon name="redo-2" /></Button>
+  <ToolbarSeparator />
+  <Toggle size="sm" iconOnly aria-label="Pin"><Icon name="bookmark" /></Toggle>
+  <Button variant="ghost">Copy</Button>
+  <Button variant="ghost">Delete</Button>
+</Toolbar>
+```
+
+### In Arabic
+
+```tsx
+<Toolbar label="الطلب">
+  <Button variant="ghost">طباعة</Button>
+  <Button variant="ghost">استرداد</Button>
+  <Button variant="ghost">إلغاء</Button>
+</Toolbar>
+```

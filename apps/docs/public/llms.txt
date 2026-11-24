@@ -1,0 +1,94 @@
+# Lamsa
+
+> The Lamsa design system: plain CSS tokens and component styles, with Angular, React and Vue 3 components. Accessible (WCAG 2.2 AA), light and dark, right-to-left ready. Give this file to your AI assistant before it writes UI code with the kit.
+
+Packages: `@lamsa-ui/css` (any stack), `@lamsa-ui/angular` (Angular 22, standalone, signals), `@lamsa-ui/react` (React 19, React Aria), and `@lamsa-ui/vue` (Vue 3.5, Reka UI). Tailwind CSS 4.1 runs under the kit: its classes read the kit's tokens.
+
+## Rules for AI assistants
+
+Follow these every time you write code with Lamsa.
+
+1. Use the kit's components and classes. Do not hand-build a button, field, dialog or table that the kit already has.
+2. Restyle only through the `--ui-*` tokens and Tailwind classes. Never override a `.ui-*` class, and never copy the kit's CSS into the project.
+3. Never invent props, classes or components. If a name is not in this guide, it does not exist: check the component's page on the docs site.
+4. Use colour tokens, never raw hex values: `bg-primary`, `text-on-primary`, `var(--ui-primary)`. Colours switch with the theme (`data-theme="light"` or `"dark"`, or the system setting).
+5. Space comes from the scale: `p-4`, `gap-3`, `ui-p-4` (without Tailwind). Do not write pixel values.
+6. Use logical properties (`ms-2`, `pe-4`, `start`, `end`), never `left` or `right`, so the layout flips in right-to-left languages.
+7. Always set `lang` and `dir` on `<html>`. In an Arabic app translate every label a component shows (close buttons, toast region, pagination).
+8. Every control needs a visible label. Colour never carries meaning alone: an error also has text.
+9. Put your own CSS in `@layer components` or `@layer base`, or a plain rule beats the kit's classes.
+10. Open native dialogs with `showModal()`, never `show()`.
+11. Angular: components are standalone, import each one in `imports`. Use signals and the new control flow (`@if`, `@for`). React: React 19, function components. Vue: Vue 3.5 with `<script setup>`; values bind with v-model, callbacks are @events, content goes in #slots.
+12. When unsure, say so and point to the docs page instead of guessing.
+
+## Docs
+
+- [Full guide for AI assistants](https://lamsa-ui.github.io/lamsa/llms-full.txt): setup per framework, tokens, and framework component availability. Fetch this before writing code.
+- [Getting started](https://lamsa-ui.github.io/lamsa/getting-started): the seven setup steps
+- [Colour](https://lamsa-ui.github.io/lamsa/foundations/colour), [Typography](https://lamsa-ui.github.io/lamsa/foundations/typography), [Space](https://lamsa-ui.github.io/lamsa/foundations/space), [Layout](https://lamsa-ui.github.io/lamsa/foundations/layout), [Right to left](https://lamsa-ui.github.io/lamsa/foundations/direction)
+- [Accessibility](https://lamsa-ui.github.io/lamsa/accessibility)
+
+## Components
+
+- [Accordion](https://lamsa-ui.github.io/lamsa/components/accordion): A stack of sections that open and close, such as questions and answers.
+- [Alert dialog](https://lamsa-ui.github.io/lamsa/components/alert-dialog): A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes.
+- [Alert](https://lamsa-ui.github.io/lamsa/components/alert): A message in the page, such as a problem with the whole form or a notice about the account.
+- [App shell](https://lamsa-ui.github.io/lamsa/components/app-shell): The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them.
+- [Avatar group](https://lamsa-ui.github.io/lamsa/components/avatar-group): Several people in a small space: the first few avatars overlap and a '+3' stands for the rest.
+- [Avatar](https://lamsa-ui.github.io/lamsa/components/avatar): A person's photo, or their initials when there is no photo or it fails to load.
+- [Badge](https://lamsa-ui.github.io/lamsa/components/badge): A short status label, such as the state of an order.
+- [Bottom sheet](https://lamsa-ui.github.io/lamsa/components/bottom-sheet): A panel that slides up from the bottom of the screen, for a short choice or the details of an item, mostly on phones.
+- [Breadcrumbs](https://lamsa-ui.github.io/lamsa/components/breadcrumbs): Where the page sits, as a trail of links back up.
+- [Button group](https://lamsa-ui.github.io/lamsa/components/button-group): Buttons that belong together, joined into one bar.
+- [Button](https://lamsa-ui.github.io/lamsa/components/button): Styles the native button, so it keeps everything the browser gives a button: focus, Enter and Space, form submit.
+- [Calendar](https://lamsa-ui.github.io/lamsa/components/calendar): A month grid to pick a day or a range, such as a delivery day or a stay.
+- [Card](https://lamsa-ui.github.io/lamsa/components/card): A surface that groups related content: a summary, a list, a form.
+- [Checkbox](https://lamsa-ui.github.io/lamsa/components/checkbox): A yes or no that is saved with the form, such as accepting the terms.
+- [Chip input](https://lamsa-ui.github.io/lamsa/components/chip-input): A text field that collects several short values, such as toppings, email addresses or skills.
+- [Combobox](https://lamsa-ui.github.io/lamsa/components/combobox): A text field that filters a list as you type, for a long list such as countries.
+- [Command palette](https://lamsa-ui.github.io/lamsa/components/command-palette): A search over the app's actions, in a dialog.
+- [Context menu](https://lamsa-ui.github.io/lamsa/components/context-menu): Actions that open where the reader right-clicks, long-presses, or presses Shift+F10 on the focused item.
+- [Data table](https://lamsa-ui.github.io/lamsa/components/data-table): Rows of records the reader scans and compares: orders, users, payments.
+- [Date picker](https://lamsa-ui.github.io/lamsa/components/date-picker): A date to type or pick, or a range of dates for a stay.
+- [Dialog](https://lamsa-ui.github.io/lamsa/components/dialog): A modal window for a task that needs the reader's full attention: a short form, details, terms.
+- [Divider](https://lamsa-ui.github.io/lamsa/components/divider): A thin line between groups of content.
+- [Drawer](https://lamsa-ui.github.io/lamsa/components/drawer): A side panel that slides in from the edge, for a form or the details of a row, while the list stays in sight.
+- [Empty state](https://lamsa-ui.github.io/lamsa/components/empty-state): What a list, table or page shows while it has nothing in it.
+- [Fieldset](https://lamsa-ui.github.io/lamsa/components/fieldset): A titled group of fields inside a longer form.
+- [File field](https://lamsa-ui.github.io/lamsa/components/file-field): The browser's own file input, with a label, hint and error, in a zone that also takes files dropped on it.
+- [Icons](https://lamsa-ui.github.io/lamsa/foundations/icons): A small set of sharp, adaptable marks.
+- [Input group](https://lamsa-ui.github.io/lamsa/components/input-group): A text field with fixed text inside its box, before or after the value: a currency, a unit, a domain.
+- [Keyboard key](https://lamsa-ui.github.io/lamsa/components/kbd): A key to press, on the native kbd element, so screen readers and search engines know it is a key.
+- [Language switcher](https://lamsa-ui.github.io/lamsa/components/language-switcher): Switches the interface language.
+- [Menu](https://lamsa-ui.github.io/lamsa/components/menu): A short list of actions that opens from a button, such as the actions on a row.
+- [Meter](https://lamsa-ui.github.io/lamsa/components/meter): A level inside a known range: storage used, a plan's limit, a score.
+- [Navigation](https://lamsa-ui.github.io/lamsa/components/nav): The app's main links, in a side bar.
+- [Number field](https://lamsa-ui.github.io/lamsa/components/number-field): A number with − and + either side.
+- [Pagination](https://lamsa-ui.github.io/lamsa/components/pagination): Moves through long lists a page at a time.
+- [Phone field](https://lamsa-ui.github.io/lamsa/components/phone-field): A phone number with its country code.
+- [PIN input](https://lamsa-ui.github.io/lamsa/components/pin-input): A code sent by text message, one box per digit.
+- [Popover](https://lamsa-ui.github.io/lamsa/components/popover): A small panel next to its button, for a few details or a couple of settings.
+- [Progress](https://lamsa-ui.github.io/lamsa/components/progress): How far a long task has got, such as an upload.
+- [Property list](https://lamsa-ui.github.io/lamsa/components/property-list): Label and value pairs, such as the details of one order.
+- [Radio group](https://lamsa-ui.github.io/lamsa/components/radio-group): One choice from a short list, with every option in view.
+- [Rating](https://lamsa-ui.github.io/lamsa/components/rating): Stars out of five, to pick a score or to show one.
+- [Search field](https://lamsa-ui.github.io/lamsa/components/search-field): A box to search with: a magnifier, the text, and a × to clear it.
+- [Segmented control](https://lamsa-ui.github.io/lamsa/components/segmented-control): One choice from two to five short options, side by side: a view, a period, a size.
+- [Select](https://lamsa-ui.github.io/lamsa/components/select): One choice from a list.
+- [Skeleton](https://lamsa-ui.github.io/lamsa/components/skeleton): Grey shapes where content is loading, so the page does not jump when it arrives.
+- [Slider](https://lamsa-ui.github.io/lamsa/components/slider): A value picked along a range, such as a price limit or a volume.
+- [Spinner](https://lamsa-ui.github.io/lamsa/components/spinner): Shows that something is loading and says what, in words, to screen readers.
+- [Stat](https://lamsa-ui.github.io/lamsa/components/stat): One number with its label, and how it changed.
+- [Status dot](https://lamsa-ui.github.io/lamsa/components/status-dot): A small coloured dot before the word for a live state: online, busy, offline.
+- [Stepper](https://lamsa-ui.github.io/lamsa/components/stepper): A flow split into steps, such as checkout.
+- [Switch](https://lamsa-ui.github.io/lamsa/components/switch): An on or off setting that takes effect at once, with no save button.
+- [Tabs](https://lamsa-ui.github.io/lamsa/components/tabs): Views of one thing side by side, such as an order's details and its history.
+- [Tag](https://lamsa-ui.github.io/lamsa/components/tag): A label the user added or can take away, such as an active filter or a topic.
+- [Text field](https://lamsa-ui.github.io/lamsa/components/text-field): Label, input, hint and error as one control.
+- [Textarea](https://lamsa-ui.github.io/lamsa/components/textarea): The multi-line twin of the text field: the same label, hint and error, with room for a few lines.
+- [Timeline](https://lamsa-ui.github.io/lamsa/components/timeline): A chronological record of decisions and updates.
+- [Toast](https://lamsa-ui.github.io/lamsa/components/toast): A short note after an action, such as Saved, at the bottom end of the screen.
+- [Toggle](https://lamsa-ui.github.io/lamsa/components/toggle): A button that stays pressed until it is pressed again.
+- [Toolbar](https://lamsa-ui.github.io/lamsa/components/toolbar): A row of controls that counts as one stop for the Tab key.
+- [Tooltip](https://lamsa-ui.github.io/lamsa/components/tooltip): A short label for a control, shown on hover and on keyboard focus and read by screen readers as its description.
+- [Tree](https://lamsa-ui.github.io/lamsa/components/tree): Nested items that open and close, such as folders or menu categories.

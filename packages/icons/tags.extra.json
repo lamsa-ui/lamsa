@@ -1,0 +1,33 @@
+{
+  "trash-2": [
+    "delete",
+    "remove",
+    "bin",
+    "rubbish",
+    "garbage",
+    "trash",
+    "discard",
+    "erase"
+  ],
+  "circle-alert": [
+    "error",
+    "warning",
+    "alert",
+    "problem",
+    "attention",
+    "notice"
+  ],
+  "circle-help": ["help", "question", "faq", "support", "unknown", "what"],
+  "triangle-alert": ["warning", "caution", "alert", "danger", "risk"],
+  "octagon-alert": ["stop", "error", "danger", "alert", "blocked", "critical"],
+  "filter": ["funnel", "narrow", "refine", "sort", "options"],
+  "unlock": ["open", "unlocked", "access", "security", "padlock"],
+  "send": ["submit", "paper plane", "message", "share"],
+  "x": ["close", "cancel", "dismiss", "remove", "clear"],
+  "check": ["done", "ok", "yes", "confirm", "tick", "success"],
+  "save": ["disk", "store", "keep", "floppy"],
+  "pencil": ["edit", "write", "rename", "change"],
+  "settings": ["gear", "preferences", "options", "cog", "configure"],
+  "loader-circle": ["loading", "spinner", "wait", "busy", "progress"],
+  "house": ["home", "start", "main"]
+}
