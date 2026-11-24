@@ -1003,8 +1003,8 @@ ol.doc-list {
   font-variant-numeric: tabular-nums;
 }
 
-/* The home scene: a blueprint floor with ripples and orbits, sized in cqi of the stage.
-   --rx/--rz (tilt, spin) are set per frame by home-faces.component. */
+/* The home scene: a blueprint floor with ripples, sized in cqi of the stage.
+   --rx/--rz (tilt, spin) are set per frame by home-pins.component. */
 /* Clip top and bottom only: sideways the floor runs to the window edge, where .doc-layout--home
    clips it. Clipping both ways cut it at the hero's 84rem box on wide screens. */
 .doc-home__hero {
@@ -1095,36 +1095,6 @@ ol.doc-list {
   opacity: calc(0.5 - var(--i) * 0.07);
   transform: scale(calc(0.22 + var(--i) * 0.15));
 }
-/* Orbits: one lies on the floor, one stands tipped up around the mark like a gyroscope. */
-.doc-ripple__orbit {
-  border: 0.25cqi solid var(--ui-border);
-  border-radius: 50%;
-  transform-style: preserve-3d;
-}
-.doc-ripple__orbit--a {
-  inline-size: 84cqi;
-  block-size: 84cqi;
-  margin: -42cqi 0 0 -42cqi;
-  transform: translateZ(1cqi);
-}
-.doc-ripple__orbit--b {
-  inline-size: 62cqi;
-  block-size: 62cqi;
-  margin: -31cqi 0 0 -31cqi;
-  transform: translateZ(8cqi) rotateX(68deg) rotateY(24deg);
-}
-.doc-ripple__moon {
-  position: absolute;
-  inset-block-start: -1.4cqi;
-  left: calc(50% - 1.4cqi);
-  inline-size: 2.8cqi;
-  block-size: 2.8cqi;
-  border-radius: 50%;
-  background: var(--ui-primary);
-}
-.doc-ripple__orbit--b .doc-ripple__moon {
-  background: #dc4b4b;
-}
 .doc-ripple__wave {
   inline-size: 60cqi;
   block-size: 60cqi;
@@ -1192,58 +1162,6 @@ ol.doc-list {
   );
   transform: translateZ(calc(var(--h) * 22cqi));
 }
-/* Shapes from the tokens floating over the board, always turned to face you. */
-.doc-pins__float {
-  transform: translate3d(
-      calc(var(--x) * 1cqi),
-      calc(var(--y) * 1cqi),
-      calc(var(--z) * 1cqi)
-    )
-    rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
-  pointer-events: none;
-}
-.doc-pins__shape {
-  display: block;
-  translate: -50% -50%;
-}
-.doc-pins__shape--dot {
-  inline-size: 3cqi;
-  block-size: 3cqi;
-  border-radius: 50%;
-  background: #dc4b4b;
-}
-.doc-pins__shape--ring {
-  inline-size: 5cqi;
-  block-size: 5cqi;
-  border: 0.8cqi solid var(--ui-primary);
-  border-radius: 50%;
-}
-.doc-pins__shape--square {
-  inline-size: 4.5cqi;
-  block-size: 4.5cqi;
-  border-radius: 1.2cqi;
-  background: var(--ui-primary);
-}
-.doc-pins__shape--pill {
-  inline-size: 8cqi;
-  block-size: 3cqi;
-  border-radius: 99cqi;
-  border: 0.5cqi solid var(--ui-border);
-  background: var(--ui-surface);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .doc-pins__shape {
-    animation: doc-pins-bob 5s ease-in-out infinite alternate;
-  }
-  .doc-pins__float:nth-of-type(odd) .doc-pins__shape {
-    animation-duration: 6.5s;
-  }
-}
-@keyframes doc-pins-bob {
-  to {
-    transform: translateY(-2cqi);
-  }
-}
 .doc-ripple__hint {
   margin: 0;
   color: var(--ui-text-muted);
@@ -1252,12 +1170,6 @@ ol.doc-list {
   .doc-ripple__ring {
     animation: doc-ripple-run 7.2s linear infinite;
     animation-delay: calc(var(--i) * -1.2s);
-  }
-  .doc-ripple__orbit--a {
-    animation: doc-ripple-orbit-a 18s linear infinite;
-  }
-  .doc-ripple__orbit--b {
-    animation: doc-ripple-orbit-b 11s linear infinite;
   }
 }
 @keyframes doc-ripple-run {
@@ -1271,16 +1183,6 @@ ol.doc-list {
   to {
     transform: scale(1);
     opacity: 0;
-  }
-}
-@keyframes doc-ripple-orbit-a {
-  to {
-    transform: translateZ(1cqi) rotate(360deg);
-  }
-}
-@keyframes doc-ripple-orbit-b {
-  to {
-    transform: translateZ(8cqi) rotateX(68deg) rotateY(24deg) rotate(360deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {

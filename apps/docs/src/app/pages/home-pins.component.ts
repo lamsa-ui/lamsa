@@ -43,14 +43,6 @@ const PINS = (() => {
   return out;
 })();
 
-/** Shapes from the tokens floating over the board: x, y on the floor and z above it, in cqi. */
-const FLOATS = [
-  { x: -40, y: -16, z: 30, shape: 'dot' },
-  { x: 40, y: 8, z: 22, shape: 'ring' },
-  { x: -30, y: 30, z: 14, shape: 'square' },
-  { x: 30, y: -32, z: 38, shape: 'pill' },
-];
-
 /**
  * A pin board, the touch toy: press and hold anywhere on the bed and the pins rise in the shape
  * of the touch, then settle back slowly. A quick tap sends a wave through them. Drag to turn and
@@ -77,12 +69,6 @@ const FLOATS = [
           @for (i of rings; track i) {
             <span class="doc-ripple__ring" [style.--i]="i"></span>
           }
-          <div class="doc-ripple__orbit doc-ripple__orbit--a">
-            <span class="doc-ripple__moon"></span>
-          </div>
-          <div class="doc-ripple__orbit doc-ripple__orbit--b">
-            <span class="doc-ripple__moon"></span>
-          </div>
           @for (w of waves(); track w.id) {
             <span
               class="doc-ripple__wave"
@@ -102,17 +88,6 @@ const FLOATS = [
               ><span class="doc-pins__head"></span
             ></span>
           }
-          @for (f of floats; track f.shape) {
-            <span
-              class="doc-pins__float"
-              [style.--x]="f.x"
-              [style.--y]="f.y"
-              [style.--z]="f.z"
-              ><span
-                class="doc-pins__shape doc-pins__shape--{{ f.shape }}"
-              ></span
-            ></span>
-          }
         </div>
       </div>
       <p class="ui-body-sm doc-ripple__hint">
@@ -124,7 +99,6 @@ const FLOATS = [
 export class HomePinsComponent {
   protected readonly rings = RINGS;
   protected readonly pins = PINS;
-  protected readonly floats = FLOATS;
   protected readonly waves = signal<{ id: number; x: number; y: number }[]>([]);
   protected readonly dragging = signal(false);
 
