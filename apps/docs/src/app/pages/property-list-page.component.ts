@@ -39,7 +39,7 @@ import { PageComponent } from '../shared/page.component';
           <div ui-property term="Status">
             <ui-badge variant="success">Paid</ui-badge>
           </div>
-          <div ui-property term="Customer">Mona Adel</div>
+          <div ui-property term="Customer">Hatem Mohamed</div>
           <div ui-property term="Delivery">14 Tahrir Street, Dokki, Giza</div>
           <div ui-property term="Total">EGP 370</div>
         </dl>
@@ -69,21 +69,21 @@ export class PropertyListPageComponent {
     angular: `<dl ui-property-list>
   <div ui-property term="Order">#1042</div>
   <div ui-property term="Status"><ui-badge variant="success">Paid</ui-badge></div>
-  <div ui-property term="Customer">Mona Adel</div>
+  <div ui-property term="Customer">Hatem Mohamed</div>
   <div ui-property term="Delivery">14 Tahrir Street, Dokki, Giza</div>
   <div ui-property term="Total">EGP 370</div>
 </dl>`,
     react: `<PropertyList>
   <Property term="Order">#1042</Property>
   <Property term="Status"><Badge variant="success">Paid</Badge></Property>
-  <Property term="Customer">Mona Adel</Property>
+  <Property term="Customer">Hatem Mohamed</Property>
   <Property term="Delivery">14 Tahrir Street, Dokki, Giza</Property>
   <Property term="Total">EGP 370</Property>
 </PropertyList>`,
     vue: `<PropertyList>
   <Property term="Order">#1042</Property>
   <Property term="Status"><Badge variant="success">Paid</Badge></Property>
-  <Property term="Customer">Mona Adel</Property>
+  <Property term="Customer">Hatem Mohamed</Property>
   <Property term="Delivery">14 Tahrir Street, Dokki, Giza</Property>
   <Property term="Total">EGP 370</Property>
 </PropertyList>`,

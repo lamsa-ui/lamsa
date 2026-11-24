@@ -29,9 +29,9 @@ import { PageComponent } from '../shared/page.component';
         [code]="sizes"
       >
         <div class="flex items-center gap-3">
-          <ui-avatar name="Mona Adel" size="sm" />
-          <ui-avatar name="Karim Hassan" />
-          <ui-avatar name="Sara Nabil" size="lg" src="/missing-photo.jpg" />
+          <ui-avatar name="Hatem Mohamed" size="sm" />
+          <ui-avatar name="Mohamed Ibrahim" />
+          <ui-avatar name="Ibrahim Hatem" size="lg" src="/missing-photo.jpg" />
         </div>
       </app-example>
 
@@ -41,15 +41,15 @@ import { PageComponent } from '../shared/page.component';
         [code]="named"
       >
         <div class="flex items-center gap-3">
-          <ui-avatar name="Mona Adel" decorative />
-          <span>Mona Adel</span>
+          <ui-avatar name="Hatem Mohamed" decorative />
+          <span>Hatem Mohamed</span>
         </div>
       </app-example>
 
       <app-example title="In Arabic" [rtl]="true" [code]="arabic">
         <div class="flex items-center gap-3">
-          <ui-avatar name="منى عادل" />
-          <ui-avatar name="كريم" />
+          <ui-avatar name="حاتم محمد" />
+          <ui-avatar name="محمد" />
         </div>
       </app-example>
 
@@ -63,50 +63,50 @@ export class AvatarPageComponent {
     angular: `import { AvatarComponent } from '@lamsa-ui/angular';`,
     react: `import { Avatar } from '@lamsa-ui/react';`,
     vue: `import { Avatar } from '@lamsa-ui/vue';`,
-    html: `<span class="ui-avatar" role="img" aria-label="Mona Adel">MA</span>`,
+    html: `<span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>`,
   };
 
   protected readonly sizes = {
-    angular: `<ui-avatar name="Mona Adel" size="sm" />
-<ui-avatar name="Karim Hassan" />
-<ui-avatar name="Sara Nabil" size="lg" src="/sara.jpg" />`,
-    react: `<Avatar name="Mona Adel" size="sm" />
-<Avatar name="Karim Hassan" />
-<Avatar name="Sara Nabil" size="lg" src="/sara.jpg" />`,
-    vue: `<Avatar name="Mona Adel" size="sm" />
-<Avatar name="Karim Hassan" />
-<Avatar name="Sara Nabil" size="lg" src="/sara.jpg" />`,
-    html: `<span class="ui-avatar ui-avatar--sm" role="img" aria-label="Mona Adel">MA</span>
-<span class="ui-avatar" role="img" aria-label="Karim Hassan">KH</span>
-<span class="ui-avatar ui-avatar--lg" role="img" aria-label="Sara Nabil">
-  <img src="/sara.jpg" alt="" />
+    angular: `<ui-avatar name="Hatem Mohamed" size="sm" />
+<ui-avatar name="Mohamed Ibrahim" />
+<ui-avatar name="Ibrahim Hatem" size="lg" src="/ibrahim.jpg" />`,
+    react: `<Avatar name="Hatem Mohamed" size="sm" />
+<Avatar name="Mohamed Ibrahim" />
+<Avatar name="Ibrahim Hatem" size="lg" src="/ibrahim.jpg" />`,
+    vue: `<Avatar name="Hatem Mohamed" size="sm" />
+<Avatar name="Mohamed Ibrahim" />
+<Avatar name="Ibrahim Hatem" size="lg" src="/ibrahim.jpg" />`,
+    html: `<span class="ui-avatar ui-avatar--sm" role="img" aria-label="Hatem Mohamed">HM</span>
+<span class="ui-avatar" role="img" aria-label="Mohamed Ibrahim">MI</span>
+<span class="ui-avatar ui-avatar--lg" role="img" aria-label="Ibrahim Hatem">
+  <img src="/ibrahim.jpg" alt="" />
 </span>`,
   };
 
   protected readonly named = {
     angular: `<div class="flex items-center gap-3">
-  <ui-avatar name="Mona Adel" decorative />
-  <span>Mona Adel</span>
+  <ui-avatar name="Hatem Mohamed" decorative />
+  <span>Hatem Mohamed</span>
 </div>`,
     react: `<div className="flex items-center gap-3">
-  <Avatar name="Mona Adel" decorative />
-  <span>Mona Adel</span>
+  <Avatar name="Hatem Mohamed" decorative />
+  <span>Hatem Mohamed</span>
 </div>`,
     vue: `<div class="flex items-center gap-3">
-  <Avatar name="Mona Adel" decorative />
-  <span>Mona Adel</span>
+  <Avatar name="Hatem Mohamed" decorative />
+  <span>Hatem Mohamed</span>
 </div>`,
     html: `<div class="flex items-center gap-3">
-  <span class="ui-avatar" aria-hidden="true">MA</span>
-  <span>Mona Adel</span>
+  <span class="ui-avatar" aria-hidden="true">HM</span>
+  <span>Hatem Mohamed</span>
 </div>`,
   };
 
   protected readonly arabic = {
-    angular: `<ui-avatar name="منى عادل" />`,
-    react: `<Avatar name="منى عادل" />`,
-    vue: `<Avatar name="منى عادل" />`,
-    html: `<span class="ui-avatar" role="img" aria-label="منى عادل">م&zwnj;ع</span>`,
+    angular: `<ui-avatar name="حاتم محمد" />`,
+    react: `<Avatar name="حاتم محمد" />`,
+    vue: `<Avatar name="حاتم محمد" />`,
+    html: `<span class="ui-avatar" role="img" aria-label="حاتم محمد">م&zwnj;ع</span>`,
   };
 
   protected readonly alternatives: Alternative[] = [

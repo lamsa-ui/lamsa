@@ -30,9 +30,9 @@ When to use something else:
 Initials are the first letter of the first and last word, so they work for Arabic names too. A broken photo falls back to initials.
 
 ```vue
-<Avatar name="Mona Adel" size="sm" />
-<Avatar name="Karim Hassan" />
-<Avatar name="Sara Nabil" size="lg" src="/sara.jpg" />
+<Avatar name="Hatem Mohamed" size="sm" />
+<Avatar name="Mohamed Ibrahim" />
+<Avatar name="Ibrahim Hatem" size="lg" src="/ibrahim.jpg" />
 ```
 
 ### Next to a name
@@ -41,13 +41,13 @@ When the name is written beside it, mark the avatar decorative so a screen reade
 
 ```vue
 <div class="flex items-center gap-3">
-  <Avatar name="Mona Adel" decorative />
-  <span>Mona Adel</span>
+  <Avatar name="Hatem Mohamed" decorative />
+  <span>Hatem Mohamed</span>
 </div>
 ```
 
 ### In Arabic
 
 ```vue
-<Avatar name="منى عادل" />
+<Avatar name="حاتم محمد" />
 ```

@@ -30,9 +30,9 @@ When to use something else:
 Initials are the first letter of the first and last word, so they work for Arabic names too. A broken photo falls back to initials.
 
 ```html
-<ui-avatar name="Mona Adel" size="sm" />
-<ui-avatar name="Karim Hassan" />
-<ui-avatar name="Sara Nabil" size="lg" src="/sara.jpg" />
+<ui-avatar name="Hatem Mohamed" size="sm" />
+<ui-avatar name="Mohamed Ibrahim" />
+<ui-avatar name="Ibrahim Hatem" size="lg" src="/ibrahim.jpg" />
 ```
 
 ### Next to a name
@@ -41,13 +41,13 @@ When the name is written beside it, mark the avatar decorative so a screen reade
 
 ```html
 <div class="flex items-center gap-3">
-  <ui-avatar name="Mona Adel" decorative />
-  <span>Mona Adel</span>
+  <ui-avatar name="Hatem Mohamed" decorative />
+  <span>Hatem Mohamed</span>
 </div>
 ```
 
 ### In Arabic
 
 ```html
-<ui-avatar name="منى عادل" />
+<ui-avatar name="حاتم محمد" />
 ```

@@ -48,16 +48,16 @@ import { PageComponent } from '../shared/page.component';
 })
 export class AvatarGroupPageComponent {
   protected readonly people = [
-    { name: 'Mona Adel' },
-    { name: 'Karim Fathy' },
-    { name: 'Salma Nabil' },
-    { name: 'Omar Hany' },
-    { name: 'Laila Samir' },
+    { name: 'Hatem Mohamed' },
+    { name: 'Mohamed Ibrahim' },
+    { name: 'Ibrahim Hatem' },
+    { name: 'Hatem Ibrahim' },
+    { name: 'Mohamed Hatem' },
   ];
   protected readonly arabicPeople = [
-    { name: 'منى عادل' },
-    { name: 'كريم فتحي' },
-    { name: 'سلمى نبيل' },
+    { name: 'حاتم محمد' },
+    { name: 'محمد إبراهيم' },
+    { name: 'إبراهيم حاتم' },
   ];
   protected readonly arabicMore = (count: number) => `${count} آخرون`;
 
@@ -71,13 +71,13 @@ export class AvatarGroupPageComponent {
   protected readonly team = {
     angular: `<ui-avatar-group label="Kitchen team" [people]="people" [max]="3" />
 
-people = [{ name: 'Mona Adel', src: '/mona.jpg' }, { name: 'Karim Fathy' }, …];`,
+people = [{ name: 'Hatem Mohamed', src: '/hatem.jpg' }, { name: 'Mohamed Ibrahim' }, …];`,
     react: `<AvatarGroup label="Kitchen team" people={people} max={3} />`,
     vue: `<AvatarGroup label="Kitchen team" :people="people" :max="3" />`,
     html: `<div class="ui-avatar-group" role="group" aria-label="Kitchen team">
-  <span class="ui-avatar" role="img" aria-label="Mona Adel">MA</span>
-  <span class="ui-avatar" role="img" aria-label="Karim Fathy">KF</span>
-  <span class="ui-avatar" role="img" aria-label="Salma Nabil">SN</span>
+  <span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>
+  <span class="ui-avatar" role="img" aria-label="Mohamed Ibrahim">MI</span>
+  <span class="ui-avatar" role="img" aria-label="Ibrahim Hatem">IH</span>
   <span class="ui-avatar ui-avatar-group__more" role="img" aria-label="2 more">+2</span>
 </div>`,
   };
@@ -99,7 +99,7 @@ more = (count: number) => \`\${count} آخرون\`;`,
   :more-label="(count) => \`\${count} آخرون\`"
 />`,
     html: `<div class="ui-avatar-group" role="group" aria-label="فريق المطبخ">
-  <span class="ui-avatar" role="img" aria-label="منى عادل">م\u200cع</span>
+  <span class="ui-avatar" role="img" aria-label="حاتم محمد">م\u200cع</span>
   <span class="ui-avatar ui-avatar-group__more" role="img" aria-label="1 آخرون">+1</span>
 </div>`,
   };

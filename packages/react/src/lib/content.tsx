@@ -8,10 +8,10 @@ import { cx } from './class-names.js';
 import type { IconName } from '@lamsa-ui/icons';
 import { Icon } from './icon.js';
 
-/** Keeps two Arabic initials apart, so م and ع never join into the word «مع». Invisible in Latin. */
+/** Keeps two Arabic initials apart, so ح and م never join into «حم». Invisible in Latin. */
 const ZWNJ = '\u200c';
 
-/** First letter of the first and last word: "Mona Adel" → "MA", "منى عادل" → م and ع, kept apart. */
+/** First letter of the first and last word: "Hatem Mohamed" → "HM", "حاتم محمد" → ح and م, kept apart. */
 export function initials(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);
   const first = (word = '') => Array.from(word)[0] ?? '';
@@ -38,7 +38,7 @@ export interface AvatarProps extends Omit<
  * Screen readers hear the name; set `decorative` when the name is written next to it.
  *
  * ```tsx
- * <Avatar name="Mona Adel" src="/mona.jpg" />
+ * <Avatar name="Hatem Mohamed" src="/hatem.jpg" />
  * ```
  */
 export function Avatar({

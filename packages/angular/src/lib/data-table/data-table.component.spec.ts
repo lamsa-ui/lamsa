@@ -44,8 +44,8 @@ class HostComponent {
     { key: 'status', header: 'Status' },
   ];
   readonly rows = signal<Order[]>([
-    { id: 1, customer: 'Mona', total: 340, status: 'Paid' },
-    { id: 2, customer: 'Karim', total: 120, status: 'Late' },
+    { id: 1, customer: 'Hatem', total: 340, status: 'Paid' },
+    { id: 2, customer: 'Mohamed', total: 120, status: 'Late' },
   ]);
   readonly sort = signal<TableSort | null>(null);
   readonly loading = signal(false);
@@ -78,7 +78,7 @@ describe('DataTableComponent', () => {
     const cells = [
       ...root.querySelectorAll('tbody tr')[0].querySelectorAll('td'),
     ];
-    expect(cells[0].textContent?.trim()).toBe('Mona');
+    expect(cells[0].textContent?.trim()).toBe('Hatem');
     expect(cells[1].textContent?.trim()).toBe('340 EGP');
     expect(cells[1].className).toBe('ui-table__cell--end');
     expect(cells[2].querySelector('[data-testid="status"]')?.textContent).toBe(

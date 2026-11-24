@@ -9,7 +9,7 @@ describe('Timeline', () => {
         items={[
           {
             title: 'Manager review',
-            actor: 'Mina Hassan',
+            actor: 'Hatem Mohamed',
             date: '20 Nov 2026, 14:30',
             dateTime: '2026-11-20T14:30:00Z',
             description: 'Budget and documents verified.',
@@ -29,7 +29,7 @@ describe('Timeline', () => {
     expect(
       screen.getByRole('heading', { name: 'Manager review' }),
     ).toBeTruthy();
-    expect(screen.getByText('Mina Hassan')).toBeTruthy();
+    expect(screen.getByText('Hatem Mohamed')).toBeTruthy();
     expect(screen.getByText('Budget and documents verified.')).toBeTruthy();
     expect(screen.getByText('Approved')).toBeTruthy();
     expect(screen.getByText('Waiting')).toBeTruthy();

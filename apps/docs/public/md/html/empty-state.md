@@ -43,7 +43,7 @@ A search or filter matched nothing: say so, and give the way back.
 
 ```html
 <div class="ui-empty-state">
-  <h3 class="ui-empty-state__title">No orders match “Karim”</h3>
+  <h3 class="ui-empty-state__title">No orders match “Mohamed”</h3>
   <p>Check the spelling, or search by order number.</p>
   <div class="ui-empty-state__actions">
     <button class="ui-button ui-button--secondary">Clear search</button>

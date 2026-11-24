@@ -4700,7 +4700,7 @@ A person's photo, or their initials when there is no photo or it fails to load. 
 Docs: https://lamsa-ui.github.io/lamsa/components/avatar
 
 ```html
-<span class="ui-avatar" role="img" aria-label="Mona Adel">MA</span>
+<span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>
 ```
 
 When to use something else:

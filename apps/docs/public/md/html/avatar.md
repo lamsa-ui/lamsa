@@ -7,7 +7,7 @@ A person's photo, or their initials when there is no photo or it fails to load. 
 Docs: https://lamsa-ui.github.io/lamsa/components/avatar
 
 ```html
-<span class="ui-avatar" role="img" aria-label="Mona Adel">MA</span>
+<span class="ui-avatar" role="img" aria-label="Hatem Mohamed">HM</span>
 ```
 
 When to use something else:
@@ -30,10 +30,10 @@ When to use something else:
 Initials are the first letter of the first and last word, so they work for Arabic names too. A broken photo falls back to initials.
 
 ```html
-<span class="ui-avatar ui-avatar--sm" role="img" aria-label="Mona Adel">MA</span>
-<span class="ui-avatar" role="img" aria-label="Karim Hassan">KH</span>
-<span class="ui-avatar ui-avatar--lg" role="img" aria-label="Sara Nabil">
-  <img src="/sara.jpg" alt="" />
+<span class="ui-avatar ui-avatar--sm" role="img" aria-label="Hatem Mohamed">HM</span>
+<span class="ui-avatar" role="img" aria-label="Mohamed Ibrahim">MI</span>
+<span class="ui-avatar ui-avatar--lg" role="img" aria-label="Ibrahim Hatem">
+  <img src="/ibrahim.jpg" alt="" />
 </span>
 ```
 
@@ -43,13 +43,13 @@ When the name is written beside it, mark the avatar decorative so a screen reade
 
 ```html
 <div class="flex items-center gap-3">
-  <span class="ui-avatar" aria-hidden="true">MA</span>
-  <span>Mona Adel</span>
+  <span class="ui-avatar" aria-hidden="true">HM</span>
+  <span>Hatem Mohamed</span>
 </div>
 ```
 
 ### In Arabic
 
 ```html
-<span class="ui-avatar" role="img" aria-label="منى عادل">م&zwnj;ع</span>
+<span class="ui-avatar" role="img" aria-label="حاتم محمد">م&zwnj;ع</span>
 ```

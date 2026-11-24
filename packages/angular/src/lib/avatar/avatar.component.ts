@@ -6,10 +6,10 @@ import {
   linkedSignal,
 } from '@angular/core';
 
-/** Keeps two Arabic initials apart, so م and ع never join into the word «مع». Invisible in Latin. */
+/** Keeps two Arabic initials apart, so ح and م never join into «حم». Invisible in Latin. */
 const ZWNJ = '\u200c';
 
-/** First letter of the first and last word: "Mona Adel" → "MA", "منى عادل" → م and ع, kept apart. */
+/** First letter of the first and last word: "Hatem Mohamed" → "HM", "حاتم محمد" → ح and م, kept apart. */
 export function initials(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean);
   const first = (word = '') => Array.from(word)[0] ?? '';
@@ -26,7 +26,7 @@ export function initials(name: string): string {
  * so it is not read twice.
  *
  * ```html
- * <ui-avatar name="Mona Adel" src="/mona.jpg" />
+ * <ui-avatar name="Hatem Mohamed" src="/hatem.jpg" />
  * ```
  */
 @Component({

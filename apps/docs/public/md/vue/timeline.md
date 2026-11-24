@@ -31,8 +31,8 @@ A manager approved the request, finance is reviewing it, and the owner is notifi
 
 ```vue
 <Timeline label="Approval history for case 1042" :items="[
-  { title: 'Request submitted', actor: 'Nour El-Sayed', date: '18 Nov 2026, 09:14' },
-  { title: 'Manager approval', actor: 'Omar Farouk', date: '18 Nov 2026, 11:42',
+  { title: 'Request submitted', actor: 'Ibrahim Mohamed', date: '18 Nov 2026, 09:14' },
+  { title: 'Manager approval', actor: 'Mohamed Hatem', date: '18 Nov 2026, 11:42',
     status: 'approved', description: 'Approved within the department travel budget.' },
   { title: 'Finance review', actor: 'Finance team', date: 'In progress', status: 'pending' },
 ]" />

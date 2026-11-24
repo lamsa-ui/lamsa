@@ -16,18 +16,18 @@ function mount(
 
 describe('Vue content', () => {
   it('keeps Arabic initials apart', () => {
-    expect(initials('Mona Adel')).toBe('M\u200cA');
-    expect(initials('منى عادل')).toBe('م\u200cع');
+    expect(initials('Hatem Mohamed')).toBe('H\u200cM');
+    expect(initials('حاتم محمد')).toBe('ح\u200cم');
   });
 
   it('names an avatar and falls back to initials when the photo fails', async () => {
-    const view = mount(Avatar, { name: 'Mona Adel', src: '/missing.jpg' });
+    const view = mount(Avatar, { name: 'Hatem Mohamed', src: '/missing.jpg' });
     const avatar = view.container.querySelector('.ui-avatar');
     expect(avatar?.getAttribute('role')).toBe('img');
-    expect(avatar?.getAttribute('aria-label')).toBe('Mona Adel');
+    expect(avatar?.getAttribute('aria-label')).toBe('Hatem Mohamed');
     avatar?.querySelector('img')?.dispatchEvent(new Event('error'));
     await nextTick();
-    expect(avatar?.textContent).toBe('M\u200cA');
+    expect(avatar?.textContent).toBe('H\u200cM');
     view.unmount();
   });
 

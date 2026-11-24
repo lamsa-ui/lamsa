@@ -56,7 +56,7 @@ Sort by customer, date or total. Status is a badge; totals line up on the last d
     <tbody>
       <tr>
         <td>#1040</td>
-        <td>Mona Adel</td>
+        <td>Hatem Mohamed</td>
         <td>2026-11-18</td>
         <td class="ui-table__cell--end">85 EGP</td>
         <td><span class="ui-badge ui-badge--success">Paid</span></td>

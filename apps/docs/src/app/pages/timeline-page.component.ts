@@ -47,14 +47,14 @@ export class TimelinePageComponent {
   protected readonly approvals: TimelineItem[] = [
     {
       title: 'Request submitted',
-      actor: 'Nour El-Sayed',
+      actor: 'Ibrahim Mohamed',
       date: '18 Nov 2026, 09:14',
       dateTime: '2026-11-18T09:14:00+02:00',
       description: 'Travel expense reimbursement for the Cairo client visit.',
     },
     {
       title: 'Manager approval',
-      actor: 'Omar Farouk',
+      actor: 'Mohamed Hatem',
       date: '18 Nov 2026, 11:42',
       dateTime: '2026-11-18T11:42:00+02:00',
       description: 'Approved within the department travel budget.',
@@ -71,13 +71,13 @@ export class TimelinePageComponent {
   protected readonly arabicApprovals: TimelineItem[] = [
     {
       title: 'تم تقديم الطلب',
-      actor: 'نور السيد',
+      actor: 'إبراهيم محمد',
       date: '١٨ نوفمبر ٢٠٢٦، ٠٩:١٤',
       dateTime: '2026-11-18T09:14:00+02:00',
     },
     {
       title: 'موافقة المدير',
-      actor: 'عمر فاروق',
+      actor: 'محمد حاتم',
       date: '١٨ نوفمبر ٢٠٢٦، ١١:٤٢',
       dateTime: '2026-11-18T11:42:00+02:00',
       status: 'approved',
@@ -103,20 +103,20 @@ export class TimelinePageComponent {
     angular: `<ui-timeline label="Approval history for case 1042" [items]="approvals" />
 
 approvals = [
-  { title: 'Request submitted', actor: 'Nour El-Sayed', date: '18 Nov 2026, 09:14' },
-  { title: 'Manager approval', actor: 'Omar Farouk', date: '18 Nov 2026, 11:42',
+  { title: 'Request submitted', actor: 'Ibrahim Mohamed', date: '18 Nov 2026, 09:14' },
+  { title: 'Manager approval', actor: 'Mohamed Hatem', date: '18 Nov 2026, 11:42',
     status: 'approved', description: 'Approved within the department travel budget.' },
   { title: 'Finance review', actor: 'Finance team', date: 'In progress', status: 'pending' },
 ];`,
     react: `<Timeline label="Approval history for case 1042" items={[
-  { title: 'Request submitted', actor: 'Nour El-Sayed', date: '18 Nov 2026, 09:14' },
-  { title: 'Manager approval', actor: 'Omar Farouk', date: '18 Nov 2026, 11:42',
+  { title: 'Request submitted', actor: 'Ibrahim Mohamed', date: '18 Nov 2026, 09:14' },
+  { title: 'Manager approval', actor: 'Mohamed Hatem', date: '18 Nov 2026, 11:42',
     status: 'approved', description: 'Approved within the department travel budget.' },
   { title: 'Finance review', actor: 'Finance team', date: 'In progress', status: 'pending' },
 ]} />`,
     vue: `<Timeline label="Approval history for case 1042" :items="[
-  { title: 'Request submitted', actor: 'Nour El-Sayed', date: '18 Nov 2026, 09:14' },
-  { title: 'Manager approval', actor: 'Omar Farouk', date: '18 Nov 2026, 11:42',
+  { title: 'Request submitted', actor: 'Ibrahim Mohamed', date: '18 Nov 2026, 09:14' },
+  { title: 'Manager approval', actor: 'Mohamed Hatem', date: '18 Nov 2026, 11:42',
     status: 'approved', description: 'Approved within the department travel budget.' },
   { title: 'Finance review', actor: 'Finance team', date: 'In progress', status: 'pending' },
 ]" />`,
@@ -131,7 +131,7 @@ approvals = [
         <span class="ui-timeline__status ui-timeline__status--approved">Approved</span>
       </div>
       <p class="ui-timeline__meta">
-        <span>Omar Farouk</span><time datetime="2026-11-18T11:42:00+02:00">18 Nov 2026, 11:42</time>
+        <span>Mohamed Hatem</span><time datetime="2026-11-18T11:42:00+02:00">18 Nov 2026, 11:42</time>
       </p>
       <p class="ui-timeline__description">Approved within the department travel budget.</p>
     </article>

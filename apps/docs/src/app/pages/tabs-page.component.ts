@@ -51,7 +51,7 @@ export class TabApiDemoComponent {
 }
 
 @Component({
-  template: `<p class="doc-flat">Mona Adel, mona&#64;example.com.</p>`,
+  template: `<p class="doc-flat">Hatem Mohamed, hatem&#64;example.com.</p>`,
 })
 class ProfileTabComponent {}
 

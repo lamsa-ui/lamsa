@@ -41,7 +41,7 @@ Nothing has been made yet: name what goes here and give the action that makes th
 A search or filter matched nothing: say so, and give the way back.
 
 ```html
-<ui-empty-state title="No orders match “Karim”">
+<ui-empty-state title="No orders match “Mohamed”">
   <p>Check the spelling, or search by order number.</p>
   <div ui-empty-state-actions>
     <button ui-button variant="secondary">Clear search</button>

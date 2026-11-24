@@ -42,7 +42,7 @@ A search or filter matched nothing: say so, and give the way back.
 
 ```tsx
 <EmptyState
-  title="No orders match “Karim”"
+  title="No orders match “Mohamed”"
   actions={<Button variant="secondary">Clear search</Button>}
 >
   <p>Check the spelling, or search by order number.</p>

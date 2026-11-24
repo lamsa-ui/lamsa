@@ -28,14 +28,14 @@ interface Order {
 }
 
 const names = [
-  'Mona Adel',
-  'Karim Fathy',
-  'Salma Hany',
-  'Omar Nabil',
-  'Laila Sami',
-  'Youssef Amr',
-  'Nour Tarek',
-  'Hana Said',
+  'Hatem Mohamed',
+  'Mohamed Ibrahim',
+  'Ibrahim Hatem',
+  'Hatem Ibrahim',
+  'Mohamed Hatem',
+  'Ibrahim Mohamed',
+  'Hatem Mohamed',
+  'Mohamed Ibrahim',
 ];
 const statuses: Order['status'][] = [
   'Paid',
@@ -204,9 +204,9 @@ export class DataTablePageComponent {
     { key: 'total', header: 'الإجمالي', align: 'end' },
   ];
   protected readonly ordersAr = [
-    { id: 1042, customer: 'منى عادل', total: '٣٤٠ جنيه' },
-    { id: 1041, customer: 'كريم فتحي', total: '١٢٠ جنيه' },
-    { id: 1040, customer: 'سلمى هاني', total: '٨٥ جنيه' },
+    { id: 1042, customer: 'حاتم محمد', total: '٣٤٠ جنيه' },
+    { id: 1041, customer: 'محمد إبراهيم', total: '١٢٠ جنيه' },
+    { id: 1040, customer: 'إبراهيم حاتم', total: '٨٥ جنيه' },
   ];
   protected readonly labelsAr = {
     nav: 'التنقل بين الصفحات',
@@ -312,7 +312,7 @@ const page = ref(1);
     <tbody>
       <tr>
         <td>#1040</td>
-        <td>Mona Adel</td>
+        <td>Hatem Mohamed</td>
         <td>2026-11-18</td>
         <td class="ui-table__cell--end">85 EGP</td>
         <td><span class="ui-badge ui-badge--success">Paid</span></td>

@@ -31,7 +31,7 @@ Two columns when there is room. Make the box narrow and each label goes above it
 <dl ui-property-list>
   <div ui-property term="Order">#1042</div>
   <div ui-property term="Status"><ui-badge variant="success">Paid</ui-badge></div>
-  <div ui-property term="Customer">Mona Adel</div>
+  <div ui-property term="Customer">Hatem Mohamed</div>
   <div ui-property term="Delivery">14 Tahrir Street, Dokki, Giza</div>
   <div ui-property term="Total">EGP 370</div>
 </dl>

@@ -4,8 +4,8 @@ import { AvatarComponent, initials } from './avatar.component';
 
 @Component({
   imports: [AvatarComponent],
-  template: `<ui-avatar name="Mona Adel" [src]="src()" />
-    <ui-avatar name="Mona Adel" size="sm" decorative />`,
+  template: `<ui-avatar name="Hatem Mohamed" [src]="src()" />
+    <ui-avatar name="Hatem Mohamed" size="sm" decorative />`,
 })
 class HostComponent {
   readonly src = signal<string | undefined>('/missing.jpg');
@@ -13,8 +13,8 @@ class HostComponent {
 
 describe('AvatarComponent', () => {
   it('takes the first letters of the first and last word', () => {
-    expect(initials('mona  adel  hassan')).toBe('M\u200cH');
-    expect(initials('منى')).toBe('م');
+    expect(initials('hatem  x  mohamed')).toBe('H\u200cM');
+    expect(initials('حاتم')).toBe('ح');
     expect(initials(' ')).toBe('');
   });
 
@@ -25,14 +25,14 @@ describe('AvatarComponent', () => {
       fixture.nativeElement.querySelectorAll('ui-avatar'),
     );
     expect(named.getAttribute('role')).toBe('img');
-    expect(named.getAttribute('aria-label')).toBe('Mona Adel');
+    expect(named.getAttribute('aria-label')).toBe('Hatem Mohamed');
     const img = named.querySelector('img')!;
     expect(img.getAttribute('alt')).toBe('');
 
     img.dispatchEvent(new Event('error'));
     await fixture.whenStable();
     expect(named.querySelector('img')).toBeNull();
-    expect(named.textContent?.trim()).toBe('M\u200cA');
+    expect(named.textContent?.trim()).toBe('H\u200cM');
 
     fixture.componentInstance.src.set('/new.jpg');
     await fixture.whenStable();

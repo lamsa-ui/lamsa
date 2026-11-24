@@ -40,7 +40,7 @@ A manager approved the request, finance is reviewing it, and the owner is notifi
         <span class="ui-timeline__status ui-timeline__status--approved">Approved</span>
       </div>
       <p class="ui-timeline__meta">
-        <span>Omar Farouk</span><time datetime="2026-11-18T11:42:00+02:00">18 Nov 2026, 11:42</time>
+        <span>Mohamed Hatem</span><time datetime="2026-11-18T11:42:00+02:00">18 Nov 2026, 11:42</time>
       </p>
       <p class="ui-timeline__description">Approved within the department travel budget.</p>
     </article>

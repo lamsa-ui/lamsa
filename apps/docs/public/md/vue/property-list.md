@@ -31,7 +31,7 @@ Two columns when there is room. Make the box narrow and each label goes above it
 <PropertyList>
   <Property term="Order">#1042</Property>
   <Property term="Status"><Badge variant="success">Paid</Badge></Property>
-  <Property term="Customer">Mona Adel</Property>
+  <Property term="Customer">Hatem Mohamed</Property>
   <Property term="Delivery">14 Tahrir Street, Dokki, Giza</Property>
   <Property term="Total">EGP 370</Property>
 </PropertyList>

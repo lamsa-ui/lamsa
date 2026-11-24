@@ -30,7 +30,7 @@ When to use something else:
 ```html
 <ui-avatar-group label="Kitchen team" [people]="people" [max]="3" />
 
-people = [{ name: 'Mona Adel', src: '/mona.jpg' }, { name: 'Karim Fathy' }, …];
+people = [{ name: 'Hatem Mohamed', src: '/hatem.jpg' }, { name: 'Mohamed Ibrahim' }, …];
 ```
 
 ### In Arabic

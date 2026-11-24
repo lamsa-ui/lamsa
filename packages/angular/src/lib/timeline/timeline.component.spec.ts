@@ -10,7 +10,7 @@ class HostComponent {
   readonly items: TimelineItem[] = [
     {
       title: 'Manager review',
-      actor: 'Mina Hassan',
+      actor: 'Hatem Mohamed',
       date: '20 Nov 2026, 14:30',
       dateTime: '2026-11-20T14:30:00Z',
       description: 'Budget and documents verified.',
@@ -35,7 +35,7 @@ describe('TimelineComponent', () => {
       'Approval history',
     );
     expect(el.querySelector('h3')?.textContent?.trim()).toBe('Manager review');
-    expect(el.textContent).toContain('Mina Hassan');
+    expect(el.textContent).toContain('Hatem Mohamed');
     expect(el.textContent).toContain('Budget and documents verified.');
     expect(el.textContent).toContain('Approved');
     expect(el.textContent).toContain('Waiting');

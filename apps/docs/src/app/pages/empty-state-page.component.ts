@@ -50,7 +50,7 @@ import { PageComponent } from '../shared/page.component';
         [code]="results"
       >
         <ui-card class="w-full">
-          <ui-empty-state title="No orders match “Karim”">
+          <ui-empty-state title="No orders match “Mohamed”">
             <p>Check the spelling, or search by order number.</p>
             <div ui-empty-state-actions>
               <button ui-button variant="secondary" type="button">
@@ -111,26 +111,26 @@ export class EmptyStatePageComponent {
   };
 
   protected readonly results = {
-    angular: `<ui-empty-state title="No orders match “Karim”">
+    angular: `<ui-empty-state title="No orders match “Mohamed”">
   <p>Check the spelling, or search by order number.</p>
   <div ui-empty-state-actions>
     <button ui-button variant="secondary">Clear search</button>
   </div>
 </ui-empty-state>`,
     react: `<EmptyState
-  title="No orders match “Karim”"
+  title="No orders match “Mohamed”"
   actions={<Button variant="secondary">Clear search</Button>}
 >
   <p>Check the spelling, or search by order number.</p>
 </EmptyState>`,
-    vue: `<EmptyState title="No orders match “Karim”">
+    vue: `<EmptyState title="No orders match “Mohamed”">
   <p>Check the spelling, or search by order number.</p>
   <template #actions>
     <Button variant="secondary">Clear search</Button>
   </template>
 </EmptyState>`,
     html: `<div class="ui-empty-state">
-  <h3 class="ui-empty-state__title">No orders match “Karim”</h3>
+  <h3 class="ui-empty-state__title">No orders match “Mohamed”</h3>
   <p>Check the spelling, or search by order number.</p>
   <div class="ui-empty-state__actions">
     <button class="ui-button ui-button--secondary">Clear search</button>

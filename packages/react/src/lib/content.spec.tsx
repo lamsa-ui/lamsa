@@ -3,19 +3,19 @@ import { Avatar, Divider, EmptyState, initials, Stat, Tag } from './content.js';
 
 describe('Avatar', () => {
   it('takes the first letters of the first and last word', () => {
-    expect(initials('mona  adel  hassan')).toBe('M\u200cH');
-    expect(initials('منى')).toBe('م');
+    expect(initials('hatem  x  mohamed')).toBe('H\u200cM');
+    expect(initials('حاتم')).toBe('ح');
   });
 
   it('is an image named after the person, and falls back to initials', () => {
-    const { container } = render(<Avatar name="Mona Adel" src="/x.jpg" />);
-    const avatar = screen.getByRole('img', { name: 'Mona Adel' });
+    const { container } = render(<Avatar name="Hatem Mohamed" src="/x.jpg" />);
+    const avatar = screen.getByRole('img', { name: 'Hatem Mohamed' });
     fireEvent.error(container.querySelector('img')!);
-    expect(avatar.textContent).toBe('M\u200cA');
+    expect(avatar.textContent).toBe('H\u200cM');
   });
 
   it('is hidden when decorative', () => {
-    const { container } = render(<Avatar name="Mona" size="lg" decorative />);
+    const { container } = render(<Avatar name="Hatem" size="lg" decorative />);
     const avatar = container.firstElementChild!;
     expect(avatar.getAttribute('aria-hidden')).toBe('true');
     expect(avatar.className).toBe('ui-avatar ui-avatar--lg');
