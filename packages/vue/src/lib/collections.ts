@@ -16,6 +16,7 @@ import {
 import type { AlertTone } from './components.js';
 import { Icon, Tag } from './content.js';
 import { Dialog } from './dialog.js';
+import { useUiLabels } from './labels';
 
 export interface ChipInputProps {
   modelValue?: string[];
@@ -46,15 +47,9 @@ export const ChipInput = defineComponent({
     disabled: Boolean,
     name: String,
     error: String,
-    removeLabel: { type: String, default: 'Remove' },
-    addedLabel: {
-      type: Function as PropType<(chip: string) => string>,
-      default: (c: string) => `${c} added`,
-    },
-    removedLabel: {
-      type: Function as PropType<(chip: string) => string>,
-      default: (c: string) => `${c} removed`,
-    },
+    removeLabel: String,
+    addedLabel: Function as PropType<(chip: string) => string>,
+    removedLabel: Function as PropType<(chip: string) => string>,
     testId: String,
   },
   emits: {
@@ -62,6 +57,7 @@ export const ChipInput = defineComponent({
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const chips = ref([...props.modelValue]);
     watch(
@@ -82,7 +78,7 @@ export const ChipInput = defineComponent({
     const remove = (i: number) => {
       const chip = chips.value[i];
       set(chips.value.filter((_, j) => j !== i));
-      said.value = props.removedLabel(chip);
+      said.value = (props.removedLabel ?? uiLabels.value.removed)(chip);
       // Focus the next chip's × button, or the field when none is left.
       void nextTick(() => {
         const all = buttons();
@@ -105,7 +101,7 @@ export const ChipInput = defineComponent({
                     h(
                       Tag,
                       {
-                        removeLabel: props.removeLabel,
+                        removeLabel: props.removeLabel ?? uiLabels.value.remove,
                         onRemove: props.disabled ? undefined : () => remove(i),
                       },
                       () => chip,
@@ -137,7 +133,7 @@ export const ChipInput = defineComponent({
                 input.value = '';
                 if (!chip || chips.value.includes(chip)) return;
                 set([...chips.value, chip]);
-                said.value = props.addedLabel(chip);
+                said.value = (props.addedLabel ?? uiLabels.value.added)(chip);
               } else if (event.key === 'Backspace' && !input.value) {
                 buttons().pop()?.focus();
               }
@@ -202,20 +198,18 @@ export const CommandPalette = defineComponent({
     commands: { type: Array as PropType<Command[]>, required: true },
     open: { type: Boolean, required: true },
     shortcut: { type: String as PropType<string | null>, default: 'k' },
-    title: { type: String, default: 'Commands' },
-    placeholder: { type: String, default: 'Type a command' },
-    emptyLabel: { type: String, default: 'No commands match.' },
-    closeLabel: { type: String, default: 'Close' },
-    countLabel: {
-      type: Function as PropType<(count: number) => string>,
-      default: (n: number) => (n === 1 ? '1 command' : `${n} commands`),
-    },
+    title: String,
+    placeholder: String,
+    emptyLabel: String,
+    closeLabel: String,
+    countLabel: Function as PropType<(count: number) => string>,
   },
   emits: {
     'update:open': (_open: boolean) => true,
     run: (_command: Command) => true,
   },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const query = ref('');
     const active = ref(0);
@@ -257,9 +251,9 @@ export const CommandPalette = defineComponent({
       return h(
         Dialog,
         {
-          title: props.title,
+          title: props.title ?? uiLabels.value.commands,
           open: props.open,
-          closeLabel: props.closeLabel,
+          closeLabel: props.closeLabel ?? uiLabels.value.close,
           'onUpdate:open': (next: boolean) => {
             if (next) reset();
             emit('update:open', next);
@@ -275,12 +269,12 @@ export const CommandPalette = defineComponent({
               autofocus: true,
               'aria-autocomplete': 'list',
               'aria-expanded': 'true',
-              'aria-label': props.title,
+              'aria-label': props.title ?? uiLabels.value.commands,
               'aria-controls': `${id}-list`,
               'aria-activedescendant': found.length
                 ? `${id}-${active.value}`
                 : undefined,
-              placeholder: props.placeholder,
+              placeholder: props.placeholder ?? uiLabels.value.typeCommand,
               value: query.value,
               onInput: (event: Event) => {
                 query.value = (event.target as HTMLInputElement).value;
@@ -313,7 +307,7 @@ export const CommandPalette = defineComponent({
                     class: 'ui-command__list',
                     role: 'listbox',
                     id: `${id}-list`,
-                    'aria-label': props.title,
+                    'aria-label': props.title ?? uiLabels.value.commands,
                   },
                   found.map((command, i) =>
                     h(
@@ -348,12 +342,12 @@ export const CommandPalette = defineComponent({
               : h(
                   'p',
                   { class: 'ui-command__empty', id: `${id}-list` },
-                  props.emptyLabel,
+                  props.emptyLabel ?? uiLabels.value.noCommands,
                 ),
             h(
               'span',
               { class: 'ui-visually-hidden', role: 'status' },
-              props.countLabel(found.length),
+              (props.countLabel ?? uiLabels.value.commandCount)(found.length),
             ),
           ]),
       );
@@ -413,11 +407,12 @@ export const DataTable = defineComponent({
     >,
     sort: { type: Object as PropType<TableSort | null>, default: null },
     loading: Boolean,
-    loadingLabel: { type: String, default: 'Loading' },
-    emptyMessage: { type: String, default: 'No results' },
+    loadingLabel: String,
+    emptyMessage: String,
   },
   emits: { 'update:sort': (_sort: TableSort) => true },
   setup(props, { emit, slots }) {
+    const uiLabels = useUiLabels();
     const captionId = useId();
     const wrap = ref<HTMLElement>();
     const scrolls = ref(false);
@@ -546,7 +541,9 @@ export const DataTable = defineComponent({
                         class: 'ui-table__empty',
                         colspan: props.columns.length,
                       },
-                      props.loading ? '' : props.emptyMessage,
+                      props.loading
+                        ? ''
+                        : (props.emptyMessage ?? uiLabels.value.noResults),
                     ),
                   ),
             ),
@@ -561,7 +558,7 @@ export const DataTable = defineComponent({
           h(
             'span',
             { class: 'ui-visually-hidden', role: 'status' },
-            props.loading ? props.loadingLabel : '',
+            props.loading ? (props.loadingLabel ?? uiLabels.value.loading) : '',
           ),
         ],
       );
@@ -608,10 +605,11 @@ export interface ToastProviderProps {
 export const ToastProvider = defineComponent({
   name: 'UiToastProvider',
   props: {
-    label: { type: String, default: 'Notifications' },
-    closeLabel: { type: String, default: 'Dismiss' },
+    label: String,
+    closeLabel: String,
   },
   setup(props, { slots }) {
+    const uiLabels = useUiLabels();
     const toasts = ref<ToastItem[]>([]);
     const said = ref({ polite: '', assertive: '' });
     const timers = new Map<number, ReturnType<typeof setTimeout>>();
@@ -673,7 +671,7 @@ export const ToastProvider = defineComponent({
             h(
               'section',
               {
-                'aria-label': props.label,
+                'aria-label': props.label ?? uiLabels.value.notifications,
                 onMouseenter: () => pause(true),
                 onMouseleave: () => pause(false),
                 onFocusin: () => pause(true),
@@ -726,7 +724,8 @@ export const ToastProvider = defineComponent({
                           type: 'button',
                           class:
                             'ui-button ui-button--ghost ui-button--md ui-alert__close',
-                          'aria-label': props.closeLabel,
+                          'aria-label':
+                            props.closeLabel ?? uiLabels.value.dismiss,
                           onClick: () => dismiss(toast.id),
                         },
                         h(Icon, { name: 'x', size: 'sm' }),
@@ -768,11 +767,12 @@ export interface AppShellProps {
 export const AppShell = defineComponent({
   name: 'UiAppShell',
   props: {
-    menuLabel: { type: String, default: 'Menu' },
+    menuLabel: String,
     mainId: { type: String, default: 'main' },
     landmarks: { type: Boolean, default: true },
   },
   setup(props, { slots }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const open = ref(false);
     const menu = ref<HTMLButtonElement>();
@@ -810,7 +810,7 @@ export const AppShell = defineComponent({
                   type: 'button',
                   class:
                     'ui-button ui-button--ghost ui-button--icon ui-shell__menu',
-                  'aria-label': props.menuLabel,
+                  'aria-label': props.menuLabel ?? uiLabels.value.menu,
                   'aria-expanded': open.value,
                   'aria-controls': id,
                   onClick: () => (open.value = !open.value),

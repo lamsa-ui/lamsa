@@ -3,6 +3,7 @@
 import { pageSlots } from './page-slots.js';
 import { Icon } from './icon.js';
 import { Menu } from './menu.js';
+import { useUiLabels } from './labels.js';
 
 export interface PaginationLabels {
   /** The name of the navigation landmark. */
@@ -16,16 +17,6 @@ export interface PaginationLabels {
   /** The label of the rows-per-page picker. */
   pageSize: string;
 }
-
-const englishLabels: PaginationLabels = {
-  nav: 'Pagination',
-  previous: 'Previous page',
-  next: 'Next page',
-  page: (page) => `Page ${page}`,
-  summary: (first, last, total) =>
-    total === 0 ? 'No results' : `${first}–${last} of ${total}`,
-  pageSize: 'Rows per page',
-};
 
 export interface PaginationProps {
   /** The current page, starting at 1. */
@@ -59,7 +50,7 @@ export function Pagination({
   pageSizes = [],
   labels,
 }: PaginationProps) {
-  const text = { ...englishLabels, ...labels };
+  const text = { ...useUiLabels().pagination, ...labels };
   const pageCount = Math.max(1, Math.ceil(total / pageSize));
   const first = Math.min(total, (page - 1) * pageSize + 1);
   const last = Math.min(total, page * pageSize);

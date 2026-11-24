@@ -12,6 +12,7 @@ import {
 import { cx } from './class-names.js';
 import { latinDigits } from './fields.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 /** A country in the code list: ISO alpha-2 code, international dialling code, and its name as shown. */
 export interface PhoneCountry {
@@ -123,7 +124,7 @@ export function PhoneField({
   onChange,
   country = 'EG',
   countries = PHONE_COUNTRIES,
-  countryLabel = 'Country code',
+  countryLabel,
   placeholder,
   hint,
   error,
@@ -134,6 +135,8 @@ export function PhoneField({
   testId,
   className,
 }: PhoneFieldProps) {
+  const t = useUiLabels();
+  countryLabel ??= t.countryCode;
   const id = useId();
   const first = split(value ?? defaultValue, countries, country);
   const [code, setCode] = useState(first.country ?? country);

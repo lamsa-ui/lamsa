@@ -1,5 +1,6 @@
 import type { ComponentPropsWithRef } from 'react';
 import { cx } from './class-names.js';
+import { useUiLabels } from './labels.js';
 
 export interface BreadcrumbsProps extends ComponentPropsWithRef<'nav'> {
   /** Names the landmark; pass the translated text. */
@@ -18,11 +19,13 @@ export interface BreadcrumbsProps extends ComponentPropsWithRef<'nav'> {
  * ```
  */
 export function Breadcrumbs({
-  label = 'Breadcrumb',
+  label,
   className,
   children,
   ...nav
 }: BreadcrumbsProps) {
+  const t = useUiLabels();
+  label ??= t.breadcrumb;
   return (
     <nav
       {...nav}

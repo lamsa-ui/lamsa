@@ -77,6 +77,7 @@ import {
   type VNodeChild,
 } from 'vue';
 import { Icon } from './content.js';
+import { useUiLabels } from './labels';
 
 export interface DateRange {
   start: string;
@@ -403,9 +404,9 @@ export const DatePicker = defineComponent({
     },
     hint: String,
     error: String,
-    calendarLabel: { type: String, default: 'Choose date' },
-    rangeStartLabel: { type: String, default: 'Start date' },
-    rangeEndLabel: { type: String, default: 'End date' },
+    calendarLabel: String,
+    rangeStartLabel: String,
+    rangeEndLabel: String,
     disabled: Boolean,
     name: String,
     testId: String,
@@ -414,6 +415,7 @@ export const DatePicker = defineComponent({
     'update:modelValue': (_value: string | DateRange | null) => true,
   },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const open = ref(false);
     return () => {
@@ -482,7 +484,7 @@ export const DatePicker = defineComponent({
                             {
                               class: 'ui-date-input',
                               role: 'group',
-                              'aria-label': `${props.label}: ${props.rangeStartLabel}`,
+                              'aria-label': `${props.label}: ${props.rangeStartLabel ?? uiLabels.value.startDate}`,
                             },
                             segments(
                               family,
@@ -507,7 +509,7 @@ export const DatePicker = defineComponent({
                             {
                               class: 'ui-date-input',
                               role: 'group',
-                              'aria-label': `${props.label}: ${props.rangeEndLabel}`,
+                              'aria-label': `${props.label}: ${props.rangeEndLabel ?? uiLabels.value.endDate}`,
                             },
                             segments(
                               family,
@@ -562,7 +564,7 @@ export const DatePicker = defineComponent({
           P('Trigger'),
           {
             class: 'ui-input-group__button',
-            'aria-label': props.calendarLabel,
+            'aria-label': props.calendarLabel ?? uiLabels.value.chooseDate,
           },
           () => h(Icon, { name: 'calendar' }),
         );
@@ -600,14 +602,15 @@ export const NumberField = defineComponent({
     formatOptions: Object as PropType<Intl.NumberFormatOptions>,
     hint: String,
     error: String,
-    decrementLabel: { type: String, default: 'Decrease' },
-    incrementLabel: { type: String, default: 'Increase' },
+    decrementLabel: String,
+    incrementLabel: String,
     disabled: Boolean,
     name: String,
     testId: String,
   },
   emits: { 'update:modelValue': (_value: number | null) => true },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     return () =>
       h(
@@ -638,7 +641,7 @@ export const NumberField = defineComponent({
               NumberFieldDecrement,
               {
                 class: 'ui-input-group__button',
-                'aria-label': props.decrementLabel,
+                'aria-label': props.decrementLabel ?? uiLabels.value.decrease,
               },
               () => h(Icon, { name: 'minus' }),
             ),
@@ -653,7 +656,7 @@ export const NumberField = defineComponent({
               NumberFieldIncrement,
               {
                 class: 'ui-input-group__button',
-                'aria-label': props.incrementLabel,
+                'aria-label': props.incrementLabel ?? uiLabels.value.increase,
               },
               () => h(Icon, { name: 'plus' }),
             ),
@@ -689,7 +692,7 @@ export const SearchField = defineComponent({
     hideLabel: Boolean,
     placeholder: String,
     hint: String,
-    clearLabel: { type: String, default: 'Clear search' },
+    clearLabel: String,
     disabled: Boolean,
     name: String,
     testId: String,
@@ -700,6 +703,7 @@ export const SearchField = defineComponent({
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const input = ref<HTMLInputElement>();
     const value = ref(props.modelValue);
@@ -753,7 +757,7 @@ export const SearchField = defineComponent({
                 {
                   type: 'button',
                   class: 'ui-input-group__button',
-                  'aria-label': props.clearLabel,
+                  'aria-label': props.clearLabel ?? uiLabels.value.clearSearch,
                   onClick: () => {
                     set('');
                     input.value?.focus();

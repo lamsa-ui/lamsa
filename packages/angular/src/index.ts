@@ -138,3 +138,10 @@ export {
 } from './lib/property-list/property-list.component';
 export { AvatarGroupComponent } from './lib/avatar/avatar-group.component';
 export type { AvatarPerson } from './lib/avatar/avatar-group.component';
+export { provideUiLabels, UI_LABELS } from './lib/labels';
+export { arabicLabels, englishLabels } from './lib/ui-labels';
+export type {
+  UiLabels,
+  UiPaginationLabels,
+  UiTimelineStatus,
+} from './lib/ui-labels';

@@ -5,6 +5,7 @@ import {
   computed,
   ElementRef,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -13,6 +14,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -64,7 +66,7 @@ let nextId = 0;
         (blur)="markTouched()"
       />
       @if (!disabled()) {
-        <p class="ui-dropzone__text">{{ dropText() }}</p>
+        <p class="ui-dropzone__text">{{ dropTextText() }}</p>
       }
     </div>
     @if (hint()) {
@@ -80,6 +82,7 @@ let nextId = 0;
 export class FileFieldComponent
   implements ControlValueAccessor, FormValueControl<File[]>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   /** File types the picker offers: `'.pdf'`, `'image/*'`. */
   readonly accept = input<string>();
@@ -87,7 +90,10 @@ export class FileFieldComponent
   readonly hint = input<string>();
   readonly error = input<string>();
   /** The line under the button; pass the translated text. */
-  readonly dropText = input('Or drop a file here');
+  readonly dropText = input<string>();
+  protected readonly dropTextText = computed(
+    () => this.dropText() ?? this.uiLabels().dropFile,
+  );
   readonly testId = input<string>();
 
   protected readonly id = `ui-file-field-${nextId++}`;

@@ -14,6 +14,7 @@ import {
 } from 'react-aria-components';
 import { cx } from './class-names.js';
 import type { SelectOption } from './select.js';
+import { useUiLabels } from './labels.js';
 
 export interface ComboboxProps<T extends Key> {
   /** The visible label; it names the field and the list. */
@@ -58,7 +59,7 @@ export function Combobox<T extends Key>({
   placeholder,
   hint,
   error,
-  emptyText = 'No matches',
+  emptyText,
   disabled,
   name,
   onBlur,
@@ -66,6 +67,8 @@ export function Combobox<T extends Key>({
   testId,
   className,
 }: ComboboxProps<T>) {
+  const t = useUiLabels();
+  emptyText ??= t.noMatches;
   const { contains } = useFilter({ sensitivity: 'base' });
 
   return (

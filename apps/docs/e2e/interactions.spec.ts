@@ -1,11 +1,12 @@
-// Keyboard and pointer behaviour of the components on their docs pages, in the Angular,
-// React and Vue views.
+// Keyboard and pointer behaviour of the components on their docs pages. The live demos are
+// the Angular components; React and Vue behaviour is covered by their unit tests.
 // Runs in Chromium, Firefox and WebKit.
 import { readFile } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
 import { openDocs } from './docs';
 
-for (const framework of ['angular', 'react', 'vue'] as const) {
+{
+  const framework = 'angular';
   test.describe(framework, () => {
     test('select: keyboard selection', async ({ page }) => {
       await openDocs(page, 'components/select', { framework });
@@ -266,6 +267,136 @@ for (const framework of ['angular', 'react', 'vue'] as const) {
       await calendar.waitFor();
       await page.keyboard.press('Escape');
       await expect(calendar).toHaveCount(0);
+    });
+
+    test('right to left: the arrow keys flip in tabs, toolbar and calendar', async ({
+      page,
+    }) => {
+      await openDocs(page, 'components/tabs', { framework });
+      const tabs = page.getByRole('tablist', { name: 'الطلب ١٠٤٢' });
+      await tabs.getByRole('tab', { name: 'التفاصيل' }).press('ArrowLeft');
+      await expect(tabs.getByRole('tab', { name: 'السجل' })).toHaveAttribute(
+        'aria-selected',
+        'true',
+      );
+
+      await openDocs(page, 'components/toolbar', { framework });
+      const bar = page.getByRole('toolbar', { name: 'الطلب' });
+      await bar.getByRole('button', { name: 'طباعة' }).focus();
+      await page.keyboard.press('ArrowLeft');
+      await expect(bar.getByRole('button', { name: 'استرداد' })).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect(bar.getByRole('button', { name: 'طباعة' })).toBeFocused();
+
+      await openDocs(page, 'components/calendar', { framework });
+      const grid = page.locator('[dir="rtl"] [role="grid"]').first();
+      await grid.locator('[tabindex="0"]').first().focus();
+      const day = () =>
+        page.evaluate(() => document.activeElement?.getAttribute('data-date'));
+      const start = (await day())!;
+      await page.keyboard.press('ArrowLeft');
+      const next = new Date(`${start}T00:00:00Z`);
+      next.setUTCDate(next.getUTCDate() + 1);
+      await expect.poll(day).toBe(next.toISOString().slice(0, 10));
+    });
+
+    test('select: typing a letter jumps to the option', async ({ page }) => {
+      await openDocs(page, 'components/select', { framework });
+      const trigger = page.getByRole('button', { name: /City/ }).first();
+      await trigger.press('ArrowDown');
+      await page.getByRole('listbox').waitFor();
+      await page.keyboard.press('g');
+      // Typeahead waits a moment for more letters before it moves.
+      await expect(page.getByRole('option', { name: 'Giza' })).toBeFocused();
+      await page.keyboard.press('Enter');
+      await expect(trigger).toContainText('Giza');
+    });
+
+    test('tree: typing a name jumps to it', async ({ page }) => {
+      await openDocs(page, 'components/tree', { framework });
+      const tree = page.getByRole('tree', { name: 'Menu', exact: true });
+      await tree.getByRole('treeitem', { name: 'Mains' }).focus();
+      await page.keyboard.press('d');
+      await expect(
+        tree.getByRole('treeitem', { name: 'Drinks' }),
+      ).toBeFocused();
+    });
+
+    test('phone field: arrows open the countries, Escape closes them', async ({
+      page,
+    }) => {
+      await openDocs(page, 'components/phone-field', { framework });
+      const country = page
+        .getByRole('button', { name: /^Country code/ })
+        .first();
+      await country.press('ArrowDown');
+      const list = page.getByRole('listbox');
+      await list.waitFor();
+      await page.keyboard.press('Escape');
+      await expect(list).toHaveCount(0);
+      await expect(country).toBeFocused();
+    });
+
+    test('code input: typing moves on, Backspace goes back, a whole code fills every box', async ({
+      page,
+    }) => {
+      await openDocs(page, 'components/pin-input', { framework });
+      const box = (n: number) =>
+        page
+          .getByRole('textbox', { name: new RegExp(`^Digit ${n} of`) })
+          .first();
+      await box(1).focus();
+      await page.keyboard.press('4');
+      await expect(box(2)).toBeFocused();
+      await page.keyboard.press('Backspace');
+      await expect(box(1)).toBeFocused();
+      // A phone's one-time-code autofill puts the whole code in one box.
+      await box(1).fill('123456');
+      await expect(box(6)).toHaveValue('6');
+    });
+
+    test('language switcher: the menu opens and Escape restores the button', async ({
+      page,
+    }) => {
+      await openDocs(page, 'components/language-switcher', { framework });
+      const button = page
+        .getByRole('button', { name: 'Language: English' })
+        .first();
+      await button.press('Enter');
+      const menu = page.getByRole('menu');
+      await menu.waitFor();
+      await page.keyboard.press('Escape');
+      await expect(menu).toHaveCount(0);
+      await expect(button).toBeFocused();
+    });
+
+    test('app shell: Escape closes the side bar', async ({ page }) => {
+      await openDocs(page, 'components/app-shell', { framework });
+      const menu = page
+        .getByRole('button', { name: 'Menu', exact: true })
+        .first();
+      await menu.press('Enter');
+      await expect(menu).toHaveAttribute('aria-expanded', 'true');
+      await page.keyboard.press('Escape');
+      await expect(menu).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    test('context menu: Shift+F10 opens it on the focused item', async ({
+      page,
+      browserName,
+    }) => {
+      // Only Chromium turns a scripted Shift+F10 into a contextmenu event; macOS has no such key.
+      test.skip(
+        browserName !== 'chromium',
+        'Shift+F10 is not synthesized here',
+      );
+      await openDocs(page, 'components/context-menu', { framework });
+      await page.getByText('invoice-1042.pdf').first().focus();
+      await page.keyboard.press('Shift+F10');
+      const menu = page.getByRole('menu');
+      await menu.waitFor();
+      await page.keyboard.press('Escape');
+      await expect(menu).toHaveCount(0);
     });
   });
 }

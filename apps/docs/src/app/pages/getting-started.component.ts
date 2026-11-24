@@ -258,6 +258,14 @@ import { PageComponent } from '../shared/page.component';
           </p>
           <app-code-block [text]="i18n" caption="React" />
         }
+        @if (settings.framework() !== 'html') {
+          <p>
+            The components also say words of their own: close buttons,
+            announcements, pagination, empty lists. Give them Arabic in one
+            place, and switch it with the language.
+          </p>
+          <app-code-block [code]="uiLabels" />
+        }
       </section>
 
       <section class="doc-section">
@@ -267,8 +275,7 @@ import { PageComponent } from '../shared/page.component';
             <p>
               Nothing to provide: <code>UiDialog</code>,
               <code>UiAlertDialog</code> and <code>UiToast</code> are provided
-              in root, so inject them where you need them. In an Arabic app, set
-              the toast labels once at start-up.
+              in root, so inject them where you need them.
             </p>
           }
           @case ('react') {
@@ -460,8 +467,9 @@ import { PageComponent } from '../shared/page.component';
           </li>
           <li>Never let colour carry meaning alone: an error also has text.</li>
           <li>
-            In an Arabic app, translate every label the components show: close
-            buttons, the toast region, pagination.
+            In an Arabic app, give the components Arabic words with
+            <code>arabicLabels</code> (step 4), and write your own labels in
+            Arabic too.
           </li>
         </ul>
       </section>
@@ -556,19 +564,37 @@ npx @tailwindcss/cli -i src/app.css -o dist/app.css --watch`,
   <App />
 </I18nProvider>`;
 
+  protected readonly uiLabels = {
+    angular: `// app.config.ts: lang() is your language signal
+import { computed } from '@angular/core';
+import { arabicLabels, englishLabels, provideUiLabels } from '@lamsa-ui/angular';
+
+providers: [
+  provideUiLabels(computed(() => (lang() === 'ar' ? arabicLabels : englishLabels))),
+]`,
+    react: `import { arabicLabels, englishLabels, UiLabelsProvider } from '@lamsa-ui/react';
+
+<UiLabelsProvider labels={lang === 'ar' ? arabicLabels : englishLabels}>
+  <App />
+</UiLabelsProvider>`,
+    vue: `// App.vue, in <script setup>: lang is your language ref
+import { computed } from 'vue';
+import { arabicLabels, englishLabels, provideUiLabels } from '@lamsa-ui/vue';
+
+provideUiLabels(computed(() => (lang.value === 'ar' ? arabicLabels : englishLabels)));`,
+  };
+
   protected readonly appWide = {
-    angular: `// app.component.ts, Arabic apps only
+    angular: `// Nothing to set up: inject the services where you need them.
 import { inject } from '@angular/core';
 import { UiToast } from '@lamsa-ui/angular';
 
-constructor() {
-  inject(UiToast).labels.set({ region: 'الإشعارات', close: 'إخفاء' });
-}`,
+private readonly toast = inject(UiToast);`,
     react: `// main.tsx
 import { ToastProvider } from '@lamsa-ui/react';
 
 createRoot(root).render(
-  <ToastProvider label="Notifications" closeLabel="Dismiss">
+  <ToastProvider>
     <App />
   </ToastProvider>,
 );`,

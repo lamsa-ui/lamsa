@@ -29,6 +29,7 @@ import {
 import { defineComponent, h, ref, useId, type PropType } from 'vue';
 import type { ButtonVariant } from './components.js';
 import { Icon } from './content.js';
+import { useUiLabels } from './labels';
 
 export interface SelectOption {
   value: string;
@@ -209,7 +210,7 @@ export const Combobox = defineComponent({
     placeholder: String,
     hint: String,
     error: String,
-    emptyText: { type: String, default: 'No matches' },
+    emptyText: String,
     disabled: Boolean,
     name: String,
     testId: String,
@@ -219,6 +220,7 @@ export const Combobox = defineComponent({
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const active = ref<unknown>();
     const labelOf = (value: unknown) =>
@@ -277,7 +279,7 @@ export const Combobox = defineComponent({
                       h(
                         ComboboxEmpty,
                         { class: 'ui-listbox__empty', role: 'status' },
-                        () => props.emptyText,
+                        () => props.emptyText ?? uiLabels.value.noMatches,
                       ),
                       ...props.options.map((option, index) =>
                         h(

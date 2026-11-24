@@ -3,6 +3,7 @@ import {
   afterNextRender,
   booleanAttribute,
   Component,
+  computed,
   contentChildren,
   ElementRef,
   inject,
@@ -16,6 +17,7 @@ import {
 } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 /** One step: its name, and the content shown while it is the current step. */
 @Component({
@@ -80,7 +82,7 @@ let nextId = 0;
             </span>
             <span class="ui-steps__label">
               @if (done) {
-                <span class="ui-visually-hidden">{{ doneLabel() }}: </span>
+                <span class="ui-visually-hidden">{{ doneLabelText() }}: </span>
               }
               {{ step.label() }}
             </span>
@@ -107,16 +109,19 @@ let nextId = 0;
           type="button"
           (click)="go(current() - 1)"
         >
-          {{ backLabel() }}
+          {{ backLabelText() }}
         </button>
       }
       <button ui-button type="button" (click)="next()">
-        {{ current() === steps().length - 1 ? finishLabel() : nextLabel() }}
+        {{
+          current() === steps().length - 1 ? finishLabelText() : nextLabelText()
+        }}
       </button>
     </div>
   `,
 })
 export class StepperComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the list of steps: "Checkout". */
   readonly label = input.required<string>();
   /** Index of the current step, from 0; two-way with `[(current)]`. */
@@ -124,10 +129,22 @@ export class StepperComponent {
   /** Steps are reached in order: each waits for the ones before it to be completed. */
   readonly linear = input(false, { transform: booleanAttribute });
   /** Read before each done step. Translate it, and the button labels. */
-  readonly doneLabel = input('Done');
-  readonly backLabel = input('Back');
-  readonly nextLabel = input('Next');
-  readonly finishLabel = input('Finish');
+  readonly doneLabel = input<string>();
+  protected readonly doneLabelText = computed(
+    () => this.doneLabel() ?? this.uiLabels().stepDone,
+  );
+  readonly backLabel = input<string>();
+  protected readonly backLabelText = computed(
+    () => this.backLabel() ?? this.uiLabels().stepBack,
+  );
+  readonly nextLabel = input<string>();
+  protected readonly nextLabelText = computed(
+    () => this.nextLabel() ?? this.uiLabels().stepNext,
+  );
+  readonly finishLabel = input<string>();
+  protected readonly finishLabelText = computed(
+    () => this.finishLabel() ?? this.uiLabels().stepFinish,
+  );
   /** The marker's number: (n) => n.toLocaleString('ar-EG') for Arabic digits. */
   readonly number = input<(n: number) => string>(String);
 

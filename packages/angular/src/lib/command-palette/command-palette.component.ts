@@ -13,6 +13,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { DialogComponent, UiDialog } from '../dialog/dialog';
+import { UI_LABELS } from '../labels';
 
 export interface Command {
   id: string;
@@ -40,7 +41,7 @@ let nextId = 0;
   host: { '(document:keydown)': 'shortcutKey($event)' },
   template: `
     <ng-template #palette>
-      <ui-dialog [title]="title()" [closeLabel]="closeLabel()">
+      <ui-dialog [title]="titleText()" [closeLabel]="closeLabelText()">
         <div class="ui-command">
           <input
             class="ui-input"
@@ -49,10 +50,10 @@ let nextId = 0;
             autocomplete="off"
             aria-autocomplete="list"
             aria-expanded="true"
-            [attr.aria-label]="title()"
+            [attr.aria-label]="titleText()"
             [attr.aria-controls]="id + '-list'"
             [attr.aria-activedescendant]="activeId()"
-            [placeholder]="placeholder()"
+            [placeholder]="placeholderText()"
             [value]="query()"
             (input)="type($event)"
             (keydown)="keydown($event)"
@@ -62,7 +63,7 @@ let nextId = 0;
               class="ui-command__list"
               role="listbox"
               [id]="id + '-list'"
-              [attr.aria-label]="title()"
+              [attr.aria-label]="titleText()"
             >
               @for (command of matches(); track command.id; let i = $index) {
                 <!-- Keyboard use goes through the field (aria-activedescendant); the click is for the pointer. -->
@@ -88,11 +89,11 @@ let nextId = 0;
             </ul>
           } @else {
             <p class="ui-command__empty" [id]="id + '-list'">
-              {{ emptyLabel() }}
+              {{ emptyLabelText() }}
             </p>
           }
           <span class="ui-visually-hidden" role="status">{{
-            countLabel()(matches().length)
+            countLabelText()(matches().length)
           }}</span>
         </div>
       </ui-dialog>
@@ -100,17 +101,31 @@ let nextId = 0;
   `,
 })
 export class CommandPaletteComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly commands = input.required<Command[]>();
   readonly open = model(false);
   /** The letter that opens it with Ctrl or ⌘. null: no shortcut. */
   readonly shortcut = input<string | null>('k');
-  readonly title = input('Commands');
-  readonly placeholder = input('Type a command');
-  readonly emptyLabel = input('No commands match.');
-  readonly closeLabel = input('Close');
+  readonly title = input<string>();
+  protected readonly titleText = computed(
+    () => this.title() ?? this.uiLabels().commands,
+  );
+  readonly placeholder = input<string>();
+  protected readonly placeholderText = computed(
+    () => this.placeholder() ?? this.uiLabels().typeCommand,
+  );
+  readonly emptyLabel = input<string>();
+  protected readonly emptyLabelText = computed(
+    () => this.emptyLabel() ?? this.uiLabels().noCommands,
+  );
+  readonly closeLabel = input<string>();
+  protected readonly closeLabelText = computed(
+    () => this.closeLabel() ?? this.uiLabels().close,
+  );
   /** Announced as you type. Translate it. */
-  readonly countLabel = input<(count: number) => string>((n) =>
-    n === 1 ? '1 command' : `${n} commands`,
+  readonly countLabel = input<(count: number) => string>();
+  protected readonly countLabelText = computed(
+    () => this.countLabel() ?? this.uiLabels().commandCount,
   );
   readonly run = output<Command>();
 

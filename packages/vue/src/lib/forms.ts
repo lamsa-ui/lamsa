@@ -12,6 +12,7 @@ import {
   type Ref,
 } from 'vue';
 import { Icon } from './content.js';
+import { useUiLabels } from './labels';
 
 /** v-model that also works without a binding: the component keeps its own copy. */
 function model<T>(
@@ -96,7 +97,7 @@ export const FileField = defineComponent({
     label: { type: String, required: true },
     hint: String,
     error: String,
-    dropText: { type: String, default: 'Or drop a file here' },
+    dropText: String,
     testId: String,
     id: String,
   },
@@ -105,6 +106,7 @@ export const FileField = defineComponent({
     change: (_event: Event) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const autoId = useId();
     const over = ref(false);
     const field = ref<HTMLInputElement>();
@@ -169,7 +171,11 @@ export const FileField = defineComponent({
               ),
               disabled()
                 ? null
-                : h('p', { class: 'ui-dropzone__text' }, props.dropText),
+                : h(
+                    'p',
+                    { class: 'ui-dropzone__text' },
+                    props.dropText ?? uiLabels.value.dropFile,
+                  ),
             ],
           ),
           ...message('hint', id, props.hint),
@@ -274,20 +280,15 @@ export const Rating = defineComponent({
     readOnly: Boolean,
     disabled: Boolean,
     name: String,
-    starLabel: {
-      type: Function as PropType<(stars: number) => string>,
-      default: (n: number) => (n === 1 ? '1 star' : `${n} stars`),
-    },
-    scoreLabel: {
-      type: Function as PropType<(value: number, max: number) => string>,
-      default: (v: number, m: number) => `${v} out of ${m} stars`,
-    },
+    starLabel: Function as PropType<(stars: number) => string>,
+    scoreLabel: Function as PropType<(value: number, max: number) => string>,
   },
   emits: {
     'update:modelValue': (_value: number) => true,
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const autoName = useId();
     const current = model<number | null>(
       () => props.modelValue,
@@ -306,7 +307,10 @@ export const Rating = defineComponent({
           mergeProps(attrs, {
             class: 'ui-rating ui-rating--readonly',
             role: 'img',
-            'aria-label': props.scoreLabel(value ?? 0, props.max),
+            'aria-label': (props.scoreLabel ?? uiLabels.value.score)(
+              value ?? 0,
+              props.max,
+            ),
           }),
           h(
             'span',
@@ -347,7 +351,11 @@ export const Rating = defineComponent({
                   onBlur: (event: FocusEvent) => emit('blur', event),
                 }),
                 star(),
-                h('span', { class: 'ui-visually-hidden' }, props.starLabel(n)),
+                h(
+                  'span',
+                  { class: 'ui-visually-hidden' },
+                  (props.starLabel ?? uiLabels.value.star)(n),
+                ),
               ]),
             ),
           ),
@@ -473,10 +481,7 @@ export const PinInput = defineComponent({
     label: { type: String, required: true },
     length: { type: Number, default: 6 },
     secret: Boolean,
-    cellLabel: {
-      type: Function as PropType<(n: number, of: number) => string>,
-      default: (n: number, of: number) => `Digit ${n} of ${of}`,
-    },
+    cellLabel: Function as PropType<(n: number, of: number) => string>,
     hint: String,
     error: String,
     disabled: Boolean,
@@ -489,6 +494,7 @@ export const PinInput = defineComponent({
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const cells = (code: string) =>
       Array.from({ length: props.length }, (_, i) => code[i] ?? '');
@@ -538,7 +544,10 @@ export const PinInput = defineComponent({
                 inputmode: 'numeric',
                 placeholder: ' ',
                 autocomplete: index === 0 ? 'one-time-code' : 'off',
-                'aria-label': props.cellLabel(index + 1, props.length),
+                'aria-label': (props.cellLabel ?? uiLabels.value.digit)(
+                  index + 1,
+                  props.length,
+                ),
                 'aria-invalid': props.error ? 'true' : undefined,
                 'data-testid': props.testId
                   ? `${props.testId}-${index}`
@@ -626,10 +635,10 @@ export const Stepper = defineComponent({
     label: { type: String, required: true },
     steps: { type: Array as PropType<readonly StepItem[]>, required: true },
     linear: Boolean,
-    doneLabel: { type: String, default: 'Done' },
-    backLabel: { type: String, default: 'Back' },
-    nextLabel: { type: String, default: 'Next' },
-    finishLabel: { type: String, default: 'Finish' },
+    doneLabel: String,
+    backLabel: String,
+    nextLabel: String,
+    finishLabel: String,
     number: {
       type: Function as PropType<(n: number) => string>,
       default: String,
@@ -641,6 +650,7 @@ export const Stepper = defineComponent({
     blocked: (_index: number) => true,
   },
   setup(props, { attrs, emit, slots }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const current = model(
       () => props.modelValue,
@@ -702,7 +712,7 @@ export const Stepper = defineComponent({
                       ? h(
                           'span',
                           { class: 'ui-visually-hidden' },
-                          `${props.doneLabel}: `,
+                          `${props.doneLabel ?? uiLabels.value.stepDone}: `,
                         )
                       : null,
                     step.label,
@@ -738,7 +748,7 @@ export const Stepper = defineComponent({
                   class: 'ui-button ui-button--secondary ui-button--md',
                   onClick: () => go(at - 1),
                 },
-                props.backLabel,
+                props.backLabel ?? uiLabels.value.stepBack,
               )
             : null,
           h(
@@ -748,7 +758,9 @@ export const Stepper = defineComponent({
               class: 'ui-button ui-button--primary ui-button--md',
               onClick: next,
             },
-            at === props.steps.length - 1 ? props.finishLabel : props.nextLabel,
+            at === props.steps.length - 1
+              ? (props.finishLabel ?? uiLabels.value.stepFinish)
+              : (props.nextLabel ?? uiLabels.value.stepNext),
           ),
         ]),
       ]);

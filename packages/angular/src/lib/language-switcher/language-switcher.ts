@@ -1,9 +1,10 @@
 import { CdkMenu, CdkMenuItemRadio } from '@angular/cdk/menu';
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, inject, input, model } from '@angular/core';
 import { ButtonComponent, type ButtonSize } from '../button/button.component';
 import { MenuTriggerDirective } from '../menu/menu';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 export interface Language {
   /** The language tag, such as 'en' or 'ar'. */
@@ -57,11 +58,11 @@ export interface Language {
         [uiMenuTrigger]="list"
       >
         <ng-container [ngTemplateOutlet]="globe" />
-        <span class="ui-visually-hidden">{{ label() }}: </span>
+        <span class="ui-visually-hidden">{{ labelText() }}: </span>
         <span [attr.lang]="active()?.code">{{ active()?.name }}</span>
       </button>
       <ng-template #list>
-        <div cdkMenu class="ui-menu" [attr.aria-label]="label()">
+        <div cdkMenu class="ui-menu" [attr.aria-label]="labelText()">
           @for (language of languages(); track language.code) {
             <button
               cdkMenuItemRadio
@@ -80,12 +81,16 @@ export interface Language {
   `,
 })
 export class LanguageSwitcherComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** The languages, each named in itself. */
   readonly languages = input.required<readonly Language[]>();
   /** The current language's code; two-way with `[(current)]`. */
   readonly current = model.required<string>();
   /** The menu's name, for three or more languages; translate it. */
-  readonly label = input('Language');
+  readonly label = input<string>();
+  protected readonly labelText = computed(
+    () => this.label() ?? this.uiLabels().language,
+  );
   readonly size = input<ButtonSize>('md');
 
   protected readonly other = computed(() => {

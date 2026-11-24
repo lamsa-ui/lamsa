@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { setRef } from './checkbox.js';
 import { cx } from './class-names.js';
+import { useUiLabels } from './labels.js';
 
 export interface FileFieldProps extends Omit<
   ComponentPropsWithRef<'input'>,
@@ -41,7 +42,7 @@ export function FileField({
   label,
   hint,
   error,
-  dropText = 'Or drop a file here',
+  dropText,
   onFiles,
   testId,
   id,
@@ -52,6 +53,8 @@ export function FileField({
   ref,
   ...input
 }: FileFieldProps) {
+  const t = useUiLabels();
+  dropText ??= t.dropFile;
   const autoId = useId();
   const inputId = id ?? autoId;
   const field = useRef<HTMLInputElement | null>(null);

@@ -5,6 +5,7 @@ import { cx } from './class-names.js';
 import { useOverflow } from './use-overflow.js';
 import type { IconName } from '@lamsa-ui/icons';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 export interface TableColumn<T> {
   /** The row field this column shows, and the key in `sort`. */
@@ -76,9 +77,12 @@ export function DataTable<T>({
   sort = null,
   onSortChange,
   loading = false,
-  loadingLabel = 'Loading',
-  emptyMessage = 'No results',
+  loadingLabel,
+  emptyMessage,
 }: DataTableProps<T>) {
+  const t = useUiLabels();
+  loadingLabel ??= t.loading;
+  emptyMessage ??= t.noResults;
   const captionId = useId();
   // While the table scrolls sideways its wrapper takes focus, so the keyboard can scroll it.
   const [wrapRef, scrolls] = useOverflow<HTMLDivElement>('x');

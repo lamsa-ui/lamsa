@@ -11,6 +11,7 @@ import { Button } from './button.js';
 import { cx } from './class-names.js';
 import { useOverflow } from './use-overflow.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 export type DialogSize = 'sm' | 'md' | 'lg';
 export type DialogVariant = 'default' | 'alert' | 'drawer' | 'sheet';
@@ -74,11 +75,13 @@ export function Dialog({
   onOpenChange,
   dismissable = true,
   role = 'dialog',
-  closeLabel = 'Close',
+  closeLabel,
   icon,
   actions,
   children,
 }: DialogProps) {
+  const t = useUiLabels();
+  closeLabel ??= t.close;
   const descriptionId = useId();
   // While the body scrolls it takes focus, so the keyboard can scroll it too.
   const [bodyRef, scrolls] = useOverflow<HTMLDivElement>('y', open);

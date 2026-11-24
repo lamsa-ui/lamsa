@@ -1,5 +1,6 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { AvatarComponent } from './avatar.component';
+import { UI_LABELS } from '../labels';
 
 export interface AvatarPerson {
   name: string;
@@ -30,13 +31,14 @@ export interface AvatarPerson {
       <span
         role="img"
         [class]="moreClasses()"
-        [attr.aria-label]="moreLabel()(rest)"
+        [attr.aria-label]="moreLabelText()(rest)"
         >+{{ rest }}</span
       >
     }
   `,
 })
 export class AvatarGroupComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Who the group is, for screen readers: "Kitchen team". */
   readonly label = input.required<string>();
   readonly people = input.required<readonly AvatarPerson[]>();
@@ -44,8 +46,9 @@ export class AvatarGroupComponent {
   readonly max = input(4);
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   /** The name of "+n", translated: (n) => `${n} more`. */
-  readonly moreLabel = input<(count: number) => string>(
-    (count) => `${count} more`,
+  readonly moreLabel = input<(count: number) => string>();
+  protected readonly moreLabelText = computed(
+    () => this.moreLabel() ?? this.uiLabels().more,
   );
 
   protected readonly shown = computed(() => this.people().slice(0, this.max()));

@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { cx } from './class-names.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -44,11 +45,13 @@ export function AppShell({
   actions,
   sidebar,
   children,
-  menuLabel = 'Menu',
+  menuLabel,
   mainId = 'main',
   landmarks = true,
   className,
 }: AppShellProps) {
+  const t = useUiLabels();
+  menuLabel ??= t.menu;
   const id = useId();
   const [open, setOpen] = useState(false);
   const menu = useRef<HTMLButtonElement>(null);

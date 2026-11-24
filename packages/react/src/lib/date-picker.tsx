@@ -23,6 +23,7 @@ import { date, Month, type DateRange } from './calendar.js';
 import { cx } from './class-names.js';
 import { Hint } from './fields.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 interface SharedDatePickerProps {
   label: string;
@@ -173,10 +174,13 @@ function RangeDatePicker({
   ref,
   testId,
   className,
-  rangeStartLabel = 'Start date',
-  rangeEndLabel = 'End date',
+  rangeStartLabel,
+  rangeEndLabel,
   ...field
 }: RangeDatePickerProps) {
+  const t = useUiLabels();
+  rangeStartLabel ??= t.startDate;
+  rangeEndLabel ??= t.endDate;
   return (
     <AriaDateRangePicker
       {...field}

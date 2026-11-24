@@ -13,6 +13,7 @@ import {
 import { createPortal } from 'react-dom';
 import { Button } from './button.js';
 import { CloseIcon, ToneIcon, type AlertTone } from './tone-icon.js';
+import { useUiLabels } from './labels.js';
 
 export interface ToastOptions {
   tone?: AlertTone;
@@ -55,9 +56,12 @@ export interface ToastProviderProps {
  */
 export function ToastProvider({
   children,
-  label = 'Notifications',
-  closeLabel = 'Dismiss',
+  label,
+  closeLabel,
 }: ToastProviderProps) {
+  const t = useUiLabels();
+  label ??= t.notifications;
+  closeLabel ??= t.dismiss;
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [paused, setPaused] = useState(false);
   const [said, setSaid] = useState({ polite: '', assertive: '' });

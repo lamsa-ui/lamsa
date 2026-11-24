@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import type { IconName } from '@lamsa-ui/icons';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 export interface TableColumn<T> {
   /** The row field this column shows, and the key in `sort`. */
@@ -136,7 +137,7 @@ let nextId = 0;
           } @empty {
             <tr>
               <td class="ui-table__empty" [attr.colspan]="columns().length">
-                {{ loading() ? '' : emptyMessage() }}
+                {{ loading() ? '' : emptyMessageText() }}
               </td>
             </tr>
           }
@@ -148,12 +149,13 @@ let nextId = 0;
         </div>
       }
       <span class="ui-visually-hidden" role="status">
-        {{ loading() ? loadingLabel() : '' }}
+        {{ loading() ? loadingLabelText() : '' }}
       </span>
     </div>
   `,
 })
 export class DataTableComponent<T> {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the table. Shown above it unless `hideCaption`. */
   readonly caption = input.required<string>();
   /** Keep the caption for screen readers only, when a heading above already names the table. */
@@ -166,9 +168,15 @@ export class DataTableComponent<T> {
   readonly rowKey = input<keyof T | ((row: T) => unknown)>();
   readonly loading = input(false);
   /** Read to screen readers while loading; pass the translated text. */
-  readonly loadingLabel = input('Loading');
+  readonly loadingLabel = input<string>();
+  protected readonly loadingLabelText = computed(
+    () => this.loadingLabel() ?? this.uiLabels().loading,
+  );
   /** Shown when there are no rows; pass the translated text. */
-  readonly emptyMessage = input('No results');
+  readonly emptyMessage = input<string>();
+  protected readonly emptyMessageText = computed(
+    () => this.emptyMessage() ?? this.uiLabels().noResults,
+  );
 
   protected readonly captionId = `ui-table-caption-${nextId++}`;
   /** While the table scrolls sideways its wrapper takes focus, so the keyboard can scroll it. */

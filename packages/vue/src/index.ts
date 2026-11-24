@@ -188,3 +188,10 @@ export type {
   ToggleProps,
   ToolbarProps,
 } from './lib/actions.js';
+export { provideUiLabels, uiLabelsKey, useUiLabels } from './lib/labels';
+export { arabicLabels, englishLabels } from './lib/ui-labels';
+export type {
+  UiLabels,
+  UiPaginationLabels,
+  UiTimelineStatus,
+} from './lib/ui-labels';

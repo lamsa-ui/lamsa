@@ -11,6 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -69,7 +70,7 @@ function firstDayOf(locale: string): number {
         <button
           type="button"
           class="ui-button ui-button--ghost ui-button--sm ui-calendar__nav"
-          [attr.aria-label]="previousLabel()"
+          [attr.aria-label]="previousLabelText()"
           [disabled]="!canGo(-1)"
           (click)="go(-1)"
         >
@@ -81,7 +82,7 @@ function firstDayOf(locale: string): number {
         <button
           type="button"
           class="ui-button ui-button--ghost ui-button--sm ui-calendar__nav"
-          [attr.aria-label]="nextLabel()"
+          [attr.aria-label]="nextLabelText()"
           [disabled]="!canGo(1)"
           (click)="go(1)"
         >
@@ -132,6 +133,7 @@ function firstDayOf(locale: string): number {
   `,
 })
 export class CalendarComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the calendar: "Delivery day". */
   readonly label = input.required<string>();
   readonly selection = input<'single' | 'range'>('single');
@@ -146,8 +148,14 @@ export class CalendarComponent {
   readonly isDisabled = input<(date: string) => boolean>(() => false);
   /** Month names, weekday names and digits follow this. Defaults to the app's LOCALE_ID. */
   readonly locale = input(inject(LOCALE_ID));
-  readonly previousLabel = input('Previous month');
-  readonly nextLabel = input('Next month');
+  readonly previousLabel = input<string>();
+  protected readonly previousLabelText = computed(
+    () => this.previousLabel() ?? this.uiLabels().previousMonth,
+  );
+  readonly nextLabel = input<string>();
+  protected readonly nextLabelText = computed(
+    () => this.nextLabel() ?? this.uiLabels().nextMonth,
+  );
 
   protected readonly id = `ui-calendar-${nextId++}`;
   protected readonly today = toIso(

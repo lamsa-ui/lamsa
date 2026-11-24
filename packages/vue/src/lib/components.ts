@@ -11,6 +11,7 @@ import {
   type PropType,
   type VNodeChild,
 } from 'vue';
+import { useUiLabels } from './labels';
 
 export type ButtonVariant =
   | 'primary'
@@ -682,7 +683,7 @@ export const PhoneField = defineComponent({
       type: Array as PropType<readonly PhoneCountry[]>,
       default: () => PHONE_COUNTRIES,
     },
-    countryLabel: { type: String, default: 'Country code' },
+    countryLabel: String,
     placeholder: String,
     hint: String,
     error: String,
@@ -696,6 +697,7 @@ export const PhoneField = defineComponent({
     blur: (_event: FocusEvent) => true,
   },
   setup(props, { attrs, emit }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     const initial = splitPhone(
       props.modelValue,
@@ -745,14 +747,14 @@ export const PhoneField = defineComponent({
               'div',
               {
                 class: 'ui-phone-field__select',
-                'aria-label': props.countryLabel,
+                'aria-label': props.countryLabel ?? uiLabels.value.countryCode,
               },
               [
                 h(
                   'select',
                   mergeProps({
                     class: 'ui-phone-field__country',
-                    'aria-label': `${props.countryLabel}: ${
+                    'aria-label': `${props.countryLabel ?? uiLabels.value.countryCode}: ${
                       picked.value?.name ?? ''
                     } ${picked.value?.dial ?? ''}`,
                     value: picked.value?.code,
@@ -854,11 +856,12 @@ export const Alert = defineComponent({
     title: String,
     role: { type: String as PropType<'alert' | 'status'>, default: 'status' },
     /** Accessible name of the close button; pass the translated text. */
-    closeLabel: { type: String, default: 'Dismiss' },
+    closeLabel: String,
     /** Listen to `@dismiss` to show a close button; remove the alert when it fires. */
     onDismiss: Function as PropType<() => void>,
   },
   setup(props, { attrs, slots }) {
+    const uiLabels = useUiLabels();
     return () =>
       h(
         'div',
@@ -885,7 +888,7 @@ export const Alert = defineComponent({
                     type: 'button',
                     class:
                       'ui-button ui-button--ghost ui-button--md ui-alert__close',
-                    'aria-label': props.closeLabel,
+                    'aria-label': props.closeLabel ?? uiLabels.value.dismiss,
                     onClick: () => props.onDismiss?.(),
                   },
                   h(Icon, { name: 'x', size: 'sm' }),
@@ -901,11 +904,12 @@ export const Spinner = defineComponent({
   name: 'UiSpinner',
   inheritAttrs: false,
   props: {
-    label: { type: String, default: 'Loading' },
+    label: String,
     showLabel: Boolean,
     size: { type: String as PropType<'md' | 'lg'>, default: 'md' },
   },
   setup(props, { attrs }) {
+    const uiLabels = useUiLabels();
     return () =>
       h(
         'span',
@@ -918,7 +922,7 @@ export const Spinner = defineComponent({
           h(
             'span',
             { class: props.showLabel ? undefined : 'ui-visually-hidden' },
-            props.label,
+            props.label ?? uiLabels.value.loading,
           ),
         ],
       );

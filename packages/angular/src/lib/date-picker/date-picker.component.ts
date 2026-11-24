@@ -26,6 +26,7 @@ import {
 } from '../calendar/calendar.component';
 import { IconComponent } from '../icon/icon.component';
 import { anchoredOverlay } from '../popover/anchored';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -83,7 +84,7 @@ let nextId = 0;
           [attr.min]="min()"
           [attr.max]="max()"
           [disabled]="disabled()"
-          [attr.aria-label]="label() + ': ' + rangeStartLabel()"
+          [attr.aria-label]="label() + ': ' + rangeStartLabelText()"
           [attr.aria-invalid]="error() ? true : null"
           [attr.aria-describedby]="describedBy()"
           [attr.data-testid]="testId() ? testId() + '-start' : null"
@@ -100,7 +101,7 @@ let nextId = 0;
           [attr.min]="min()"
           [attr.max]="max()"
           [disabled]="disabled() || !range()?.start"
-          [attr.aria-label]="label() + ': ' + rangeEndLabel()"
+          [attr.aria-label]="label() + ': ' + rangeEndLabelText()"
           [attr.aria-invalid]="error() ? true : null"
           [attr.aria-describedby]="describedBy()"
           [attr.data-testid]="testId() ? testId() + '-end' : null"
@@ -114,7 +115,7 @@ let nextId = 0;
         type="button"
         class="ui-input-group__button"
         aria-haspopup="dialog"
-        [attr.aria-label]="calendarLabel()"
+        [attr.aria-label]="calendarLabelText()"
         [attr.aria-expanded]="open()"
         [attr.aria-controls]="open() ? id + '-panel' : null"
         [disabled]="disabled()"
@@ -136,7 +137,7 @@ let nextId = 0;
         class="ui-popover ui-date-picker__popover"
         role="dialog"
         [id]="id + '-panel'"
-        [attr.aria-label]="calendarLabel()"
+        [attr.aria-label]="calendarLabelText()"
       >
         <ui-calendar
           [label]="label()"
@@ -147,8 +148,8 @@ let nextId = 0;
           [max]="max() ?? null"
           [isDisabled]="isDisabled()"
           [locale]="locale()"
-          [previousLabel]="previousLabel()"
-          [nextLabel]="nextLabel()"
+          [previousLabel]="previousLabelText()"
+          [nextLabel]="nextLabelText()"
           (valueChange)="picked($event)"
           (rangeChange)="pickedRange($event)"
         />
@@ -159,12 +160,19 @@ let nextId = 0;
 export class DatePickerComponent
   implements ControlValueAccessor, FormValueControl<string | null>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   /** Pick one date, or a start and end date. */
   readonly selection = input<'single' | 'range'>('single');
   /** Translated accessible names for the two fields in range mode. */
-  readonly rangeStartLabel = input('Start date');
-  readonly rangeEndLabel = input('End date');
+  readonly rangeStartLabel = input<string>();
+  protected readonly rangeStartLabelText = computed(
+    () => this.rangeStartLabel() ?? this.uiLabels().startDate,
+  );
+  readonly rangeEndLabel = input<string>();
+  protected readonly rangeEndLabelText = computed(
+    () => this.rangeEndLabel() ?? this.uiLabels().endDate,
+  );
   /** Earliest and latest dates, as YYYY-MM-DD. Both the field and the calendar keep to them. */
   readonly min = input<string | undefined>(undefined);
   readonly max = input<string | undefined>(undefined);
@@ -176,9 +184,18 @@ export class DatePickerComponent
   /** The calendar's month and day names follow this. Defaults to the app's LOCALE_ID. */
   readonly locale = input(inject(LOCALE_ID));
   /** Names the calendar button and the panel it opens. */
-  readonly calendarLabel = input('Choose date');
-  readonly previousLabel = input('Previous month');
-  readonly nextLabel = input('Next month');
+  readonly calendarLabel = input<string>();
+  protected readonly calendarLabelText = computed(
+    () => this.calendarLabel() ?? this.uiLabels().chooseDate,
+  );
+  readonly previousLabel = input<string>();
+  protected readonly previousLabelText = computed(
+    () => this.previousLabel() ?? this.uiLabels().previousMonth,
+  );
+  readonly nextLabel = input<string>();
+  protected readonly nextLabelText = computed(
+    () => this.nextLabel() ?? this.uiLabels().nextMonth,
+  );
   readonly testId = input<string>();
 
   protected readonly id = `ui-date-picker-${nextId++}`;

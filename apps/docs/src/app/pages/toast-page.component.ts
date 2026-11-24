@@ -86,15 +86,15 @@ export class ToastPageComponent {
     angular: `import { UiToast } from '@lamsa-ui/angular';
 
 const toast = inject(UiToast);
-toast.labels.set({ region: 'Notifications', close: 'Dismiss' }); // translated, once`,
+// The region and close buttons take their words from provideUiLabels.`,
     react: `import { ToastProvider, useToast } from '@lamsa-ui/react';
 
 // Once, around the app:
-<ToastProvider label="Notifications" closeLabel="Dismiss">{app}</ToastProvider>`,
+<ToastProvider>{app}</ToastProvider>`,
     vue: `import { ToastProvider, useToast } from '@lamsa-ui/vue';
 
 <!-- Once, around the app (App.vue): -->
-<ToastProvider label="Notifications" closeLabel="Dismiss"><RouterView /></ToastProvider>`,
+<ToastProvider><RouterView /></ToastProvider>`,
     html: `<!-- Toasts need script to come and go. The markup they use: -->
 <section aria-label="Notifications">
   <ol class="ui-toast-region">
@@ -139,10 +139,13 @@ toast.show('The card was declined. Try another card.', { tone: 'danger', title: 
   };
 
   protected readonly arabic = {
-    angular: `toast.labels.set({ region: 'الإشعارات', close: 'إخفاء' });
+    angular: `// providers: [provideUiLabels(arabicLabels)] names the region and close buttons
 toast.show('العنوان اتحفظ', { tone: 'success' });`,
-    react: `<ToastProvider label="الإشعارات" closeLabel="إخفاء">…</ToastProvider>`,
-    vue: `<ToastProvider label="الإشعارات" closeLabel="إخفاء">…</ToastProvider>`,
+    react: `<UiLabelsProvider labels={arabicLabels}>
+  <ToastProvider>…</ToastProvider>
+</UiLabelsProvider>`,
+    vue: `// provideUiLabels(arabicLabels) in App.vue names the region and close buttons
+<ToastProvider>…</ToastProvider>`,
     html: `<!-- dir="rtl" on the page: toasts sit at the bottom left -->`,
   };
 
@@ -193,15 +196,17 @@ toast.show('العنوان اتحفظ', { tone: 'success' });`,
       {
         name: 'labels',
         type: 'signal',
-        default: "{ region: 'Notifications', close: 'Dismiss' }",
-        description: 'The region name and close button name, translated.',
+        default: 'from provideUiLabels',
+        description:
+          'The region name and close button name. Set only to differ from provideUiLabels.',
       },
     ],
     react: [
       {
         name: '<ToastProvider>',
         type: 'component',
-        description: 'Once around the app. Takes label and closeLabel.',
+        description:
+          'Once around the app. Takes label and closeLabel; they default to UiLabelsProvider.',
       },
       {
         name: 'useToast().show(message, options?)',

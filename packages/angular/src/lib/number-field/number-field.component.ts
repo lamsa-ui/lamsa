@@ -1,7 +1,7 @@
 import {
-  effect,
   Component,
   computed,
+  effect,
   forwardRef,
   inject,
   input,
@@ -14,6 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { IconComponent } from '../icon/icon.component';
 import { latinDigits } from './digits';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -63,7 +64,7 @@ const decimals = (n: number) => (String(n).split('.')[1] ?? '').length;
         type="button"
         class="ui-input-group__button"
         tabindex="-1"
-        [attr.aria-label]="decrementLabel()"
+        [attr.aria-label]="decrementLabelText()"
         [attr.aria-controls]="id"
         [disabled]="disabled() || atMin()"
         (click)="stepBy(-1)"
@@ -94,7 +95,7 @@ const decimals = (n: number) => (String(n).split('.')[1] ?? '').length;
         type="button"
         class="ui-input-group__button"
         tabindex="-1"
-        [attr.aria-label]="incrementLabel()"
+        [attr.aria-label]="incrementLabelText()"
         [attr.aria-controls]="id"
         [disabled]="disabled() || atMax()"
         (click)="stepBy(1)"
@@ -115,6 +116,7 @@ const decimals = (n: number) => (String(n).split('.')[1] ?? '').length;
 export class NumberFieldComponent
   implements ControlValueAccessor, FormValueControl<number | null>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   readonly min = input<number>();
   readonly max = input<number>();
@@ -130,8 +132,14 @@ export class NumberFieldComponent
    * With `{ style: 'percent' }` the value is the fraction (0.5 shows 50%), so use a step of 0.01.
    */
   readonly formatOptions = input<Intl.NumberFormatOptions>({});
-  readonly decrementLabel = input('Decrease');
-  readonly incrementLabel = input('Increase');
+  readonly decrementLabel = input<string>();
+  protected readonly decrementLabelText = computed(
+    () => this.decrementLabel() ?? this.uiLabels().decrease,
+  );
+  readonly incrementLabel = input<string>();
+  protected readonly incrementLabelText = computed(
+    () => this.incrementLabel() ?? this.uiLabels().increase,
+  );
   readonly testId = input<string>();
 
   protected readonly id = `ui-number-field-${nextId++}`;

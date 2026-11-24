@@ -1,5 +1,6 @@
 import { ICONS, MIRRORED_ICONS, type IconName } from '@lamsa-ui/icons';
 import { defineComponent, h, mergeProps, ref, useId, type PropType } from 'vue';
+import { useUiLabels } from './labels';
 
 /** sm, md and lg, or any CSS length ('3rem'), or a number of pixels. */
 export type IconSize = 'sm' | 'md' | 'lg' | number | (string & {});
@@ -259,10 +260,11 @@ export const Tag = defineComponent({
   name: 'UiTag',
   inheritAttrs: false,
   props: {
-    removeLabel: { type: String, default: 'Remove' },
+    removeLabel: String,
     onRemove: Function as PropType<() => void>,
   },
   setup(props, { attrs, slots }) {
+    const uiLabels = useUiLabels();
     const id = useId();
     return () =>
       h('span', mergeProps(attrs, { class: 'ui-tag' }), [
@@ -274,7 +276,7 @@ export const Tag = defineComponent({
                 type: 'button',
                 class: 'ui-tag__remove',
                 id: `${id}-remove`,
-                'aria-label': props.removeLabel,
+                'aria-label': props.removeLabel ?? uiLabels.value.remove,
                 'aria-labelledby': `${id}-remove ${id}`,
                 onClick: () => props.onRemove?.(),
               },
@@ -310,12 +312,6 @@ const STATUS_ICONS: Record<TimelineStatus, IconName> = {
   pending: 'clock',
   rejected: 'x',
 };
-const STATUS_LABELS: Record<TimelineStatus, string> = {
-  approved: 'Approved',
-  pending: 'Pending',
-  rejected: 'Rejected',
-};
-
 /** A read-only, chronological record of decisions, such as a case's approval history. */
 export const Timeline = defineComponent({
   name: 'UiTimeline',
@@ -325,6 +321,7 @@ export const Timeline = defineComponent({
     items: { type: Array as PropType<readonly TimelineItem[]>, required: true },
   },
   setup(props, { attrs }) {
+    const uiLabels = useUiLabels();
     return () =>
       h(
         'ol',
@@ -354,7 +351,7 @@ export const Timeline = defineComponent({
                           `ui-timeline__status--${item.status}`,
                         ],
                       },
-                      item.statusLabel ?? STATUS_LABELS[item.status],
+                      item.statusLabel ?? uiLabels.value.timeline[item.status],
                     )
                   : null,
               ]),
@@ -388,13 +385,14 @@ export interface BreadcrumbsProps {
 export const Breadcrumbs = defineComponent({
   name: 'UiBreadcrumbs',
   inheritAttrs: false,
-  props: { label: { type: String, default: 'Breadcrumb' } },
+  props: { label: String },
   setup(props, { attrs, slots }) {
+    const uiLabels = useUiLabels();
     return () =>
       h(
         'nav',
         mergeProps(attrs, {
-          'aria-label': props.label,
+          'aria-label': props.label ?? uiLabels.value.breadcrumb,
           class: 'ui-breadcrumbs',
         }),
         h('ol', slots.default?.()),
@@ -449,12 +447,10 @@ export const AvatarGroup = defineComponent({
     },
     max: { type: Number, default: 4 },
     size: { type: String as PropType<'sm' | 'md' | 'lg'>, default: 'md' },
-    moreLabel: {
-      type: Function as PropType<(count: number) => string>,
-      default: (count: number) => `${count} more`,
-    },
+    moreLabel: Function as PropType<(count: number) => string>,
   },
   setup(props) {
+    const uiLabels = useUiLabels();
     return () => {
       const rest = Math.max(props.people.length - props.max, 0);
       return h(
@@ -475,7 +471,9 @@ export const AvatarGroup = defineComponent({
                   'span',
                   {
                     role: 'img',
-                    'aria-label': props.moreLabel(rest),
+                    'aria-label': (props.moreLabel ?? uiLabels.value.more)(
+                      rest,
+                    ),
                     class: [
                       'ui-avatar ui-avatar-group__more',
                       props.size !== 'md' && `ui-avatar--${props.size}`,

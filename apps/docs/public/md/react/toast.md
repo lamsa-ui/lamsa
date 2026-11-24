@@ -10,7 +10,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { ToastProvider, useToast } from '@lamsa-ui/react';
 
 // Once, around the app:
-<ToastProvider label="Notifications" closeLabel="Dismiss">{app}</ToastProvider>
+<ToastProvider>{app}</ToastProvider>
 ```
 
 When to use something else:
@@ -20,7 +20,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `<ToastProvider>` | `component` |  | Once around the app. Takes label and closeLabel. |
+| `<ToastProvider>` | `component` |  | Once around the app. Takes label and closeLabel; they default to UiLabelsProvider. |
 | `useToast().show(message, options?)` | `number` |  | As in Angular. |
 | `useToast().dismiss(id)` | `void` |  | Closes a toast. |
 
@@ -55,5 +55,7 @@ toast.show('Order 1042 deleted', {
 ### In Arabic
 
 ```tsx
-<ToastProvider label="الإشعارات" closeLabel="إخفاء">…</ToastProvider>
+<UiLabelsProvider labels={arabicLabels}>
+  <ToastProvider>…</ToastProvider>
+</UiLabelsProvider>
 ```

@@ -17,6 +17,7 @@ import {
 } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 export type DialogSize = 'sm' | 'md' | 'lg';
 export type DialogVariant = 'default' | 'alert' | 'drawer' | 'sheet';
@@ -112,7 +113,7 @@ let nextId = 0;
           variant="ghost"
           type="button"
           class="ui-dialog__close"
-          [attr.aria-label]="closeLabel()"
+          [attr.aria-label]="closeLabelText()"
           data-testid="ui-dialog-close"
           (click)="ref.close()"
         >
@@ -129,6 +130,7 @@ let nextId = 0;
   `,
 })
 export class DialogComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly title = input.required<string>();
   /** A sentence under the title; screen readers read it with the title. */
   readonly description = input<string>();
@@ -141,7 +143,10 @@ export class DialogComponent {
    */
   readonly variant = input<DialogVariant>('default');
   /** Accessible name of the close button; pass the translated text. */
-  readonly closeLabel = input('Close');
+  readonly closeLabel = input<string>();
+  protected readonly closeLabelText = computed(
+    () => this.closeLabel() ?? this.uiLabels().close,
+  );
 
   protected readonly ref = inject(DialogRef);
   /** While the body scrolls it takes focus, so the keyboard can scroll it too. */

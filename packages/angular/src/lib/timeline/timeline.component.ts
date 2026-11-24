@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UI_LABELS } from '../labels';
 import { IconComponent } from '../icon/icon.component';
 
 export type TimelineStatus = 'approved' | 'pending' | 'rejected';
@@ -14,12 +15,6 @@ export interface TimelineItem {
   /** Overrides the status text shown to users, including for translation. */
   statusLabel?: string;
 }
-
-const STATUS_LABELS: Record<TimelineStatus, string> = {
-  approved: 'Approved',
-  pending: 'Pending',
-  rejected: 'Rejected',
-};
 
 /**
  * A read-only, chronological record of decisions, such as a case's approval history.
@@ -67,7 +62,7 @@ const STATUS_LABELS: Record<TimelineStatus, string> = {
                     item.status === 'rejected'
                   "
                 >
-                  {{ item.statusLabel || statusLabels[item.status] }}
+                  {{ item.statusLabel || statusLabels()[item.status] }}
                 </span>
               }
             </div>
@@ -93,5 +88,6 @@ export class TimelineComponent {
   readonly label = input.required<string>();
   readonly items = input.required<readonly TimelineItem[]>();
 
-  protected readonly statusLabels = STATUS_LABELS;
+  private readonly uiLabels = inject(UI_LABELS);
+  protected readonly statusLabels = computed(() => this.uiLabels().timeline);
 }

@@ -2,6 +2,7 @@ import {
   afterNextRender,
   booleanAttribute,
   Component,
+  computed,
   ElementRef,
   inject,
   Injector,
@@ -10,6 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -47,7 +49,7 @@ const FOCUSABLE =
         #menu
         type="button"
         class="ui-button ui-button--ghost ui-button--icon ui-shell__menu"
-        [attr.aria-label]="menuLabel()"
+        [attr.aria-label]="menuLabelText()"
         [attr.aria-expanded]="open()"
         [attr.aria-controls]="id"
         (click)="open() ? close(false) : show()"
@@ -76,8 +78,12 @@ const FOCUSABLE =
   `,
 })
 export class AppShellComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the menu button that opens the side bar on a narrow screen. */
-  readonly menuLabel = input('Menu');
+  readonly menuLabel = input<string>();
+  protected readonly menuLabelText = computed(
+    () => this.menuLabel() ?? this.uiLabels().menu,
+  );
   /** The id of the page area, for a "Skip to content" link. */
   readonly mainId = input('main');
   /**

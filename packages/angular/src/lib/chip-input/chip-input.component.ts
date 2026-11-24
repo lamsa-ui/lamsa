@@ -1,6 +1,7 @@
 import {
   afterNextRender,
   Component,
+  computed,
   ElementRef,
   forwardRef,
   inject,
@@ -14,6 +15,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { TagComponent } from '../tag/tag.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -46,7 +48,7 @@ let nextId = 0;
           <li>
             <ui-tag
               [removable]="!disabled()"
-              [removeLabel]="removeLabel()"
+              [removeLabel]="removeLabelText()"
               (remove)="remove(i)"
               >{{ chip }}</ui-tag
             >
@@ -76,15 +78,23 @@ let nextId = 0;
 export class ChipInputComponent
   implements ControlValueAccessor, FormValueControl<string[]>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   readonly hint = input<string>();
   readonly placeholder = input('');
   /** First word of each tag's × button. Translate it. */
-  readonly removeLabel = input('Remove');
+  readonly removeLabel = input<string>();
+  protected readonly removeLabelText = computed(
+    () => this.removeLabel() ?? this.uiLabels().remove,
+  );
   /** What screen readers hear after a change. Translate them. */
-  readonly addedLabel = input<(chip: string) => string>((c) => `${c} added`);
-  readonly removedLabel = input<(chip: string) => string>(
-    (c) => `${c} removed`,
+  readonly addedLabel = input<(chip: string) => string>();
+  protected readonly addedLabelText = computed(
+    () => this.addedLabel() ?? this.uiLabels().added,
+  );
+  readonly removedLabel = input<(chip: string) => string>();
+  protected readonly removedLabelText = computed(
+    () => this.removedLabel() ?? this.uiLabels().removed,
   );
   readonly testId = input<string>();
 
@@ -120,7 +130,7 @@ export class ChipInputComponent
   protected remove(index: number): void {
     const chip = this.chips()[index];
     this.set(this.chips().filter((_, i) => i !== index));
-    this.said.set(this.removedLabel()(chip));
+    this.said.set(this.removedLabelText()(chip));
     // Once the tag is gone: the one now at this index, else the one before, else the field.
     afterNextRender(
       () => {
@@ -138,7 +148,7 @@ export class ChipInputComponent
     const chip = text.trim();
     if (!chip || this.chips().includes(chip)) return;
     this.set([...this.chips(), chip]);
-    this.said.set(this.addedLabel()(chip));
+    this.said.set(this.addedLabelText()(chip));
   }
 
   private set(chips: string[]): void {

@@ -70,6 +70,10 @@ import { PageComponent } from '../shared/page.component';
             and buttons and fields are 44 pixels tall or more.
           </li>
           <li>
+            The words components say on their own, such as Close and the names
+            of page buttons, come in Arabic and English, switched in one place.
+          </li>
+          <li>
             Motion stops when the system asks for reduced motion, and every
             control keeps its edges and states in Windows high contrast. When
             the system asks for more contrast, borders and secondary text go to
@@ -89,7 +93,7 @@ import { PageComponent } from '../shared/page.component';
           <li>
             axe-core checks every page of this site in light and dark and in
             each framework's view, and again with dialogs, menus, popovers,
-            tooltips and toasts open in Angular, React and Vue.
+            tooltips and toasts open.
           </li>
           <li>
             Every page is loaded with text at 200%, with the WCAG text spacing
@@ -97,12 +101,14 @@ import { PageComponent } from '../shared/page.component';
             sideways.
           </li>
           <li>
-            Browser tests press the keys of each interactive component in the
-            Angular, React and Vue views, in Chromium, Firefox and WebKit.
+            Browser tests press the keys of the interactive components, left to
+            right and right to left, in Chromium, Firefox and WebKit. The live
+            demos on this site are the Angular components.
           </li>
           <li>
-            Unit tests in each framework check every component's roles, names
-            and states, and the keys of the interactive ones.
+            Unit tests in Angular, React and Vue check every component's roles,
+            names and states, the keys of the interactive ones, and the Arabic
+            words they say.
           </li>
           <li>
             Screenshots of the main controls in Windows high contrast are
@@ -123,6 +129,10 @@ import { PageComponent } from '../shared/page.component';
             VoiceOver on macOS and iOS, TalkBack on Android, including Arabic
             voices. Automated checks catch only part of what a screen reader
             user meets.
+          </li>
+          <li>
+            React and Vue components are tested in a simulated browser only; the
+            real-browser tests run on the Angular components.
           </li>
           <li>
             Tooltips never show on touch screens, so nothing needed may live
@@ -200,6 +210,10 @@ import { PageComponent } from '../shared/page.component';
             ارتفاع الأزرار والحقول عن 44 بكسل.
           </li>
           <li>
+            الكلمات التي تقولها المكوّنات بنفسها، مثل «إغلاق» وأسماء أزرار
+            الصفحات، متاحة بالعربية والإنجليزية، وتُبدَّل من مكان واحد.
+          </li>
+          <li>
             تتوقف الحركة حين يطلب النظام تقليلها، وتحتفظ عناصر التحكم بحدودها
             وحالاتها في وضع التباين العالي في ويندوز، ويشتد تباين الحدود والنص
             الثانوي حين يطلب النظام تباينًا أعلى.
@@ -220,8 +234,9 @@ import { PageComponent } from '../shared/page.component';
             320 بكسل، ولا يجوز أن تحتاج الصفحة إلى تمرير أفقي.
           </li>
           <li>
-            تجرّب اختبارات المتصفح مفاتيح كل مكوّن تفاعلي في Angular وReact وVue،
-            على Chromium وFirefox وWebKit.
+            تجرّب اختبارات المتصفح مفاتيح المكوّنات التفاعلية، من اليسار إلى
+            اليمين ومن اليمين إلى اليسار، على Chromium وFirefox وWebKit.
+            والأمثلة الحية في هذا الموقع مبنية بمكوّنات Angular.
           </li>
           <li>
             تفحص اختبارات الوحدة أدوار كل مكوّن وأسماءه وحالاته في كل إطار عمل.
@@ -233,6 +248,10 @@ import { PageComponent } from '../shared/page.component';
 
         <h3 class="ui-heading">ما لم يكتمل بعد</h3>
         <ul class="doc-list">
+          <li>
+            مكوّنات React وVue مختبرة في متصفح محاكى فقط؛ واختبارات المتصفح
+            الحقيقي تعمل على مكوّنات Angular.
+          </li>
           <li>
             الاختبار بقارئات شاشة حقيقية: NVDA وJAWS على ويندوز، وVoiceOver على
             macOS وiOS، وTalkBack على أندرويد، بما فيها الأصوات العربية.

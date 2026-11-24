@@ -17,6 +17,7 @@ import {
 } from 'vue';
 import type { AlertTone, ButtonVariant } from './components.js';
 import { Icon } from './content.js';
+import { useUiLabels } from './labels';
 
 export type DialogSize = 'sm' | 'md' | 'lg';
 export type DialogVariant = 'default' | 'alert' | 'drawer' | 'sheet';
@@ -70,10 +71,11 @@ export const Dialog = defineComponent({
       type: String as PropType<'dialog' | 'alertdialog'>,
       default: 'dialog',
     },
-    closeLabel: { type: String, default: 'Close' },
+    closeLabel: String,
   },
   emits: { 'update:open': (_open: boolean) => true },
   setup(props, { emit, slots }) {
+    const uiLabels = useUiLabels();
     const descriptionId = useId();
     const body = useOverflow();
     const closable = () => props.dismissable && props.role !== 'alertdialog';
@@ -150,7 +152,8 @@ export const Dialog = defineComponent({
                             type: 'button',
                             class:
                               'ui-button ui-button--ghost ui-button--md ui-dialog__close',
-                            'aria-label': props.closeLabel,
+                            'aria-label':
+                              props.closeLabel ?? uiLabels.value.close,
                             'data-testid': 'ui-dialog-close',
                             onClick: () => emit('update:open', false),
                           },

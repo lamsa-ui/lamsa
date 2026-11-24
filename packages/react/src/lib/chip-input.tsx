@@ -5,6 +5,7 @@ import type { Ref } from 'react';
 import { cx } from './class-names.js';
 import { setRef } from './checkbox.js';
 import { Tag } from './content.js';
+import { useUiLabels } from './labels.js';
 
 export interface ChipInputProps {
   label: string;
@@ -49,12 +50,16 @@ export function ChipInput({
   error,
   onBlur,
   ref,
-  removeLabel = 'Remove',
-  addedLabel = (c) => `${c} added`,
-  removedLabel = (c) => `${c} removed`,
+  removeLabel,
+  addedLabel,
+  removedLabel,
   testId,
   className,
 }: ChipInputProps) {
+  const t = useUiLabels();
+  removeLabel ??= t.remove;
+  addedLabel ??= t.added;
+  removedLabel ??= t.removed;
   const id = useId();
   const [own, setOwn] = useState(defaultValue);
   const [said, setSaid] = useState('');

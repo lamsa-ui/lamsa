@@ -7,6 +7,7 @@ import {
 import { cx } from './class-names.js';
 import type { IconName } from '@lamsa-ui/icons';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 /** Keeps two Arabic initials apart, so ح and م never join into «حم». Invisible in Latin. */
 const ZWNJ = '\u200c';
@@ -223,11 +224,13 @@ export interface TagProps extends ComponentPropsWithRef<'span'> {
  */
 export function Tag({
   onRemove,
-  removeLabel = 'Remove',
+  removeLabel,
   className,
   children,
   ...span
 }: TagProps) {
+  const t = useUiLabels();
+  removeLabel ??= t.remove;
   const id = useId();
   return (
     <span {...span} className={cx('ui-tag', className)}>
@@ -280,10 +283,12 @@ export function AvatarGroup({
   people,
   max = 4,
   size = 'md',
-  moreLabel = (count) => `${count} more`,
+  moreLabel,
   className,
   ...div
 }: AvatarGroupProps) {
+  const t = useUiLabels();
+  moreLabel ??= t.more;
   const rest = Math.max(people.length - max, 0);
   return (
     <div

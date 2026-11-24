@@ -9,6 +9,7 @@ import {
 } from 'react-aria-components';
 import { Button, type ButtonSize } from './button.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 export interface Language {
   /** The language tag, such as 'en' or 'ar'. */
@@ -47,9 +48,11 @@ export function LanguageSwitcher({
   languages,
   current,
   onChange,
-  label = 'Language',
+  label,
   size = 'md',
 }: LanguageSwitcherProps) {
+  const t = useUiLabels();
+  label ??= t.language;
   if (languages.length === 2) {
     const other = languages.find((l) => l.code !== current) ?? languages[0];
     return (

@@ -280,11 +280,21 @@ for (const [file, differences] of Object.entries(intentionalDifferences)) {
   }
 }
 
+// The words the components say on their own are one file, the same in every package.
+const labelsFile = (pkg) =>
+  readFileSync(join(root, `packages/${pkg}/src/lib/ui-labels.ts`), 'utf8');
+for (const pkg of ['react', 'vue']) {
+  if (labelsFile(pkg) !== labelsFile('angular'))
+    failures.push(
+      `packages/${pkg}/src/lib/ui-labels.ts differs from the Angular copy: copy it over.`,
+    );
+}
+
 if (failures.length) {
   console.error(failures.map((failure) => `✖ ${failure}`).join('\n'));
   process.exit(1);
 }
 
 console.log(
-  `✔ ${files.length} component API tables checked for Angular/React parity, Vue rows checked against @lamsa-ui/vue, every page says when to use something else.`,
+  `✔ ${files.length} component API tables checked for Angular/React parity, Vue rows checked against @lamsa-ui/vue, every page says when to use something else, the built-in labels match in every package.`,
 );

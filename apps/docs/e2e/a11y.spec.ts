@@ -25,10 +25,10 @@ async function expectNoViolations(page: Page): Promise<void> {
   ).toEqual([]);
 }
 
-/** The frameworks with their own components; HTML has markup and classes only. */
-const COMPONENT_FRAMEWORKS = ['angular', 'react', 'vue'] as const;
+/** The live demos are the Angular components; the other views change only the code shown. */
+const COMPONENT_FRAMEWORKS = ['angular'] as const;
 
-/** Buttons that open a dialog, alert or region, in every component framework and, where it has one, in HTML: [route, button, role, region name, html too]. */
+/** Buttons that open a dialog, alert or region, in the Angular demos and, where it has one, the HTML demo: [route, button, role, region name, html too]. */
 const STATES: [string, string, string, string | undefined, boolean][] = [
   ['components/dialog', 'Edit address', 'dialog', undefined, true],
   ['components/dialog', 'Read the terms', 'dialog', undefined, false],

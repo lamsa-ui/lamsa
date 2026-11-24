@@ -4,6 +4,7 @@ import {
   computed,
   ElementRef,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -12,6 +13,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { latinDigits } from '../number-field/digits';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -54,7 +56,7 @@ let nextId = 0;
           inputmode="numeric"
           [type]="secret() ? 'password' : 'text'"
           [attr.autocomplete]="$index === 0 ? 'one-time-code' : 'off'"
-          [attr.aria-label]="cellLabel()($index + 1, length())"
+          [attr.aria-label]="cellLabelText()($index + 1, length())"
           [attr.aria-invalid]="error() ? true : null"
           [attr.data-testid]="testId() ? testId() + '-' + $index : null"
           [value]="digit"
@@ -79,14 +81,16 @@ let nextId = 0;
 export class PinInputComponent
   implements ControlValueAccessor, FormValueControl<string>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   /** How many digits. */
   readonly length = input(6);
   /** Shows dots instead of digits, for a PIN rather than a code sent by message. */
   readonly secret = input(false, { transform: booleanAttribute });
   /** Each box's name for screen readers. Translate it. */
-  readonly cellLabel = input<(n: number, of: number) => string>(
-    (n, of) => `Digit ${n} of ${of}`,
+  readonly cellLabel = input<(n: number, of: number) => string>();
+  protected readonly cellLabelText = computed(
+    () => this.cellLabel() ?? this.uiLabels().digit,
   );
   readonly hint = input<string>();
   /** The translated error. Marks the boxes invalid and announces the message. */

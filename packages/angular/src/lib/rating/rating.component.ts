@@ -4,6 +4,7 @@ import {
   Component,
   computed,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -11,6 +12,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -41,7 +43,7 @@ let nextId = 0;
       <span
         class="ui-rating ui-rating--readonly"
         role="img"
-        [attr.aria-label]="scoreLabel()(current() ?? 0, max() ?? 5)"
+        [attr.aria-label]="scoreLabelText()(current() ?? 0, max() ?? 5)"
       >
         <span class="ui-rating__stars">
           @for (n of stars(); track n) {
@@ -70,7 +72,7 @@ let nextId = 0;
                 (blur)="markTouched()"
               />
               <ng-container [ngTemplateOutlet]="star" />
-              <span class="ui-visually-hidden">{{ starLabel()(n) }}</span>
+              <span class="ui-visually-hidden">{{ starLabelText()(n) }}</span>
             </label>
           }
         </span>
@@ -82,6 +84,7 @@ let nextId = 0;
 export class RatingComponent
   implements ControlValueAccessor, FormValueControl<number | null>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the stars. Required when people pick. */
   readonly label = input('');
   readonly max = input<number | undefined>(5);
@@ -89,12 +92,14 @@ export class RatingComponent
   /** The score to show when `readonly`. A form control sets it otherwise. */
   readonly value = model<number | null>(null);
   /** The name of one star: (n) => `${n} stars`. */
-  readonly starLabel = input<(stars: number) => string>((n) =>
-    n === 1 ? '1 star' : `${n} stars`,
+  readonly starLabel = input<(stars: number) => string>();
+  protected readonly starLabelText = computed(
+    () => this.starLabel() ?? this.uiLabels().star,
   );
   /** The read-only score in words: (value, max) => `${value} out of ${max} stars`. */
-  readonly scoreLabel = input<(value: number, max: number) => string>(
-    (value, max) => `${value} out of ${max} stars`,
+  readonly scoreLabel = input<(value: number, max: number) => string>();
+  protected readonly scoreLabelText = computed(
+    () => this.scoreLabel() ?? this.uiLabels().score,
   );
 
   protected readonly id = `ui-rating-${nextId++}`;

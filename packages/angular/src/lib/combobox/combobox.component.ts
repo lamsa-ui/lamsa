@@ -5,6 +5,7 @@ import {
   computed,
   ElementRef,
   forwardRef,
+  inject,
   input,
   linkedSignal,
   model,
@@ -15,6 +16,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import type { SelectOption } from '../select/select.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -106,7 +108,7 @@ let nextId = 0;
           }
         </ul>
       } @else {
-        <p class="ui-listbox__empty" role="status">{{ emptyText() }}</p>
+        <p class="ui-listbox__empty" role="status">{{ emptyTextText() }}</p>
       }
     </ng-template>
     @if (hint()) {
@@ -122,13 +124,17 @@ let nextId = 0;
 export class ComboboxComponent<T>
   implements ControlValueAccessor, FormValueControl<T | null>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   readonly options = input.required<readonly SelectOption<T>[]>();
   readonly placeholder = input('');
   readonly hint = input<string>();
   readonly error = input<string>();
   /** Shown when nothing matches; pass the translated text. */
-  readonly emptyText = input('No matches');
+  readonly emptyText = input<string>();
+  protected readonly emptyTextText = computed(
+    () => this.emptyText() ?? this.uiLabels().noMatches,
+  );
   readonly testId = input<string>();
   readonly compareWith = input<(a: T, b: T) => boolean>((a, b) => a === b);
 

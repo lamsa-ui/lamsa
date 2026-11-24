@@ -2,6 +2,7 @@ import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { Button } from './button.js';
 import { cx } from './class-names.js';
 import { CloseIcon, ToneIcon, type AlertTone } from './tone-icon.js';
+import { useUiLabels } from './labels.js';
 
 export interface AlertProps extends Omit<
   ComponentPropsWithRef<'div'>,
@@ -32,11 +33,13 @@ export function Alert({
   title,
   actions,
   onDismiss,
-  closeLabel = 'Dismiss',
+  closeLabel,
   className,
   children,
   ...div
 }: AlertProps) {
+  const t = useUiLabels();
+  closeLabel ??= t.dismiss;
   return (
     <div {...div} className={cx('ui-alert', `ui-alert--${tone}`, className)}>
       <ToneIcon tone={tone} className="ui-alert__icon" />

@@ -10,15 +10,16 @@ import {
   inject,
   Injector,
   input,
-  signal,
   model,
   output,
+  signal,
   viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { IconComponent } from '../icon/icon.component';
 import { latinDigits } from '../number-field/digits';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -101,7 +102,7 @@ export const nationalDigits = (text: string) =>
         [id]="id + '-country'"
         [disabled]="disabled()"
         [attr.aria-label]="
-          countryLabel() + ': ' + picked().name + ' ' + picked().dial
+          countryLabelText() + ': ' + picked().name + ' ' + picked().dial
         "
         aria-haspopup="listbox"
         [attr.aria-expanded]="open()"
@@ -154,7 +155,7 @@ export const nationalDigits = (text: string) =>
           class="ui-listbox ui-phone-field__listbox"
           cdkListbox
           [cdkListboxValue]="countryValue()"
-          [attr.aria-label]="countryLabel()"
+          [attr.aria-label]="countryLabelText()"
           (cdkListboxValueChange)="pickCountry($event.value)"
         >
           @for (c of countries(); track c.code) {
@@ -197,12 +198,16 @@ export const nationalDigits = (text: string) =>
 export class PhoneFieldComponent
   implements ControlValueAccessor, FormValueControl<string | null>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   /** The country picked at first, by ISO code. A value from the form picks its own. */
   readonly country = input('EG');
   readonly countries = input<readonly PhoneCountry[]>(PHONE_COUNTRIES);
   /** Names the country list for screen readers. */
-  readonly countryLabel = input('Country code');
+  readonly countryLabel = input<string>();
+  protected readonly countryLabelText = computed(
+    () => this.countryLabel() ?? this.uiLabels().countryCode,
+  );
   readonly placeholder = input<string>();
   readonly hint = input<string>();
   /** The translated error. Marks the field invalid and announces the message. */

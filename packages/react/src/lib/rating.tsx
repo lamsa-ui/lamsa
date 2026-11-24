@@ -4,6 +4,7 @@ import type { Ref } from 'react';
 import { useId, useState } from 'react';
 import { cx } from './class-names.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 const Star = () => <Icon name="star" />;
 
@@ -48,10 +49,13 @@ export function Rating({
   name,
   onBlur,
   ref,
-  starLabel = (n) => (n === 1 ? '1 star' : `${n} stars`),
-  scoreLabel = (v, m) => `${v} out of ${m} stars`,
+  starLabel,
+  scoreLabel,
   className,
 }: RatingProps) {
+  const t = useUiLabels();
+  starLabel ??= t.star;
+  scoreLabel ??= t.score;
   const autoName = useId();
   const [own, setOwn] = useState(defaultValue);
   const current = value === undefined ? own : value;

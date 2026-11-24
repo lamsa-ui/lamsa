@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UI_LABELS } from '../labels';
 
 /**
  * Where the page sits: a navigation landmark around a list of links. Put each link in
@@ -17,15 +18,19 @@ import { Component, input } from '@angular/core';
   host: {
     class: 'ui-breadcrumbs',
     role: 'navigation',
-    '[attr.aria-label]': 'label()',
+    '[attr.aria-label]': 'labelText()',
   },
   template: `<ol>
     <ng-content />
   </ol>`,
 })
 export class BreadcrumbsComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   /** Names the landmark; pass the translated text. */
-  readonly label = input('Breadcrumb');
+  readonly label = input<string>();
+  protected readonly labelText = computed(
+    () => this.label() ?? this.uiLabels().breadcrumb,
+  );
 }
 
 /**

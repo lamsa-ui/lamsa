@@ -8,12 +8,14 @@ import {
   EnvironmentInjector,
   inject,
   Injectable,
+  linkedSignal,
   signal,
 } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 import { TONE_ICONS } from '../alert/tone-icon';
 import { ButtonComponent } from '../button/button.component';
 import type { AlertTone } from '../dialog/alert-dialog';
+import { UI_LABELS } from '../labels';
 
 export interface ToastOptions {
   tone?: AlertTone;
@@ -111,8 +113,15 @@ export class ToastRegionComponent {
  */
 @Injectable({ providedIn: 'root' })
 export class UiToast {
-  /** The region's name and the close buttons' name; set the translated text once. */
-  readonly labels = signal({ region: 'Notifications', close: 'Dismiss' });
+  private readonly uiLabels = inject(UI_LABELS);
+  /**
+   * The region's name and the close buttons' name. They follow provideUiLabels; set them
+   * here only to differ from it.
+   */
+  readonly labels = linkedSignal(() => ({
+    region: this.uiLabels().notifications,
+    close: this.uiLabels().dismiss,
+  }));
   /** The toasts on screen, oldest first. */
   readonly toasts = signal<readonly Toast[]>([]);
 

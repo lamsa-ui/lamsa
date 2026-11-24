@@ -1787,7 +1787,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { UiToast } from '@lamsa-ui/angular';
 
 const toast = inject(UiToast);
-toast.labels.set({ region: 'Notifications', close: 'Dismiss' }); // translated, once
+// The region and close buttons take their words from provideUiLabels.
 ```
 
 When to use something else:
@@ -1803,7 +1803,7 @@ When to use something else:
 | `options.duration` | `number` | `6000` | Milliseconds; 0 keeps it. With an action it defaults to 0. |
 | `options.action` | `{ label, run }` |  | One button; pressing it closes the toast. |
 | `dismiss(id)` | `void` |  | Closes a toast. |
-| `labels` | `signal` | `{ region: 'Notifications', close: 'Dismiss' }` | The region name and close button name, translated. |
+| `labels` | `signal` | `from provideUiLabels` | The region name and close button name. Set only to differ from provideUiLabels. |
 
 Keyboard and screen readers:
 
@@ -3642,7 +3642,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { ToastProvider, useToast } from '@lamsa-ui/react';
 
 // Once, around the app:
-<ToastProvider label="Notifications" closeLabel="Dismiss">{app}</ToastProvider>
+<ToastProvider>{app}</ToastProvider>
 ```
 
 When to use something else:
@@ -3652,7 +3652,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `<ToastProvider>` | `component` |  | Once around the app. Takes label and closeLabel. |
+| `<ToastProvider>` | `component` |  | Once around the app. Takes label and closeLabel; they default to UiLabelsProvider. |
 | `useToast().show(message, options?)` | `number` |  | As in Angular. |
 | `useToast().dismiss(id)` | `void` |  | Closes a toast. |
 
@@ -5480,7 +5480,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { ToastProvider, useToast } from '@lamsa-ui/vue';
 
 <!-- Once, around the app (App.vue): -->
-<ToastProvider label="Notifications" closeLabel="Dismiss"><RouterView /></ToastProvider>
+<ToastProvider><RouterView /></ToastProvider>
 ```
 
 When to use something else:

@@ -172,7 +172,7 @@ const CRITERIA: Criterion[] = [
     level: 'A',
     result: 'Supports',
     remarks:
-      'Every control works with the keyboard; the keys are listed on each component page and tested in each framework.',
+      'Every control works with the keyboard; the keys are listed on each component page, unit tested in each framework, and pressed in real browsers on the Angular components.',
   },
   {
     id: '2.1.2',

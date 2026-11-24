@@ -43,6 +43,38 @@ if (!dryRun && process.env.RELEASE_ENABLED !== 'true') {
   process.exit(1);
 }
 
+// The accessibility statement and conformance report are reviewed with every release:
+// stop when either is older than the last release, so the claims never fall behind.
+{
+  const { execSync } = await import('node:child_process');
+  const { readFileSync } = await import('node:fs');
+  const lastTag = execSync('git tag --sort=-creatordate', { encoding: 'utf8' })
+    .split('\n')
+    .find(Boolean);
+  if (lastTag) {
+    const released = execSync(`git log -1 --format=%cs ${lastTag}`, {
+      encoding: 'utf8',
+    }).trim();
+    const pages = [
+      'apps/docs/src/app/pages/accessibility.component.ts',
+      'apps/docs/src/app/pages/conformance.component.ts',
+    ];
+    const stale = pages.filter((page) => {
+      const dates = [
+        ...readFileSync(page, 'utf8').matchAll(/datetime="(\d{4}-\d\d-\d\d)"/g),
+      ].map((m) => m[1]);
+      return !dates.length || dates.sort().at(-1) < released;
+    });
+    if (stale.length) {
+      const say = dryRun ? console.warn : console.error;
+      say(
+        `Review these against this release and update their dates (last release ${lastTag}, ${released}):\n  ${stale.join('\n  ')}`,
+      );
+      if (!dryRun) process.exit(1);
+    }
+  }
+}
+
 const { projectsVersionData, releaseGraph } = await releaseVersion({
   projects,
   specifier,

@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import { cx } from './class-names.js';
+import { useUiLabels } from './labels.js';
 
 export interface SpinnerProps {
   /** What is loading, in words; read by screen readers. Pass the translated text. */
@@ -20,11 +21,13 @@ export interface SpinnerProps {
  * ```
  */
 export function Spinner({
-  label = 'Loading',
+  label,
   showLabel = false,
   size = 'md',
   className,
 }: SpinnerProps) {
+  const t = useUiLabels();
+  label ??= t.loading;
   return (
     <span
       role="status"

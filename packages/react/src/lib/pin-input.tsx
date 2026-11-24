@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type Ref } from 'react';
 import { cx } from './class-names.js';
 import { latinDigits } from './fields.js';
+import { useUiLabels } from './labels.js';
 
 export interface PinInputProps {
   label: string;
@@ -51,7 +52,7 @@ export function PinInput({
   onChange,
   onComplete,
   secret,
-  cellLabel = (n, of) => `Digit ${n} of ${of}`,
+  cellLabel,
   hint,
   error,
   disabled,
@@ -61,6 +62,8 @@ export function PinInput({
   testId,
   className,
 }: PinInputProps) {
+  const t = useUiLabels();
+  cellLabel ??= t.digit;
   const id = useId();
   const [own, setOwn] = useState(() => cells(defaultValue, length));
   const digits = value === undefined ? own : cells(value, length);

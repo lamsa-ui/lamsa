@@ -1,8 +1,10 @@
 import {
   booleanAttribute,
   Component,
+  computed,
   ElementRef,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -11,6 +13,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { FormValueControl } from '@angular/forms/signals';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -67,7 +70,7 @@ let nextId = 0;
           type="button"
           class="ui-input-group__button"
           tabindex="-1"
-          [attr.aria-label]="clearLabel()"
+          [attr.aria-label]="clearLabelText()"
           (click)="clear()"
         >
           <ui-icon name="x" />
@@ -82,13 +85,17 @@ let nextId = 0;
 export class SearchFieldComponent
   implements ControlValueAccessor, FormValueControl<string>
 {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly label = input.required<string>();
   /** Keeps the label for screen readers only, such as a search box in a header. */
   readonly hideLabel = input(false, { transform: booleanAttribute });
   readonly placeholder = input<string>();
   readonly hint = input<string>();
   /** Names the × button. Escape does the same. */
-  readonly clearLabel = input('Clear search');
+  readonly clearLabel = input<string>();
+  protected readonly clearLabelText = computed(
+    () => this.clearLabel() ?? this.uiLabels().clearSearch,
+  );
   readonly testId = input<string>();
   /** Enter pressed: the text to search for. */
   readonly submitted = output<string>();

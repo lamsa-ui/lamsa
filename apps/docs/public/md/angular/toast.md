@@ -10,7 +10,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { UiToast } from '@lamsa-ui/angular';
 
 const toast = inject(UiToast);
-toast.labels.set({ region: 'Notifications', close: 'Dismiss' }); // translated, once
+// The region and close buttons take their words from provideUiLabels.
 ```
 
 When to use something else:
@@ -26,7 +26,7 @@ When to use something else:
 | `options.duration` | `number` | `6000` | Milliseconds; 0 keeps it. With an action it defaults to 0. |
 | `options.action` | `{ label, run }` |  | One button; pressing it closes the toast. |
 | `dismiss(id)` | `void` |  | Closes a toast. |
-| `labels` | `signal` | `{ region: 'Notifications', close: 'Dismiss' }` | The region name and close button name, translated. |
+| `labels` | `signal` | `from provideUiLabels` | The region name and close button name. Set only to differ from provideUiLabels. |
 
 Keyboard and screen readers:
 
@@ -58,6 +58,6 @@ toast.show('Order 1042 deleted', {
 ### In Arabic
 
 ```html
-toast.labels.set({ region: 'الإشعارات', close: 'إخفاء' });
+// providers: [provideUiLabels(arabicLabels)] names the region and close buttons
 toast.show('العنوان اتحفظ', { tone: 'success' });
 ```

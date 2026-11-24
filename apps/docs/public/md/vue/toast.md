@@ -10,7 +10,7 @@ Docs: https://lamsa-ui.github.io/lamsa/components/toast
 import { ToastProvider, useToast } from '@lamsa-ui/vue';
 
 <!-- Once, around the app (App.vue): -->
-<ToastProvider label="Notifications" closeLabel="Dismiss"><RouterView /></ToastProvider>
+<ToastProvider><RouterView /></ToastProvider>
 ```
 
 When to use something else:
@@ -55,5 +55,6 @@ toast.show('Order 1042 deleted', {
 ### In Arabic
 
 ```vue
-<ToastProvider label="الإشعارات" closeLabel="إخفاء">…</ToastProvider>
+// provideUiLabels(arabicLabels) in App.vue names the region and close buttons
+<ToastProvider>…</ToastProvider>
 ```

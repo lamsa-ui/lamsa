@@ -1,6 +1,7 @@
 import type { IconName } from '@lamsa-ui/icons';
 import { cx } from './class-names.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 export type TimelineStatus = 'approved' | 'pending' | 'rejected';
 
@@ -29,14 +30,9 @@ const STATUS_ICONS: Record<TimelineStatus, IconName> = {
   rejected: 'x',
 };
 
-const STATUS_LABELS: Record<TimelineStatus, string> = {
-  approved: 'Approved',
-  pending: 'Pending',
-  rejected: 'Rejected',
-};
-
 /** A read-only, chronological record of decisions, such as a case's approval history. */
 export function Timeline({ label, items, className }: TimelineProps) {
+  const statusLabels = useUiLabels().timeline;
   return (
     <ol className={cx('ui-timeline', className)} aria-label={label}>
       {items.map((item, index) => (
@@ -63,7 +59,7 @@ export function Timeline({ label, items, className }: TimelineProps) {
                     `ui-timeline__status--${item.status}`,
                   )}
                 >
-                  {item.statusLabel ?? STATUS_LABELS[item.status]}
+                  {item.statusLabel ?? statusLabels[item.status]}
                 </span>
               )}
             </div>

@@ -9,6 +9,7 @@ import {
 import { defineComponent, h, type PropType } from 'vue';
 import { Icon } from './content.js';
 import { Menu } from './select.js';
+import { useUiLabels } from './labels';
 
 /** Page numbers to show, with 0 for a gap: 1 … 4 5 6 … 20. Never more than seven slots. */
 export function pageSlots(page: number, count: number): number[] {
@@ -39,16 +40,6 @@ export interface PaginationLabels {
   pageSize: string;
 }
 
-const englishLabels: PaginationLabels = {
-  nav: 'Pagination',
-  previous: 'Previous page',
-  next: 'Next page',
-  page: (page) => `Page ${page}`,
-  summary: (first, last, total) =>
-    total === 0 ? 'No results' : `${first}–${last} of ${total}`,
-  pageSize: 'Rows per page',
-};
-
 export interface PaginationProps {
   /** The current page, from 1. Bind with v-model:page. */
   page: number;
@@ -77,8 +68,9 @@ export const Pagination = defineComponent({
     'update:pageSize': (_size: number) => true,
   },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     return () => {
-      const text = { ...englishLabels, ...props.labels };
+      const text = { ...uiLabels.value.pagination, ...props.labels };
       const { page, pageSize, total } = props;
       const pageCount = Math.max(1, Math.ceil(total / pageSize));
       const first = Math.min(total, (page - 1) * pageSize + 1);
@@ -226,11 +218,12 @@ export const LanguageSwitcher = defineComponent({
   props: {
     languages: { type: Array as PropType<readonly Language[]>, required: true },
     current: { type: String, required: true },
-    label: { type: String, default: 'Language' },
+    label: String,
     size: { type: String as PropType<'sm' | 'md' | 'lg'>, default: 'md' },
   },
   emits: { 'update:current': (_code: string) => true },
   setup(props, { emit }) {
+    const uiLabels = useUiLabels();
     const globe = () => h(Icon, { name: 'globe', size: 'sm' });
     return () => {
       const button = `ui-button ui-button--secondary ui-button--${props.size}`;
@@ -253,7 +246,11 @@ export const LanguageSwitcher = defineComponent({
       return h(DropdownMenuRoot, null, () => [
         h(DropdownMenuTrigger, { class: button }, () => [
           globe(),
-          h('span', { class: 'ui-visually-hidden' }, `${props.label}: `),
+          h(
+            'span',
+            { class: 'ui-visually-hidden' },
+            `${props.label ?? uiLabels.value.language}: `,
+          ),
           h('span', { lang: active?.code }, active?.name),
         ]),
         h(DropdownMenuPortal, null, () =>

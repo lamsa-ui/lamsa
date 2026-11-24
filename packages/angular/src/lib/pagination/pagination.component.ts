@@ -1,4 +1,5 @@
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, inject, input, model } from '@angular/core';
+import { UI_LABELS } from '../labels';
 import { pageSlots } from './page-slots';
 import { IconComponent } from '../icon/icon.component';
 import {
@@ -19,16 +20,6 @@ export interface PaginationLabels {
   /** The label of the rows-per-page picker. */
   pageSize: string;
 }
-
-const englishLabels: PaginationLabels = {
-  nav: 'Pagination',
-  previous: 'Previous page',
-  next: 'Next page',
-  page: (page) => `Page ${page}`,
-  summary: (first, last, total) =>
-    total === 0 ? 'No results' : `${first}–${last} of ${total}`,
-  pageSize: 'Rows per page',
-};
 
 /**
  * Page navigation, 1-based. Bind `[(page)]` (and `[(pageSize)]` with `pageSizes`).
@@ -132,11 +123,12 @@ export class PaginationComponent {
   readonly total = input.required<number>();
   /** Offer these page sizes in a picker. Empty: no picker. */
   readonly pageSizes = input<readonly number[]>([]);
-  /** Translated texts; any you leave out stay English. */
+  /** Translated texts; any you leave out come from provideUiLabels (English by default). */
   readonly labels = input<Partial<PaginationLabels>>({});
 
+  private readonly uiLabels = inject(UI_LABELS);
   protected readonly text = computed(() => ({
-    ...englishLabels,
+    ...this.uiLabels().pagination,
     ...this.labels(),
   }));
   protected readonly pageCount = computed(() =>

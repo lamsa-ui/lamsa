@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Button } from './button.js';
 import { cx } from './class-names.js';
 import { Icon } from './icon.js';
+import { useUiLabels } from './labels.js';
 
 export interface StepItem {
   label: string;
@@ -62,13 +63,18 @@ export function Stepper({
   linear = false,
   onFinish,
   onBlocked,
-  doneLabel = 'Done',
-  backLabel = 'Back',
-  nextLabel = 'Next',
-  finishLabel = 'Finish',
+  doneLabel,
+  backLabel,
+  nextLabel,
+  finishLabel,
   number = String,
   className,
 }: StepperProps) {
+  const t = useUiLabels();
+  doneLabel ??= t.stepDone;
+  backLabel ??= t.stepBack;
+  nextLabel ??= t.stepNext;
+  finishLabel ??= t.stepFinish;
   const id = useId();
   const [own, setOwn] = useState(defaultCurrent);
   const current = controlled ?? own;

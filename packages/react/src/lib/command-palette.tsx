@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from 'react';
 import { Dialog } from './dialog.js';
+import { useUiLabels } from './labels.js';
 
 export interface Command {
   id: string;
@@ -42,12 +43,18 @@ export function CommandPalette({
   onOpenChange,
   onRun,
   shortcut = 'k',
-  title = 'Commands',
-  placeholder = 'Type a command',
-  emptyLabel = 'No commands match.',
-  closeLabel = 'Close',
-  countLabel = (n) => (n === 1 ? '1 command' : `${n} commands`),
+  title,
+  placeholder,
+  emptyLabel,
+  closeLabel,
+  countLabel,
 }: CommandPaletteProps) {
+  const t = useUiLabels();
+  title ??= t.commands;
+  placeholder ??= t.typeCommand;
+  emptyLabel ??= t.noCommands;
+  closeLabel ??= t.close;
+  countLabel ??= t.commandCount;
   const id = useId();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);

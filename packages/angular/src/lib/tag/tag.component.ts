@@ -1,5 +1,13 @@
-import { booleanAttribute, Component, input, output } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  inject,
+  input,
+  output,
+} from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
+import { UI_LABELS } from '../labels';
 
 let nextId = 0;
 
@@ -23,7 +31,7 @@ let nextId = 0;
         type="button"
         class="ui-tag__remove"
         [id]="id + '-remove'"
-        [attr.aria-label]="removeLabel()"
+        [attr.aria-label]="removeLabelText()"
         [attr.aria-labelledby]="id + '-remove ' + id"
         (click)="remove.emit()"
       >
@@ -33,9 +41,13 @@ let nextId = 0;
   `,
 })
 export class TagComponent {
+  private readonly uiLabels = inject(UI_LABELS);
   readonly removable = input(false, { transform: booleanAttribute });
   /** First word of the remove button's name; the tag's text follows it. */
-  readonly removeLabel = input('Remove');
+  readonly removeLabel = input<string>();
+  protected readonly removeLabelText = computed(
+    () => this.removeLabel() ?? this.uiLabels().remove,
+  );
   readonly remove = output<void>();
 
   protected readonly id = `ui-tag-${nextId++}`;
