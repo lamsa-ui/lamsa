@@ -183,28 +183,21 @@ test('home hero: drag turns the floor, a tap sends a ripple', async ({
   await expect(page.locator('.doc-ripple__wave')).toHaveCount(0);
 });
 
-test('home hero: a tap lights the part on the back and in Arabic', async ({
+test('home hero: press and hold raises the pins, a tap lets them down', async ({
   page,
 }) => {
-  // Reduced motion (the default here): the pane stays front on.
+  // Reduced motion (the default here): pressed pins jump up at once and stay.
+  // Events straight to a pin: Playwright's WebKit on Windows flattens 3D. Safari itself draws it.
   await openDocs(page, '');
-  // Events straight to the part: Playwright's WebKit on Windows flattens 3D, so the standing
-  // pane has no area to click there. Safari itself draws it.
-  const paid = page.locator('.doc-faces__face--front [data-key=paid]');
-  await paid.dispatchEvent('pointerdown', { button: 0 });
-  await paid.dispatchEvent('pointerup', { button: 0 });
-  await expect(
-    page.locator('.doc-faces__face--back [data-key=paid]'),
-  ).toHaveClass(/doc-faces--lit/);
-  await expect(
-    page.locator('.doc-faces__mirror [data-key=paid]'),
-  ).toContainText('مدفوعة فقط');
-  await expect(page.locator('.doc-ripple__hint a')).toHaveAttribute(
-    'href',
-    /\/components\/switch$/,
-  );
-  // The back shows contrast measured from the live tokens.
-  await expect(
-    page.locator('.doc-faces__face--back [data-key=add] b'),
-  ).toHaveText(/^\d+\.\d:1$/);
+  const pin = page.locator('.doc-pins__pin').nth(40);
+  const height = () =>
+    pin.evaluate((el) => Number(el.style.getPropertyValue('--h')));
+  await pin.dispatchEvent('pointerdown', { button: 0 });
+  await expect.poll(height).toBeGreaterThan(0.4);
+  await page.waitForTimeout(300);
+  await pin.dispatchEvent('pointerup', { button: 0 });
+  await expect.poll(height).toBeGreaterThan(0.4);
+  await pin.dispatchEvent('pointerdown', { button: 0 });
+  await pin.dispatchEvent('pointerup', { button: 0 });
+  await expect.poll(height).toBeLessThan(0.1);
 });

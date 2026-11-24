@@ -1,17 +1,17 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { HomeFacesComponent } from './home-faces.component';
+import { HomePinsComponent } from './home-pins.component';
 import { FRAMEWORKS } from '../shared/docs-settings';
 import { COMPONENTS, NAV } from '../shared/nav';
 
 const foundationCount =
   NAV.find((g) => g.title === 'Foundations')?.links.length ?? 0;
 
-/** The landing page: one first screen, the pitch beside one live screen seen three ways. */
+/** The landing page: one first screen, the pitch beside a pin board you press. */
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, HomeFacesComponent],
+  imports: [RouterLink, HomePinsComponent],
   host: { class: 'doc-home' },
   template: `
     <section class="doc-home__hero" aria-labelledby="home-title">
@@ -65,7 +65,7 @@ const foundationCount =
         </dl>
       </div>
 
-      <app-home-faces />
+      <app-home-pins />
     </section>
   `,
 })
@@ -75,7 +75,6 @@ export class HomeComponent {
     { label: 'Components', value: COMPONENTS.length },
     { label: 'Foundations', value: foundationCount },
     { label: 'Frameworks', value: FRAMEWORKS.length },
-    { label: 'Text contrast', value: '7:1' },
   ];
 
   /** Rotating last word of the title; still for reduced motion. */
