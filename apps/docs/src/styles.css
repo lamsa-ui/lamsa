@@ -1113,8 +1113,7 @@ ol.doc-list {
 }
 /* The globe: one point per component on a sphere of radius --r, centred --lift over the floor.
    The body is a disc that always faces you, shaded from day (light theme) to night (dark theme)
-   around --sx/--sy, where the light falls as you see it (set by home-globe.component). A point on
-   the day side carries data-theme="light", on the night side "dark". */
+   around --sx/--sy, where the light falls as you see it (set by home-globe.component). */
 .doc-globe {
   --sx: -0.5;
   --sy: -0.4;
@@ -1138,17 +1137,31 @@ ol.doc-list {
 }
 .doc-globe__tile {
   --out: 0.2;
+  --dot: var(--ui-brand-blue);
   position: absolute;
-  inline-size: 1.8cqi;
-  block-size: 1.8cqi;
-  margin: -0.9cqi 0 0 -0.9cqi;
+  inline-size: 3cqi;
+  block-size: 3cqi;
+  margin: -1.5cqi 0 0 -1.5cqi;
+  border: 0.45cqi solid var(--ui-paper);
   border-radius: 50%;
-  background: var(--ui-primary);
-  box-shadow: 0 0 1.4cqi color-mix(in oklab, var(--ui-primary) 70%, transparent);
+  background: var(--dot);
+  box-shadow: 0 0 1.8cqi color-mix(in oklab, var(--dot) 70%, transparent);
   backface-visibility: hidden;
   cursor: pointer;
   transform: rotateZ(var(--lon)) rotateX(calc(var(--lat) - 90deg))
     translateZ(calc((var(--r) + var(--out)) * 1cqi));
+}
+/* The brand's colours: red and blue points ringed in paper, paper and tint ones ringed in blue. */
+.doc-globe__tile--red {
+  --dot: var(--ui-brand-red);
+}
+.doc-globe__tile--paper {
+  --dot: var(--ui-paper);
+  border-color: var(--ui-brand-blue);
+}
+.doc-globe__tile--tint {
+  --dot: #8fb4ff;
+  border-color: var(--ui-brand-blue);
 }
 /* A bigger target than the point itself. */
 .doc-globe__tile::before {

@@ -38,26 +38,17 @@ const SUN_DIR = [
   Math.sin(rad(SUN.lat)),
 ];
 
-/**
- * One tile per component, spread evenly over the globe (a Fibonacci sphere). Tiles on the sunny
- * side are drawn in the light theme, the rest in the dark theme.
- */
-const TILES = COMPONENTS.map((c, i, all) => {
-  const lat = Math.asin(1 - (2 * (i + 0.5)) / all.length);
-  const lon = rad(i * 137.508);
-  const sun = [rad(SUN.lon), rad(SUN.lat)];
-  const light =
-    Math.cos(lat) * Math.cos(sun[1]) * Math.cos(lon - sun[0]) +
-      Math.sin(lat) * Math.sin(sun[1]) >
-    0;
-  return {
-    label: c.label,
-    path: c.path,
-    lat: (lat * 180) / Math.PI,
-    lon: (lon * 180) / Math.PI,
-    light,
-  };
-});
+/** The brand's colours, taken in turn by the points. */
+const COLOURS = ['red', 'blue', 'paper', 'tint'];
+
+/** One point per component, spread evenly over the globe (a Fibonacci sphere). */
+const TILES = COMPONENTS.map((c, i, all) => ({
+  label: c.label,
+  path: c.path,
+  lat: (Math.asin(1 - (2 * (i + 0.5)) / all.length) * 180) / Math.PI,
+  lon: (i * 137.508) % 360,
+  colour: COLOURS[i % COLOURS.length],
+}));
 
 /** Each framework circles the globe on its own tilted ring and speed. r in cqi, angles in degrees. */
 const ORBITS: {
@@ -75,9 +66,8 @@ const ORBITS: {
 ];
 
 /**
- * The library as a globe: every component is a point of light on it, in the light theme on the
- * day side and the dark theme on the night side, with smooth shading between; the frameworks
- * circle it as moons. Hover a point to read its name. Drag to turn and tilt it; it glides on,
+ * The library as a globe: every component is a point on it in one of the brand colours, the body
+ * shaded smoothly from day (light theme) to night (dark theme); the frameworks circle it as moons. Hover a point to read its name. Drag to turn and tilt it; it glides on,
  * then turns slowly. Tap a point to open that component's page, or the floor to send a ripple.
  * Decorative (aria-hidden): every page is also in the side bar.
  */
@@ -134,8 +124,7 @@ const ORBITS: {
             <span class="doc-globe__core"></span>
             @for (t of tiles; track t.path) {
               <span
-                class="doc-globe__tile"
-                [attr.data-theme]="t.light ? 'light' : 'dark'"
+                [class]="'doc-globe__tile doc-globe__tile--' + t.colour"
                 [attr.data-path]="t.path"
                 [style.--lat]="t.lat + 'deg'"
                 [style.--lon]="t.lon + 'deg'"
