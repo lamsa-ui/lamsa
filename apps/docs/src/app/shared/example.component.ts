@@ -9,7 +9,7 @@ import type { FrameworkCode } from './docs-settings';
   // Enter on a link fires click too, so this one listener covers the keyboard.
   host: { class: 'doc-card', '(click)': 'stayOnPage($event)' },
   template: `
-    <h2 class="doc-card__title" [id]="anchor()">{{ title() }}</h2>
+    <h2 class="doc-card__title" [attr.id]="anchor()">{{ title() }}</h2>
     @if (description()) {
       <p class="doc-card__text">{{ description() }}</p>
     }
