@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, ViewportScroller } from '@angular/common';
 import { FrameworkIconComponent } from './shared/framework-icon.component';
 import { DialogRef } from '@angular/cdk/dialog';
 import {
@@ -307,6 +307,12 @@ export class AppComponent {
   protected readonly isHome = signal(false);
 
   constructor() {
+    // Angular's anchor jump ignores CSS scroll-padding, so land headings below the sticky header.
+    inject(ViewportScroller).setOffset(() => [
+      0,
+      (document.querySelector('.doc-header')?.getBoundingClientRect().height ??
+        0) + 16,
+    ]);
     // A link chosen in the drawer closes it.
     this.router.events
       .pipe(
