@@ -43,6 +43,10 @@ for (const name of FORCED) {
     await page.emulateMedia({ forcedColors: 'active' });
     await openDocs(page, `components/${name}`);
     await page.evaluate(() => document.fonts.ready);
+    // Hints wrap differently with Linux fonts; the controls are what this checks.
+    await page.addStyleTag({
+      content: '.ui-field__hint { display: none !important; }',
+    });
     const example = page.locator('main .doc-preview').first();
     await example.scrollIntoViewIfNeeded();
     const control = example
