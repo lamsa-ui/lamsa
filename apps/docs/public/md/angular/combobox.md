@@ -23,7 +23,7 @@ When to use something else:
 | `options` | `SelectOption<T>[]` |  | Required. { value, label, disabled? }. The label is what is matched. |
 | `placeholder` | `string` |  | Shown while the field is empty. |
 | `hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches; pass the translated text. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches; pass the translated text. |
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 

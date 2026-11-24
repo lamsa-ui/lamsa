@@ -18,7 +18,7 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `@remove` | `event` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
-| `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+| `removeLabel` | `string` | `'Remove' from labels` | The button's first word; the tag's text follows it. Translate it. |
 
 Keyboard and screen readers:
 

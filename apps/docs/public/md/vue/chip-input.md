@@ -20,8 +20,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the field and the list of tags. |
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
-| `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
-| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+| `removeLabel` | `string` | `'Remove' from labels` | First word of each × button's name. Translate it. |
+| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added` from labels` | What screen readers hear after a change. Translate them. |
 | `v-model` | `string[]` |  | The chips, in the order they were added. |
 | `disabled` | `boolean` | `false` | Locks the field and hides the × buttons. |
 

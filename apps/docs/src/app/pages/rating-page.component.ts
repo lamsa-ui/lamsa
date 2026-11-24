@@ -129,14 +129,14 @@ star = (n: number) => n === 1 ? 'نجمة واحدة' : n === 2 ? 'نجمتان'
     {
       name: 'starLabel',
       type: '(stars: number) => string',
-      default: '`${n} stars`',
+      default: '`${n} stars` from labels',
       description:
         'The name of one star, read by screen readers. Translate it.',
     },
     {
       name: 'scoreLabel',
       type: '(value, max) => string',
-      default: '`${v} out of ${m} stars`',
+      default: '`${v} out of ${m} stars` from labels',
       description: 'The read-only score in words. Translate it.',
     },
   ];

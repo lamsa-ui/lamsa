@@ -18,7 +18,7 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `removable` | `boolean` | `false` | Shows the × button. |
-| `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+| `removeLabel` | `string` | `'Remove' from labels` | The button's first word; the tag's text follows it. Translate it. |
 | `(remove)` | `void` |  | The × was pressed. Remove the tag and move focus on. |
 
 Keyboard and screen readers:

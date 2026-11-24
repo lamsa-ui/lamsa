@@ -191,7 +191,7 @@ export class TagPageComponent {
       {
         name: 'removeLabel',
         type: 'string',
-        default: "'Remove'",
+        default: "'Remove' from labels",
         description:
           "The button's first word; the tag's text follows it. Translate it.",
       },
@@ -211,7 +211,7 @@ export class TagPageComponent {
       {
         name: 'removeLabel',
         type: 'string',
-        default: "'Remove'",
+        default: "'Remove' from labels",
         description:
           "The button's first word; the tag's text follows it. Translate it.",
       },
@@ -231,7 +231,7 @@ export class TagPageComponent {
       {
         name: 'removeLabel',
         type: 'string',
-        default: "'Remove'",
+        default: "'Remove' from labels",
         description:
           "The button's first word; the tag's text follows it. Translate it.",
       },

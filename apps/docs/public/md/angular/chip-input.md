@@ -21,8 +21,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the field and the list of tags. |
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
-| `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
-| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+| `removeLabel` | `string` | `'Remove' from labels` | First word of each × button's name. Translate it. |
+| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added` from labels` | What screen readers hear after a change. Translate them. |
 
 Keyboard and screen readers:
 

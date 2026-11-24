@@ -35,12 +35,14 @@ describe('provideUiLabels', () => {
     expect(nav()).toBe('Pagination');
   });
 
-  it('counts in Arabic', () => {
+  it('counts in Arabic, in Arabic-Indic digits', () => {
+    expect(arabicLabels.pagination.summary(1, 10, 1042)).toBe('١–١٠ من ١٠٤٢');
+    expect(arabicLabels.score(4.5, 5)).toBe('٤٫٥ من ٥ نجوم');
     expect([1, 2, 3, 11].map(arabicLabels.star)).toEqual([
       'نجمة واحدة',
       'نجمتان',
-      '3 نجوم',
-      '11 نجمة',
+      '٣ نجوم',
+      '١١ نجمة',
     ]);
   });
 });

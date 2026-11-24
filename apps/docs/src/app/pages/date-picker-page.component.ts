@@ -335,7 +335,7 @@ const stay = ref<DateRange | null>(null);
     {
       name: 'calendarLabel',
       type: 'string',
-      default: 'Choose date',
+      default: 'Choose date from labels',
       description: 'Names the calendar button. Translate it.',
     },
   ];
@@ -371,7 +371,7 @@ const stay = ref<DateRange | null>(null);
       {
         name: 'rangeStartLabel | rangeEndLabel',
         type: 'string',
-        default: "'Start date' | 'End date'",
+        default: "'Start date' | 'End date' from labels",
         description: 'Accessible names for the two fields in range mode.',
       },
       {
@@ -414,7 +414,7 @@ const stay = ref<DateRange | null>(null);
       {
         name: 'rangeStartLabel | rangeEndLabel',
         type: 'string',
-        default: "'Start date' | 'End date'",
+        default: "'Start date' | 'End date' from labels",
         description: 'Accessible names for the two fields in range mode.',
       },
       {

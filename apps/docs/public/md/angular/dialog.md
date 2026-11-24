@@ -29,7 +29,7 @@ When to use something else:
 | `<ui-dialog> title` | `string` |  | Required. The heading; it names the dialog. |
 | `<ui-dialog> description` | `string` |  | A sentence under the title, read with it. |
 | `<ui-dialog> size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide, never wider than the screen. |
-| `<ui-dialog> closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
+| `<ui-dialog> closeLabel` | `string` | `'Close' from labels` | Accessible name of the close button; pass the translated text. |
 | `[ui-dialog-actions]` | `content slot` |  | The buttons; they line up at the end and stay in view. |
 | `uiDialogClose` | `directive` |  | On a button: closes the dialog with its value, or none when bare. |
 

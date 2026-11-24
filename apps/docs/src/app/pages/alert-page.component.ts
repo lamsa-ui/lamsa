@@ -207,7 +207,7 @@ export class AlertPageComponent {
       {
         name: 'closeLabel',
         type: 'string',
-        default: "'Dismiss'",
+        default: "'Dismiss' from labels",
         description: 'Its accessible name, translated.',
       },
       {
@@ -246,7 +246,7 @@ export class AlertPageComponent {
       {
         name: 'closeLabel',
         type: 'string',
-        default: "'Dismiss'",
+        default: "'Dismiss' from labels",
         description: 'Its accessible name, translated.',
       },
       {
@@ -281,7 +281,7 @@ export class AlertPageComponent {
       {
         name: 'closeLabel',
         type: 'string',
-        default: "'Dismiss'",
+        default: "'Dismiss' from labels",
         description: 'Its accessible name, translated.',
       },
     ],

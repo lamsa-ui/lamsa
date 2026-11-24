@@ -108,7 +108,7 @@ import { PageComponent } from '../shared/page.component';
           <li>
             Unit tests in Angular, React and Vue check every component's roles,
             names and states, the keys of the interactive ones, and the Arabic
-            words they say.
+            words they say. The React and Vue tests run again in real Chromium.
           </li>
           <li>
             Screenshots of the main controls in Windows high contrast are
@@ -131,8 +131,8 @@ import { PageComponent } from '../shared/page.component';
             user meets.
           </li>
           <li>
-            React and Vue components are tested in a simulated browser only; the
-            real-browser tests run on the Angular components.
+            React and Vue run their tests in Chromium only; the page-level key
+            tests in Firefox and WebKit run on the Angular components.
           </li>
           <li>
             Tooltips never show on touch screens, so nothing needed may live
@@ -239,7 +239,9 @@ import { PageComponent } from '../shared/page.component';
             والأمثلة الحية في هذا الموقع مبنية بمكوّنات Angular.
           </li>
           <li>
-            تفحص اختبارات الوحدة أدوار كل مكوّن وأسماءه وحالاته في كل إطار عمل.
+            تفحص اختبارات الوحدة أدوار كل مكوّن وأسماءه وحالاته وكلماته العربية
+            في كل إطار عمل، وتعمل اختبارات React وVue مرة أخرى في Chromium
+            حقيقي.
           </li>
           <li>
             تُقارن صور لعناصر التحكم الأساسية في وضع التباين العالي بصور معتمدة.
@@ -249,8 +251,8 @@ import { PageComponent } from '../shared/page.component';
         <h3 class="ui-heading">ما لم يكتمل بعد</h3>
         <ul class="doc-list">
           <li>
-            مكوّنات React وVue مختبرة في متصفح محاكى فقط؛ واختبارات المتصفح
-            الحقيقي تعمل على مكوّنات Angular.
+            مكوّنات React وVue مختبرة في Chromium فقط؛ واختبارات المفاتيح على
+            مستوى الصفحة في Firefox وWebKit تعمل على مكوّنات Angular.
           </li>
           <li>
             الاختبار بقارئات شاشة حقيقية: NVDA وJAWS على ويندوز، وVoiceOver على

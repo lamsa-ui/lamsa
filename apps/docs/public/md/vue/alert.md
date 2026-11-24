@@ -22,7 +22,7 @@ When to use something else:
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `#actions` | `slot` |  | Buttons under the message. |
 | `@dismiss` | `event` |  | Listening shows a close button; remove the alert when it fires. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 
 Keyboard and screen readers:
 

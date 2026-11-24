@@ -22,7 +22,7 @@ When to use something else:
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `actions` | `ReactNode` |  | Buttons under the message. |
 | `onDismiss` | `() => void` |  | Shows a close button that calls it. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 | `...props` | `div props` |  | Every native div prop, such as role. |
 
 Keyboard and screen readers:

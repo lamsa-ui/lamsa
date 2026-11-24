@@ -162,7 +162,7 @@ export class FileFieldPageComponent {
       {
         name: 'dropText',
         type: 'string',
-        default: "'Or drop a file here'",
+        default: "'Or drop a file here' from labels",
         description: 'The line under the button; pass the translated text.',
       },
       {

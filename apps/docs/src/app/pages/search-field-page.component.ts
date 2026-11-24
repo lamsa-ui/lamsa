@@ -153,7 +153,7 @@ export class SearchFieldPageComponent {
     {
       name: 'clearLabel',
       type: 'string',
-      default: 'Clear search',
+      default: 'Clear search from labels',
       description: 'Names the × button. Translate it.',
     },
   ];

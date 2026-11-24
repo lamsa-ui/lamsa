@@ -19,8 +19,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Names the stars, as the fieldset legend. Required when people pick. |
 | `max` | `number` | `5` | How many stars. |
-| `starLabel` | `(stars: number) => string` | ``${n} stars`` | The name of one star, read by screen readers. Translate it. |
-| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars`` | The read-only score in words. Translate it. |
+| `starLabel` | `(stars: number) => string` | ``${n} stars` from labels` | The name of one star, read by screen readers. Translate it. |
+| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars` from labels` | The read-only score in words. Translate it. |
 | `readOnly` | `boolean` | `false` | Shows a score as stars, for reading only. |
 | `v-model` | `number \| null` |  | The score. |
 | `name \| disabled` | `string \| boolean` |  | For the radios underneath. |

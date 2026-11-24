@@ -19,7 +19,7 @@ When to use something else:
 | --- | --- | --- | --- |
 | `languages` | `Language[]` |  | Required. { code, name }, each name in its own language. |
 | `v-model:current` | `string` |  | Required. The current language's code. |
-| `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
+| `label` | `string` | `'Language' from labels` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
 
 Keyboard and screen readers:

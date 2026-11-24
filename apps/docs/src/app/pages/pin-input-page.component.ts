@@ -139,7 +139,7 @@ cell = (n: number, of: number) => \`الرقم \${n.toLocaleString('ar-EG')} م�
     {
       name: 'cellLabel',
       type: '(n, of) => string',
-      default: '`Digit ${n} of ${of}`',
+      default: '`Digit ${n} of ${of}` from labels',
       description: "Each box's name for screen readers. Translate it.",
     },
     {

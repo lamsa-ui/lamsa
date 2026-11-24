@@ -139,13 +139,13 @@ removed = (c: string) => \`تمت إزالة \${c}\`;`,
     {
       name: 'removeLabel',
       type: 'string',
-      default: "'Remove'",
+      default: "'Remove' from labels",
       description: "First word of each × button's name. Translate it.",
     },
     {
       name: 'addedLabel | removedLabel',
       type: '(chip: string) => string',
-      default: '`${c} added`',
+      default: '`${c} added` from labels',
       description: 'What screen readers hear after a change. Translate them.',
     },
   ];

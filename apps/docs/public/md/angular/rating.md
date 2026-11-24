@@ -20,8 +20,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Names the stars, as the fieldset legend. Required when people pick. |
 | `max` | `number` | `5` | How many stars. |
-| `starLabel` | `(stars: number) => string` | ``${n} stars`` | The name of one star, read by screen readers. Translate it. |
-| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars`` | The read-only score in words. Translate it. |
+| `starLabel` | `(stars: number) => string` | ``${n} stars` from labels` | The name of one star, read by screen readers. Translate it. |
+| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars` from labels` | The read-only score in words. Translate it. |
 | `readonly` | `boolean` | `false` | Only shows [value]; nothing to pick. |
 | `value` | `number` |  | The score to show when readonly. A form control sets it otherwise. |
 

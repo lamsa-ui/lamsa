@@ -99,6 +99,9 @@ export const englishLabels: UiLabels = {
   timeline: { approved: 'Approved', pending: 'Pending', rejected: 'Rejected' },
 };
 
+/** Numbers in Arabic-Indic digits, as Egyptian Arabic text writes them: 1042 → ١٠٤٢. */
+const ar = (n: number) => n.toLocaleString('ar-EG', { useGrouping: false });
+
 /** Arabic counts: one and two have their own words, 3 to 10 the plural, 11 and up the singular. */
 function arabicCount(
   n: number,
@@ -107,7 +110,7 @@ function arabicCount(
   if (n === 1) return one;
   if (n === 2) return two;
   const tail = n % 100;
-  return `${n} ${tail >= 3 && tail <= 10 ? few : many}`;
+  return `${ar(n)} ${tail >= 3 && tail <= 10 ? few : many}`;
 }
 
 export const arabicLabels: UiLabels = {
@@ -139,11 +142,11 @@ export const arabicLabels: UiLabels = {
   dropFile: 'أو اسحب الملف هنا',
   language: 'اللغة',
   breadcrumb: 'مسار الصفحة',
-  digit: (n, of) => `الرقم ${n} من ${of}`,
+  digit: (n, of) => `الرقم ${ar(n)} من ${ar(of)}`,
   star: (n) => arabicCount(n, ['نجمة واحدة', 'نجمتان', 'نجوم', 'نجمة']),
   score: (value, max) =>
-    `${value} من ${max} ${max % 100 >= 3 && max % 100 <= 10 ? 'نجوم' : 'نجمة'}`,
-  more: (n) => `${n} آخرون`,
+    `${ar(value)} من ${ar(max)} ${max % 100 >= 3 && max % 100 <= 10 ? 'نجوم' : 'نجمة'}`,
+  more: (n) => `${ar(n)} آخرون`,
   notifications: 'الإشعارات',
   stepDone: 'تم',
   stepBack: 'السابق',
@@ -153,9 +156,11 @@ export const arabicLabels: UiLabels = {
     nav: 'التنقل بين الصفحات',
     previous: 'الصفحة السابقة',
     next: 'الصفحة التالية',
-    page: (page) => `الصفحة ${page}`,
+    page: (page) => `الصفحة ${ar(page)}`,
     summary: (first, last, total) =>
-      total === 0 ? 'لا توجد نتائج' : `${first}–${last} من ${total}`,
+      total === 0
+        ? 'لا توجد نتائج'
+        : `${ar(first)}–${ar(last)} من ${ar(total)}`,
     pageSize: 'عدد الصفوف',
   },
   timeline: {

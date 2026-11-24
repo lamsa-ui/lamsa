@@ -17,7 +17,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Loading'` | What is loading, translated. |
+| `label` | `string` | `'Loading' from labels` | What is loading, translated. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label. |
 

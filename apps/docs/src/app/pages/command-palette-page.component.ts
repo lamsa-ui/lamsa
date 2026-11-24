@@ -121,7 +121,7 @@ commands: Command[] = [
     {
       name: 'title | placeholder',
       type: 'string',
-      default: "'Commands'",
+      default: "'Commands' from labels",
       description: 'Names the dialog and the field; text in the empty field.',
     },
     {
@@ -133,7 +133,7 @@ commands: Command[] = [
     {
       name: 'countLabel',
       type: '(count: number) => string',
-      default: '`${n} commands`',
+      default: '`${n} commands` from labels',
       description: 'Announced as you type. Translate it.',
     },
   ];

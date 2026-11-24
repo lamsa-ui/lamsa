@@ -23,7 +23,7 @@ When to use something else:
 | `value, defaultValue` | `T \| null` |  | The chosen value, controlled or not. |
 | `onChange` | `(value: T \| null) => void` |  | Called with the picked value, or null when the field is emptied. |
 | `placeholder, hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches. |
 | `disabled` | `boolean` |  | Disables the field. |
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |

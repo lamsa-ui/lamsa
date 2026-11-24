@@ -14,7 +14,7 @@ Follow these every time you write code with Lamsa.
 4. Use colour tokens, never raw hex values: `bg-primary`, `text-on-primary`, `var(--ui-primary)`. Colours switch with the theme (`data-theme="light"` or `"dark"`, or the system setting).
 5. Space comes from the scale: `p-4`, `gap-3`, `ui-p-4` (without Tailwind). Do not write pixel values.
 6. Use logical properties (`ms-2`, `pe-4`, `start`, `end`), never `left` or `right`, so the layout flips in right-to-left languages.
-7. Always set `lang` and `dir` on `<html>`. In an Arabic app translate every label a component shows (close buttons, toast region, pagination).
+7. Always set `lang` and `dir` on `<html>`. In an Arabic app give the components their Arabic words in one place, switched with the language: `provideUiLabels(arabicLabels)` (Angular providers; Vue in App.vue setup) or `<UiLabelsProvider labels={arabicLabels}>` (React). Do not set close, remove or pagination labels one by one. Write your own labels in Arabic too.
 8. Every control needs a visible label. Colour never carries meaning alone: an error also has text.
 9. Put your own CSS in `@layer components` or `@layer base`, or a plain rule beats the kit's classes.
 10. Open native dialogs with `showModal()`, never `show()`.

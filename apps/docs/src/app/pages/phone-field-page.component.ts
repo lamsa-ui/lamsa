@@ -134,7 +134,7 @@ gulf: PhoneCountry[] = [
     {
       name: 'countryLabel',
       type: 'string',
-      default: 'Country code',
+      default: 'Country code from labels',
       description: 'Names the list for screen readers. Translate it.',
     },
     {

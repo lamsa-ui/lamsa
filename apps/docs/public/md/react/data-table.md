@@ -25,7 +25,7 @@ When to use something else:
 | `sort / onSortChange` | `TableSort \| null / (sort) => void` |  | The sort state, controlled. Sort the rows yourself. |
 | `rowKey` | `keyof T \| (row) => Key` |  | Used as the React key of each row. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
-| `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+| `emptyMessage` | `string` | `'No results' from labels` | Shown when there are no rows; pass the translated text. |
 
 Keyboard and screen readers:
 

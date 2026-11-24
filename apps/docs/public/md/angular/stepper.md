@@ -20,8 +20,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the list of steps: "Checkout". |
 | `linear` | `boolean` | `false` | Each step waits for the ones before it to be completed, and Next waits for the current one. |
-| `doneLabel` | `string` | `'Done'` | Read before each done step. Translate it. |
-| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish'` | The button labels. Translate them. |
+| `doneLabel` | `string` | `'Done' from labels` | Read before each done step. Translate it. |
+| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish' from labels` | The button labels. Translate them. |
 | `number` | `(n: number) => string` | `String` | The marker's number, for Arabic digits. |
 | `current` | `number` | `0` | Index of the current step; two-way with [(current)]. |
 | `(blocked)` | `number` |  | Linear only: Next or Finish was pressed on this step while it is not completed. Show its errors. |

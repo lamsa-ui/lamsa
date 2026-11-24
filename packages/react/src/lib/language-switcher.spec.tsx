@@ -39,10 +39,10 @@ describe('LanguageSwitcher', () => {
   it('with three, opens a menu with the current one checked', async () => {
     render(<Host languages={three} />);
     await userEvent.click(
-      screen.getByRole('button', { name: 'Language: English' }),
+      screen.getByRole('button', { name: /^Language:\s*English$/ }),
     );
     // React Aria names the menu after its button.
-    screen.getByRole('menu', { name: 'Language: English' });
+    screen.getByRole('menu', { name: /^Language:\s*English$/ });
     const items = screen.getAllByRole('menuitemradio');
     expect(items.map((i) => i.getAttribute('aria-checked'))).toEqual([
       'true',

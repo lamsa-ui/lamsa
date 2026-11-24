@@ -18,7 +18,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `menuLabel` | `string` | `Menu` | Names the menu button. Translate it. |
+| `menuLabel` | `string` | `Menu from labels` | Names the menu button. Translate it. |
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `[uiShellBrand] \| [uiShellActions] \| [uiShellSidebar]` | `slot` |  | Brand at the start of the header, actions at its end, links in the side bar. The rest is the page. |

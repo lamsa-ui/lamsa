@@ -23,10 +23,10 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | Shows one date field, or two fields for a date range. |
 | `range` | `DateRange \| null` |  | Two-way model for range mode. start is an ISO date; end is null until the second date is picked. |
-| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date'` | Accessible names for the two fields in range mode. |
+| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date' from labels` | Accessible names for the two fields in range mode. |
 | `type (ui-text-field)` | `'date' \| 'time' \| 'datetime-local' \| 'number'` |  | Use the browser native picker for dates and times, or a basic number input. |
 | `min, max (ui-text-field)` | `string \| number` |  | The range: '2026-01-31' for a date, '09:00' for a time, 1 for a number. |
 | `step (ui-text-field)` | `string \| number` |  | The steps: seconds for a time, units for a number. |

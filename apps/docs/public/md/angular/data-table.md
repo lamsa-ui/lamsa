@@ -30,7 +30,7 @@ When to use something else:
 | `sort` | `TableSort \| null (model)` |  | Bind [(sort)]: { key, direction }. Sort the rows yourself. |
 | `rowKey` | `keyof T \| (row) => unknown` |  | What identifies a row, so rows keep their state across updates. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
-| `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+| `emptyMessage` | `string` | `'No results' from labels` | Shown when there are no rows; pass the translated text. |
 | `ng-template uiCell="key"` | `directive` |  | A custom cell for that column; let-row gives the row. |
 
 Keyboard and screen readers:

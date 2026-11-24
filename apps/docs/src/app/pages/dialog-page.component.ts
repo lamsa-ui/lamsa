@@ -513,7 +513,7 @@ const open = ref(false);
       {
         name: '<ui-dialog> closeLabel',
         type: 'string',
-        default: "'Close'",
+        default: "'Close' from labels",
         description:
           'Accessible name of the close button; pass the translated text.',
       },
@@ -567,7 +567,7 @@ const open = ref(false);
       {
         name: 'closeLabel',
         type: 'string',
-        default: "'Close'",
+        default: "'Close' from labels",
         description:
           'Accessible name of the close button; pass the translated text.',
       },
@@ -610,7 +610,7 @@ const open = ref(false);
       {
         name: 'closeLabel',
         type: 'string',
-        default: "'Close'",
+        default: "'Close' from labels",
         description:
           'Accessible name of the close button; pass the translated text.',
       },

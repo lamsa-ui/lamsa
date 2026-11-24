@@ -22,7 +22,7 @@ When to use something else:
 | `tone` | `'info' \| 'success' \| 'warning' \| 'danger'` | `'info'` | Icon and colour. The title must say it too. |
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `dismissible` | `boolean` | `false` | Shows a close button. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 | `(dismiss)` | `void` |  | The close button was pressed: remove the alert. |
 | `[ui-alert-actions]` | `slot` |  | An element holding buttons, under the message. |
 

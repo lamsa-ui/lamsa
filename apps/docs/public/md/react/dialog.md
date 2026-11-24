@@ -24,7 +24,7 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide, never wider than the screen. |
 | `actions` | `ReactNode` |  | The buttons; they line up at the end and stay in view. |
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
-| `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
+| `closeLabel` | `string` | `'Close' from labels` | Accessible name of the close button; pass the translated text. |
 
 Keyboard and screen readers:
 

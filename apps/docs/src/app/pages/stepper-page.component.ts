@@ -487,13 +487,13 @@ arabicDigits = (n: number) => n.toLocaleString('ar-EG');`,
     {
       name: 'doneLabel',
       type: 'string',
-      default: "'Done'",
+      default: "'Done' from labels",
       description: 'Read before each done step. Translate it.',
     },
     {
       name: 'backLabel | nextLabel | finishLabel',
       type: 'string',
-      default: "'Back' | 'Next' | 'Finish'",
+      default: "'Back' | 'Next' | 'Finish' from labels",
       description: 'The button labels. Translate them.',
     },
     {

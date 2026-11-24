@@ -19,7 +19,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
+| `label` | `string` | `'Breadcrumb' from labels` | Names the landmark, translated. |
 | `<li> children` | `content` |  | One per step; the last holds aria-current="page". |
 
 Keyboard and screen readers:

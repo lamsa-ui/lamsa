@@ -109,7 +109,7 @@ export class SpinnerPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Loading'",
+        default: "'Loading' from labels",
         description: 'What is loading, translated; read by screen readers.',
       },
       {
@@ -129,7 +129,7 @@ export class SpinnerPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Loading'",
+        default: "'Loading' from labels",
         description: 'What is loading, translated.',
       },
       {
@@ -149,7 +149,7 @@ export class SpinnerPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Loading'",
+        default: "'Loading' from labels",
         description: 'What is loading, translated.',
       },
       {

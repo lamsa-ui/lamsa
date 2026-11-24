@@ -20,7 +20,7 @@ When to use something else:
 | `label` | `string` |  | Names the number. |
 | `country` | `string` | `EG` | The country picked at first, by ISO code. A stored number picks its own. |
 | `countries` | `PhoneCountry[]` | `PHONE_COUNTRIES` | { code, dial, name }. ISO alpha-2 code supplies a flag. The Arab world first, then the most common elsewhere. |
-| `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
+| `countryLabel` | `string` | `Country code from labels` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 | `value \| defaultValue \| onChange` | `string \| null` |  | Controlled or starting number, as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |

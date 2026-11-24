@@ -150,7 +150,7 @@ languages: Language[] = [
       {
         name: 'label',
         type: 'string',
-        default: "'Language'",
+        default: "'Language' from labels",
         description:
           'Three or more: read before the current name on the button, and the menu’s name. Translate it.',
       },
@@ -180,7 +180,7 @@ languages: Language[] = [
       {
         name: 'label',
         type: 'string',
-        default: "'Language'",
+        default: "'Language' from labels",
         description:
           'Three or more: read before the current name on the button. Translate it.',
       },
@@ -205,7 +205,7 @@ languages: Language[] = [
       {
         name: 'label',
         type: 'string',
-        default: "'Language'",
+        default: "'Language' from labels",
         description:
           'Three or more: read before the current name on the button. Translate it.',
       },

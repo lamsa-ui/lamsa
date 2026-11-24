@@ -15,7 +15,7 @@ Follow these every time you write code with Lamsa.
 4. Use colour tokens, never raw hex values: `bg-primary`, `text-on-primary`, `var(--ui-primary)`. Colours switch with the theme (`data-theme="light"` or `"dark"`, or the system setting).
 5. Space comes from the scale: `p-4`, `gap-3`, `ui-p-4` (without Tailwind). Do not write pixel values.
 6. Use logical properties (`ms-2`, `pe-4`, `start`, `end`), never `left` or `right`, so the layout flips in right-to-left languages.
-7. Always set `lang` and `dir` on `<html>`. In an Arabic app translate every label a component shows (close buttons, toast region, pagination).
+7. Always set `lang` and `dir` on `<html>`. In an Arabic app give the components their Arabic words in one place, switched with the language: `provideUiLabels(arabicLabels)` (Angular providers; Vue in App.vue setup) or `<UiLabelsProvider labels={arabicLabels}>` (React). Do not set close, remove or pagination labels one by one. Write your own labels in Arabic too.
 8. Every control needs a visible label. Colour never carries meaning alone: an error also has text.
 9. Put your own CSS in `@layer components` or `@layer base`, or a plain rule beats the kit's classes.
 10. Open native dialogs with `showModal()`, never `show()`.
@@ -166,7 +166,7 @@ When to use something else:
 | `tone` | `'info' \| 'success' \| 'warning' \| 'danger'` | `'info'` | Icon and colour. The title must say it too. |
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `dismissible` | `boolean` | `false` | Shows a close button. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 | `(dismiss)` | `void` |  | The close button was pressed: remove the alert. |
 | `[ui-alert-actions]` | `slot` |  | An element holding buttons, under the message. |
 
@@ -192,7 +192,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `menuLabel` | `string` | `Menu` | Names the menu button. Translate it. |
+| `menuLabel` | `string` | `Menu from labels` | Names the menu button. Translate it. |
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `[uiShellBrand] \| [uiShellActions] \| [uiShellSidebar]` | `slot` |  | Brand at the start of the header, actions at its end, links in the side bar. The rest is the page. |
@@ -224,7 +224,7 @@ When to use something else:
 | `people` | `AvatarPerson[]` |  | Required. { name, src? } for each person, in order. |
 | `max` | `number` | `4` | How many avatars to show before "+n". |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
-| `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
+| `moreLabel` | `(count: number) => string` | `(n) => `${n} more` from labels` | The spoken name of "+n". Translate it. |
 
 Keyboard and screen readers:
 
@@ -332,7 +332,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
+| `label` | `string` | `'Breadcrumb' from labels` | Names the landmark, translated. |
 | `<li> children` | `content` |  | One per step; the last holds aria-current="page". |
 
 Keyboard and screen readers:
@@ -422,7 +422,7 @@ When to use something else:
 | `[(value)]` | `string \| null` |  | The picked day when selection is single. |
 | `[(range)]` | `DateRange \| null` |  | { start, end } when selection is range; end is null until the second pick. |
 | `locale` | `string` | `LOCALE_ID` | Month and weekday names, digits and the first day of the week. |
-| `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month'` | The arrow buttons’ names. Translate them. |
+| `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month' from labels` | The arrow buttons’ names. Translate them. |
 
 Keyboard and screen readers:
 
@@ -513,8 +513,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the field and the list of tags. |
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
-| `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
-| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+| `removeLabel` | `string` | `'Remove' from labels` | First word of each × button's name. Translate it. |
+| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added` from labels` | What screen readers hear after a change. Translate them. |
 
 Keyboard and screen readers:
 
@@ -547,7 +547,7 @@ When to use something else:
 | `options` | `SelectOption<T>[]` |  | Required. { value, label, disabled? }. The label is what is matched. |
 | `placeholder` | `string` |  | Shown while the field is empty. |
 | `hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches; pass the translated text. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches; pass the translated text. |
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
@@ -579,9 +579,9 @@ When to use something else:
 | --- | --- | --- | --- |
 | `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
 | `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
-| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `title \| placeholder` | `string` | `'Commands' from labels` | Names the dialog and the field; text in the empty field. |
 | `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
-| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `countLabel` | `(count: number) => string` | ``${n} commands` from labels` | Announced as you type. Translate it. |
 | `[(open)]` | `boolean` | `false` | Open or closed; Ctrl+K and Escape change it. |
 | `(run)` | `Command` |  | The command to run, after the dialog has closed and focus is back. |
 
@@ -658,7 +658,7 @@ When to use something else:
 | `sort` | `TableSort \| null (model)` |  | Bind [(sort)]: { key, direction }. Sort the rows yourself. |
 | `rowKey` | `keyof T \| (row) => unknown` |  | What identifies a row, so rows keep their state across updates. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
-| `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+| `emptyMessage` | `string` | `'No results' from labels` | Shown when there are no rows; pass the translated text. |
 | `ng-template uiCell="key"` | `directive` |  | A custom cell for that column; let-row gives the row. |
 
 Keyboard and screen readers:
@@ -690,10 +690,10 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | Shows one date field, or two fields for a date range. |
 | `range` | `DateRange \| null` |  | Two-way model for range mode. start is an ISO date; end is null until the second date is picked. |
-| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date'` | Accessible names for the two fields in range mode. |
+| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date' from labels` | Accessible names for the two fields in range mode. |
 | `type (ui-text-field)` | `'date' \| 'time' \| 'datetime-local' \| 'number'` |  | Use the browser native picker for dates and times, or a basic number input. |
 | `min, max (ui-text-field)` | `string \| number` |  | The range: '2026-01-31' for a date, '09:00' for a time, 1 for a number. |
 | `step (ui-text-field)` | `string \| number` |  | The steps: seconds for a time, units for a number. |
@@ -735,7 +735,7 @@ When to use something else:
 | `<ui-dialog> title` | `string` |  | Required. The heading; it names the dialog. |
 | `<ui-dialog> description` | `string` |  | A sentence under the title, read with it. |
 | `<ui-dialog> size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide, never wider than the screen. |
-| `<ui-dialog> closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
+| `<ui-dialog> closeLabel` | `string` | `'Close' from labels` | Accessible name of the close button; pass the translated text. |
 | `[ui-dialog-actions]` | `content slot` |  | The buttons; they line up at the end and stay in view. |
 | `uiDialogClose` | `directive` |  | On a button: closes the dialog with its value, or none when bare. |
 
@@ -873,7 +873,7 @@ When to use something else:
 | `accept` | `string` |  | File types the picker offers: '.pdf', 'image/*'. |
 | `multiple` | `boolean` | `false` | Allows more than one file. |
 | `hint, error` | `string` |  | As for the text field. |
-| `dropText` | `string` | `'Or drop a file here'` | The line under the button; pass the translated text. |
+| `dropText` | `string` | `'Or drop a file here' from labels` | The line under the button; pass the translated text. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
 Keyboard and screen readers:
@@ -957,7 +957,7 @@ When to use something else:
 | --- | --- | --- | --- |
 | `languages` | `Language[]` |  | Required. { code, name }, each name in its own language. |
 | `[(current)]` | `string` |  | Required. The current language's code. |
-| `label` | `string` | `'Language'` | Three or more: read before the current name on the button, and the menu’s name. Translate it. |
+| `label` | `string` | `'Language' from labels` | Three or more: read before the current name on the button, and the menu’s name. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
 
 Keyboard and screen readers:
@@ -1143,7 +1143,7 @@ When to use something else:
 | `label` | `string` |  | Names the number. |
 | `country` | `string` | `EG` | The country picked at first, by ISO code. A stored number picks its own. |
 | `countries` | `PhoneCountry[]` | `PHONE_COUNTRIES` | { code, dial, name }. ISO alpha-2 code supplies a flag. The Arab world first, then the most common elsewhere. |
-| `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
+| `countryLabel` | `string` | `Country code from labels` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 
 Keyboard and screen readers:
@@ -1175,7 +1175,7 @@ When to use something else:
 | `label` | `string` |  | Names the boxes as a group. |
 | `length` | `number` | `6` | How many digits. |
 | `secret` | `boolean` | `false` | Dots instead of digits, for a PIN. |
-| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}`` | Each box's name for screen readers. Translate it. |
+| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}` from labels` | Each box's name for screen readers. Translate it. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `(complete)` | `string` |  | Every box is filled: the whole code. |
 
@@ -1321,8 +1321,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Names the stars, as the fieldset legend. Required when people pick. |
 | `max` | `number` | `5` | How many stars. |
-| `starLabel` | `(stars: number) => string` | ``${n} stars`` | The name of one star, read by screen readers. Translate it. |
-| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars`` | The read-only score in words. Translate it. |
+| `starLabel` | `(stars: number) => string` | ``${n} stars` from labels` | The name of one star, read by screen readers. Translate it. |
+| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars` from labels` | The read-only score in words. Translate it. |
 | `readonly` | `boolean` | `false` | Only shows [value]; nothing to pick. |
 | `value` | `number` |  | The score to show when readonly. A form control sets it otherwise. |
 
@@ -1354,7 +1354,7 @@ When to use something else:
 | `label` | `string` |  | Names the field. |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only. |
 | `placeholder \| hint` | `string` |  | An example inside the box; help text under it. |
-| `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
+| `clearLabel` | `string` | `Clear search from labels` | Names the × button. Translate it. |
 | `(submitted)` | `string` |  | Enter was pressed: the text to search for. |
 
 Keyboard and screen readers:
@@ -1501,7 +1501,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Loading'` | What is loading, translated; read by screen readers. |
+| `label` | `string` | `'Loading' from labels` | What is loading, translated; read by screen readers. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label, for a page or panel. |
 
@@ -1581,8 +1581,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the list of steps: "Checkout". |
 | `linear` | `boolean` | `false` | Each step waits for the ones before it to be completed, and Next waits for the current one. |
-| `doneLabel` | `string` | `'Done'` | Read before each done step. Translate it. |
-| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish'` | The button labels. Translate them. |
+| `doneLabel` | `string` | `'Done' from labels` | Read before each done step. Translate it. |
+| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish' from labels` | The button labels. Translate them. |
 | `number` | `(n: number) => string` | `String` | The marker's number, for Arabic digits. |
 | `current` | `number` | `0` | Index of the current step; two-way with [(current)]. |
 | `(blocked)` | `number` |  | Linear only: Next or Finish was pressed on this step while it is not completed. Show its errors. |
@@ -1682,7 +1682,7 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `removable` | `boolean` | `false` | Shows the × button. |
-| `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+| `removeLabel` | `string` | `'Remove' from labels` | The button's first word; the tag's text follows it. Translate it. |
 | `(remove)` | `void` |  | The × was pressed. Remove the tag and move focus on. |
 
 Keyboard and screen readers:
@@ -2049,7 +2049,7 @@ When to use something else:
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `actions` | `ReactNode` |  | Buttons under the message. |
 | `onDismiss` | `() => void` |  | Shows a close button that calls it. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 | `...props` | `div props` |  | Every native div prop, such as role. |
 
 Keyboard and screen readers:
@@ -2073,7 +2073,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `menuLabel` | `string` | `Menu` | Names the menu button. Translate it. |
+| `menuLabel` | `string` | `Menu from labels` | Names the menu button. Translate it. |
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `brand \| actions \| sidebar` | `ReactNode` |  | Brand, header actions, and the links. |
@@ -2105,7 +2105,7 @@ When to use something else:
 | `people` | `AvatarPerson[]` |  | Required. { name, src? } for each person, in order. |
 | `max` | `number` | `4` | How many avatars to show before "+n". |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
-| `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
+| `moreLabel` | `(count: number) => string` | `(n) => `${n} more` from labels` | The spoken name of "+n". Translate it. |
 
 Keyboard and screen readers:
 
@@ -2209,7 +2209,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
+| `label` | `string` | `'Breadcrumb' from labels` | Names the landmark, translated. |
 | `children` | `<li> elements` |  | One per step; the last holds aria-current="page". |
 
 Keyboard and screen readers:
@@ -2390,8 +2390,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the field and the list of tags. |
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
-| `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
-| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+| `removeLabel` | `string` | `'Remove' from labels` | First word of each × button's name. Translate it. |
+| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added` from labels` | What screen readers hear after a change. Translate them. |
 | `value \| defaultValue` | `string[]` |  | Controlled or starting tags. |
 | `onChange` | `(value: string[]) => void` |  | Called after each add and remove. |
 | `disabled` | `boolean` | `false` | No typing, no removing. |
@@ -2427,7 +2427,7 @@ When to use something else:
 | `value, defaultValue` | `T \| null` |  | The chosen value, controlled or not. |
 | `onChange` | `(value: T \| null) => void` |  | Called with the picked value, or null when the field is emptied. |
 | `placeholder, hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches. |
 | `disabled` | `boolean` |  | Disables the field. |
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
@@ -2459,9 +2459,9 @@ When to use something else:
 | --- | --- | --- | --- |
 | `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
 | `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
-| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `title \| placeholder` | `string` | `'Commands' from labels` | Names the dialog and the field; text in the empty field. |
 | `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
-| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `countLabel` | `(count: number) => string` | ``${n} commands` from labels` | Announced as you type. Translate it. |
 | `open \| onOpenChange` | `boolean \| (open) => void` |  | Open or closed; Ctrl+K and Escape call onOpenChange. |
 | `onRun` | `(command: Command) => void` |  | The command to run, after the dialog has closed and focus is back. |
 
@@ -2530,7 +2530,7 @@ When to use something else:
 | `sort / onSortChange` | `TableSort \| null / (sort) => void` |  | The sort state, controlled. Sort the rows yourself. |
 | `rowKey` | `keyof T \| (row) => Key` |  | Used as the React key of each row. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
-| `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+| `emptyMessage` | `string` | `'No results' from labels` | Shown when there are no rows; pass the translated text. |
 
 Keyboard and screen readers:
 
@@ -2559,9 +2559,9 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | Shows one date field, or two fields for a date range. |
-| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date'` | Accessible names for the two fields in range mode. |
+| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date' from labels` | Accessible names for the two fields in range mode. |
 | `type (TextField)` | `'date' \| 'time' \| 'datetime-local' \| 'number'` |  | Use the browser native picker for dates and times, or a basic number input. |
 | `min, max, step (TextField)` | `string \| number` |  | Pass the native range and step attributes through to the input. |
 | `value \| defaultValue \| onChange` | `string \| DateRange \| null` |  | Controlled or starting value. Range mode takes two ISO dates. Language and order follow the nearest I18nProvider. |
@@ -2597,7 +2597,7 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide, never wider than the screen. |
 | `actions` | `ReactNode` |  | The buttons; they line up at the end and stay in view. |
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
-| `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
+| `closeLabel` | `string` | `'Close' from labels` | Accessible name of the close button; pass the translated text. |
 
 Keyboard and screen readers:
 
@@ -2813,7 +2813,7 @@ When to use something else:
 | `languages` | `Language[]` |  | Required. { code, name }, each name in its own language. |
 | `current` | `string` |  | Required. The current language's code. |
 | `onChange` | `(code: string) => void` |  | Required. Called with the chosen language's code. |
-| `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
+| `label` | `string` | `'Language' from labels` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
 
 Keyboard and screen readers:
@@ -2994,7 +2994,7 @@ When to use something else:
 | `label` | `string` |  | Names the number. |
 | `country` | `string` | `EG` | The country picked at first, by ISO code. A stored number picks its own. |
 | `countries` | `PhoneCountry[]` | `PHONE_COUNTRIES` | { code, dial, name }. ISO alpha-2 code supplies a flag. The Arab world first, then the most common elsewhere. |
-| `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
+| `countryLabel` | `string` | `Country code from labels` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 | `value \| defaultValue \| onChange` | `string \| null` |  | Controlled or starting number, as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |
@@ -3027,7 +3027,7 @@ When to use something else:
 | `label` | `string` |  | Names the boxes as a group. |
 | `length` | `number` | `6` | How many digits. |
 | `secret` | `boolean` | `false` | Dots instead of digits, for a PIN. |
-| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}`` | Each box's name for screen readers. Translate it. |
+| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}` from labels` | Each box's name for screen readers. Translate it. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `value \| defaultValue \| onChange` | `string` |  | Controlled or starting digits. |
 | `onComplete` | `(code: string) => void` |  | Every box is filled. |
@@ -3175,8 +3175,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Names the stars, as the fieldset legend. Required when people pick. |
 | `max` | `number` | `5` | How many stars. |
-| `starLabel` | `(stars: number) => string` | ``${n} stars`` | The name of one star, read by screen readers. Translate it. |
-| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars`` | The read-only score in words. Translate it. |
+| `starLabel` | `(stars: number) => string` | ``${n} stars` from labels` | The name of one star, read by screen readers. Translate it. |
+| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars` from labels` | The read-only score in words. Translate it. |
 | `readOnly` | `boolean` | `false` | Only shows value; nothing to pick. |
 | `value \| defaultValue` | `number \| null` |  | Controlled or starting score. |
 | `onChange` | `(value: number) => void` |  | Called with the picked number of stars. |
@@ -3209,7 +3209,7 @@ When to use something else:
 | `label` | `string` |  | Names the field. |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only. |
 | `placeholder \| hint` | `string` |  | An example inside the box; help text under it. |
-| `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
+| `clearLabel` | `string` | `Clear search from labels` | Names the × button. Translate it. |
 | `value \| defaultValue \| onChange` | `string` |  | Controlled or starting text. |
 | `onSearch` | `(value: string) => void` |  | Enter was pressed. |
 | `disabled \| name` | `boolean \| string` |  | Passed to the input. |
@@ -3363,7 +3363,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Loading'` | What is loading, translated. |
+| `label` | `string` | `'Loading' from labels` | What is loading, translated. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label. |
 
@@ -3443,8 +3443,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the list of steps: "Checkout". |
 | `linear` | `boolean` | `false` | Each step waits for the ones before it to be completed, and Next waits for the current one. |
-| `doneLabel` | `string` | `'Done'` | Read before each done step. Translate it. |
-| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish'` | The button labels. Translate them. |
+| `doneLabel` | `string` | `'Done' from labels` | Read before each done step. Translate it. |
+| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish' from labels` | The button labels. Translate them. |
 | `number` | `(n: number) => string` | `String` | The marker's number, for Arabic digits. |
 | `steps` | `{ label, content, completed? }[]` |  | Required. Each step stays mounted while hidden, so what was typed is kept. completed defaults to true. |
 | `current \| defaultCurrent` | `number` | `0` | Index of the current step, controlled or not. |
@@ -3536,7 +3536,7 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `onRemove` | `() => void` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
-| `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+| `removeLabel` | `string` | `'Remove' from labels` | The button's first word; the tag's text follows it. Translate it. |
 | `...props` | `span props` |  | Every native span prop. |
 
 Keyboard and screen readers:
@@ -3910,7 +3910,7 @@ When to use something else:
 | `title` | `string` |  | A few words in bold that say what it is. |
 | `#actions` | `slot` |  | Buttons under the message. |
 | `@dismiss` | `event` |  | Listening shows a close button; remove the alert when it fires. |
-| `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
+| `closeLabel` | `string` | `'Dismiss' from labels` | Its accessible name, translated. |
 
 Keyboard and screen readers:
 
@@ -3933,7 +3933,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `menuLabel` | `string` | `Menu` | Names the menu button. Translate it. |
+| `menuLabel` | `string` | `Menu from labels` | Names the menu button. Translate it. |
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `#brand \| #actions \| #sidebar` | `slot` |  | The header's name and controls, and the side bar's navigation. The default slot is the page. |
@@ -3965,7 +3965,7 @@ When to use something else:
 | `people` | `AvatarPerson[]` |  | Required. { name, src? } for each person, in order. |
 | `max` | `number` | `4` | How many avatars to show before "+n". |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
-| `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
+| `moreLabel` | `(count: number) => string` | `(n) => `${n} more` from labels` | The spoken name of "+n". Translate it. |
 
 Keyboard and screen readers:
 
@@ -4068,7 +4068,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
+| `label` | `string` | `'Breadcrumb' from labels` | Names the landmark, translated. |
 | `default slot` | `slot` |  | One per step; the last holds aria-current="page". |
 
 Keyboard and screen readers:
@@ -4245,8 +4245,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the field and the list of tags. |
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
-| `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
-| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+| `removeLabel` | `string` | `'Remove' from labels` | First word of each × button's name. Translate it. |
+| `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added` from labels` | What screen readers hear after a change. Translate them. |
 | `v-model` | `string[]` |  | The chips, in the order they were added. |
 | `disabled` | `boolean` | `false` | Locks the field and hides the × buttons. |
 
@@ -4280,7 +4280,7 @@ When to use something else:
 | `options` | `SelectOption<T>[]` |  | Required. { value, label, disabled? }. |
 | `v-model` | `T \| null` |  | The chosen value, controlled or not. |
 | `placeholder, hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches. |
 | `disabled` | `boolean` |  | Disables the field. |
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
@@ -4312,9 +4312,9 @@ When to use something else:
 | --- | --- | --- | --- |
 | `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
 | `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
-| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `title \| placeholder` | `string` | `'Commands' from labels` | Names the dialog and the field; text in the empty field. |
 | `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
-| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `countLabel` | `(count: number) => string` | ``${n} commands` from labels` | Announced as you type. Translate it. |
 | `v-model:open` | `boolean` |  | Required. Set to false by Escape, the backdrop or a run command. |
 | `@run` | `event` |  | Gets the chosen command, after the palette has closed. |
 
@@ -4383,7 +4383,7 @@ When to use something else:
 | `v-model:sort` | `TableSort \| null` |  | The sort state, controlled. Sort the rows yourself. |
 | `rowKey` | `keyof T \| (row) => Key` |  | Used as the React key of each row. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
-| `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+| `emptyMessage` | `string` | `'No results' from labels` | Shown when there are no rows; pass the translated text. |
 
 Keyboard and screen readers:
 
@@ -4412,7 +4412,7 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | range types a start and an end date and picks both in the calendar. |
 | `rangeStartLabel \| rangeEndLabel` | `string` |  | Accessible names of the two date inputs in a range; pass the translated text. |
 | `v-model` | `string \| DateRange \| null` |  | An ISO date ("2026-11-23"), or { start, end } for a range; null while incomplete. |
@@ -4448,7 +4448,7 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide, never wider than the screen. |
 | `#actions` | `slot` |  | The buttons; they line up at the end and stay in view. |
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
-| `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
+| `closeLabel` | `string` | `'Close' from labels` | Accessible name of the close button; pass the translated text. |
 
 Keyboard and screen readers:
 
@@ -4659,7 +4659,7 @@ When to use something else:
 | --- | --- | --- | --- |
 | `languages` | `Language[]` |  | Required. { code, name }, each name in its own language. |
 | `v-model:current` | `string` |  | Required. The current language's code. |
-| `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
+| `label` | `string` | `'Language' from labels` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
 
 Keyboard and screen readers:
@@ -4840,7 +4840,7 @@ When to use something else:
 | `label` | `string` |  | Names the number. |
 | `country` | `string` | `EG` | The country picked at first, by ISO code. A stored number picks its own. |
 | `countries` | `PhoneCountry[]` | `PHONE_COUNTRIES` | { code, dial, name }. ISO alpha-2 code supplies a flag. The Arab world first, then the most common elsewhere. |
-| `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
+| `countryLabel` | `string` | `Country code from labels` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 | `modelValue \| update:modelValue` | `string \| null` |  | The v-model number, controlled as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |
@@ -4873,7 +4873,7 @@ When to use something else:
 | `label` | `string` |  | Names the boxes as a group. |
 | `length` | `number` | `6` | How many digits. |
 | `secret` | `boolean` | `false` | Dots instead of digits, for a PIN. |
-| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}`` | Each box's name for screen readers. Translate it. |
+| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}` from labels` | Each box's name for screen readers. Translate it. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `v-model` | `string` |  | The code typed so far. |
 | `@complete` | `event` |  | Fires with the code once every box is filled. |
@@ -5021,8 +5021,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Names the stars, as the fieldset legend. Required when people pick. |
 | `max` | `number` | `5` | How many stars. |
-| `starLabel` | `(stars: number) => string` | ``${n} stars`` | The name of one star, read by screen readers. Translate it. |
-| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars`` | The read-only score in words. Translate it. |
+| `starLabel` | `(stars: number) => string` | ``${n} stars` from labels` | The name of one star, read by screen readers. Translate it. |
+| `scoreLabel` | `(value, max) => string` | ``${v} out of ${m} stars` from labels` | The read-only score in words. Translate it. |
 | `readOnly` | `boolean` | `false` | Shows a score as stars, for reading only. |
 | `v-model` | `number \| null` |  | The score. |
 | `name \| disabled` | `string \| boolean` |  | For the radios underneath. |
@@ -5055,7 +5055,7 @@ When to use something else:
 | `label` | `string` |  | Names the field. |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only. |
 | `placeholder \| hint` | `string` |  | An example inside the box; help text under it. |
-| `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
+| `clearLabel` | `string` | `Clear search from labels` | Names the × button. Translate it. |
 | `v-model` | `string` |  | The text typed so far. |
 | `@search` | `event` |  | Enter was pressed; gets the text. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |
@@ -5207,7 +5207,7 @@ When to use something else:
 
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
-| `label` | `string` | `'Loading'` | What is loading, translated. |
+| `label` | `string` | `'Loading' from labels` | What is loading, translated. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label. |
 
@@ -5287,8 +5287,8 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the list of steps: "Checkout". |
 | `linear` | `boolean` | `false` | Each step waits for the ones before it to be completed, and Next waits for the current one. |
-| `doneLabel` | `string` | `'Done'` | Read before each done step. Translate it. |
-| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish'` | The button labels. Translate them. |
+| `doneLabel` | `string` | `'Done' from labels` | Read before each done step. Translate it. |
+| `backLabel \| nextLabel \| finishLabel` | `string` | `'Back' \| 'Next' \| 'Finish' from labels` | The button labels. Translate them. |
 | `number` | `(n: number) => string` | `String` | The marker's number, for Arabic digits. |
 | `steps` | `{ label, completed? }[]` |  | Required. completed defaults to true; false keeps a linear stepper on it. |
 | `v-model` | `number` | `0` | Index of the current step. |
@@ -5378,7 +5378,7 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `@remove` | `event` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
-| `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+| `removeLabel` | `string` | `'Remove' from labels` | The button's first word; the tag's text follows it. Translate it. |
 
 Keyboard and screen readers:
 

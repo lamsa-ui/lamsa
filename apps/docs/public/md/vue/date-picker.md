@@ -21,7 +21,7 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | range types a start and an end date and picks both in the calendar. |
 | `rangeStartLabel \| rangeEndLabel` | `string` |  | Accessible names of the two date inputs in a range; pass the translated text. |
 | `v-model` | `string \| DateRange \| null` |  | An ISO date ("2026-11-23"), or { start, end } for a range; null while incomplete. |

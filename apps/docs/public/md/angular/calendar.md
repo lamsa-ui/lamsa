@@ -25,7 +25,7 @@ When to use something else:
 | `[(value)]` | `string \| null` |  | The picked day when selection is single. |
 | `[(range)]` | `DateRange \| null` |  | { start, end } when selection is range; end is null until the second pick. |
 | `locale` | `string` | `LOCALE_ID` | Month and weekday names, digits and the first day of the week. |
-| `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month'` | The arrow buttons’ names. Translate them. |
+| `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month' from labels` | The arrow buttons’ names. Translate them. |
 
 Keyboard and screen readers:
 

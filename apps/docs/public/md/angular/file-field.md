@@ -21,7 +21,7 @@ When to use something else:
 | `accept` | `string` |  | File types the picker offers: '.pdf', 'image/*'. |
 | `multiple` | `boolean` | `false` | Allows more than one file. |
 | `hint, error` | `string` |  | As for the text field. |
-| `dropText` | `string` | `'Or drop a file here'` | The line under the button; pass the translated text. |
+| `dropText` | `string` | `'Or drop a file here' from labels` | The line under the button; pass the translated text. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
 Keyboard and screen readers:

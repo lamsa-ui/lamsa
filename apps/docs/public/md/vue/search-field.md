@@ -20,7 +20,7 @@ When to use something else:
 | `label` | `string` |  | Names the field. |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only. |
 | `placeholder \| hint` | `string` |  | An example inside the box; help text under it. |
-| `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
+| `clearLabel` | `string` | `Clear search from labels` | Names the × button. Translate it. |
 | `v-model` | `string` |  | The text typed so far. |
 | `@search` | `event` |  | Enter was pressed; gets the text. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |

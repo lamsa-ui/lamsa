@@ -20,9 +20,9 @@ When to use something else:
 | --- | --- | --- | --- |
 | `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
 | `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
-| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `title \| placeholder` | `string` | `'Commands' from labels` | Names the dialog and the field; text in the empty field. |
 | `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
-| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `countLabel` | `(count: number) => string` | ``${n} commands` from labels` | Announced as you type. Translate it. |
 | `v-model:open` | `boolean` |  | Required. Set to false by Escape, the backdrop or a run command. |
 | `@run` | `event` |  | Gets the chosen command, after the palette has closed. |
 

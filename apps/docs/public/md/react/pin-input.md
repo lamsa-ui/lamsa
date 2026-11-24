@@ -20,7 +20,7 @@ When to use something else:
 | `label` | `string` |  | Names the boxes as a group. |
 | `length` | `number` | `6` | How many digits. |
 | `secret` | `boolean` | `false` | Dots instead of digits, for a PIN. |
-| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}`` | Each box's name for screen readers. Translate it. |
+| `cellLabel` | `(n, of) => string` | ``Digit ${n} of ${of}` from labels` | Each box's name for screen readers. Translate it. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `value \| defaultValue \| onChange` | `string` |  | Controlled or starting digits. |
 | `onComplete` | `(code: string) => void` |  | Every box is filled. |

@@ -143,7 +143,7 @@ more = (count: number) => \`\${count} آخرون\`;`,
     {
       name: 'moreLabel',
       type: '(count: number) => string',
-      default: '(n) => `${n} more`',
+      default: '(n) => `${n} more` from labels',
       description: 'The spoken name of "+n". Translate it.',
     },
   ];

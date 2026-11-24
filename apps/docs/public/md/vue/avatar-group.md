@@ -21,7 +21,7 @@ When to use something else:
 | `people` | `AvatarPerson[]` |  | Required. { name, src? } for each person, in order. |
 | `max` | `number` | `4` | How many avatars to show before "+n". |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
-| `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
+| `moreLabel` | `(count: number) => string` | `(n) => `${n} more` from labels` | The spoken name of "+n". Translate it. |
 
 Keyboard and screen readers:
 

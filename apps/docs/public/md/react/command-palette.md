@@ -20,9 +20,9 @@ When to use something else:
 | --- | --- | --- | --- |
 | `commands` | `Command[]` |  | Required. { id, label, keywords?, shortcut? }. Keywords find a command by other words; shortcut is only shown. |
 | `shortcut` | `string \| null` | `'k'` | The letter that opens it with Ctrl or ⌘. null turns it off. |
-| `title \| placeholder` | `string` | `'Commands'` | Names the dialog and the field; text in the empty field. |
+| `title \| placeholder` | `string` | `'Commands' from labels` | Names the dialog and the field; text in the empty field. |
 | `emptyLabel \| closeLabel` | `string` |  | Shown when nothing matches; the close button. Translate them. |
-| `countLabel` | `(count: number) => string` | ``${n} commands`` | Announced as you type. Translate it. |
+| `countLabel` | `(count: number) => string` | ``${n} commands` from labels` | Announced as you type. Translate it. |
 | `open \| onOpenChange` | `boolean \| (open) => void` |  | Open or closed; Ctrl+K and Escape call onOpenChange. |
 | `onRun` | `(command: Command) => void` |  | The command to run, after the dialog has closed and focus is back. |
 

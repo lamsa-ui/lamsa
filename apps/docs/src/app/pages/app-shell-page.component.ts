@@ -151,7 +151,7 @@ export class AppShellPageComponent {
     {
       name: 'menuLabel',
       type: 'string',
-      default: 'Menu',
+      default: 'Menu from labels',
       description: 'Names the menu button. Translate it.',
     },
     {

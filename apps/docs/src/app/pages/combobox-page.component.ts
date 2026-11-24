@@ -201,7 +201,7 @@ export class ComboboxPageComponent {
       {
         name: 'emptyText',
         type: 'string',
-        default: "'No matches'",
+        default: "'No matches' from labels",
         description:
           'Announced when nothing matches; pass the translated text.',
       },
@@ -248,7 +248,7 @@ export class ComboboxPageComponent {
       {
         name: 'emptyText',
         type: 'string',
-        default: "'No matches'",
+        default: "'No matches' from labels",
         description: 'Announced when nothing matches.',
       },
       { name: 'disabled', type: 'boolean', description: 'Disables the field.' },
@@ -287,7 +287,7 @@ export class ComboboxPageComponent {
       {
         name: 'emptyText',
         type: 'string',
-        default: "'No matches'",
+        default: "'No matches' from labels",
         description: 'Announced when nothing matches.',
       },
       {

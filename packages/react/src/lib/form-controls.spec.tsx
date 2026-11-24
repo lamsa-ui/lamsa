@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Checkbox } from './checkbox.js';
 import { Combobox } from './combobox.js';
@@ -151,10 +151,28 @@ describe('FileField and typed TextField', () => {
       set: (files) => (picked = files),
     });
     const file = new File(['%PDF'], 'invoice.pdf', { type: 'application/pdf' });
-    fireEvent.drop(input.closest('.ui-dropzone')!, {
-      dataTransfer: { files: [file] },
-    });
-    expect(onFiles).toHaveBeenCalledWith([file]);
+    const zone = input.closest('.ui-dropzone')!;
+    if (typeof DataTransfer === 'undefined') {
+      // jsdom has no DataTransfer: a stand-in with the files.
+      fireEvent.drop(zone, { dataTransfer: { files: [file] } });
+    } else {
+      // A real browser: a real drop.
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      act(() => {
+        zone.dispatchEvent(
+          new DragEvent('drop', {
+            bubbles: true,
+            cancelable: true,
+            dataTransfer,
+          }),
+        );
+      });
+    }
+    // A browser hands back its own File objects, so compare by name.
+    expect(onFiles.mock.calls[0][0].map((f: File) => f.name)).toEqual([
+      'invoice.pdf',
+    ]);
   });
 
   it('passes date and number types with their limits', () => {

@@ -22,7 +22,7 @@ When to use something else:
 | `options` | `SelectOption<T>[]` |  | Required. { value, label, disabled? }. |
 | `v-model` | `T \| null` |  | The chosen value, controlled or not. |
 | `placeholder, hint, error` | `string` |  | As for the text field. |
-| `emptyText` | `string` | `'No matches'` | Announced when nothing matches. |
+| `emptyText` | `string` | `'No matches' from labels` | Announced when nothing matches. |
 | `disabled` | `boolean` |  | Disables the field. |
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |

@@ -243,7 +243,7 @@ stay = signal<DateRange | null>(null); // { start, end }, end is null until the 
       {
         name: 'previousLabel | nextLabel',
         type: 'string',
-        default: "'Previous month' | 'Next month'",
+        default: "'Previous month' | 'Next month' from labels",
         description: 'The arrow buttons’ names. Translate them.',
       },
     ],

@@ -446,7 +446,7 @@ labels = {
       {
         name: 'emptyMessage',
         type: 'string',
-        default: "'No results'",
+        default: "'No results' from labels",
         description: 'Shown when there are no rows; pass the translated text.',
       },
       {
@@ -497,7 +497,7 @@ labels = {
       {
         name: 'emptyMessage',
         type: 'string',
-        default: "'No results'",
+        default: "'No results' from labels",
         description: 'Shown when there are no rows; pass the translated text.',
       },
     ],
@@ -543,7 +543,7 @@ labels = {
       {
         name: 'emptyMessage',
         type: 'string',
-        default: "'No results'",
+        default: "'No results' from labels",
         description: 'Shown when there are no rows; pass the translated text.',
       },
     ],

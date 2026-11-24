@@ -41,6 +41,8 @@ jobs:
       # Playwright: axe (WCAG 2.2 AA + best practice) on every page, keyboard checks in
       # Chromium, Firefox and WebKit, and screenshots, on the site as it will be published.
       - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      # The React and Vue unit tests again, in real Chromium: focus, overlays and typing.
+      - run: pnpm nx run-many -t test-browser
       - run: pnpm exec playwright test -c apps/docs/playwright.config.ts
       - if: failure()
         uses: actions/upload-artifact@v4

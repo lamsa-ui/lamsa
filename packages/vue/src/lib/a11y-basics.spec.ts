@@ -27,8 +27,11 @@ function mount(
     defineComponent({ setup: () => () => h(component, props, slots) }),
   );
   app.mount(container);
+  mounted.push(app);
   return container;
 }
+
+const mounted: ReturnType<typeof createApp>[] = [];
 
 const settle = async () => {
   for (let i = 0; i < 3; i++) {
@@ -37,7 +40,11 @@ const settle = async () => {
   }
 };
 
-afterEach(() => document.body.replaceChildren());
+afterEach(() => {
+  // Unmount first: a mounted app would still try to update what is removed.
+  mounted.splice(0).forEach((app) => app.unmount());
+  document.body.replaceChildren();
+});
 
 describe('Vue accessibility basics', () => {
   it('names a button group', () => {

@@ -113,7 +113,7 @@ export class BreadcrumbsPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Breadcrumb'",
+        default: "'Breadcrumb' from labels",
         description: 'Names the landmark, translated.',
       },
       {
@@ -126,7 +126,7 @@ export class BreadcrumbsPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Breadcrumb'",
+        default: "'Breadcrumb' from labels",
         description: 'Names the landmark, translated.',
       },
       {
@@ -139,7 +139,7 @@ export class BreadcrumbsPageComponent {
       {
         name: 'label',
         type: 'string',
-        default: "'Breadcrumb'",
+        default: "'Breadcrumb' from labels",
         description: 'Names the landmark, translated.',
       },
       {

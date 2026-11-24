@@ -21,9 +21,9 @@ When to use something else:
 | `min \| max` | `string` |  | Earliest and latest dates, as YYYY-MM-DD. |
 | `isDisabled` | `(date: string) => boolean` |  | Days that cannot be picked, such as closed days. |
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
-| `calendarLabel` | `string` | `Choose date` | Names the calendar button. Translate it. |
+| `calendarLabel` | `string` | `Choose date from labels` | Names the calendar button. Translate it. |
 | `selection` | `'single' \| 'range'` | `'single'` | Shows one date field, or two fields for a date range. |
-| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date'` | Accessible names for the two fields in range mode. |
+| `rangeStartLabel \| rangeEndLabel` | `string` | `'Start date' \| 'End date' from labels` | Accessible names for the two fields in range mode. |
 | `type (TextField)` | `'date' \| 'time' \| 'datetime-local' \| 'number'` |  | Use the browser native picker for dates and times, or a basic number input. |
 | `min, max, step (TextField)` | `string \| number` |  | Pass the native range and step attributes through to the input. |
 | `value \| defaultValue \| onChange` | `string \| DateRange \| null` |  | Controlled or starting value. Range mode takes two ISO dates. Language and order follow the nearest I18nProvider. |
