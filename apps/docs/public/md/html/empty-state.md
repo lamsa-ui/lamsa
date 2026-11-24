@@ -21,6 +21,10 @@ When to use something else:
 | `ui-empty-state__title` | `class` |  | On the heading. |
 | `ui-empty-state__actions` | `class` |  | Around the buttons. |
 
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
+
 ## Examples
 
 ### First use

@@ -23,6 +23,11 @@ When to use something else:
 | `max` | `number` | `100` | The value when done. |
 | `valueText` | `string` |  | The amount in words; defaults to a percentage. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ## Examples
 
 ### Known amount

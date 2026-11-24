@@ -25,6 +25,14 @@ When to use something else:
 | `ui-popover` | `class` |  | On the panel, with role="dialog" named by its button. |
 | `ui-popover__title` | `class` |  | A bold first line. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
+
 ## Examples
 
 ### Details

@@ -27,6 +27,12 @@ When to use something else:
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
 | `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ## Examples
 
 ### Sorting, custom cells and pagination

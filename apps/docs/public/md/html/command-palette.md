@@ -22,6 +22,17 @@ When to use something else:
 | `ui-command` | `class` |  | The field and list inside a .ui-dialog. |
 | `ui-command__list \| __empty \| __shortcut` | `class` |  | The list of .ui-option items, the no-match text, a key hint. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ## Examples
 
 ### Commands

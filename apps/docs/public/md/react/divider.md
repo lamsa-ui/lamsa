@@ -21,6 +21,10 @@ When to use something else:
 | `label` | `string` |  | Words in the middle of the line, read as text. Horizontal only. |
 | `...props` | `div props` |  | Every native div prop. |
 
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
+
 ## Examples
 
 ### Between sections

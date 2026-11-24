@@ -21,6 +21,10 @@ When to use something else:
 | `ui-property-list` | `class` |  | On a dl. Add --stacked for labels above values. |
 | `ui-property-list__item` | `class` |  | A div holding one dt and one dd. |
 
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
+
 ## Examples
 
 ### Order details

@@ -23,6 +23,12 @@ When to use something else:
 | `ui-input-group` | `class` |  | The box around the input, icon and button. Rings while the input has focus. |
 | `ui-input-group__addon \| __input \| __button` | `class` |  | The magnifier, the input and the × button. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ## Examples
 
 ### Search a list

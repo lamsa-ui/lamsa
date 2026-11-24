@@ -20,6 +20,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the landmark. |
 
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
+
 ## Examples
 
 ### A side bar

@@ -26,6 +26,13 @@ When to use something else:
 | `name \| disabled` | `string \| boolean` |  | For the radios underneath. |
 | `@blur` | `event` |  | When focus leaves a star. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ## Examples
 
 ### Pick a score

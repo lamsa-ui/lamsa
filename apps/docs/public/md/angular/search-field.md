@@ -24,6 +24,12 @@ When to use something else:
 | `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
 | `(submitted)` | `string` |  | Enter was pressed: the text to search for. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ## Examples
 
 ### Search a list

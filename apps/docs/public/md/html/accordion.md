@@ -29,6 +29,16 @@ When to use something else:
 | `ui-accordion__heading, __description` | `class` |  | Inside the summary: the heading text, and a quieter line. |
 | `ui-accordion__content` | `class` |  | Around the content. It grows and shrinks; without script, Safari closes it at once. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ## Examples
 
 ### Questions

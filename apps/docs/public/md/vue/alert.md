@@ -24,6 +24,10 @@ When to use something else:
 | `@dismiss` | `event` |  | Listening shows a close button; remove the alert when it fires. |
 | `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ## Examples
 
 ### Tones

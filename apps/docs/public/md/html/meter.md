@@ -22,6 +22,10 @@ When to use something else:
 | `ui-meter__bar` | `class` |  | The track: role="meter", aria-labelledby, aria-valuenow/min/max and aria-valuetext. |
 | `--ui-meter-value` | `CSS length` |  | On ui-meter__fill: how full, as a percentage. |
 
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
+
 ## Examples
 
 ### Levels

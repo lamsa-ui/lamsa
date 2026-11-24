@@ -21,6 +21,11 @@ When to use something else:
 | `ui-toggle` | `class` |  | On a .ui-button--secondary button. Your script flips aria-pressed on click. |
 | `aria-pressed` | `"true" \| "false"` |  | Required. The state, read by screen readers and the CSS. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
+
 ## Examples
 
 ### With a label

@@ -27,6 +27,15 @@ When to use something else:
 | `[(open)]` | `boolean` | `false` | Open or closed; Ctrl+K and Escape change it. |
 | `(run)` | `Command` |  | The command to run, after the dialog has closed and focus is back. |
 
+Keyboard and screen readers:
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ## Examples
 
 ### Commands

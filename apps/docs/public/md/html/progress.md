@@ -28,6 +28,11 @@ When to use something else:
 | `ui-progress__bar` | `class` |  | On the progress element, named with aria-labelledby. |
 | `ui-progress__label, __value` | `class` |  | The words above it; hide the amount from screen readers. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ## Examples
 
 ### Known amount

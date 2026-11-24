@@ -27,6 +27,12 @@ When to use something else:
 | `v-model` | `string \| DateRange \| null` |  | An ISO date ("2026-11-23"), or { start, end } for a range; null while incomplete. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |
 
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ## Examples
 
 ### A delivery day

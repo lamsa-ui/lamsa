@@ -29,6 +29,12 @@ When to use something else:
 | `@blocked` | `event` |  | Linear only: Next or Finish was pressed on a step that is not completed. |
 | `@finish` | `event` |  | Finish was pressed on the last step. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ## Examples
 
 ### Options

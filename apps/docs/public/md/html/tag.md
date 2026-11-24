@@ -20,6 +20,11 @@ When to use something else:
 | `ui-tag` | `class` |  | Required. |
 | `ui-tag__remove` | `class` |  | The × button, 24 pixels square. Label it with aria-labelledby: its own aria-label, then the text. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
+
 ## Examples
 
 ### Labels

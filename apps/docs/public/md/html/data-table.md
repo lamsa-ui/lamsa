@@ -30,6 +30,14 @@ When to use something else:
 | `ui-table__cell--end \| --center` | `class` |  | Alignment, on the th and every td of the column. |
 | `ui-table__empty, ui-table__loading` | `class` |  | The empty row, and the loading overlay with a status message. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ## Examples
 
 ### Sorting, custom cells and pagination

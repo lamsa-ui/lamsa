@@ -21,6 +21,10 @@ When to use something else:
 | `hint` | `string` |  | A line under the legend, read with the group. |
 | `...props` | `fieldset props` |  | Every native fieldset prop, such as disabled. |
 
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
+
 ## Examples
 
 ### An address

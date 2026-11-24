@@ -26,6 +26,14 @@ When to use something else:
 | `onComplete` | `(code: string) => void` |  | Every box is filled. |
 | `name` | `string` |  | Submits the code as one value with a form. |
 
+Keyboard and screen readers:
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ## Examples
 
 ### A verification code

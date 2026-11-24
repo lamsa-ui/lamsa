@@ -27,6 +27,11 @@ When to use something else:
 | `autocomplete` | `string` |  | The browser autofill hint, such as email or name. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ## Examples
 
 ### With a hint

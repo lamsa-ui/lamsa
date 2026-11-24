@@ -21,6 +21,13 @@ When to use something else:
 | `ui-rating__star` | `class` |  | One label per star, holding a hidden radio and its name. |
 | `ui-rating--readonly \| ui-rating__star--on` | `class` |  | Read-only score, and the stars it fills. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ## Examples
 
 ### Pick a score

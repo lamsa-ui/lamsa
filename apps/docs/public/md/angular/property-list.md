@@ -21,6 +21,10 @@ When to use something else:
 | `layout` | `'columns' \| 'stacked'` | `'columns'` | On dl[ui-property-list]. Stacked puts each label above its value at any width. |
 | `term` | `string` |  | On div[ui-property], required: the label. Its content is the value. |
 
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
+
 ## Examples
 
 ### Order details

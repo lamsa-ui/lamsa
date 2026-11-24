@@ -21,6 +21,12 @@ When to use something else:
 | `ui-dropzone--over` | `class` |  | While a file is dragged over the zone. |
 | `ui-dropzone__text` | `class` |  | The line under the button. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
+
 ## Examples
 
 ### One file

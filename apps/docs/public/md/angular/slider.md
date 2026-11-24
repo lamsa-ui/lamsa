@@ -24,6 +24,13 @@ When to use something else:
 | `format` | `(value: number) => string` |  | The value as shown and as read aloud, with its unit. |
 | `hint` | `string` |  | Help under the slider, read after the label. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ## Examples
 
 ### With a unit

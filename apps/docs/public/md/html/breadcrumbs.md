@@ -26,6 +26,11 @@ When to use something else:
 | `ui-breadcrumbs` | `class` |  | On a nav with aria-label, around an ol. |
 | `aria-current="page"` | `attribute` |  | On the last item, which is not a link. |
 
+Keyboard and screen readers:
+
+- A named navigation landmark around an ordered list; the last item is marked as the current page.
+- The slashes are drawn, not read out.
+
 ## Examples
 
 ### An order

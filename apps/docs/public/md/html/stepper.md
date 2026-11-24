@@ -29,6 +29,12 @@ When to use something else:
 | `ui-steps__marker \| __label` | `class` |  | The circle (aria-hidden) and the name. |
 | `ui-stepper__panel \| __actions` | `class` |  | One panel per step, hidden except the current one, with tabindex="-1" so focus can move to it; then the Back and Next row. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ## Examples
 
 ### Options

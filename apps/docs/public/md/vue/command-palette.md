@@ -26,6 +26,15 @@ When to use something else:
 | `v-model:open` | `boolean` |  | Required. Set to false by Escape, the backdrop or a run command. |
 | `@run` | `event` |  | Gets the chosen command, after the palette has closed. |
 
+Keyboard and screen readers:
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ## Examples
 
 ### Commands

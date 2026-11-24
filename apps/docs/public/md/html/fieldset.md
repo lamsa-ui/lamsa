@@ -23,6 +23,10 @@ When to use something else:
 | `ui-fieldset` | `class` |  | On the fieldset; spaces the fields in it. |
 | `ui-fieldset__legend` | `class` |  | On its legend. |
 
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
+
 ## Examples
 
 ### An address

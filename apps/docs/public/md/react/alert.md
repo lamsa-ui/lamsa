@@ -25,6 +25,10 @@ When to use something else:
 | `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
 | `...props` | `div props` |  | Every native div prop, such as role. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ## Examples
 
 ### Tones

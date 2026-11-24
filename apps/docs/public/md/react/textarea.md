@@ -23,6 +23,10 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the textarea, for tests. |
 | `...props` | `textarea props` | `rows: 3` | Every native textarea prop: value, onChange, rows, maxLength, name, ref. |
 
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
+
 ## Examples
 
 ### With a hint

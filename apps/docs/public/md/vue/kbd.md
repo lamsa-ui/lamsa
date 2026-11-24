@@ -19,6 +19,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `#default` | `slot` |  | The key name. |
 
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
+
 ## Examples
 
 ### A shortcut

@@ -20,6 +20,10 @@ When to use something else:
 | `children` | `ReactNode` |  | The key name. |
 | `...props` | `kbd props` |  | Every native kbd prop. |
 
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
+
 ## Examples
 
 ### A shortcut

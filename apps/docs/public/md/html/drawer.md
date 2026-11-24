@@ -23,6 +23,12 @@ When to use something else:
 | `ui-dialog--sm \| --lg` | `class` |  | 24 or 48rem wide; 32rem without it. |
 | `everything else` | `` |  | The same markup and classes as the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ## Examples
 
 ### A form in a drawer

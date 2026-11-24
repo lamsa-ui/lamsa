@@ -22,6 +22,11 @@ When to use something else:
 | `hint` | `string` |  | Help text under it, read with the switch. |
 | `testId` | `string` |  | data-testid on the input. |
 
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
+
 ## Examples
 
 ### Settings

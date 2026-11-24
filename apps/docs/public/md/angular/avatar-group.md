@@ -23,6 +23,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
 | `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
 
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
+
 ## Examples
 
 ### A team

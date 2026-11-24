@@ -22,6 +22,16 @@ When to use something else:
 | `ui-chips` | `class` |  | The box that looks like a text field. |
 | `ui-chips__list \| __input` | `class` |  | The list of tags and the text field. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
+
 ## Examples
 
 ### Toppings

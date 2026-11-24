@@ -22,6 +22,10 @@ When to use something else:
 | `ui-card--lg` | `class` |  | More padding. |
 | `ui-card__title` | `class` |  | On the heading (h2 to h4, to fit the page). |
 
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
+
 ## Examples
 
 ### With a title

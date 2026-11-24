@@ -22,6 +22,12 @@ When to use something else:
 | `hint, error, dropText` | `string` |  | As in Angular. |
 | `testId` | `string` |  | data-testid on the input. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
+
 ## Examples
 
 ### One file

@@ -23,6 +23,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 32, 40 or 56 pixels. |
 | `decorative` | `boolean` | `false` | Hides it from screen readers, for when the name is on screen next to it. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ## Examples
 
 ### Initials and sizes

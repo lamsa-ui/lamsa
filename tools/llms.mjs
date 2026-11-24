@@ -207,6 +207,33 @@ Re-brand by overriding tokens after the import. The "on" colour must reach 7:1 a
 ${fence('css', ':root {\n  --ui-primary: light-dark(#0f5132, #6ee7b7);\n  --ui-on-primary: light-dark(#ffffff, #0b1020);\n  --ui-focus: light-dark(#0f5132, #6ee7b7);\n}')}`;
 }
 
+/** The keyboard and screen reader notes of every component page (apps/docs/src/app/shared/a11y.ts). */
+const A11Y = (() => {
+  const js = ts.transpileModule(
+    readFileSync(join(root, 'apps/docs/src/app/shared/a11y.ts'), 'utf8'),
+    { compilerOptions: { module: ts.ModuleKind.CommonJS } },
+  ).outputText;
+  const module = { exports: {} };
+  new Function('module', 'exports', js)(module, module.exports);
+  return module.exports.A11Y;
+})();
+
+function a11yLines(slug, framework) {
+  const a = A11Y[slug];
+  if (!a) return [];
+  const lines = ['Keyboard and screen readers:', ''];
+  if (a.script && framework === 'html')
+    lines.push(
+      'In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.',
+      '',
+    );
+  for (const [keys, action] of a.keys ?? [])
+    lines.push(`- ${keys.join(' or ')}: ${action}`);
+  for (const note of a.notes) lines.push(`- ${note}`);
+  lines.push('');
+  return lines;
+}
+
 function componentSection(page, framework) {
   const slug = slugOf(page.file);
   const lines = [
@@ -254,6 +281,7 @@ function componentSection(page, framework) {
     }
     lines.push('');
   }
+  lines.push(...a11yLines(slug, framework));
   return lines.join('\n');
 }
 

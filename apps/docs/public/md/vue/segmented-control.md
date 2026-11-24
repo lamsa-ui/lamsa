@@ -25,6 +25,12 @@ When to use something else:
 | `v-model` | `string` |  | The picked value. |
 | `disabled \| name` | `boolean \| string` |  | For the radios underneath. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
+
 ## Examples
 
 ### A period

@@ -25,23 +25,28 @@ async function expectNoViolations(page: Page): Promise<void> {
   ).toEqual([]);
 }
 
-/** Buttons that open a dialog, alert or region: [framework, route, button, role, region name]. */
-const STATES: [Framework, string, string, string, string?][] = [
-  ['angular', 'components/dialog', 'Edit address', 'dialog'],
-  ['angular', 'components/dialog', 'Read the terms', 'dialog'],
-  ['angular', 'components/dialog', 'Write a note', 'dialog'],
-  ['angular', 'components/alert-dialog', 'Delete file', 'alertdialog'],
-  ['angular', 'components/alert-dialog', 'Leave the page', 'alertdialog'],
-  ['angular', 'components/drawer', 'Add building', 'dialog'],
-  ['angular', 'components/drawer', 'Add building in Arabic', 'dialog'],
-  ['html', 'components/dialog', 'Edit address', 'dialog'],
-  ['html', 'components/drawer', 'Add building', 'dialog'],
-  ['angular', 'components/bottom-sheet', 'Order 1042', 'dialog'],
-  ['html', 'components/bottom-sheet', 'Order 1042', 'dialog'],
-  ['html', 'components/alert-dialog', 'Delete file', 'alertdialog'],
-  ['angular', 'components/toast', 'Pay', 'region', 'Notifications'],
-  ['angular', 'components/command-palette', 'Commands', 'dialog'],
-  ['angular', 'components/toast', 'Delete order', 'region', 'Notifications'],
+/** The frameworks with their own components; HTML has markup and classes only. */
+const COMPONENT_FRAMEWORKS = ['angular', 'react', 'vue'] as const;
+
+/** Buttons that open a dialog, alert or region, in every component framework and, where it has one, in HTML: [route, button, role, region name, html too]. */
+const STATES: [string, string, string, string | undefined, boolean][] = [
+  ['components/dialog', 'Edit address', 'dialog', undefined, true],
+  ['components/dialog', 'Read the terms', 'dialog', undefined, false],
+  ['components/dialog', 'Write a note', 'dialog', undefined, false],
+  ['components/alert-dialog', 'Delete file', 'alertdialog', undefined, true],
+  [
+    'components/alert-dialog',
+    'Leave the page',
+    'alertdialog',
+    undefined,
+    false,
+  ],
+  ['components/drawer', 'Add building', 'dialog', undefined, true],
+  ['components/drawer', 'Add building in Arabic', 'dialog', undefined, false],
+  ['components/bottom-sheet', 'Order 1042', 'dialog', undefined, true],
+  ['components/toast', 'Pay', 'region', 'Notifications', false],
+  ['components/command-palette', 'Commands', 'dialog', undefined, false],
+  ['components/toast', 'Delete order', 'region', 'Notifications', false],
 ];
 
 // The kit places every CDK popup right after its trigger, so `region` (everything inside a
@@ -140,27 +145,52 @@ for (const theme of ['light', 'dark'] as Theme[]) {
       }
     }
 
-    for (const [framework, route, button, role, name] of STATES) {
-      test(`${framework} /${route}: "${button}" open`, async ({ page }) => {
-        await openDocs(page, route, { theme, framework });
-        await page.getByRole('button', { name: button, exact: true }).click();
-        // The toast region has no box of its own (its list is fixed), so wait for it to exist.
-        await page
-          .getByRole(
-            role as Parameters<Page['getByRole']>[0],
-            name ? { name } : {},
-          )
-          .waitFor({ state: role === 'region' ? 'attached' : 'visible' });
-        await expectNoViolations(page);
-      });
-    }
+    for (const [route, button, role, name, html] of STATES)
+      for (const framework of [
+        ...COMPONENT_FRAMEWORKS,
+        ...(html ? (['html'] as const) : []),
+      ]) {
+        test(`${framework} /${route}: "${button}" open`, async ({ page }) => {
+          await openDocs(page, route, { theme, framework });
+          await page.getByRole('button', { name: button, exact: true }).click();
+          // The toast region has no box of its own (its list is fixed), so wait for it to exist.
+          await page
+            .getByRole(
+              role as Parameters<Page['getByRole']>[0],
+              name ? { name } : {},
+            )
+            .waitFor({ state: role === 'region' ? 'attached' : 'visible' });
+          await expectNoViolations(page);
+        });
+      }
 
-    for (const [route, openPopup] of POPUPS) {
-      test(`angular /${route}: popup open`, async ({ page }) => {
-        await openDocs(page, route, { theme });
-        await openPopup(page);
-        await expectNoViolations(page);
-      });
-    }
+    for (const [route, openPopup] of POPUPS)
+      for (const framework of COMPONENT_FRAMEWORKS) {
+        test(`${framework} /${route}: popup open`, async ({ page }) => {
+          await openDocs(page, route, { theme, framework });
+          await openPopup(page);
+          await expectNoViolations(page);
+        });
+      }
   });
+}
+
+// WCAG 1.4.4 and 1.4.12: text at 200% and the text-spacing override must not push the page
+// sideways at a desktop width (scrolling areas such as code and tables scroll on their own).
+const TEXT_STRESS: Record<string, string> = {
+  'text at 200%': 'html { font-size: 200% !important; }',
+  'text spacing':
+    '* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; } p { margin-block-end: 2em !important; }',
+};
+for (const [name, css] of Object.entries(TEXT_STRESS)) {
+  for (const route of ROUTES) {
+    test(`${name} /${route}: no sideways scroll`, async ({ page }) => {
+      await openDocs(page, route);
+      await page.addStyleTag({ content: css });
+      const width = await page.evaluate(
+        () => document.documentElement.scrollWidth - innerWidth,
+      );
+      expect(width).toBeLessThanOrEqual(1);
+    });
+  }
 }

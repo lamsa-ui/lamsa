@@ -23,6 +23,13 @@ When to use something else:
 | `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
+
 ## Examples
 
 ### Two languages

@@ -22,6 +22,12 @@ When to use something else:
 | `children` | `ReactNode` |  | The content of the panel. |
 | `placement` | `'bottom start' \| 'top start' \| …` | `'bottom start'` | Where it opens, if there is room. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
+
 ## Examples
 
 ### Details

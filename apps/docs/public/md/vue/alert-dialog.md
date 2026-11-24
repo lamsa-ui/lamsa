@@ -27,6 +27,12 @@ When to use something else:
 | `options` | `as in Angular` |  | title, message, tone and actions; confirmLabel, cancelLabel and danger for confirm. |
 | `<AlertDialog>` | `component` |  | The same dialog, controlled: open, the options, and onAction(value). |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ## Examples
 
 ### Confirm a destructive action

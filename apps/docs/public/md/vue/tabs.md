@@ -24,6 +24,13 @@ When to use something else:
 | `v-model:selected` | `string` |  | The chosen tab's id. |
 | `TabNav label` | `string` |  | Required. Names the navigation; put links with className="ui-tab" inside, the current one aria-current="page". |
 
+Keyboard and screen readers:
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ## Examples
 
 ### An order

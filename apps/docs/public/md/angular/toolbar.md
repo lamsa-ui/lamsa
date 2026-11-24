@@ -22,6 +22,14 @@ When to use something else:
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which arrow keys move: left and right, or up and down. |
 | `<ui-toolbar-separator>` | `component` |  | A line between groups of controls. |
 
+Keyboard and screen readers:
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
+
 ## Examples
 
 ### Editor actions

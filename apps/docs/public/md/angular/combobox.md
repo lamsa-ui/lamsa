@@ -27,6 +27,13 @@ When to use something else:
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ## Examples
 
 ### Countries

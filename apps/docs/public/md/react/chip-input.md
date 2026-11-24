@@ -26,6 +26,14 @@ When to use something else:
 | `onChange` | `(value: string[]) => void` |  | Called after each add and remove. |
 | `disabled` | `boolean` | `false` | No typing, no removing. |
 
+Keyboard and screen readers:
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
+
 ## Examples
 
 ### Toppings

@@ -34,6 +34,13 @@ When to use something else:
 | `ui-tab-nav label` | `string` |  | Required. Names the navigation; put links with class="ui-tab" inside. |
 | `KeepRouteStrategy` | `RouteReuseStrategy` |  | Provide it as the RouteReuseStrategy; a route with data: { keep: true } keeps its page between tabs, until the reader leaves the section. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ## Examples
 
 ### An order

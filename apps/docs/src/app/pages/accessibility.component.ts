@@ -34,7 +34,9 @@ import { PageComponent } from '../shared/page.component';
             <a href="https://www.w3.org/WAI/ARIA/apg/">
               WAI-ARIA Authoring Practices</a
             >
-            pattern, or uses the native HTML element when one exists.
+            pattern, or uses the native HTML element when one exists. Each
+            component page lists its keys and what screen readers hear, under
+            Keyboard and screen readers.
             @switch (settings.framework()) {
               @case ('angular') {
                 Angular components are built on the Angular CDK.
@@ -73,7 +75,13 @@ import { PageComponent } from '../shared/page.component';
           <li>
             On every push, axe-core checks every page of this site in light and
             dark and in each framework's view, and again with dialogs, menus,
-            popovers, tooltips and toasts open. Any problem fails the build.
+            popovers, tooltips and toasts open in Angular, React and Vue. Any
+            problem fails the build.
+          </li>
+          <li>
+            Every page is loaded with text at 200% and with the WCAG text
+            spacing override; the build fails if either pushes the page
+            sideways.
           </li>
           <li>
             Unit tests check each component's roles, names, states and keys.
@@ -93,11 +101,6 @@ import { PageComponent } from '../shared/page.component';
             VoiceOver on macOS and iOS, TalkBack on Android, including Arabic
             voices. Automated checks catch only part of what a screen reader
             user meets.
-          </li>
-          <li>
-            The audit with dialogs, menus and popups open covers the Angular and
-            HTML views only. React and Vue pages are audited in their resting
-            state.
           </li>
           <li>
             Tooltips never show on touch screens, so nothing needed may live

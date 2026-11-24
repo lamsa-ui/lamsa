@@ -22,6 +22,13 @@ When to use something else:
 | `children` | `ReactElement` |  | One focusable element, such as Button. |
 | `placement` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'top'` | Where it shows, if there is room. |
 
+Keyboard and screen readers:
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ## Examples
 
 ### On icon buttons

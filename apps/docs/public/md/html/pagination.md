@@ -23,6 +23,12 @@ When to use something else:
 | `ui-pagination__step + aria-disabled` | `class + attribute` |  | Previous and next; at the ends use aria-disabled="true", not disabled. |
 | `ui-pagination__gap aria-hidden` | `class + attribute` |  | The "…" between page numbers. |
 
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
+
 ## Examples
 
 ### Pages

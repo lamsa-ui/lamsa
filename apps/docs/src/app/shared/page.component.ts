@@ -9,6 +9,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonComponent, IconComponent } from '@lamsa-ui/angular';
+import { A11Y, KEY_WORDS } from './a11y';
 import { CodeBlockComponent } from './code-block.component';
 import { DocsSettings, type FrameworkCode } from './docs-settings';
 import { NAV } from './nav';
@@ -64,6 +65,66 @@ const PAGES = NAV.flatMap((g) => g.links);
       </nav>
     }
     <ng-content />
+    @if (a11y; as a) {
+      <section class="doc-section">
+        <h2 class="ui-heading doc-h2" id="keyboard">
+          Keyboard and screen readers
+        </h2>
+        @if (a.script && settings.framework() === 'html') {
+          <p>
+            In plain HTML these keys come from your own script, following the
+            matching WAI-ARIA pattern; the markup and classes are on this page.
+          </p>
+        }
+        @if (a.keys; as keys) {
+          <div
+            class="doc-table-wrap"
+            tabindex="0"
+            role="region"
+            aria-label="Keys"
+          >
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th scope="col">Keys</th>
+                  <th scope="col">What they do</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of keys; track $index) {
+                  <tr>
+                    <td>
+                      @for (key of row[0]; track key; let last = $last) {
+                        @if (keyWords.includes(key)) {
+                          {{ key }}
+                        } @else {
+                          @for (
+                            part of key.split(' + ');
+                            track $index;
+                            let lastPart = $last
+                          ) {
+                            <kbd class="ui-kbd">{{ part }}</kbd>{{
+                              lastPart ? '' : ' + '
+                            }}
+                          }
+                        }
+                        {{ last ? '' : ' or ' }}
+                      }
+                    </td>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+        <ul class="doc-list">
+          @for (note of a.notes; track note) {
+            <li>{{ note }}</li>
+          }
+        </ul>
+      </section>
+    }
     <nav class="doc-pager" aria-label="Previous and next page">
       @if (prev; as p) {
         <a class="doc-pager__link" [routerLink]="p.path" rel="prev">
@@ -94,7 +155,11 @@ export class PageComponent {
   protected readonly next = this.at >= 0 ? (PAGES[this.at + 1] ?? null) : null;
   protected readonly toc = signal<{ id: string; text: string }[]>([]);
   protected readonly copied = signal('');
-  private readonly settings = inject(DocsSettings);
+  protected readonly settings = inject(DocsSettings);
+  protected readonly keyWords = KEY_WORDS;
+  protected readonly a11y = this.path.startsWith('/components/')
+    ? (A11Y[this.path.split('/').pop() ?? ''] ?? null)
+    : null;
 
   /**
    * Copies this page in the reader's framework, from the Markdown that `pnpm llms` writes,

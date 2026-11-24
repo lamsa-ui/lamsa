@@ -21,6 +21,11 @@ When to use something else:
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label, for a page or panel. |
 
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
+
 ## Examples
 
 ### Sizes and labels

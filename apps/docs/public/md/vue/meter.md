@@ -25,6 +25,10 @@ When to use something else:
 | `valueText` | `string` |  | The value in words, shown and read: "7.2 of 10 GB". Defaults to a percentage. |
 | `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the fill. You decide it from the value. |
 
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
+
 ## Examples
 
 ### Levels

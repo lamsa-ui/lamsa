@@ -33,6 +33,12 @@ When to use something else:
 | `[ui-dialog-actions]` | `content slot` |  | The buttons; they line up at the end and stay in view. |
 | `uiDialogClose` | `directive` |  | On a button: closes the dialog with its value, or none when bare. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ## Examples
 
 ### A form in a dialog

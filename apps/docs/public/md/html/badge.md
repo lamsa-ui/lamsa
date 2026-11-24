@@ -21,6 +21,10 @@ When to use something else:
 | `ui-badge` | `class` |  | Required. On its own it is the neutral badge. |
 | `ui-badge--info \| --success \| --warning \| --danger` | `class` |  | The colour. Use one at most. |
 
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
+
 ## Examples
 
 ### Variants

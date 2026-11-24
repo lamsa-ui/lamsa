@@ -20,6 +20,10 @@ When to use something else:
 | `tone` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the dot. The words still say the status. |
 | `#default` | `slot` |  | The word for the status. |
 
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
+
 ## Examples
 
 ### Tones

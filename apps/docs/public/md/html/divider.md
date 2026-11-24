@@ -21,6 +21,10 @@ When to use something else:
 | `ui-divider--vertical` | `class` |  | Vertical. Add aria-orientation="vertical". |
 | `ui-divider--label` | `class` |  | Words in the middle. No separator role, so the words are read. |
 
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
+
 ## Examples
 
 ### Between sections

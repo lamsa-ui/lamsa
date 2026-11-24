@@ -24,6 +24,11 @@ When to use something else:
 | `ui-check` | `class` |  | On the label that wraps the input and its text. |
 | `ui-field, ui-field--invalid` | `class` |  | A wrapper when there is a hint or an error; list their ids in aria-describedby. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ## Examples
 
 ### With a hint

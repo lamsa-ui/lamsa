@@ -25,6 +25,14 @@ When to use something else:
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `(complete)` | `string` |  | Every box is filled: the whole code. |
 
+Keyboard and screen readers:
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ## Examples
 
 ### A verification code

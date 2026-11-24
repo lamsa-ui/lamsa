@@ -27,6 +27,13 @@ When to use something else:
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ## Examples
 
 ### Countries

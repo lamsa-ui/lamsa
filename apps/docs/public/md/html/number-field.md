@@ -21,6 +21,16 @@ When to use something else:
 | `ui-number-field` | `class` |  | On the field: centres the number between the buttons. |
 | `ui-input-group__button` | `class` |  | The − and + buttons, out of the Tab order. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
+
 ## Examples
 
 ### A quantity

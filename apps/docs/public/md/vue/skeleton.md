@@ -20,6 +20,11 @@ When to use something else:
 | `shape` | `'text' \| 'circle' \| 'block'` | `'text'` | Lines, an avatar, or an image or card. |
 | `lines` | `number` | `1` | Lines of text; the last one is shorter. |
 
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
+
 ## Examples
 
 ### A loading card

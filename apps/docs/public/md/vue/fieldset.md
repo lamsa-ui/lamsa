@@ -20,6 +20,10 @@ When to use something else:
 | `legend` | `string` |  | Required. The group title. |
 | `hint` | `string` |  | A line under the legend, read with the group. |
 
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
+
 ## Examples
 
 ### An address

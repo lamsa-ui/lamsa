@@ -26,6 +26,12 @@ When to use something else:
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
 | `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ## Examples
 
 ### A form in a dialog

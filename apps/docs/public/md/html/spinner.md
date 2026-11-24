@@ -24,6 +24,11 @@ When to use something else:
 | `ui-loading--lg` | `class` |  | The big one, over its label. |
 | `ui-spinner` | `class` |  | The ring; hide it from screen readers. |
 
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
+
 ## Examples
 
 ### Sizes and labels

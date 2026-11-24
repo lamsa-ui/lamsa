@@ -27,6 +27,14 @@ When to use something else:
 | `ui-shell__header \| __body \| __sidebar \| __main` | `class` |  | Its parts. |
 | `--ui-shell-header \| --ui-shell-sidebar` | `token` | `4rem \| 16rem` | Header height and side bar width. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
+
 ## Examples
 
 ### An app

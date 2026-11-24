@@ -21,6 +21,10 @@ When to use something else:
 | `ui-stat__label \| __value \| __change` | `class` |  | The three lines. |
 | `ui-stat__change--positive \| --negative` | `class` |  | The colour of the change. Put aria-hidden on its arrow. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ## Examples
 
 ### A row of stats

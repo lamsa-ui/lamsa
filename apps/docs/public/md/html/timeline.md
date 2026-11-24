@@ -22,6 +22,10 @@ When to use something else:
 | `ui-timeline__marker--approved \| --pending \| --rejected` | `class` |  | Colors and styles the status marker. |
 | `ui-timeline__status--approved \| --pending \| --rejected` | `class` |  | Styles the visible status label. |
 
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
+
 ## Examples
 
 ### Case approval history

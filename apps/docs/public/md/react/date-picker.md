@@ -29,6 +29,12 @@ When to use something else:
 | `value \| defaultValue \| onChange` | `string \| DateRange \| null` |  | Controlled or starting value. Range mode takes two ISO dates. Language and order follow the nearest I18nProvider. |
 | `disabled \| name` | `boolean \| string` |  | With name, the date is submitted with a form. |
 
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ## Examples
 
 ### A delivery day

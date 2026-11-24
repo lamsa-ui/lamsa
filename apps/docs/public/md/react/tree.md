@@ -23,6 +23,16 @@ When to use something else:
 | `defaultExpanded` | `string[]` |  | Ids of the branches open at the start. |
 | `selected \| onSelectedChange` | `string \| (id) => void` |  | Id of the selected item, and the change. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
+
 ## Examples
 
 ### Menu categories

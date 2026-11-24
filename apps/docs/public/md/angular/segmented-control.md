@@ -24,6 +24,12 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Shows only the icons; the words are still read. |
 | `block` | `boolean` | `false` | Fills the width, segments sharing it. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
+
 ## Examples
 
 ### A period

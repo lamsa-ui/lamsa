@@ -26,6 +26,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide; the full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, closeLabel, [ui-dialog-actions], uiDialogClose and the open() config work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ## Examples
 
 ### A form in a drawer

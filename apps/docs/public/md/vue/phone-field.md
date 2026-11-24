@@ -26,6 +26,14 @@ When to use something else:
 | `modelValue \| update:modelValue` | `string \| null` |  | The v-model number, controlled as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |
 
+Keyboard and screen readers:
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
+
 ## Examples
 
 ### A mobile number

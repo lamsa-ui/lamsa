@@ -24,6 +24,12 @@ When to use something else:
 | `useToast().show(message, options?)` | `number` |  | As in Angular. |
 | `useToast().dismiss(id)` | `void` |  | Closes a toast. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ## Examples
 
 ### Tones

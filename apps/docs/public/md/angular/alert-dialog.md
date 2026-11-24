@@ -28,6 +28,12 @@ When to use something else:
 | `confirm: confirmLabel / cancelLabel` | `string` | `cancel: 'Cancel'` | The translated button texts. |
 | `confirm: danger` | `boolean` | `false` | Danger tone and button, and focus starts on Cancel. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ## Examples
 
 ### Confirm a destructive action

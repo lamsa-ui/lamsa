@@ -22,6 +22,15 @@ When to use something else:
 | `lang` | `attribute` |  | On each language name, with its own code. |
 | `ui-menu__item[aria-checked="true"]` | `selector` |  | The current language in a menu: bold, with a check mark. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
+
 ## Examples
 
 ### Two languages

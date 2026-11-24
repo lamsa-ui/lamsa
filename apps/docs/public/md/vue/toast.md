@@ -24,6 +24,12 @@ When to use something else:
 | `useToast().show(message, options?)` | `number` |  | Shows a toast and returns its id. options: tone, title, duration (ms, 0 keeps it), action { label, run }. |
 | `useToast().dismiss(id)` | `void` |  | Removes a toast early. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ## Examples
 
 ### Tones

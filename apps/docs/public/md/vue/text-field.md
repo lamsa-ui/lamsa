@@ -27,6 +27,11 @@ When to use something else:
 | `error` | `string` |  | The translated error. Marks the input invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ## Examples
 
 ### With a hint

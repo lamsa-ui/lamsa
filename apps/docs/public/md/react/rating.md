@@ -26,6 +26,13 @@ When to use something else:
 | `onChange` | `(value: number) => void` |  | Called with the picked number of stars. |
 | `name \| disabled` | `string \| boolean` |  | Passed to the radios and the fieldset. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ## Examples
 
 ### Pick a score

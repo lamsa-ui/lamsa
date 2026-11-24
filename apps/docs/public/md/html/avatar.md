@@ -23,6 +23,10 @@ When to use something else:
 | `--ui-avatar-size` | `custom property` | `2.5rem` | Any other size; the initials scale with it. |
 | `img alt=""` | `child` |  | The photo. Its alt stays empty: the avatar itself carries the name. Swap to initials on its error event. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ## Examples
 
 ### Initials and sizes

@@ -22,6 +22,14 @@ When to use something else:
 | `ui-input-group` | `class` |  | The box around the date field and the calendar button. |
 | `ui-date-picker__popover` | `class` |  | With ui-popover, the panel that holds the calendar. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ## Examples
 
 ### A delivery day

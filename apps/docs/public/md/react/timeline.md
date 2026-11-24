@@ -24,6 +24,10 @@ When to use something else:
 | `statusLabel` | `string` |  | Overrides the default status text, including for translation. |
 | `className` | `string` |  | Added to the ordered list. |
 
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
+
 ## Examples
 
 ### Case approval history

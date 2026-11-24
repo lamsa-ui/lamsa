@@ -102,6 +102,14 @@ When to use something else:
 | `ng-template uiAccordionContent` | `directive` |  | Inside an item: content created when it opens. |
 | `keep` | `boolean` | `false` | On each item: keeps lazy content once shown. Off, it goes once closed and loads again on the next open. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ### Alert dialog
 
 A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes. Only its buttons answer: Escape and a click outside do nothing, because the reader has to choose. Focus starts on the safest button.
@@ -130,6 +138,12 @@ When to use something else:
 | `confirm: confirmLabel / cancelLabel` | `string` | `cancel: 'Cancel'` | The translated button texts. |
 | `confirm: danger` | `boolean` | `false` | Danger tone and button, and focus starts on Cancel. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ### Alert
 
 A message in the page, such as a problem with the whole form or a notice about the account. The title says what it is in words; the icon's shape and the colour repeat it. For a note after an action, use a toast; for a question that needs an answer, an alert dialog.
@@ -156,6 +170,10 @@ When to use something else:
 | `(dismiss)` | `void` |  | The close button was pressed: remove the alert. |
 | `[ui-alert-actions]` | `slot` |  | An element holding buttons, under the message. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ### App shell
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
@@ -178,6 +196,12 @@ When to use something else:
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `[uiShellBrand] \| [uiShellActions] \| [uiShellSidebar]` | `slot` |  | Brand at the start of the header, actions at its end, links in the side bar. The rest is the page. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
 
 ### Avatar group
 
@@ -202,6 +226,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
 | `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
 
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
+
 ### Avatar
 
 A person's photo, or their initials when there is no photo or it fails to load. Screen readers hear the person's name, never the file name.
@@ -225,6 +253,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 32, 40 or 56 pixels. |
 | `decorative` | `boolean` | `false` | Hides it from screen readers, for when the name is on screen next to it. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ### Badge
 
 A short status label, such as the state of an order. The words carry the meaning and the colour only repeats it, so every status reads the same without colour.
@@ -244,6 +276,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `variant` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | The colour. The text must say the status too. |
+
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
 
 ### Bottom sheet
 
@@ -271,6 +307,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Its width on a wide screen: 24, 32 or 48rem. The full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, closeLabel, [ui-dialog-actions], uiDialogClose and the open() config work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the bottom, named by its title; the page behind stops scrolling.
+
 ### Breadcrumbs
 
 Where the page sits, as a trail of links back up. A named navigation landmark around an ordered list; the last item is the page itself, marked as current and not a link. The slashes are drawn, not read out.
@@ -293,6 +335,11 @@ When to use something else:
 | `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
 | `<li> children` | `content` |  | One per step; the last holds aria-current="page". |
 
+Keyboard and screen readers:
+
+- A named navigation landmark around an ordered list; the last item is marked as the current page.
+- The slashes are drawn, not read out.
+
 ### Button group
 
 Buttons that belong together, joined into one bar. The group has a name, so a screen reader says what the buttons are for before it reads them.
@@ -312,6 +359,11 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. What the buttons do together, for screen readers. |
+
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
 
 ### Button
 
@@ -338,6 +390,12 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square button for a lone icon. Add an aria-label. |
 | `[ui-button-start] / [ui-button-end]` | `content slot` |  | Put an icon before or after the label. Hidden while loading (start). |
 | `disabled` | `boolean` | `false` | Disables the button. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
 
 ### Calendar
 
@@ -366,6 +424,18 @@ When to use something else:
 | `locale` | `string` | `LOCALE_ID` | Month and weekday names, digits and the first day of the week. |
 | `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month'` | The arrow buttons’ names. Translate them. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ### Card
 
 A surface that groups related content: a summary, a list, a form. Cards are flat, with a thin border; shadows are kept for things that float, like menus and dialogs.
@@ -387,6 +457,10 @@ When to use something else:
 | `title` | `string` |  | Optional heading at the top of the card. |
 | `level` | `2 \| 3 \| 4` | `3` | The heading level of the title. |
 | `padding` | `'md' \| 'lg'` | `'md'` | 1.5rem or 2rem inside the border. |
+
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
 
 ### Checkbox
 
@@ -413,6 +487,11 @@ When to use something else:
 | `indeterminate` | `boolean` | `false` | Shows a dash: some of the items under it are ticked. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ### Chip input
 
 A text field that collects several short values, such as toppings, email addresses or skills. Each value becomes a tag with its own named remove button. Screen readers hear each value being added and removed, and focus never falls off the field.
@@ -436,6 +515,14 @@ When to use something else:
 | `hint \| placeholder` | `string` |  | Help under the field; text in the empty field. |
 | `removeLabel` | `string` | `'Remove'` | First word of each × button's name. Translate it. |
 | `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
+
+Keyboard and screen readers:
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
 
 ### Combobox
 
@@ -464,6 +551,13 @@ When to use something else:
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ### Command palette
 
 A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
@@ -491,6 +585,15 @@ When to use something else:
 | `[(open)]` | `boolean` | `false` | Open or closed; Ctrl+K and Escape change it. |
 | `(run)` | `Command` |  | The command to run, after the dialog has closed and focus is back. |
 
+Keyboard and screen readers:
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ### Context menu
 
 Actions that open where the reader right-clicks, long-presses, or presses Shift+F10 on the focused item. It is a shortcut: the same actions must also be somewhere visible, because touch and keyboard users rarely look for one.
@@ -516,6 +619,14 @@ When to use something else:
 | `uiContextMenu` | `TemplateRef` |  | On the area that opens it: an ng-template holding a <ui-menu>. Make the area focusable. |
 | `uiContextMenuDisabled` | `boolean` | `false` | Right-click shows the browser menu instead. |
 | `<button ui-menu-item>` | `component` |  | One action, as in Menu: (triggered) fires for click, Enter and Space; danger for red text. |
+
+Keyboard and screen readers:
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
 
 ### Data table
 
@@ -550,6 +661,12 @@ When to use something else:
 | `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
 | `ng-template uiCell="key"` | `directive` |  | A custom cell for that column; let-row gives the row. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ### Date picker
 
 A date to type or pick, or a range of dates for a stay. Type dates in the reader's own order, or open the calendar beside them or with Alt + Down. Unlike the browser's own picker, this calendar can close off days, such as a shop's day off. For ordinary dates and times, the native fields below use the browser's localized pickers. Date values stay plain ISO dates.
@@ -582,6 +699,12 @@ When to use something else:
 | `step (ui-text-field)` | `string \| number` |  | The steps: seconds for a time, units for a number. |
 | `locale` | `string` | `LOCALE_ID` | The calendar's month and day names. |
 | `previousLabel \| nextLabel` | `string` |  | The calendar's month buttons. Translate them. |
+
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
 
 ### Dialog
 
@@ -616,6 +739,12 @@ When to use something else:
 | `[ui-dialog-actions]` | `content slot` |  | The buttons; they line up at the end and stay in view. |
 | `uiDialogClose` | `directive` |  | On a button: closes the dialog with its value, or none when bare. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ### Divider
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
@@ -635,6 +764,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which way the line runs. |
 | `label` | `string` |  | Words in the middle of the line, read as text. Horizontal only. |
+
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
 
 ### Drawer
 
@@ -662,6 +795,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide; the full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, closeLabel, [ui-dialog-actions], uiDialogClose and the open() config work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ### Empty state
 
 What a list, table or page shows while it has nothing in it. It says what will appear here, why it is empty now, and offers the one action that fills it.
@@ -682,6 +821,10 @@ When to use something else:
 | `title` | `string` |  | Required. What is missing, as a heading. |
 | `level` | `2 \| 3 \| 4` | `3` | Heading level of the title, so it fits the page outline. |
 | `[ui-empty-state-actions]` | `slot` |  | The action that fills the space. One, usually. |
+
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
 
 ### Fieldset
 
@@ -704,6 +847,10 @@ When to use something else:
 | `legend` | `string` |  | Required. The group title. |
 | `hint` | `string` |  | A line under the legend, read with the group. |
 | `disabled` | `boolean` |  | The native attribute: disables every field inside. |
+
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
 
 ### File field
 
@@ -728,6 +875,12 @@ When to use something else:
 | `hint, error` | `string` |  | As for the text field. |
 | `dropText` | `string` | `'Or drop a file here'` | The line under the button; pass the translated text. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
 
 ### Icons
 
@@ -757,6 +910,10 @@ When to use something else:
 | `suffix` | `string` |  | Text after the value, such as "kg" or ".com". |
 | `label` | `string` |  | Required. Every other Text field option works too: see Text field. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ### Keyboard key
 
 A key to press, on the native kbd element, so screen readers and search engines know it is a key. For a shortcut write one key per element, with the joining + as plain text.
@@ -775,6 +932,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `kbd[ui-kbd]` | `selector` |  | On a native kbd element. The key name is its content. |
+
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
 
 ### Language switcher
 
@@ -798,6 +959,13 @@ When to use something else:
 | `[(current)]` | `string` |  | Required. The current language's code. |
 | `label` | `string` | `'Language'` | Three or more: read before the current name on the button, and the menu’s name. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
+
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
 
 ### Menu
 
@@ -826,6 +994,15 @@ When to use something else:
 | `danger` | `boolean` | `false` | Red text, for an action that destroys something. |
 | `disabled` | `boolean` | `false` | Shown, but cannot be chosen. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ### Meter
 
 A level inside a known range: storage used, a plan's limit, a score. It is not work in progress, that is Progress. The value is written next to the label, so the tone colour only repeats what the words say.
@@ -851,6 +1028,10 @@ When to use something else:
 | `valueText` | `string` |  | The value in words, shown and read: "7.2 of 10 GB". Defaults to a percentage. |
 | `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the fill. You decide it from the value. |
 
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
+
 ### Navigation
 
 The app's main links, in a side bar. A named navigation landmark, links at least 44px tall, and the current page marked with a bar and bold text, not only a fill. On a phone, put the same links in a drawer.
@@ -872,6 +1053,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the landmark, so it differs from other navigation. |
 | `content` | `ul, h2` |  | Lists of links, with optional group titles. |
+
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
 
 ### Number field
 
@@ -900,6 +1085,14 @@ When to use something else:
 | `decrementLabel \| incrementLabel` | `string` | `Decrease \| Increase` | Names the buttons. Translate them. |
 | `locale` | `string` | `LOCALE_ID` | Digits and separators: ar-EG writes Arabic digits. |
 
+Keyboard and screen readers:
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
+
 ### Pagination
 
 Moves through long lists a page at a time. A named navigation landmark: each page button says its number, the current page is marked, and the line of shown rows is announced when it changes.
@@ -922,6 +1115,12 @@ When to use something else:
 | `pageSize` | `number (model)` | `10` | Rows per page. Bind [(pageSize)] with a picker. |
 | `pageSizes` | `number[]` | `[]` | Offer these sizes in a picker. Empty: no picker. |
 | `labels` | `Partial<PaginationLabels>` |  | Translated texts: nav, previous, next, page(n), summary(first, last, total), pageSize. |
+
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
 
 ### Phone field
 
@@ -946,6 +1145,14 @@ When to use something else:
 | `countries` | `PhoneCountry[]` | `PHONE_COUNTRIES` | { code, dial, name }. ISO alpha-2 code supplies a flag. The Arab world first, then the most common elsewhere. |
 | `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
+
+Keyboard and screen readers:
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
 
 ### PIN input
 
@@ -972,6 +1179,14 @@ When to use something else:
 | `hint \| error` | `string` |  | Help text, and the translated error that marks it invalid. |
 | `(complete)` | `string` |  | Every box is filled: the whole code. |
 
+Keyboard and screen readers:
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ### Popover
 
 A small panel next to its button, for a few details or a couple of settings. It is not modal: focus moves into it, and Escape or a click outside closes it and puts focus back on the button. Screen readers name it after the button. For a task that needs the reader's full attention, use a dialog.
@@ -992,6 +1207,12 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `[uiPopoverTrigger]` | `TemplateRef` |  | Required, on the button: the content to show. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
 
 ### Progress
 
@@ -1017,6 +1238,11 @@ When to use something else:
 | `valueText` | `string` |  | The amount in words; defaults to a percentage. |
 | `testId` | `string` |  | data-testid on the progress element. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ### Property list
 
 Label and value pairs, such as the details of one order. Built on the native description list, so screen readers say how many items there are and pair each label with its value.
@@ -1037,6 +1263,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `layout` | `'columns' \| 'stacked'` | `'columns'` | On dl[ui-property-list]. Stacked puts each label above its value at any width. |
 | `term` | `string` |  | On div[ui-property], required: the label. Its content is the value. |
+
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
 
 ### Radio group
 
@@ -1065,6 +1295,12 @@ When to use something else:
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid prefix; each radio gets -<index>. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Native radios in a named group, so the group name is read first.
+
 ### Rating
 
 Stars out of five, to pick a score or to show one. Picking uses real radio buttons, so Tab reaches the stars, arrow keys move between them and a screen reader says 3 stars, 3 of 5. Filled stars are solid and empty ones an outline, so the shape tells them apart, not only colour.
@@ -1090,6 +1326,13 @@ When to use something else:
 | `readonly` | `boolean` | `false` | Only shows [value]; nothing to pick. |
 | `value` | `number` |  | The score to show when readonly. A form control sets it otherwise. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ### Search field
 
 A box to search with: a magnifier, the text, and a × to clear it. Escape clears it too, and Enter searches. A real search input, so phones show a Search key and screen readers say search.
@@ -1114,6 +1357,12 @@ When to use something else:
 | `clearLabel` | `string` | `Clear search` | Names the × button. Translate it. |
 | `(submitted)` | `string` |  | Enter was pressed: the text to search for. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ### Segmented control
 
 One choice from two to five short options, side by side: a view, a period, a size. Radio buttons underneath, so Tab reaches the group and the arrow keys move the choice. The chosen one is lifted onto a tile with an edge, not just coloured.
@@ -1137,6 +1386,12 @@ When to use something else:
 | `options` | `{ value, label, icon?, disabled? }[]` |  | Two to five short options. |
 | `iconOnly` | `boolean` | `false` | Shows only the icons; the words are still read. |
 | `block` | `boolean` | `false` | Fills the width, segments sharing it. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
 
 ### Select
 
@@ -1164,6 +1419,15 @@ When to use something else:
 | `compareWith` | `(a: T, b: T) => boolean` | `===` | How to match the form value to an option, for object values. |
 | `testId` | `string` |  | data-testid on the button; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
+
 ### Skeleton
 
 Grey shapes where content is loading, so the page does not jump when it arrives. Screen readers skip the shapes: mark the area busy and say it is loading with a spinner or a status message. With reduced motion the shapes stop pulsing.
@@ -1183,6 +1447,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `shape` | `'text' \| 'circle' \| 'block'` | `'text'` | Lines, an avatar, or an image or card. |
 | `lines` | `number` | `1` | Lines of text; the last one is shorter. |
+
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
 
 ### Slider
 
@@ -1208,6 +1477,13 @@ When to use something else:
 | `format` | `(value: number) => string` |  | The value as shown and as read aloud, with its unit. |
 | `hint` | `string` |  | Help under the slider, read after the label. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ### Spinner
 
 Shows that something is loading and says what, in words, to screen readers. Keep it for waits of more than a second. With reduced motion it stops turning and stays as a faint ring.
@@ -1228,6 +1504,11 @@ When to use something else:
 | `label` | `string` | `'Loading'` | What is loading, translated; read by screen readers. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label, for a page or panel. |
+
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
 
 ### Stat
 
@@ -1252,6 +1533,10 @@ When to use something else:
 | `trend` | `'up' \| 'down' \| 'flat'` |  | The arrow beside the change. |
 | `tone` | `'positive' \| 'negative' \| 'neutral'` | `'neutral'` | Green, red or grey for the change. Set it by meaning, not by direction. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ### Status dot
 
 A small coloured dot before the word for a live state: online, busy, offline. The word is always there and carries the meaning; the dot lets the eye scan a long list.
@@ -1271,6 +1556,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `tone` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the dot. The words still say the status. |
 | `content` | `text` |  | Required in practice: the word for the status. |
+
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
 
 ### Stepper
 
@@ -1301,6 +1590,12 @@ When to use something else:
 | `ui-step label` | `string` |  | Required. The step's name; its content goes inside. |
 | `ui-step completed` | `boolean` | `true` | Whether the step is filled in, such as its form being valid. A step before the current one shows a tick only when it is. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ### Switch
 
 An on or off setting that takes effect at once, with no save button. Screen readers say on and off, and the knob's side shows the state, so it never depends on colour. For a choice saved with a form, use a checkbox.
@@ -1322,6 +1617,11 @@ When to use something else:
 | `label` | `string` |  | Required. The setting it turns on. |
 | `hint` | `string` |  | Help text under it, read with the switch. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
+
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
 
 ### Tabs
 
@@ -1357,6 +1657,13 @@ When to use something else:
 | `ui-tab-nav label` | `string` |  | Required. Names the navigation; put links with class="ui-tab" inside. |
 | `KeepRouteStrategy` | `RouteReuseStrategy` |  | Provide it as the RouteReuseStrategy; a route with data: { keep: true } keeps its page between tabs, until the reader leaves the section. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ### Tag
 
 A label the user added or can take away, such as an active filter or a topic. For a status like Paid or Late, use a badge.
@@ -1377,6 +1684,11 @@ When to use something else:
 | `removable` | `boolean` | `false` | Shows the × button. |
 | `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
 | `(remove)` | `void` |  | The × was pressed. Remove the tag and move focus on. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
 
 ### Text field
 
@@ -1405,6 +1717,11 @@ When to use something else:
 | `autocomplete` | `string` |  | The browser autofill hint, such as email or name. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ### Textarea
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
@@ -1429,6 +1746,10 @@ When to use something else:
 | `error` | `string` |  | The translated error. Marks the textarea invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the textarea, for tests. |
 
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
+
 ### Timeline
 
 A chronological record of decisions and updates. Each event can show who acted, when it happened, and the outcome, so a case's approval history is easy to scan.
@@ -1451,6 +1772,10 @@ When to use something else:
 | `TimelineItem` | `{ title, date, dateTime?, actor?, description?, status?, statusLabel? }` |  | Event details. dateTime is a machine-readable value for the semantic time element. |
 | `status` | `'approved' \| 'pending' \| 'rejected'` |  | Adds a status icon and tone label to the event. |
 | `statusLabel` | `string` |  | Overrides the default status text, including for translation. |
+
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
 
 ### Toast
 
@@ -1480,6 +1805,12 @@ When to use something else:
 | `dismiss(id)` | `void` |  | Closes a toast. |
 | `labels` | `signal` | `{ region: 'Notifications', close: 'Dismiss' }` | The region name and close button name, translated. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ### Toggle
 
 A button that stays pressed until it is pressed again. The label stays the same; screen readers hear 'pressed' or 'not pressed', and the look changes in fill and border, not colour alone.
@@ -1503,6 +1834,11 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square, for an icon alone. Give it an aria-label. |
 | `disabled` | `boolean` | `false` | Cannot be pressed. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
+
 ### Toolbar
 
 A row of controls that counts as one stop for the Tab key. Inside it the arrow keys move from control to control, flipped in Arabic; Home and End jump to the ends. Tab again leaves it.
@@ -1525,6 +1861,14 @@ When to use something else:
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which arrow keys move: left and right, or up and down. |
 | `<ui-toolbar-separator>` | `component` |  | A line between groups of controls. |
 
+Keyboard and screen readers:
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
+
 ### Tooltip
 
 A short label for a control, shown on hover and on keyboard focus and read by screen readers as its description. The pointer can move onto it and Escape hides it. Touch screens never show tooltips, so never put anything needed in one.
@@ -1545,6 +1889,13 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `uiTooltip` | `string` |  | Required. The short label, on any focusable element. |
+
+Keyboard and screen readers:
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
 
 ### Tree
 
@@ -1568,6 +1919,16 @@ When to use something else:
 | `nodes` | `TreeNode[]` |  | Required. { id, label, children? }, nested as deep as needed. |
 | `expanded` | `string[]` | `[]` | Ids of the branches open at the start. |
 | `[(selected)]` | `string \| null` | `null` | Id of the selected item. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
 
 
 # React
@@ -1625,6 +1986,14 @@ When to use something else:
 | `keep` | `boolean` | `false` | On AccordionItem: keeps lazy children once mounted. Off, they unmount once closed. |
 | `...props` | `details props` |  | On AccordionItem: onToggle and the rest. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ### Alert dialog
 
 A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes. Only its buttons answer: Escape and a click outside do nothing, because the reader has to choose. Focus starts on the safest button.
@@ -1652,6 +2021,12 @@ When to use something else:
 | `options` | `as in Angular` |  | title, message, tone and actions; confirmLabel, cancelLabel and danger for confirm. |
 | `<AlertDialog>` | `component` |  | The same dialog, controlled: open, the options, and onAction(value). |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ### Alert
 
 A message in the page, such as a problem with the whole form or a notice about the account. The title says what it is in words; the icon's shape and the colour repeat it. For a note after an action, use a toast; for a question that needs an answer, an alert dialog.
@@ -1677,6 +2052,10 @@ When to use something else:
 | `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
 | `...props` | `div props` |  | Every native div prop, such as role. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ### App shell
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
@@ -1698,6 +2077,12 @@ When to use something else:
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `brand \| actions \| sidebar` | `ReactNode` |  | Brand, header actions, and the links. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
 
 ### Avatar group
 
@@ -1722,6 +2107,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
 | `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
 
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
+
 ### Avatar
 
 A person's photo, or their initials when there is no photo or it fails to load. Screen readers hear the person's name, never the file name.
@@ -1745,6 +2134,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 32, 40 or 56 pixels. |
 | `decorative` | `boolean` | `false` | Hides it from screen readers, for when the name is on screen next to it. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ### Badge
 
 A short status label, such as the state of an order. The words carry the meaning and the colour only repeats it, so every status reads the same without colour.
@@ -1765,6 +2158,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `variant` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | The colour. The text must say the status too. |
 | `...props` | `span props` |  | Every native span prop: id, title, ref. |
+
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
 
 ### Bottom sheet
 
@@ -1788,6 +2185,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Its width on a wide screen: 24, 32 or 48rem. The full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, open, onOpenChange, actions, dismissable and closeLabel work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the bottom, named by its title; the page behind stops scrolling.
+
 ### Breadcrumbs
 
 Where the page sits, as a trail of links back up. A named navigation landmark around an ordered list; the last item is the page itself, marked as current and not a link. The slashes are drawn, not read out.
@@ -1809,6 +2212,11 @@ When to use something else:
 | `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
 | `children` | `<li> elements` |  | One per step; the last holds aria-current="page". |
 
+Keyboard and screen readers:
+
+- A named navigation landmark around an ordered list; the last item is marked as the current page.
+- The slashes are drawn, not read out.
+
 ### Button group
 
 Buttons that belong together, joined into one bar. The group has a name, so a screen reader says what the buttons are for before it reads them.
@@ -1829,6 +2237,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. What the buttons do together, for screen readers. |
 | `...props` | `div props` |  | Every native div prop. |
+
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
 
 ### Button
 
@@ -1856,6 +2269,12 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square button for a lone icon. Add an aria-label. |
 | `...props` | `button props` |  | Every native button prop: type, onClick, disabled, form, ref. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ### Calendar
 
 A month grid to pick a day or a range, such as a delivery day or a stay. One Tab stop: arrow keys move by day and week, Home and End go to the ends of the week, Page Up and Page Down change the month, with Shift the year. Each day is read in full, Thursday, 19 November 2026. Today is underlined and picked days are filled, so neither depends on colour. Use it when seeing the month helps: open and closed days, a range, or the weekday. For a date people already know, such as a birthday, use the date field.
@@ -1881,6 +2300,18 @@ When to use something else:
 | `onChange` | `(date: string) => void` |  | Calendar: called with the picked day. |
 | `RangeCalendar value \| onChange` | `DateRange` |  | { start, end }, reported once both ends are picked. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ### Card
 
 A surface that groups related content: a summary, a list, a form. Cards are flat, with a thin border; shadows are kept for things that float, like menus and dialogs.
@@ -1903,6 +2334,10 @@ When to use something else:
 | `level` | `2 \| 3 \| 4` | `3` | The heading level of the title. |
 | `padding` | `'md' \| 'lg'` | `'md'` | 1.5rem or 2rem inside the border. |
 | `...props` | `div props` |  | Every native div prop: id, aria-label, ref. |
+
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
 
 ### Checkbox
 
@@ -1930,6 +2365,11 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: checked, defaultChecked, onChange, name, ref. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ### Chip input
 
 A text field that collects several short values, such as toppings, email addresses or skills. Each value becomes a tag with its own named remove button. Screen readers hear each value being added and removed, and focus never falls off the field.
@@ -1955,6 +2395,14 @@ When to use something else:
 | `value \| defaultValue` | `string[]` |  | Controlled or starting tags. |
 | `onChange` | `(value: string[]) => void` |  | Called after each add and remove. |
 | `disabled` | `boolean` | `false` | No typing, no removing. |
+
+Keyboard and screen readers:
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
 
 ### Combobox
 
@@ -1984,6 +2432,13 @@ When to use something else:
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ### Command palette
 
 A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
@@ -2010,6 +2465,15 @@ When to use something else:
 | `open \| onOpenChange` | `boolean \| (open) => void` |  | Open or closed; Ctrl+K and Escape call onOpenChange. |
 | `onRun` | `(command: Command) => void` |  | The command to run, after the dialog has closed and focus is back. |
 
+Keyboard and screen readers:
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ### Context menu
 
 Actions that open where the reader right-clicks, long-presses, or presses Shift+F10 on the focused item. It is a shortcut: the same actions must also be somewhere visible, because touch and keyboard users rarely look for one.
@@ -2032,6 +2496,14 @@ When to use something else:
 | `onAction` | `(id: string) => void` |  | Called with the chosen action's id; the menu then closes. |
 | `disabled` | `boolean` | `false` | Right-click shows the browser menu instead. |
 | `children` | `ReactNode` |  | The area that opens the menu. Make it focusable. |
+
+Keyboard and screen readers:
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
 
 ### Data table
 
@@ -2059,6 +2531,12 @@ When to use something else:
 | `rowKey` | `keyof T \| (row) => Key` |  | Used as the React key of each row. |
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
 | `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
 
 ### Date picker
 
@@ -2089,6 +2567,12 @@ When to use something else:
 | `value \| defaultValue \| onChange` | `string \| DateRange \| null` |  | Controlled or starting value. Range mode takes two ISO dates. Language and order follow the nearest I18nProvider. |
 | `disabled \| name` | `boolean \| string` |  | With name, the date is submitted with a form. |
 
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ### Dialog
 
 A modal window for a task that needs the reader's full attention: a short form, details, terms. Focus moves into it and stays there, the page behind stops scrolling, and Escape, the close button or a click outside closes it.
@@ -2115,6 +2599,12 @@ When to use something else:
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
 | `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ### Divider
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
@@ -2135,6 +2625,10 @@ When to use something else:
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which way the line runs. |
 | `label` | `string` |  | Words in the middle of the line, read as text. Horizontal only. |
 | `...props` | `div props` |  | Every native div prop. |
+
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
 
 ### Drawer
 
@@ -2158,6 +2652,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide; the full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, open, onOpenChange, actions, dismissable and closeLabel work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ### Empty state
 
 What a list, table or page shows while it has nothing in it. It says what will appear here, why it is empty now, and offers the one action that fills it.
@@ -2179,6 +2679,10 @@ When to use something else:
 | `level` | `2 \| 3 \| 4` | `3` | Heading level of the title, so it fits the page outline. |
 | `actions` | `ReactNode` |  | The action that fills the space. One, usually. |
 
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
+
 ### Fieldset
 
 A titled group of fields inside a longer form. Screen readers read the legend as they enter the group, so a field called Street is heard as part of the delivery address.
@@ -2199,6 +2703,10 @@ When to use something else:
 | `legend` | `string` |  | Required. The group title. |
 | `hint` | `string` |  | A line under the legend, read with the group. |
 | `...props` | `fieldset props` |  | Every native fieldset prop, such as disabled. |
+
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
 
 ### File field
 
@@ -2222,6 +2730,12 @@ When to use something else:
 | `hint, error, dropText` | `string` |  | As in Angular. |
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: accept, multiple, name, onChange, ref. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
 
 ### Icons
 
@@ -2251,6 +2765,10 @@ When to use something else:
 | `suffix` | `string` |  | Text after the value, such as "kg" or ".com". |
 | `label` | `string` |  | Required. Every other Text field option works too: see Text field. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ### Keyboard key
 
 A key to press, on the native kbd element, so screen readers and search engines know it is a key. For a shortcut write one key per element, with the joining + as plain text.
@@ -2270,6 +2788,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `children` | `ReactNode` |  | The key name. |
 | `...props` | `kbd props` |  | Every native kbd prop. |
+
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
 
 ### Language switcher
 
@@ -2293,6 +2815,13 @@ When to use something else:
 | `onChange` | `(code: string) => void` |  | Required. Called with the chosen language's code. |
 | `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
+
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
 
 ### Menu
 
@@ -2319,6 +2848,15 @@ When to use something else:
 | `onAction` | `(id: string) => void` |  | Required. Called with the chosen action's id. |
 | `variant` | `ButtonVariant` | `'secondary'` | The button's look. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ### Meter
 
 A level inside a known range: storage used, a plan's limit, a score. It is not work in progress, that is Progress. The value is written next to the label, so the tone colour only repeats what the words say.
@@ -2344,6 +2882,10 @@ When to use something else:
 | `valueText` | `string` |  | The value in words, shown and read: "7.2 of 10 GB". Defaults to a percentage. |
 | `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the fill. You decide it from the value. |
 
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
+
 ### Navigation
 
 The app's main links, in a side bar. A named navigation landmark, links at least 44px tall, and the current page marked with a bar and bold text, not only a fill. On a phone, put the same links in a drawer.
@@ -2364,6 +2906,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the landmark. |
 | `...props` | `nav props` |  | Every native nav prop. |
+
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
 
 ### Number field
 
@@ -2391,6 +2937,14 @@ When to use something else:
 | `decrementLabel \| incrementLabel` | `string` | `Decrease \| Increase` | Names the buttons. Translate them. |
 | `value \| defaultValue \| onChange` | `number \| null` |  | Controlled or starting number. The locale is the nearest I18nProvider. |
 
+Keyboard and screen readers:
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
+
 ### Pagination
 
 Moves through long lists a page at a time. A named navigation landmark: each page button says its number, the current page is marked, and the line of shown rows is announced when it changes.
@@ -2413,6 +2967,12 @@ When to use something else:
 | `pageSize / onPageSizeChange` | `number / (size) => void` | `10` | Rows per page; a new size also calls onPageChange(1). |
 | `pageSizes` | `number[]` | `[]` | Offer these sizes in a picker. Empty: no picker. |
 | `labels` | `Partial<PaginationLabels>` |  | Translated texts: nav, previous, next, page(n), summary(first, last, total), pageSize. |
+
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
 
 ### Phone field
 
@@ -2438,6 +2998,14 @@ When to use something else:
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 | `value \| defaultValue \| onChange` | `string \| null` |  | Controlled or starting number, as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |
+
+Keyboard and screen readers:
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
 
 ### PIN input
 
@@ -2465,6 +3033,14 @@ When to use something else:
 | `onComplete` | `(code: string) => void` |  | Every box is filled. |
 | `name` | `string` |  | Submits the code as one value with a form. |
 
+Keyboard and screen readers:
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ### Popover
 
 A small panel next to its button, for a few details or a couple of settings. It is not modal: focus moves into it, and Escape or a click outside closes it and puts focus back on the button. Screen readers name it after the button. For a task that needs the reader's full attention, use a dialog.
@@ -2486,6 +3062,12 @@ When to use something else:
 | `trigger` | `ReactElement` |  | Required. One pressable element, such as Button. |
 | `children` | `ReactNode` |  | The content of the panel. |
 | `placement` | `'bottom start' \| 'top start' \| …` | `'bottom start'` | Where it opens, if there is room. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
 
 ### Progress
 
@@ -2510,6 +3092,11 @@ When to use something else:
 | `max` | `number` | `100` | The value when done. |
 | `valueText` | `string` |  | The amount in words; defaults to a percentage. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ### Property list
 
 Label and value pairs, such as the details of one order. Built on the native description list, so screen readers say how many items there are and pair each label with its value.
@@ -2530,6 +3117,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `layout` | `'columns' \| 'stacked'` | `'columns'` | On PropertyList. Stacked puts each label above its value at any width. |
 | `term` | `string` |  | On Property, required: the label. Its children are the value. |
+
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
 
 ### Radio group
 
@@ -2559,6 +3150,12 @@ When to use something else:
 | `name` | `string` |  | Form field name; made up when left out. |
 | `testId` | `string` |  | data-testid prefix; each radio gets -<index>. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Native radios in a named group, so the group name is read first.
+
 ### Rating
 
 Stars out of five, to pick a score or to show one. Picking uses real radio buttons, so Tab reaches the stars, arrow keys move between them and a screen reader says 3 stars, 3 of 5. Filled stars are solid and empty ones an outline, so the shape tells them apart, not only colour.
@@ -2585,6 +3182,13 @@ When to use something else:
 | `onChange` | `(value: number) => void` |  | Called with the picked number of stars. |
 | `name \| disabled` | `string \| boolean` |  | Passed to the radios and the fieldset. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ### Search field
 
 A box to search with: a magnifier, the text, and a × to clear it. Escape clears it too, and Enter searches. A real search input, so phones show a Search key and screen readers say search.
@@ -2610,6 +3214,12 @@ When to use something else:
 | `onSearch` | `(value: string) => void` |  | Enter was pressed. |
 | `disabled \| name` | `boolean \| string` |  | Passed to the input. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ### Segmented control
 
 One choice from two to five short options, side by side: a view, a period, a size. Radio buttons underneath, so Tab reaches the group and the arrow keys move the choice. The chosen one is lifted onto a tile with an edge, not just coloured.
@@ -2634,6 +3244,12 @@ When to use something else:
 | `block` | `boolean` | `false` | Fills the width, segments sharing it. |
 | `value \| defaultValue \| onChange` | `string` |  | Controlled or starting choice. |
 | `disabled \| name` | `boolean \| string` |  | Passed to the radios. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
 
 ### Select
 
@@ -2663,6 +3279,15 @@ When to use something else:
 | `name` | `string` |  | Field name, so the value is sent with a native form. |
 | `testId` | `string` |  | data-testid on the button; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
+
 ### Skeleton
 
 Grey shapes where content is loading, so the page does not jump when it arrives. Screen readers skip the shapes: mark the area busy and say it is loading with a spinner or a status message. With reduced motion the shapes stop pulsing.
@@ -2682,6 +3307,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `shape` | `'text' \| 'circle' \| 'block'` | `'text'` | Lines, an avatar, or an image or card. |
 | `lines` | `number` | `1` | Lines of text; the last one is shorter. |
+
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
 
 ### Slider
 
@@ -2709,6 +3339,13 @@ When to use something else:
 | `value \| defaultValue` | `number` |  | Controlled or starting value. |
 | `...props` | `input props` |  | Every native input prop: onChange, name, disabled, ref. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ### Spinner
 
 Shows that something is loading and says what, in words, to screen readers. Keep it for waits of more than a second. With reduced motion it stops turning and stays as a faint ring.
@@ -2729,6 +3366,11 @@ When to use something else:
 | `label` | `string` | `'Loading'` | What is loading, translated. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label. |
+
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
 
 ### Stat
 
@@ -2753,6 +3395,10 @@ When to use something else:
 | `trend` | `'up' \| 'down' \| 'flat'` |  | The arrow beside the change. |
 | `tone` | `'positive' \| 'negative' \| 'neutral'` | `'neutral'` | Green, red or grey for the change. Set it by meaning, not by direction. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ### Status dot
 
 A small coloured dot before the word for a live state: online, busy, offline. The word is always there and carries the meaning; the dot lets the eye scan a long list.
@@ -2772,6 +3418,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `tone` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the dot. The words still say the status. |
 | `children` | `ReactNode` |  | The word for the status. |
+
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
 
 ### Stepper
 
@@ -2802,6 +3452,12 @@ When to use something else:
 | `onBlocked` | `(index: number) => void` |  | Linear only: Next or Finish was pressed on this step while it is not completed. |
 | `onFinish` | `() => void` |  | Finish was pressed on the last step. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ### Switch
 
 An on or off setting that takes effect at once, with no save button. Screen readers say on and off, and the knob's side shows the state, so it never depends on colour. For a choice saved with a form, use a checkbox.
@@ -2824,6 +3480,11 @@ When to use something else:
 | `hint` | `string` |  | Help text under it, read with the switch. |
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: checked, defaultChecked, onChange, disabled, ref. |
+
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
 
 ### Tabs
 
@@ -2850,6 +3511,13 @@ When to use something else:
 | `onChange` | `(id: string) => void` |  | Called when another tab is chosen. |
 | `TabNav label` | `string` |  | Required. Names the navigation; put links with className="ui-tab" inside, the current one aria-current="page". |
 
+Keyboard and screen readers:
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ### Tag
 
 A label the user added or can take away, such as an active filter or a topic. For a status like Paid or Late, use a badge.
@@ -2870,6 +3538,11 @@ When to use something else:
 | `onRemove` | `() => void` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
 | `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
 | `...props` | `span props` |  | Every native span prop. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
 
 ### Text field
 
@@ -2899,6 +3572,11 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input, for tests. |
 | `...props` | `input props` |  | Every native input prop: value, defaultValue, onChange, name, autoComplete, disabled, ref. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ### Textarea
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
@@ -2921,6 +3599,10 @@ When to use something else:
 | `error` | `string` |  | The translated error. Marks the textarea invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the textarea, for tests. |
 | `...props` | `textarea props` | `rows: 3` | Every native textarea prop: value, onChange, rows, maxLength, name, ref. |
+
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
 
 ### Timeline
 
@@ -2946,6 +3628,10 @@ When to use something else:
 | `statusLabel` | `string` |  | Overrides the default status text, including for translation. |
 | `className` | `string` |  | Added to the ordered list. |
 
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
+
 ### Toast
 
 A short note after an action, such as Saved, at the bottom end of the screen. Screen readers hear it as it comes. It closes by itself after 6 seconds, but never while the pointer or focus is on it, and never when it holds an action, so nobody loses the Undo to a timer.
@@ -2969,6 +3655,12 @@ When to use something else:
 | `<ToastProvider>` | `component` |  | Once around the app. Takes label and closeLabel. |
 | `useToast().show(message, options?)` | `number` |  | As in Angular. |
 | `useToast().dismiss(id)` | `void` |  | Closes a toast. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
 
 ### Toggle
 
@@ -2995,6 +3687,11 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square, for an icon alone. Give it an aria-label. |
 | `...props` | `button props` |  | Every native button prop, such as disabled. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
+
 ### Toolbar
 
 A row of controls that counts as one stop for the Tab key. Inside it the arrow keys move from control to control, flipped in Arabic; Home and End jump to the ends. Tab again leaves it.
@@ -3016,6 +3713,14 @@ When to use something else:
 | `label` | `string` |  | Required. What the controls act on, for screen readers. |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which arrow keys move: left and right, or up and down. |
 | `<ToolbarSeparator>` | `component` |  | A line between groups of controls. |
+
+Keyboard and screen readers:
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
 
 ### Tooltip
 
@@ -3039,6 +3744,13 @@ When to use something else:
 | `children` | `ReactElement` |  | One focusable element, such as Button. |
 | `placement` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'top'` | Where it shows, if there is room. |
 
+Keyboard and screen readers:
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ### Tree
 
 Nested items that open and close, such as folders or menu categories. One Tab stop: the arrow keys move, Right opens a branch and Left closes it, typing a name jumps to it, and Enter or Space selects. For a site's page links, use navigation instead.
@@ -3061,6 +3773,16 @@ When to use something else:
 | `nodes` | `TreeNode[]` |  | Required. { id, label, children? }, nested as deep as needed. |
 | `defaultExpanded` | `string[]` |  | Ids of the branches open at the start. |
 | `selected \| onSelectedChange` | `string \| (id) => void` |  | Id of the selected item, and the change. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
 
 
 # Vue 3
@@ -3125,6 +3847,14 @@ When to use something else:
 | `lazy` | `boolean` | `false` | On AccordionItem: mounts the children when it opens. |
 | `keep` | `boolean` | `false` | On AccordionItem: keeps lazy children once mounted. Off, they unmount once closed. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ### Alert dialog
 
 A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes. Only its buttons answer: Escape and a click outside do nothing, because the reader has to choose. Focus starts on the safest button.
@@ -3152,6 +3882,12 @@ When to use something else:
 | `options` | `as in Angular` |  | title, message, tone and actions; confirmLabel, cancelLabel and danger for confirm. |
 | `<AlertDialog>` | `component` |  | The same dialog, controlled: open, the options, and onAction(value). |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ### Alert
 
 A message in the page, such as a problem with the whole form or a notice about the account. The title says what it is in words; the icon's shape and the colour repeat it. For a note after an action, use a toast; for a question that needs an answer, an alert dialog.
@@ -3176,6 +3912,10 @@ When to use something else:
 | `@dismiss` | `event` |  | Listening shows a close button; remove the alert when it fires. |
 | `closeLabel` | `string` | `'Dismiss'` | Its accessible name, translated. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ### App shell
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
@@ -3197,6 +3937,12 @@ When to use something else:
 | `mainId` | `string` | `main` | The id of the page area, for a "Skip to content" link. |
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `#brand \| #actions \| #sidebar` | `slot` |  | The header's name and controls, and the side bar's navigation. The default slot is the page. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
 
 ### Avatar group
 
@@ -3221,6 +3967,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of every avatar. |
 | `moreLabel` | `(count: number) => string` | `(n) => `${n} more`` | The spoken name of "+n". Translate it. |
 
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
+
 ### Avatar
 
 A person's photo, or their initials when there is no photo or it fails to load. Screen readers hear the person's name, never the file name.
@@ -3244,6 +3994,10 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 32, 40 or 56 pixels. |
 | `decorative` | `boolean` | `false` | Hides it from screen readers, for when the name is on screen next to it. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ### Badge
 
 A short status label, such as the state of an order. The words carry the meaning and the colour only repeats it, so every status reads the same without colour.
@@ -3263,6 +4017,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `variant` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | The colour. The text must say the status too. |
+
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
 
 ### Bottom sheet
 
@@ -3286,6 +4044,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Its width on a wide screen: 24, 32 or 48rem. The full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, open, onOpenChange, actions, dismissable and closeLabel work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the bottom, named by its title; the page behind stops scrolling.
+
 ### Breadcrumbs
 
 Where the page sits, as a trail of links back up. A named navigation landmark around an ordered list; the last item is the page itself, marked as current and not a link. The slashes are drawn, not read out.
@@ -3307,6 +4071,11 @@ When to use something else:
 | `label` | `string` | `'Breadcrumb'` | Names the landmark, translated. |
 | `default slot` | `slot` |  | One per step; the last holds aria-current="page". |
 
+Keyboard and screen readers:
+
+- A named navigation landmark around an ordered list; the last item is marked as the current page.
+- The slashes are drawn, not read out.
+
 ### Button group
 
 Buttons that belong together, joined into one bar. The group has a name, so a screen reader says what the buttons are for before it reads them.
@@ -3327,6 +4096,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. What the buttons do together, for screen readers. |
 | `#default` | `slot` |  | The buttons. |
+
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
 
 ### Button
 
@@ -3353,6 +4127,12 @@ When to use something else:
 | `#startIcon / endIcon` | `slot` |  | Icon before or after the label. The spinner replaces startIcon while loading. |
 | `iconOnly` | `boolean` | `false` | Square button for a lone icon. Add an aria-label. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ### Calendar
 
 A month grid to pick a day or a range, such as a delivery day or a stay. One Tab stop: arrow keys move by day and week, Home and End go to the ends of the week, Page Up and Page Down change the month, with Shift the year. Each day is read in full, Thursday, 19 November 2026. Today is underlined and picked days are filled, so neither depends on colour. Use it when seeing the month helps: open and closed days, a range, or the weekday. For a date people already know, such as a birthday, use the date field.
@@ -3377,6 +4157,18 @@ When to use something else:
 | `v-model` | `string \| null` |  | The chosen day as an ISO date ("2026-11-23"). |
 | `RangeCalendar v-model` | `DateRange` |  | { start, end } in ISO dates, set once both days are picked. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ### Card
 
 A surface that groups related content: a summary, a list, a form. Cards are flat, with a thin border; shadows are kept for things that float, like menus and dialogs.
@@ -3398,6 +4190,10 @@ When to use something else:
 | `title` | `string` |  | Optional heading at the top of the card. |
 | `level` | `2 \| 3 \| 4` | `3` | The heading level of the title. |
 | `padding` | `'md' \| 'lg'` | `'md'` | 1.5rem or 2rem inside the border. |
+
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
 
 ### Checkbox
 
@@ -3424,6 +4220,11 @@ When to use something else:
 | `indeterminate` | `boolean` | `false` | Shows a dash: some of the items under it are ticked. |
 | `testId` | `string` |  | data-testid on the input. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ### Chip input
 
 A text field that collects several short values, such as toppings, email addresses or skills. Each value becomes a tag with its own named remove button. Screen readers hear each value being added and removed, and focus never falls off the field.
@@ -3448,6 +4249,14 @@ When to use something else:
 | `addedLabel \| removedLabel` | `(chip: string) => string` | ``${c} added`` | What screen readers hear after a change. Translate them. |
 | `v-model` | `string[]` |  | The chips, in the order they were added. |
 | `disabled` | `boolean` | `false` | Locks the field and hides the × buttons. |
+
+Keyboard and screen readers:
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
 
 ### Combobox
 
@@ -3476,6 +4285,13 @@ When to use something else:
 | `name` | `string` |  | Sends the value with a native form. |
 | `testId` | `string` |  | data-testid on the input; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ### Command palette
 
 A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
@@ -3502,6 +4318,15 @@ When to use something else:
 | `v-model:open` | `boolean` |  | Required. Set to false by Escape, the backdrop or a run command. |
 | `@run` | `event` |  | Gets the chosen command, after the palette has closed. |
 
+Keyboard and screen readers:
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ### Context menu
 
 Actions that open where the reader right-clicks, long-presses, or presses Shift+F10 on the focused item. It is a shortcut: the same actions must also be somewhere visible, because touch and keyboard users rarely look for one.
@@ -3524,6 +4349,14 @@ When to use something else:
 | `@action` | `(id: string) => void` |  | The chosen action's id; the menu then closes. |
 | `disabled` | `boolean` | `false` | Right-click shows the browser menu instead. |
 | `#default` | `slot` |  | The area that opens the menu. Make it focusable. |
+
+Keyboard and screen readers:
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
 
 ### Data table
 
@@ -3552,6 +4385,12 @@ When to use something else:
 | `loading / loadingLabel` | `boolean / string` | `false / 'Loading'` | Marks the table busy and reads the label once. |
 | `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ### Date picker
 
 A date to type or pick, or a range of dates for a stay. Type dates in the reader's own order, or open the calendar beside them or with Alt + Down. Unlike the browser's own picker, this calendar can close off days, such as a shop's day off. For ordinary dates and times, the native fields below use the browser's localized pickers. Date values stay plain ISO dates.
@@ -3579,6 +4418,12 @@ When to use something else:
 | `v-model` | `string \| DateRange \| null` |  | An ISO date ("2026-11-23"), or { start, end } for a range; null while incomplete. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |
 
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ### Dialog
 
 A modal window for a task that needs the reader's full attention: a short form, details, terms. Focus moves into it and stays there, the page behind stops scrolling, and Escape, the close button or a click outside closes it.
@@ -3605,6 +4450,12 @@ When to use something else:
 | `dismissable` | `boolean` | `true` | false: only your own buttons close it. Escape and a click outside do nothing, and the close button is hidden. |
 | `closeLabel` | `string` | `'Close'` | Accessible name of the close button; pass the translated text. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ### Divider
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
@@ -3624,6 +4475,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which way the line runs. |
 | `label` | `string` |  | Words in the middle of the line, read as text. Horizontal only. |
+
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
 
 ### Drawer
 
@@ -3647,6 +4502,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 24, 32 or 48rem wide; the full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, open, onOpenChange, actions, dismissable and closeLabel work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ### Empty state
 
 What a list, table or page shows while it has nothing in it. It says what will appear here, why it is empty now, and offers the one action that fills it.
@@ -3668,6 +4529,10 @@ When to use something else:
 | `level` | `2 \| 3 \| 4` | `3` | Heading level of the title, so it fits the page outline. |
 | `#actions` | `slot` |  | The action that fills the space. One, usually. |
 
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
+
 ### Fieldset
 
 A titled group of fields inside a longer form. Screen readers read the legend as they enter the group, so a field called Street is heard as part of the delivery address.
@@ -3687,6 +4552,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `legend` | `string` |  | Required. The group title. |
 | `hint` | `string` |  | A line under the legend, read with the group. |
+
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
 
 ### File field
 
@@ -3709,6 +4578,12 @@ When to use something else:
 | `@files` | `event` |  | Called after a pick or a drop. |
 | `hint, error, dropText` | `string` |  | As in Angular. |
 | `testId` | `string` |  | data-testid on the input. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
 
 ### Icons
 
@@ -3738,6 +4613,10 @@ When to use something else:
 | `suffix` | `string` |  | Text after the value, such as "kg" or ".com". |
 | `label` | `string` |  | Required. Every other Text field option works too: see Text field. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ### Keyboard key
 
 A key to press, on the native kbd element, so screen readers and search engines know it is a key. For a shortcut write one key per element, with the joining + as plain text.
@@ -3756,6 +4635,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `#default` | `slot` |  | The key name. |
+
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
 
 ### Language switcher
 
@@ -3778,6 +4661,13 @@ When to use something else:
 | `v-model:current` | `string` |  | Required. The current language's code. |
 | `label` | `string` | `'Language'` | Three or more: read before the current name on the button. Translate it. |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The button's size. |
+
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
 
 ### Menu
 
@@ -3804,6 +4694,15 @@ When to use something else:
 | `@action` | `event` |  | Required. Called with the chosen action's id. |
 | `variant` | `ButtonVariant` | `'secondary'` | The button's look. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ### Meter
 
 A level inside a known range: storage used, a plan's limit, a score. It is not work in progress, that is Progress. The value is written next to the label, so the tone colour only repeats what the words say.
@@ -3829,6 +4728,10 @@ When to use something else:
 | `valueText` | `string` |  | The value in words, shown and read: "7.2 of 10 GB". Defaults to a percentage. |
 | `tone` | `'neutral' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the fill. You decide it from the value. |
 
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
+
 ### Navigation
 
 The app's main links, in a side bar. A named navigation landmark, links at least 44px tall, and the current page marked with a bar and bold text, not only a fill. On a phone, put the same links in a drawer.
@@ -3848,6 +4751,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `label` | `string` |  | Required. Names the landmark. |
+
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
 
 ### Number field
 
@@ -3875,6 +4782,14 @@ When to use something else:
 | `decrementLabel \| incrementLabel` | `string` | `Decrease \| Increase` | Names the buttons. Translate them. |
 | `v-model` | `number \| null` |  | The number, or null when the field is empty. |
 
+Keyboard and screen readers:
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
+
 ### Pagination
 
 Moves through long lists a page at a time. A named navigation landmark: each page button says its number, the current page is marked, and the line of shown rows is announced when it changes.
@@ -3897,6 +4812,12 @@ When to use something else:
 | `v-model:pageSize` | `number` | `10` | Rows per page; a new size also calls onPageChange(1). |
 | `pageSizes` | `number[]` | `[]` | Offer these sizes in a picker. Empty: no picker. |
 | `labels` | `Partial<PaginationLabels>` |  | Translated texts: nav, previous, next, page(n), summary(first, last, total), pageSize. |
+
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
 
 ### Phone field
 
@@ -3924,6 +4845,14 @@ When to use something else:
 | `modelValue \| update:modelValue` | `string \| null` |  | The v-model number, controlled as E.164. |
 | `name` | `string` |  | Submits the whole number with a form. |
 
+Keyboard and screen readers:
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
+
 ### PIN input
 
 A code sent by text message, one box per digit. Typing moves along, Backspace goes back, and pasting the code fills every box. On a phone the keyboard offers the code from the message, and the boxes take it all at once.
@@ -3950,6 +4879,14 @@ When to use something else:
 | `@complete` | `event` |  | Fires with the code once every box is filled. |
 | `name` | `string` |  | Adds a hidden input with the whole code, for forms. |
 
+Keyboard and screen readers:
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ### Popover
 
 A small panel next to its button, for a few details or a couple of settings. It is not modal: focus moves into it, and Escape or a click outside closes it and puts focus back on the button. Screen readers name it after the button. For a task that needs the reader's full attention, use a dialog.
@@ -3971,6 +4908,12 @@ When to use something else:
 | `#trigger` | `slot` |  | Required. One pressable element, such as Button. |
 | `default slot` | `slot` |  | The content of the panel. |
 | `placement` | `'bottom start' \| 'top start' \| …` | `'bottom start'` | Where it opens, if there is room. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
 
 ### Progress
 
@@ -3995,6 +4938,11 @@ When to use something else:
 | `max` | `number` | `100` | The value when done. |
 | `valueText` | `string` |  | The amount in words; defaults to a percentage. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ### Property list
 
 Label and value pairs, such as the details of one order. Built on the native description list, so screen readers say how many items there are and pair each label with its value.
@@ -4015,6 +4963,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `layout` | `'columns' \| 'stacked'` | `'columns'` | On PropertyList. Stacked puts each label above its value at any width. |
 | `term` | `string` |  | On Property, required: the label. Its slot is the value. |
+
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
 
 ### Radio group
 
@@ -4044,6 +4996,12 @@ When to use something else:
 | `name` | `string` |  | Form field name; made up when left out. |
 | `testId` | `string` |  | data-testid prefix; each radio gets -<index>. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Native radios in a named group, so the group name is read first.
+
 ### Rating
 
 Stars out of five, to pick a score or to show one. Picking uses real radio buttons, so Tab reaches the stars, arrow keys move between them and a screen reader says 3 stars, 3 of 5. Filled stars are solid and empty ones an outline, so the shape tells them apart, not only colour.
@@ -4070,6 +5028,13 @@ When to use something else:
 | `name \| disabled` | `string \| boolean` |  | For the radios underneath. |
 | `@blur` | `event` |  | When focus leaves a star. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
+
 ### Search field
 
 A box to search with: a magnifier, the text, and a × to clear it. Escape clears it too, and Enter searches. A real search input, so phones show a Search key and screen readers say search.
@@ -4095,6 +5060,12 @@ When to use something else:
 | `@search` | `event` |  | Enter was pressed; gets the text. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ### Segmented control
 
 One choice from two to five short options, side by side: a view, a period, a size. Radio buttons underneath, so Tab reaches the group and the arrow keys move the choice. The chosen one is lifted onto a tile with an edge, not just coloured.
@@ -4119,6 +5090,12 @@ When to use something else:
 | `block` | `boolean` | `false` | Fills the width, segments sharing it. |
 | `v-model` | `string` |  | The picked value. |
 | `disabled \| name` | `boolean \| string` |  | For the radios underneath. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
 
 ### Select
 
@@ -4147,6 +5124,15 @@ When to use something else:
 | `name` | `string` |  | Field name, so the value is sent with a native form. |
 | `testId` | `string` |  | data-testid on the button; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
+
 ### Skeleton
 
 Grey shapes where content is loading, so the page does not jump when it arrives. Screen readers skip the shapes: mark the area busy and say it is loading with a spinner or a status message. With reduced motion the shapes stop pulsing.
@@ -4166,6 +5152,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `shape` | `'text' \| 'circle' \| 'block'` | `'text'` | Lines, an avatar, or an image or card. |
 | `lines` | `number` | `1` | Lines of text; the last one is shorter. |
+
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
 
 ### Slider
 
@@ -4192,6 +5183,13 @@ When to use something else:
 | `hint` | `string` |  | Help under the slider, read after the label. |
 | `v-model` | `number` |  | The value. Starts at min without a binding. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ### Spinner
 
 Shows that something is loading and says what, in words, to screen readers. Keep it for waits of more than a second. With reduced motion it stops turning and stays as a faint ring.
@@ -4212,6 +5210,11 @@ When to use something else:
 | `label` | `string` | `'Loading'` | What is loading, translated. |
 | `showLabel` | `boolean` | `false` | Shows the label next to it too. |
 | `size` | `'md' \| 'lg'` | `'md'` | lg: a big spinner over its label. |
+
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
 
 ### Stat
 
@@ -4236,6 +5239,10 @@ When to use something else:
 | `trend` | `'up' \| 'down' \| 'flat'` |  | The arrow beside the change. |
 | `tone` | `'positive' \| 'negative' \| 'neutral'` | `'neutral'` | Green, red or grey for the change. Set it by meaning, not by direction. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ### Status dot
 
 A small coloured dot before the word for a live state: online, busy, offline. The word is always there and carries the meaning; the dot lets the eye scan a long list.
@@ -4255,6 +5262,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `tone` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | Colour of the dot. The words still say the status. |
 | `#default` | `slot` |  | The word for the status. |
+
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
 
 ### Stepper
 
@@ -4285,6 +5296,12 @@ When to use something else:
 | `@blocked` | `event` |  | Linear only: Next or Finish was pressed on a step that is not completed. |
 | `@finish` | `event` |  | Finish was pressed on the last step. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ### Switch
 
 An on or off setting that takes effect at once, with no save button. Screen readers say on and off, and the knob's side shows the state, so it never depends on colour. For a choice saved with a form, use a checkbox.
@@ -4306,6 +5323,11 @@ When to use something else:
 | `label` | `string` |  | Required. The setting it turns on. |
 | `hint` | `string` |  | Help text under it, read with the switch. |
 | `testId` | `string` |  | data-testid on the input. |
+
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
 
 ### Tabs
 
@@ -4331,6 +5353,13 @@ When to use something else:
 | `v-model:selected` | `string` |  | The chosen tab's id. |
 | `TabNav label` | `string` |  | Required. Names the navigation; put links with className="ui-tab" inside, the current one aria-current="page". |
 
+Keyboard and screen readers:
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ### Tag
 
 A label the user added or can take away, such as an active filter or a topic. For a status like Paid or Late, use a badge.
@@ -4350,6 +5379,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `@remove` | `event` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
 | `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
 
 ### Text field
 
@@ -4378,6 +5412,11 @@ When to use something else:
 | `error` | `string` |  | The translated error. Marks the input invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ### Textarea
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
@@ -4399,6 +5438,10 @@ When to use something else:
 | `hint` | `string` |  | Help text under the textarea, read with it. |
 | `error` | `string` |  | The translated error. Marks the textarea invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the textarea, for tests. |
+
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
 
 ### Timeline
 
@@ -4422,6 +5465,10 @@ When to use something else:
 | `TimelineItem` | `{ title, date, dateTime?, actor?, description?, status?, statusLabel? }` |  | Event details. dateTime is a machine-readable value for the semantic time element. |
 | `TimelineItem.status` | `'approved' \| 'pending' \| 'rejected'` |  | Adds a status icon and tone label to the event. |
 | `TimelineItem.statusLabel` | `string` |  | Overrides the default status text, including for translation. |
+
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
 
 ### Toast
 
@@ -4447,6 +5494,12 @@ When to use something else:
 | `useToast().show(message, options?)` | `number` |  | Shows a toast and returns its id. options: tone, title, duration (ms, 0 keeps it), action { label, run }. |
 | `useToast().dismiss(id)` | `void` |  | Removes a toast early. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ### Toggle
 
 A button that stays pressed until it is pressed again. The label stays the same; screen readers hear 'pressed' or 'not pressed', and the look changes in fill and border, not colour alone.
@@ -4470,6 +5523,11 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square, for an icon alone. Give it an aria-label. |
 | `disabled` | `boolean` | `false` | Cannot be pressed. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
+
 ### Toolbar
 
 A row of controls that counts as one stop for the Tab key. Inside it the arrow keys move from control to control, flipped in Arabic; Home and End jump to the ends. Tab again leaves it.
@@ -4491,6 +5549,14 @@ When to use something else:
 | `label` | `string` |  | Required. What the controls act on, for screen readers. |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which arrow keys move: left and right, or up and down. |
 | `<ToolbarSeparator>` | `component` |  | A line between groups of controls. |
+
+Keyboard and screen readers:
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
 
 ### Tooltip
 
@@ -4514,6 +5580,13 @@ When to use something else:
 | `default slot` | `slot` |  | One focusable element, such as Button. |
 | `placement` | `'top' \| 'bottom' \| 'start' \| 'end'` | `'top'` | Where it shows, if there is room. |
 
+Keyboard and screen readers:
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ### Tree
 
 Nested items that open and close, such as folders or menu categories. One Tab stop: the arrow keys move, Right opens a branch and Left closes it, typing a name jumps to it, and Enter or Space selects. For a site's page links, use navigation instead.
@@ -4536,6 +5609,16 @@ When to use something else:
 | `nodes` | `TreeNode[]` |  | Required. { id, label, children? }, nested as deep as needed. |
 | `defaultExpanded` | `string[]` |  | Ids of the branches open at first. |
 | `v-model:selected` | `string` |  | The selected node's id. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
 
 
 # Plain HTML and CSS
@@ -4593,6 +5676,16 @@ When to use something else:
 | `ui-accordion__heading, __description` | `class` |  | Inside the summary: the heading text, and a quieter line. |
 | `ui-accordion__content` | `class` |  | Around the content. It grows and shrinks; without script, Safari closes it at once. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ### Alert dialog
 
 A short message that needs an answer before the reader goes on: confirm a delete, keep or discard changes. Only its buttons answer: Escape and a click outside do nothing, because the reader has to choose. Focus starts on the safest button.
@@ -4617,6 +5710,12 @@ When to use something else:
 | `ui-dialog--alert` | `class` |  | Centres the icon, heading and actions. |
 | `ui-dialog__icon--info \| --success \| --warning \| --danger` | `class` |  | The tone icon, with aria-hidden="true". |
 | `autofocus` | `attribute` |  | On the safest button, so focus starts there. |
+
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
 
 ### Alert
 
@@ -4646,6 +5745,10 @@ When to use something else:
 | `ui-alert--success \| --warning \| --danger` | `class` |  | The tone. |
 | `ui-alert__icon, __body, __title, __actions, __close` | `class` |  | The parts. Hide the icon from screen readers. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ### App shell
 
 The frame every screen of an app sits in: a header across the top, the main links in a side bar, the page beside them. When the shell is narrower than 64rem the side bar folds behind a menu button and opens over the page. Escape, the shade, or following a link closes it again.
@@ -4673,6 +5776,14 @@ When to use something else:
 | `ui-shell__header \| __body \| __sidebar \| __main` | `class` |  | Its parts. |
 | `--ui-shell-header \| --ui-shell-sidebar` | `token` | `4rem \| 16rem` | Header height and side bar width. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
+
 ### Avatar group
 
 Several people in a small space: the first few avatars overlap and a '+3' stands for the rest. The group has a name, every avatar is still named, and '+3' is read as '3 more'.
@@ -4692,6 +5803,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-avatar-group` | `class` |  | Overlaps the .ui-avatar children. Add role="group" and aria-label. |
 | `ui-avatar-group__more` | `class` |  | On the "+n" avatar. Give it an aria-label such as "2 more". |
+
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
 
 ### Avatar
 
@@ -4716,6 +5831,10 @@ When to use something else:
 | `--ui-avatar-size` | `custom property` | `2.5rem` | Any other size; the initials scale with it. |
 | `img alt=""` | `child` |  | The photo. Its alt stays empty: the avatar itself carries the name. Swap to initials on its error event. |
 
+Keyboard and screen readers:
+
+- Screen readers hear the person’s name, never the file name.
+
 ### Badge
 
 A short status label, such as the state of an order. The words carry the meaning and the colour only repeats it, so every status reads the same without colour.
@@ -4736,6 +5855,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-badge` | `class` |  | Required. On its own it is the neutral badge. |
 | `ui-badge--info \| --success \| --warning \| --danger` | `class` |  | The colour. Use one at most. |
+
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
 
 ### Bottom sheet
 
@@ -4759,6 +5882,12 @@ When to use something else:
 | `dialog.ui-dialog.ui-dialog--sheet` | `element + class` |  | Open it with showModal(), never show(), so focus is trapped and the page is inert. |
 | `ui-dialog--sm \| --lg` | `class` |  | Its width on a wide screen: 24 or 48rem; 32rem without it. |
 | `everything else` | `` |  | The same markup and classes as the dialog. |
+
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the bottom, named by its title; the page behind stops scrolling.
 
 ### Breadcrumbs
 
@@ -4786,6 +5915,11 @@ When to use something else:
 | `ui-breadcrumbs` | `class` |  | On a nav with aria-label, around an ol. |
 | `aria-current="page"` | `attribute` |  | On the last item, which is not a link. |
 
+Keyboard and screen readers:
+
+- A named navigation landmark around an ordered list; the last item is marked as the current page.
+- The slashes are drawn, not read out.
+
 ### Button group
 
 Buttons that belong together, joined into one bar. The group has a name, so a screen reader says what the buttons are for before it reads them.
@@ -4805,6 +5939,11 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `ui-button-group` | `class` |  | Joins the .ui-button children. Add role="group" and an aria-label. |
+
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
 
 ### Button
 
@@ -4831,6 +5970,12 @@ When to use something else:
 | `ui-button--icon, ui-button__icon` | `class` |  | Square icon-only button; wrapper span (aria-hidden) for an icon beside a label. |
 | `aria-busy="true" + disabled` | `attribute` |  | Loading state; add a span.ui-spinner with aria-hidden="true" before the label. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ### Calendar
 
 A month grid to pick a day or a range, such as a delivery day or a stay. One Tab stop: arrow keys move by day and week, Home and End go to the ends of the week, Page Up and Page Down change the month, with Shift the year. Each day is read in full, Thursday, 19 November 2026. Today is underlined and picked days are filled, so neither depends on colour. Use it when seeing the month helps: open and closed days, a range, or the weekday. For a date people already know, such as a birthday, use the date field.
@@ -4854,6 +5999,20 @@ When to use something else:
 | `ui-calendar__day` | `class` |  | One button per day, inside a gridcell. |
 | `--today \| --selected \| --in-range \| --disabled \| --outside` | `modifier` |  | Underlined today, filled pick, range middle, struck through, hidden day of another month. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ### Card
 
 A surface that groups related content: a summary, a list, a form. Cards are flat, with a thin border; shadows are kept for things that float, like menus and dialogs.
@@ -4875,6 +6034,10 @@ When to use something else:
 | `ui-card` | `class` |  | Required. Stacks its children with a 1rem gap. |
 | `ui-card--lg` | `class` |  | More padding. |
 | `ui-card__title` | `class` |  | On the heading (h2 to h4, to fit the page). |
+
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
 
 ### Checkbox
 
@@ -4900,6 +6063,11 @@ When to use something else:
 | `ui-check` | `class` |  | On the label that wraps the input and its text. |
 | `ui-field, ui-field--invalid` | `class` |  | A wrapper when there is a hint or an error; list their ids in aria-describedby. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ### Chip input
 
 A text field that collects several short values, such as toppings, email addresses or skills. Each value becomes a tag with its own named remove button. Screen readers hear each value being added and removed, and focus never falls off the field.
@@ -4921,6 +6089,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-chips` | `class` |  | The box that looks like a text field. |
 | `ui-chips__list \| __input` | `class` |  | The list of tags and the text field. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or ,: Add what is typed as a tag.
+- Backspace: In an empty field, move to the last tag’s remove button.
+- Enter or Space: On a remove button, remove that tag.
+- Each tag has its own remove button, named after its value.
+- Adding and removing are announced, and focus moves to the next tag or back to the field.
 
 ### Combobox
 
@@ -4949,6 +6127,15 @@ When to use something else:
 | `ui-listbox, ui-option, ui-option--active` | `class` |  | The list, as for the select. |
 | `ui-listbox__empty` | `class` |  | The "no matches" line, with role="status". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ### Command palette
 
 A search over the app's actions, in a dialog. Ctrl+K or ⌘K opens it from anywhere; typing filters, the arrow keys move and Enter runs. Screen readers hear how many commands match as you type. Keep a visible button for it too: a shortcut nobody knows about is no way in.
@@ -4971,6 +6158,17 @@ When to use something else:
 | `ui-command` | `class` |  | The field and list inside a .ui-dialog. |
 | `ui-command__list \| __empty \| __shortcut` | `class` |  | The list of .ui-option items, the no-match text, a key hint. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Ctrl + K or ⌘ + K: Open it from anywhere.
+- Up or Down: Move through the matching commands, wrapping round.
+- Enter: Run the highlighted command.
+- Escape: Close it.
+- How many commands match is announced as you type.
+- Keep a visible button for it too: a shortcut nobody knows about is no way in.
+
 ### Context menu
 
 Actions that open where the reader right-clicks, long-presses, or presses Shift+F10 on the focused item. It is a shortcut: the same actions must also be somewhere visible, because touch and keyboard users rarely look for one.
@@ -4991,6 +6189,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-menu` | `class` |  | The list, with role="menu". Opening, focus and keys are your script. |
 | `ui-menu__item` | `class` |  | One action, with role="menuitem". --danger for red text. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
 
 ### Data table
 
@@ -5022,6 +6230,14 @@ When to use something else:
 | `ui-table__cell--end \| --center` | `class` |  | Alignment, on the th and every td of the column. |
 | `ui-table__empty, ui-table__loading` | `class` |  | The empty row, and the loading overlay with a status message. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ### Date picker
 
 A date to type or pick, or a range of dates for a stay. Type dates in the reader's own order, or open the calendar beside them or with Alt + Down. Unlike the browser's own picker, this calendar can close off days, such as a shop's day off. For ordinary dates and times, the native fields below use the browser's localized pickers. Date values stay plain ISO dates.
@@ -5043,6 +6259,14 @@ When to use something else:
 | `input.ui-input` | `element + class` |  | With type="date", "time", "datetime-local" or "number", inside a ui-field. |
 | `ui-input-group` | `class` |  | The box around the date field and the calendar button. |
 | `ui-date-picker__popover` | `class` |  | With ui-popover, the panel that holds the calendar. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
 
 ### Dialog
 
@@ -5071,6 +6295,12 @@ When to use something else:
 | `ui-dialog__body` | `class` |  | The content; it scrolls when it is long. |
 | `form[method="dialog"] + ui-dialog__actions` | `element + class` |  | Buttons inside close the dialog and set returnValue to their value. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ### Divider
 
 A thin line between groups of content. Reach for space first: a divider is for when space alone does not show where one group ends.
@@ -5091,6 +6321,10 @@ When to use something else:
 | `ui-divider` | `class` |  | Required. On an hr it is a separator already; on a div add role="separator". |
 | `ui-divider--vertical` | `class` |  | Vertical. Add aria-orientation="vertical". |
 | `ui-divider--label` | `class` |  | Words in the middle. No separator role, so the words are read. |
+
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
 
 ### Drawer
 
@@ -5115,6 +6349,12 @@ When to use something else:
 | `ui-dialog--sm \| --lg` | `class` |  | 24 or 48rem wide; 32rem without it. |
 | `everything else` | `` |  | The same markup and classes as the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the side, named by its title; the page behind stops scrolling.
+
 ### Empty state
 
 What a list, table or page shows while it has nothing in it. It says what will appear here, why it is empty now, and offers the one action that fills it.
@@ -5135,6 +6375,10 @@ When to use something else:
 | `ui-empty-state` | `class` |  | Required. Centres its content. |
 | `ui-empty-state__title` | `class` |  | On the heading. |
 | `ui-empty-state__actions` | `class` |  | Around the buttons. |
+
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
 
 ### Fieldset
 
@@ -5159,6 +6403,10 @@ When to use something else:
 | `ui-fieldset` | `class` |  | On the fieldset; spaces the fields in it. |
 | `ui-fieldset__legend` | `class` |  | On its legend. |
 
+Keyboard and screen readers:
+
+- The legend is read when focus enters the group, so each field is heard as part of it.
+
 ### File field
 
 The browser's own file input, with a label, hint and error, in a zone that also takes files dropped on it. The native button and file names stay, so it works with the keyboard, screen readers and phone cameras as usual.
@@ -5179,6 +6427,12 @@ When to use something else:
 | `ui-dropzone` | `class` |  | The dashed zone around it. |
 | `ui-dropzone--over` | `class` |  | While a file is dragged over the zone. |
 | `ui-dropzone__text` | `class` |  | The line under the button. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
 
 ### Icons
 
@@ -5208,6 +6462,10 @@ When to use something else:
 | `ui-input-group__input` | `class` |  | The input. aria-describedby points at the addons so they are read. |
 | `ui-input-group__addon` | `class` |  | Text before the input; add --end for text after it. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ### Keyboard key
 
 A key to press, on the native kbd element, so screen readers and search engines know it is a key. For a shortcut write one key per element, with the joining + as plain text.
@@ -5226,6 +6484,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `ui-kbd` | `class` |  | On a kbd element: one per key. |
+
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
 
 ### Language switcher
 
@@ -5248,6 +6510,15 @@ When to use something else:
 | --- | --- | --- | --- |
 | `lang` | `attribute` |  | On each language name, with its own code. |
 | `ui-menu__item[aria-checked="true"]` | `selector` |  | The current language in a menu: bold, with a check mark. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Down: Open the list of languages.
+- Up or Down: Move through the languages.
+- Escape: Close it, and put focus back on the button.
+- Each language is named in itself and carries its lang, so it is read in the right voice.
 
 ### Menu
 
@@ -5278,6 +6549,17 @@ When to use something else:
 | `ui-menu__item--danger` | `class` |  | Red text, for a destructive action. |
 | `ui-menu__separator` | `class` |  | A line between groups, with role="separator". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ### Meter
 
 A level inside a known range: storage used, a plan's limit, a score. It is not work in progress, that is Progress. The value is written next to the label, so the tone colour only repeats what the words say.
@@ -5299,6 +6581,10 @@ When to use something else:
 | `ui-meter` | `class` |  | The wrapper. Tones: ui-meter--success, --warning, --danger. |
 | `ui-meter__bar` | `class` |  | The track: role="meter", aria-labelledby, aria-valuenow/min/max and aria-valuetext. |
 | `--ui-meter-value` | `CSS length` |  | On ui-meter__fill: how full, as a percentage. |
+
+Keyboard and screen readers:
+
+- The native meter, named by its label, with the value in words beside it.
 
 ### Navigation
 
@@ -5327,6 +6613,10 @@ When to use something else:
 | `ui-nav__title` | `class` |  | A group title; add ui-label for the mono caps. |
 | `aria-current="page"` | `attribute` |  | On the current page's link. |
 
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
+
 ### Number field
 
 A number with − and + either side. Type it, in Latin or Arabic digits, or step it with the buttons, the arrow keys, or Page Up and Down for ten steps. On leaving the field it stays inside its limits and is written in the reader's language.
@@ -5347,6 +6637,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-number-field` | `class` |  | On the field: centres the number between the buttons. |
 | `ui-input-group__button` | `class` |  | The − and + buttons, out of the Tab order. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
 
 ### Pagination
 
@@ -5371,6 +6671,12 @@ When to use something else:
 | `ui-pagination__step + aria-disabled` | `class + attribute` |  | Previous and next; at the ends use aria-disabled="true", not disabled. |
 | `ui-pagination__gap aria-hidden` | `class + attribute` |  | The "…" between page numbers. |
 
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
+
 ### Phone field
 
 A phone number with its country code. The number reads left to right in every language, Arabic digits are welcome, and the 0 people type before a mobile number out of habit is dropped. What the form gets is one international number, ready to send a text to.
@@ -5390,6 +6696,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-phone-field` | `class` |  | On the field: the box reads left to right. |
 | `ui-phone-field__country` | `class` |  | A country-picker trigger inside the box. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
 
 ### PIN input
 
@@ -5413,6 +6729,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-pin` | `class` |  | The row of boxes, a named group. Always left to right. |
 | `ui-pin__cell` | `class` |  | With ui-input, one box. placeholder=" " lets a filled box show darker. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
 
 ### Popover
 
@@ -5438,6 +6764,14 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-popover` | `class` |  | On the panel, with role="dialog" named by its button. |
 | `ui-popover__title` | `class` |  | A bold first line. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
 
 ### Progress
 
@@ -5467,6 +6801,11 @@ When to use something else:
 | `ui-progress__bar` | `class` |  | On the progress element, named with aria-labelledby. |
 | `ui-progress__label, __value` | `class` |  | The words above it; hide the amount from screen readers. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ### Property list
 
 Label and value pairs, such as the details of one order. Built on the native description list, so screen readers say how many items there are and pair each label with its value.
@@ -5487,6 +6826,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-property-list` | `class` |  | On a dl. Add --stacked for labels above values. |
 | `ui-property-list__item` | `class` |  | A div holding one dt and one dd. |
+
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
 
 ### Radio group
 
@@ -5517,6 +6860,12 @@ When to use something else:
 | `ui-choices--inline` | `class` |  | Puts them side by side. |
 | `ui-check` | `class` |  | On each label that wraps a radio. Give every radio the same name. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Native radios in a named group, so the group name is read first.
+
 ### Rating
 
 Stars out of five, to pick a score or to show one. Picking uses real radio buttons, so Tab reaches the stars, arrow keys move between them and a screen reader says 3 stars, 3 of 5. Filled stars are solid and empty ones an outline, so the shape tells them apart, not only colour.
@@ -5537,6 +6886,13 @@ When to use something else:
 | `ui-rating` | `class` |  | On the fieldset, or on the read-only span with role="img". |
 | `ui-rating__star` | `class` |  | One label per star, holding a hidden radio and its name. |
 | `ui-rating--readonly \| ui-rating__star--on` | `class` |  | Read-only score, and the stars it fills. |
+
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Real radio buttons, read as 3 stars, 3 of 5.
+- Filled stars are solid and empty ones an outline, so shape tells them apart.
 
 ### Search field
 
@@ -5561,6 +6917,12 @@ When to use something else:
 | `ui-input-group` | `class` |  | The box around the input, icon and button. Rings while the input has focus. |
 | `ui-input-group__addon \| __input \| __button` | `class` |  | The magnifier, the input and the × button. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ### Segmented control
 
 One choice from two to five short options, side by side: a view, a period, a size. Radio buttons underneath, so Tab reaches the group and the arrow keys move the choice. The chosen one is lifted onto a tile with an edge, not just coloured.
@@ -5583,6 +6945,12 @@ When to use something else:
 | `ui-segmented__option` | `class` |  | One label around a radio; the radio fills it, unseen. |
 | `ui-segmented--block` | `class` |  | Full width. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
+
 ### Select
 
 One choice from a list. Arrow keys, Home and End, and typing the first letters all move through the options; Escape and Tab close the list and return focus.
@@ -5603,6 +6971,17 @@ When to use something else:
 | --- | --- | --- | --- |
 | `select.ui-input` | `element + class` |  | A native select inside a ui-field, with a label as for the text field. |
 | `aria-invalid="true"` | `attribute` |  | With a ui-field__error message listed in aria-describedby. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
 
 ### Skeleton
 
@@ -5628,6 +7007,11 @@ When to use something else:
 | `ui-skeleton--text \| --circle \| --block` | `class` |  | The shape. |
 | `ui-skeleton__shape` | `class` |  | One grey shape; one per line of text. |
 
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
+
 ### Slider
 
 A value picked along a range, such as a price limit or a volume. It is the browser's own range input, so arrow keys, Page Up and Down, Home and End all move it, and the value is written beside the label. For an exact number, use a number field.
@@ -5648,6 +7032,13 @@ When to use something else:
 | `ui-slider` | `class` |  | On the range input. |
 | `--ui-slider-fill` | `custom property` | `0%` | How much of the track is filled, in WebKit browsers. Set it on input. |
 | `ui-slider__head \| __value` | `class` |  | The row with the label and the written value. |
+
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
 
 ### Spinner
 
@@ -5673,6 +7064,11 @@ When to use something else:
 | `ui-loading--lg` | `class` |  | The big one, over its label. |
 | `ui-spinner` | `class` |  | The ring; hide it from screen readers. |
 
+Keyboard and screen readers:
+
+- Says what is loading, in words, to screen readers.
+- With reduced motion it stops turning and stays as a faint ring.
+
 ### Stat
 
 One number with its label, and how it changed. The change is written out, with its sign or in words; the arrow and the colour only repeat it.
@@ -5694,6 +7090,10 @@ When to use something else:
 | `ui-stat__label \| __value \| __change` | `class` |  | The three lines. |
 | `ui-stat__change--positive \| --negative` | `class` |  | The colour of the change. Put aria-hidden on its arrow. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ### Status dot
 
 A small coloured dot before the word for a live state: online, busy, offline. The word is always there and carries the meaning; the dot lets the eye scan a long list.
@@ -5712,6 +7112,10 @@ When to use something else:
 | Name | Type | Default | What it does |
 | --- | --- | --- | --- |
 | `ui-status-dot` | `class` |  | On a span holding the word. Tones: --info, --success, --warning, --danger. |
+
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
 
 ### Stepper
 
@@ -5742,6 +7146,12 @@ When to use something else:
 | `ui-steps__marker \| __label` | `class` |  | The circle (aria-hidden) and the name. |
 | `ui-stepper__panel \| __actions` | `class` |  | One panel per step, hidden except the current one, with tabindex="-1" so focus can move to it; then the Back and Next row. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ### Switch
 
 An on or off setting that takes effect at once, with no save button. Screen readers say on and off, and the knob's side shows the state, so it never depends on colour. For a choice saved with a form, use a checkbox.
@@ -5764,6 +7174,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-switch` | `class` |  | On the label: the text, then the input. |
 | `ui-switch__input` | `class` |  | On an input type="checkbox" with role="switch". |
+
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
 
 ### Tabs
 
@@ -5797,6 +7212,15 @@ When to use something else:
 | `ui-tab` | `class` |  | On each button with role="tab" (aria-selected marks the chosen one), or each link (aria-current="page"). |
 | `ui-tabs__panel` | `class` |  | On each element with role="tabpanel". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ### Tag
 
 A label the user added or can take away, such as an active filter or a topic. For a status like Paid or Late, use a badge.
@@ -5816,6 +7240,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-tag` | `class` |  | Required. |
 | `ui-tag__remove` | `class` |  | The × button, 24 pixels square. Label it with aria-labelledby: its own aria-label, then the text. |
+
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
 
 ### Text field
 
@@ -5845,6 +7274,11 @@ When to use something else:
 | `ui-field__hint` | `class` |  | Help text; list its id in the input aria-describedby. |
 | `ui-field__error` | `class` |  | The error, with role="alert"; set aria-invalid="true" on the input and list the error id in aria-describedby. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ### Textarea
 
 The multi-line twin of the text field: the same label, hint and error, with room for a few lines. The reader can make it taller.
@@ -5867,6 +7301,10 @@ When to use something else:
 | `textarea.ui-input` | `element + class` |  | Inside a ui-field, with a label as for the text field. |
 | `ui-field__hint, ui-field__error` | `class` |  | As for the text field: list their ids in aria-describedby; set aria-invalid="true" with an error. |
 
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
+
 ### Timeline
 
 A chronological record of decisions and updates. Each event can show who acted, when it happened, and the outcome, so a case's approval history is easy to scan.
@@ -5888,6 +7326,10 @@ When to use something else:
 | `ui-timeline__item` | `class` |  | On each list item, in chronological order. |
 | `ui-timeline__marker--approved \| --pending \| --rejected` | `class` |  | Colors and styles the status marker. |
 | `ui-timeline__status--approved \| --pending \| --rejected` | `class` |  | Styles the visible status label. |
+
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
 
 ### Toast
 
@@ -5915,6 +7357,14 @@ When to use something else:
 | `ui-toast-region` | `class` |  | The list at the bottom end of the screen. |
 | `ui-toast` | `class` |  | On each ui-alert in it: shadow and entry motion. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ### Toggle
 
 A button that stays pressed until it is pressed again. The label stays the same; screen readers hear 'pressed' or 'not pressed', and the look changes in fill and border, not colour alone.
@@ -5935,6 +7385,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-toggle` | `class` |  | On a .ui-button--secondary button. Your script flips aria-pressed on click. |
 | `aria-pressed` | `"true" \| "false"` |  | Required. The state, read by screen readers and the CSS. |
+
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
 
 ### Toolbar
 
@@ -5957,6 +7412,16 @@ When to use something else:
 | `ui-toolbar` | `class` |  | With role="toolbar" and aria-label. The arrow keys are your script. |
 | `ui-toolbar__separator` | `class` |  | A line between groups. Add role="separator". |
 | `aria-orientation="vertical"` | `attribute` |  | Stacks the controls; up and down arrows move. |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
 
 ### Tooltip
 
@@ -5981,6 +7446,15 @@ When to use something else:
 | `ui-tooltip` | `class` |  | On the element with role="tooltip". |
 | `aria-describedby` | `attribute` |  | On the control, pointing at the tooltip's id. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ### Tree
 
 Nested items that open and close, such as folders or menu categories. One Tab stop: the arrow keys move, Right opens a branch and Left closes it, typing a name jumps to it, and Enter or Space selects. For a site's page links, use navigation instead.
@@ -6001,4 +7475,16 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-tree \| ui-tree__item` | `class` |  | The tree and each row. Set --ui-tree-level on a row to indent it. |
 | `ui-tree__item--selected \| --expanded` | `class` |  | Selected row; open branch (turns its chevron). |
+
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
 

@@ -24,6 +24,11 @@ When to use something else:
 | `valueText` | `string` |  | The amount in words; defaults to a percentage. |
 | `testId` | `string` |  | data-testid on the progress element. |
 
+Keyboard and screen readers:
+
+- The native progress bar, named by its label, with the amount in words beside it.
+- Without a value it shows a moving band: work is going on but its length is not known.
+
 ## Examples
 
 ### Known amount

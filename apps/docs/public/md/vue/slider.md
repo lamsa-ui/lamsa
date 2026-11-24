@@ -25,6 +25,13 @@ When to use something else:
 | `hint` | `string` |  | Help under the slider, read after the label. |
 | `v-model` | `number` |  | The value. Starts at min without a binding. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ## Examples
 
 ### With a unit

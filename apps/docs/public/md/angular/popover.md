@@ -21,6 +21,12 @@ When to use something else:
 | --- | --- | --- | --- |
 | `[uiPopoverTrigger]` | `TemplateRef` |  | Required, on the button: the content to show. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open it from its button; focus moves in.
+- Escape: Close it, and put focus back on the button.
+- Named after its button. It is not modal, so the page stays reachable.
+
 ## Examples
 
 ### Details

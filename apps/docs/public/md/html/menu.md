@@ -29,6 +29,17 @@ When to use something else:
 | `ui-menu__item--danger` | `class` |  | Red text, for a destructive action. |
 | `ui-menu__separator` | `class` |  | A line between groups, with role="separator". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ## Examples
 
 ### Row actions

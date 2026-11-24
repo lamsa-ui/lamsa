@@ -25,6 +25,12 @@ When to use something else:
 | `ui-dialog__icon--info \| --success \| --warning \| --danger` | `class` |  | The tone icon, with aria-hidden="true". |
 | `autofocus` | `attribute` |  | On the safest button, so focus starts there. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between its buttons; focus stays inside.
+- Escape and a click outside do nothing: only its buttons answer.
+- Focus starts on the safest button, and the title and message are read when it opens.
+
 ## Examples
 
 ### Confirm a destructive action

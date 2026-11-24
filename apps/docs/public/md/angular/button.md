@@ -26,6 +26,12 @@ When to use something else:
 | `[ui-button-start] / [ui-button-end]` | `content slot` |  | Put an icon before or after the label. Hidden while loading (start). |
 | `disabled` | `boolean` | `false` | Disables the button. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ## Examples
 
 ### Variants

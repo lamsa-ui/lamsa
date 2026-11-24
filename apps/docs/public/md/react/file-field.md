@@ -23,6 +23,12 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: accept, multiple, name, onChange, ref. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
+
 ## Examples
 
 ### One file

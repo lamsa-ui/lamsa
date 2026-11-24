@@ -28,6 +28,11 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input, for tests. |
 | `...props` | `input props` |  | Every native input prop: value, defaultValue, onChange, name, autoComplete, disabled, ref. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ## Examples
 
 ### With a hint

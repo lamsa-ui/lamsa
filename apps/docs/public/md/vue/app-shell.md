@@ -22,6 +22,12 @@ When to use something else:
 | `landmarks` | `boolean` | `true` | The header is the banner and the page the main landmark. Off inside a page that has them. |
 | `#brand \| #actions \| #sidebar` | `slot` |  | The header's name and controls, and the side bar's navigation. The default slot is the page. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On the menu button, open the side bar on a narrow screen.
+- Escape: Close the side bar.
+- The header, the side bar and the page are landmarks, so screen readers can jump between them.
+
 ## Examples
 
 ### An app

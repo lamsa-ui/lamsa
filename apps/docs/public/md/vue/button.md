@@ -25,6 +25,12 @@ When to use something else:
 | `#startIcon / endIcon` | `slot` |  | Icon before or after the label. The spinner replaces startIcon while loading. |
 | `iconOnly` | `boolean` | `false` | Square button for a lone icon. Add an aria-label. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ## Examples
 
 ### Variants

@@ -20,6 +20,11 @@ When to use something else:
 | `@remove` | `event` |  | Shows the × button and is called when it is pressed. Remove the tag and move focus on. |
 | `removeLabel` | `string` | `'Remove'` | The button's first word; the tag's text follows it. Translate it. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On the remove button, take the tag away.
+- The remove button is named after the tag, such as Remove Angular.
+
 ## Examples
 
 ### Labels

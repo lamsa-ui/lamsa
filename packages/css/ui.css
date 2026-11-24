@@ -538,6 +538,8 @@
 /* Field: label, control, hint, error */
 .ui-field {
   display: grid;
+  /* One column no wider than the field: with large text an input's own width must not push it out. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--ui-space-1-5);
   color: var(--ui-text);
 }
@@ -1415,6 +1417,7 @@ dialog.ui-dialog::backdrop {
  */
 .ui-dropzone {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: start;
   gap: var(--ui-space-2);
   padding: var(--ui-space-4);

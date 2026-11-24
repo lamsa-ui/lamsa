@@ -20,6 +20,10 @@ When to use something else:
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Which way the line runs. |
 | `label` | `string` |  | Words in the middle of the line, read as text. Horizontal only. |
 
+Keyboard and screen readers:
+
+- Read as a separator; a divider with words in the middle is read as those words instead.
+
 ## Examples
 
 ### Between sections

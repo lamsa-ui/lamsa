@@ -29,6 +29,12 @@ When to use something else:
 | `ui-step label` | `string` |  | Required. The step's name; its content goes inside. |
 | `ui-step completed` | `boolean` | `true` | Whether the step is filled in, such as its form being valid. A step before the current one shows a tick only when it is. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the step names, Back and Next.
+- Done steps are read as Done and the current one as the current step.
+- Focus moves to the new step’s content after each change.
+
 ## Examples
 
 ### Options

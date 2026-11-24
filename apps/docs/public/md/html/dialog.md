@@ -27,6 +27,12 @@ When to use something else:
 | `ui-dialog__body` | `class` |  | The content; it scrolls when it is long. |
 | `form[method="dialog"] + ui-dialog__actions` | `element + class` |  | Buttons inside close the dialog and set returnValue to their value. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- Named by its title; the page behind stops scrolling and cannot be reached.
+
 ## Examples
 
 ### A form in a dialog

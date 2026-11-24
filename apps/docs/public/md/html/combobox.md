@@ -27,6 +27,15 @@ When to use something else:
 | `ui-listbox, ui-option, ui-option--active` | `class` |  | The list, as for the select. |
 | `ui-listbox__empty` | `class` |  | The "no matches" line, with role="status". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Up or Down: Open the list and move through the matches, wrapping round.
+- Enter: Pick the highlighted match.
+- Escape: Close the list.
+- Focus stays in the field; the highlighted match is read as it moves.
+
 ## Examples
 
 ### Countries

@@ -23,6 +23,11 @@ When to use something else:
 | `ui-switch` | `class` |  | On the label: the text, then the input. |
 | `ui-switch__input` | `class` |  | On an input type="checkbox" with role="switch". |
 
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
+
 ## Examples
 
 ### Settings

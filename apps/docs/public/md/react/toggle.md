@@ -25,6 +25,11 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square, for an icon alone. Give it an aria-label. |
 | `...props` | `button props` |  | Every native button prop, such as disabled. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press it, or let it go.
+- Read as a toggle button, pressed or not pressed; the label never changes.
+
 ## Examples
 
 ### With a label

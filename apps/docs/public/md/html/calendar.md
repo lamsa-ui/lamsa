@@ -23,6 +23,20 @@ When to use something else:
 | `ui-calendar__day` | `class` |  | One button per day, inside a gridcell. |
 | `--today \| --selected \| --in-range \| --disabled \| --outside` | `modifier` |  | Underlined today, filled pick, range middle, struck through, hidden day of another month. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ## Examples
 
 ### Pick a day

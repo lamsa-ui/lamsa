@@ -27,6 +27,14 @@ When to use something else:
 | `decrementLabel \| incrementLabel` | `string` | `Decrease \| Increase` | Names the buttons. Translate them. |
 | `locale` | `string` | `LOCALE_ID` | Digits and separators: ar-EG writes Arabic digits. |
 
+Keyboard and screen readers:
+
+- Up or Down: Step up or down by one step.
+- Page Up or Page Down: Step by ten steps.
+- Home or End: Go to the lowest or highest value, when there is one.
+- Enter: Keep the value inside its limits and write it out.
+- Latin and Arabic digits are both taken; the − and + buttons are named.
+
 ## Examples
 
 ### A quantity

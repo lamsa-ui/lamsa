@@ -24,6 +24,14 @@ When to use something else:
 | `countryLabel` | `string` | `Country code` | Names the list for screen readers. Translate it. |
 | `hint \| error \| placeholder` | `string` |  | Help text, the translated error, an example. |
 
+Keyboard and screen readers:
+
+- Up or Down: On the country button, open the list of countries.
+- Up or Down or Home or End: In the list, move through the countries.
+- Enter or Space: Pick the country.
+- Escape or Tab: Close the list.
+- The country button is read with the country and its code; the number reads left to right in every language.
+
 ## Examples
 
 ### A mobile number

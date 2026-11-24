@@ -21,6 +21,10 @@ When to use something else:
 | `variant` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | The colour. The text must say the status too. |
 | `...props` | `span props` |  | Every native span prop: id, title, ref. |
 
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
+
 ## Examples
 
 ### Variants

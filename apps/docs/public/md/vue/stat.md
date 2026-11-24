@@ -23,6 +23,10 @@ When to use something else:
 | `trend` | `'up' \| 'down' \| 'flat'` |  | The arrow beside the change. |
 | `tone` | `'positive' \| 'negative' \| 'neutral'` | `'neutral'` | Green, red or grey for the change. Set it by meaning, not by direction. |
 
+Keyboard and screen readers:
+
+- The change is written out, with its sign or in words; the arrow and colour only repeat it.
+
 ## Examples
 
 ### A row of stats

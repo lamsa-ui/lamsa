@@ -23,6 +23,12 @@ When to use something else:
 | `pageSizes` | `number[]` | `[]` | Offer these sizes in a picker. Empty: no picker. |
 | `labels` | `Partial<PaginationLabels>` |  | Translated texts: nav, previous, next, page(n), summary(first, last, total), pageSize. |
 
+Keyboard and screen readers:
+
+- Tab: Move between the page buttons.
+- A named navigation landmark; each button says its page number, and the current page is marked.
+- The line of shown rows is announced when it changes.
+
 ## Examples
 
 ### Pages

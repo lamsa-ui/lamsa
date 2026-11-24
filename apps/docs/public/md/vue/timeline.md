@@ -23,6 +23,10 @@ When to use something else:
 | `TimelineItem.status` | `'approved' \| 'pending' \| 'rejected'` |  | Adds a status icon and tone label to the event. |
 | `TimelineItem.statusLabel` | `string` |  | Overrides the default status text, including for translation. |
 
+Keyboard and screen readers:
+
+- An ordered list, so screen readers say how many events there are; each date is a time element.
+
 ## Examples
 
 ### Case approval history

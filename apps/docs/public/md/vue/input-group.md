@@ -22,6 +22,10 @@ When to use something else:
 | `suffix` | `string` |  | Text after the value, such as "kg" or ".com". |
 | `label` | `string` |  | Required. Every other Text field option works too: see Text field. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ## Examples
 
 ### Before and after

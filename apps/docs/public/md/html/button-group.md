@@ -20,6 +20,11 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-button-group` | `class` |  | Joins the .ui-button children. Add role="group" and an aria-label. |
 
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
+
 ## Examples
 
 ### Actions on one thing

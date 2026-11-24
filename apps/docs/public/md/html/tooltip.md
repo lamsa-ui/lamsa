@@ -23,6 +23,15 @@ When to use something else:
 | `ui-tooltip` | `class` |  | On the element with role="tooltip". |
 | `aria-describedby` | `attribute` |  | On the control, pointing at the tooltip's id. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ## Examples
 
 ### On icon buttons

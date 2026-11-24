@@ -27,6 +27,18 @@ When to use something else:
 | `locale` | `string` | `LOCALE_ID` | Month and weekday names, digits and the first day of the week. |
 | `previousLabel \| nextLabel` | `string` | `'Previous month' \| 'Next month'` | The arrow buttons’ names. Translate them. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the grid, on the chosen or focused day.
+- Left or Right: Move by a day. Flipped in Arabic.
+- Up or Down: Move by a week.
+- Home or End: Go to the start or end of the week.
+- Page Up or Page Down: Go to the previous or next month.
+- Shift + Page Up or Shift + Page Down: Go to the previous or next year.
+- Enter or Space: Pick the day.
+- Each day is read in full, such as Thursday, 19 November 2026.
+- Today is underlined and picked days are filled, so neither depends on colour.
+
 ## Examples
 
 ### Pick a day

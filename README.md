@@ -38,7 +38,7 @@ Every value comes from the Lamsa palette:
 - **Type.** IBM Plex Sans and IBM Plex Sans Arabic for body text, Archivo Expanded and Alexandria for headlines, IBM Plex Mono for labels. The font files ship in the package (SIL Open Font License). Arabic is never letter-spaced.
 - **Light and dark.** Every colour is a `light-dark()` pair. The theme follows the user's system setting; set `data-theme="light"` or `"dark"` on any ancestor to force one.
 - **Measured contrast.** A unit test reads `ui.css` and fails if any text pair falls under 7:1, or any border or focus ring under 3:1, in either theme.
-- **Audited on every push.** CI runs axe (WCAG 2.2 AA and best practice) on every docs page, in both themes and every framework view, and with dialogs, alerts and lists open in the Angular and HTML views. Any problem fails the build.
+- **Audited on every push.** CI runs axe (WCAG 2.2 AA and best practice) on every docs page, in both themes and every framework view, and with dialogs, alerts and lists open in every framework. Every page is also loaded with text at 200% and with the WCAG text spacing override. Any problem fails the build.
 - **Right to left without a second stylesheet.** All spacing and alignment use logical properties, so `dir="rtl"` is enough.
 
 ## Use it

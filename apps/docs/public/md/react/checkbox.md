@@ -26,6 +26,11 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: checked, defaultChecked, onChange, name, ref. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ## Examples
 
 ### With a hint

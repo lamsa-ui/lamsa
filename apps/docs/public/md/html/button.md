@@ -25,6 +25,12 @@ When to use something else:
 | `ui-button--icon, ui-button__icon` | `class` |  | Square icon-only button; wrapper span (aria-hidden) for an icon beside a label. |
 | `aria-busy="true" + disabled` | `attribute` |  | Loading state; add a span.ui-spinner with aria-hidden="true" before the label. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ## Examples
 
 ### Variants

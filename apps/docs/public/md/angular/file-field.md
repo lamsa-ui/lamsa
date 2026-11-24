@@ -24,6 +24,12 @@ When to use something else:
 | `dropText` | `string` | `'Or drop a file here'` | The line under the button; pass the translated text. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open the file chooser.
+- The browser’s own file input: the button and the chosen file names are read as usual.
+- Dropping files is a shortcut; the button always works.
+
 ## Examples
 
 ### One file

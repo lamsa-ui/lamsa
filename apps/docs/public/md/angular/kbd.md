@@ -19,6 +19,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `kbd[ui-kbd]` | `selector` |  | On a native kbd element. The key name is its content. |
 
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
+
 ## Examples
 
 ### A shortcut

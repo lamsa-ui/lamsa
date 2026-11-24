@@ -21,6 +21,13 @@ When to use something else:
 | --- | --- | --- | --- |
 | `uiTooltip` | `string` |  | Required. The short label, on any focusable element. |
 
+Keyboard and screen readers:
+
+- Tab: Focus the control, and its tooltip shows.
+- Escape: Hide the tooltip.
+- Read as the control’s description; the pointer can move onto it.
+- Touch screens never show tooltips, so nothing needed may live only in one.
+
 ## Examples
 
 ### On icon buttons

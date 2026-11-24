@@ -20,6 +20,10 @@ When to use something else:
 | `ui-avatar-group` | `class` |  | Overlaps the .ui-avatar children. Add role="group" and aria-label. |
 | `ui-avatar-group__more` | `class` |  | On the "+n" avatar. Give it an aria-label such as "2 more". |
 
+Keyboard and screen readers:
+
+- The group has a name, every avatar is still named, and +3 is read as 3 more.
+
 ## Examples
 
 ### A team

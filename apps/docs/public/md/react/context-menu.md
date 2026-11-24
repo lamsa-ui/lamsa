@@ -23,6 +23,14 @@ When to use something else:
 | `disabled` | `boolean` | `false` | Right-click shows the browser menu instead. |
 | `children` | `ReactNode` |  | The area that opens the menu. Make it focusable. |
 
+Keyboard and screen readers:
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
+
 ## Examples
 
 ### On a file

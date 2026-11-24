@@ -23,6 +23,11 @@ When to use something else:
 | `testId` | `string` |  | data-testid on the input. |
 | `...props` | `input props` |  | Every native input prop: checked, defaultChecked, onChange, disabled, ref. |
 
+Keyboard and screen readers:
+
+- Space: Turn it on or off.
+- A checkbox with the switch role, so screen readers say on and off.
+
 ## Examples
 
 ### Settings

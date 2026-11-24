@@ -24,6 +24,11 @@ When to use something else:
 | `ui-skeleton--text \| --circle \| --block` | `class` |  | The shape. |
 | `ui-skeleton__shape` | `class` |  | One grey shape; one per line of text. |
 
+Keyboard and screen readers:
+
+- Screen readers skip the shapes: mark the area busy and say it is loading in words.
+- With reduced motion the shapes stop pulsing.
+
 ## Examples
 
 ### A loading card

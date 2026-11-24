@@ -33,6 +33,12 @@ When to use something else:
 | `emptyMessage` | `string` | `'No results'` | Shown when there are no rows; pass the translated text. |
 | `ng-template uiCell="key"` | `directive` |  | A custom cell for that column; let-row gives the row. |
 
+Keyboard and screen readers:
+
+- Enter or Space: On a column heading, sort by it.
+- A real table named by its caption, so the row and column of every cell are read.
+- The sorted column is marked, and the new order is announced.
+
 ## Examples
 
 ### Sorting, custom cells and pagination

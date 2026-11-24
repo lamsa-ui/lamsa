@@ -25,6 +25,11 @@ When to use something else:
 | `indeterminate` | `boolean` | `false` | Shows a dash: some of the items under it are ticked. |
 | `testId` | `string` |  | data-testid on the input, for tests. |
 
+Keyboard and screen readers:
+
+- Space: Tick or untick it.
+- The native checkbox, named by its label; the whole label is the hit area.
+
 ## Examples
 
 ### With a hint

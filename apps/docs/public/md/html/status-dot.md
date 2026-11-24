@@ -19,6 +19,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-status-dot` | `class` |  | On a span holding the word. Tones: --info, --success, --warning, --danger. |
 
+Keyboard and screen readers:
+
+- The word is always there and carries the meaning; the dot is not read.
+
 ## Examples
 
 ### Tones

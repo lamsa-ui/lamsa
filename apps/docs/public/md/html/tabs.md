@@ -32,6 +32,15 @@ When to use something else:
 | `ui-tab` | `class` |  | On each button with role="tab" (aria-selected marks the chosen one), or each link (aria-current="page"). |
 | `ui-tabs__panel` | `class` |  | On each element with role="tabpanel". |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the chosen tab, and Tab again moves into its panel.
+- Left or Right: Move to the previous or next tab and show it. Flipped in Arabic.
+- Home or End: Go to the first or last tab.
+- Read as tabs, with how many there are and which is chosen.
+
 ## Examples
 
 ### An order

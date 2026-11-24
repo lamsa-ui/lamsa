@@ -27,6 +27,15 @@ When to use something else:
 | `danger` | `boolean` | `false` | Red text, for an action that destroys something. |
 | `disabled` | `boolean` | `false` | Shown, but cannot be chosen. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Down: Open the menu from its button.
+- Up or Down: Move through the actions.
+- Letters: Jump to the action that starts with them.
+- Enter or Space: Run the action.
+- Escape: Close it, and put focus back on the button.
+- Read as a menu of items; the button says it opens a menu.
+
 ## Examples
 
 ### Row actions

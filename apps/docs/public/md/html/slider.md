@@ -21,6 +21,13 @@ When to use something else:
 | `--ui-slider-fill` | `custom property` | `0%` | How much of the track is filled, in WebKit browsers. Set it on input. |
 | `ui-slider__head \| __value` | `class` |  | The row with the label and the written value. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ## Examples
 
 ### With a unit

@@ -20,6 +20,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `variant` | `'neutral' \| 'info' \| 'success' \| 'warning' \| 'danger'` | `'neutral'` | The colour. The text must say the status too. |
 
+Keyboard and screen readers:
+
+- The words carry the status; the colour only repeats them.
+
 ## Examples
 
 ### Variants

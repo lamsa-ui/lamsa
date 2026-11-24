@@ -26,6 +26,13 @@ When to use something else:
 | `value \| defaultValue` | `number` |  | Controlled or starting value. |
 | `...props` | `input props` |  | Every native input prop: onChange, name, disabled, ref. |
 
+Keyboard and screen readers:
+
+- Left or Right or Up or Down: Move by one step.
+- Page Up or Page Down: Move by a bigger step.
+- Home or End: Go to the lowest or highest value.
+- The browser’s own range input, named by its label; the value is also written beside it.
+
 ## Examples
 
 ### With a unit

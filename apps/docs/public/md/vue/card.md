@@ -22,6 +22,10 @@ When to use something else:
 | `level` | `2 \| 3 \| 4` | `3` | The heading level of the title. |
 | `padding` | `'md' \| 'lg'` | `'md'` | 1.5rem or 2rem inside the border. |
 
+Keyboard and screen readers:
+
+- A card with a heading reads as its own part of the page; give it one when it stands alone.
+
 ## Examples
 
 ### With a title

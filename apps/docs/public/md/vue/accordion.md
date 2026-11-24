@@ -27,6 +27,14 @@ When to use something else:
 | `lazy` | `boolean` | `false` | On AccordionItem: mounts the children when it opens. |
 | `keep` | `boolean` | `false` | On AccordionItem: keeps lazy children once mounted. Off, they unmount once closed. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ## Examples
 
 ### Questions

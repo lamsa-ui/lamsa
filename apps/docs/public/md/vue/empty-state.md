@@ -21,6 +21,10 @@ When to use something else:
 | `level` | `2 \| 3 \| 4` | `3` | Heading level of the title, so it fits the page outline. |
 | `#actions` | `slot` |  | The action that fills the space. One, usually. |
 
+Keyboard and screen readers:
+
+- Its title is a heading, at the level you set so it fits the page outline.
+
 ## Examples
 
 ### First use

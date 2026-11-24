@@ -25,6 +25,12 @@ When to use something else:
 | `value \| defaultValue \| onChange` | `string` |  | Controlled or starting choice. |
 | `disabled \| name` | `boolean \| string` |  | Passed to the radios. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Radio buttons underneath; the chosen option is lifted onto a tile with an edge, not only coloured.
+
 ## Examples
 
 ### A period

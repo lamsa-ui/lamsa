@@ -21,6 +21,17 @@ When to use something else:
 | `select.ui-input` | `element + class` |  | A native select inside a ui-field, with a label as for the text field. |
 | `aria-invalid="true"` | `attribute` |  | With a ui-field__error message listed in aria-describedby. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
+
 ## Examples
 
 ### Basic

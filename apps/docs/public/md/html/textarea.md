@@ -22,6 +22,10 @@ When to use something else:
 | `textarea.ui-input` | `element + class` |  | Inside a ui-field, with a label as for the text field. |
 | `ui-field__hint, ui-field__error` | `class` |  | As for the text field: list their ids in aria-describedby; set aria-invalid="true" with an error. |
 
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
+
 ## Examples
 
 ### With a hint

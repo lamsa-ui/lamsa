@@ -19,6 +19,10 @@ When to use something else:
 | --- | --- | --- | --- |
 | `ui-kbd` | `class` |  | On a kbd element: one per key. |
 
+Keyboard and screen readers:
+
+- The native kbd element, so screen readers and search engines know it is a key.
+
 ## Examples
 
 ### A shortcut

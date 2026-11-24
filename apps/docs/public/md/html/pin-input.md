@@ -23,6 +23,16 @@ When to use something else:
 | `ui-pin` | `class` |  | The row of boxes, a named group. Always left to right. |
 | `ui-pin__cell` | `class` |  | With ui-input, one box. placeholder=" " lets a filled box show darker. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- A digit: Fill the box and move to the next one.
+- Backspace: In an empty box, go back to the one before.
+- Left or Right: Move to the box before or after.
+- Home or End: Go to the first or last box.
+- Pasting the code fills every box, and phones offer the code from the message.
+
 ## Examples
 
 ### A verification code

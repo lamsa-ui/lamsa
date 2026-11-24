@@ -26,6 +26,10 @@ When to use something else:
 | `(dismiss)` | `void` |  | The close button was pressed: remove the alert. |
 | `[ui-alert-actions]` | `slot` |  | An element holding buttons, under the message. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ## Examples
 
 ### Tones

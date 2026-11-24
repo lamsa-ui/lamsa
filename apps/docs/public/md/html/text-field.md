@@ -28,6 +28,11 @@ When to use something else:
 | `ui-field__hint` | `class` |  | Help text; list its id in the input aria-describedby. |
 | `ui-field__error` | `class` |  | The error, with role="alert"; set aria-invalid="true" on the input and list the error id in aria-describedby. |
 
+Keyboard and screen readers:
+
+- The label, hint and error are tied to the input, so all three are read.
+- An error is announced when it appears.
+
 ## Examples
 
 ### With a hint

@@ -26,6 +26,12 @@ When to use something else:
 | `iconOnly` | `boolean` | `false` | Square button for a lone icon. Add an aria-label. |
 | `...props` | `button props` |  | Every native button prop: type, onClick, disabled, form, ref. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Press the button.
+- A native button, so its role, focus and form submit come from the browser.
+- A button with only an icon needs a label in words for screen readers.
+
 ## Examples
 
 ### Variants

@@ -22,6 +22,10 @@ When to use something else:
 | `error` | `string` |  | The translated error. Marks the textarea invalid and announces the message. |
 | `testId` | `string` |  | data-testid on the textarea, for tests. |
 
+Keyboard and screen readers:
+
+- The same label, hint and error as the text field, all read with it.
+
 ## Examples
 
 ### With a hint

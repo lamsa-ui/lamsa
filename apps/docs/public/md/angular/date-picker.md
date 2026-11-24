@@ -33,6 +33,12 @@ When to use something else:
 | `locale` | `string` | `LOCALE_ID` | The calendar's month and day names. |
 | `previousLabel \| nextLabel` | `string` |  | The calendar's month buttons. Translate them. |
 
+Keyboard and screen readers:
+
+- Alt + Down: Open the calendar from the field.
+- Escape: Close the calendar, and put focus back on the field.
+- The fields take dates typed in the reader’s own order; the calendar keys are listed on the Calendar page.
+
 ## Examples
 
 ### A delivery day

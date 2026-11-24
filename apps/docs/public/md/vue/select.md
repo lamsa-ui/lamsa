@@ -27,6 +27,15 @@ When to use something else:
 | `name` | `string` |  | Field name, so the value is sent with a native form. |
 | `testId` | `string` |  | data-testid on the button; options get -option-<index>. |
 
+Keyboard and screen readers:
+
+- Enter or Space or Up or Down: Open the list.
+- Up or Down or Home or End: Move through the options.
+- Letters: Jump to the option that starts with them.
+- Enter or Space: Pick the option.
+- Escape or Tab: Close the list, and put focus back on the button.
+- Read as a list box, with the chosen option and the field’s label.
+
 ## Examples
 
 ### Basic

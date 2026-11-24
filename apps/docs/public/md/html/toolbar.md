@@ -22,6 +22,16 @@ When to use something else:
 | `ui-toolbar__separator` | `class` |  | A line between groups. Add role="separator". |
 | `aria-orientation="vertical"` | `attribute` |  | Stacks the controls; up and down arrows move. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Enter the toolbar, and Tab again leaves it.
+- Left or Right: Move to the previous or next control, wrapping round. Flipped in Arabic.
+- Up or Down: The same, in a vertical toolbar.
+- Home or End: Go to the first or last control.
+- Read as a toolbar with its name and orientation.
+
 ## Examples
 
 ### Editor actions

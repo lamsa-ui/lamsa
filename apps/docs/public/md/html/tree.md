@@ -21,6 +21,18 @@ When to use something else:
 | `ui-tree \| ui-tree__item` | `class` |  | The tree and each row. Set --ui-tree-level on a row to indent it. |
 | `ui-tree__item--selected \| --expanded` | `class` |  | Selected row; open branch (turns its chevron). |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the tree; it is one Tab stop.
+- Up or Down: Move to the previous or next item.
+- Right: Open a branch, or move into it.
+- Left: Close a branch, or move to its parent.
+- Letters: Jump to the item that starts with them.
+- Enter or Space: Select the item.
+- Read as a tree: each item says its level, whether it is open, and whether it is selected.
+
 ## Examples
 
 ### Menu categories

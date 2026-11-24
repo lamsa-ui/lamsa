@@ -21,6 +21,10 @@ When to use something else:
 | `layout` | `'columns' \| 'stacked'` | `'columns'` | On PropertyList. Stacked puts each label above its value at any width. |
 | `term` | `string` |  | On Property, required: the label. Its children are the value. |
 
+Keyboard and screen readers:
+
+- The native description list, so each label is paired with its value.
+
 ## Examples
 
 ### Order details

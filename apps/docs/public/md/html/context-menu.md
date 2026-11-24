@@ -21,6 +21,16 @@ When to use something else:
 | `ui-menu` | `class` |  | The list, with role="menu". Opening, focus and keys are your script. |
 | `ui-menu__item` | `class` |  | One action, with role="menuitem". --danger for red text. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Shift + F10 or Menu: Open the menu on the focused item.
+- Up or Down: Move through the actions.
+- Enter or Space: Run the action.
+- Escape: Close it.
+- It is a shortcut: the same actions must also be somewhere visible.
+
 ## Examples
 
 ### On a file

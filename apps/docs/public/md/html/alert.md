@@ -28,6 +28,10 @@ When to use something else:
 | `ui-alert--success \| --warning \| --danger` | `class` |  | The tone. |
 | `ui-alert__icon, __body, __title, __actions, __close` | `class` |  | The parts. Hide the icon from screen readers. |
 
+Keyboard and screen readers:
+
+- The title says what it is in words; the icon and the colour only repeat it.
+
 ## Examples
 
 ### Tones

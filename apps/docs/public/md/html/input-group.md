@@ -22,6 +22,10 @@ When to use something else:
 | `ui-input-group__input` | `class` |  | The input. aria-describedby points at the addons so they are read. |
 | `ui-input-group__addon` | `class` |  | Text before the input; add --end for text after it. |
 
+Keyboard and screen readers:
+
+- The text before or after the value is read with the field, such as Price, EGP, but is never part of the value.
+
 ## Examples
 
 ### Before and after

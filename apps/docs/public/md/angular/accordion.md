@@ -32,6 +32,14 @@ When to use something else:
 | `ng-template uiAccordionContent` | `directive` |  | Inside an item: content created when it opens. |
 | `keep` | `boolean` | `false` | On each item: keeps lazy content once shown. Off, it goes once closed and loads again on the next open. |
 
+Keyboard and screen readers:
+
+- Enter or Space: Open or close the section.
+- Up or Down: Move to the previous or next heading, wrapping round.
+- Home or End: Go to the first or last heading.
+- Native details elements: they open without script, and find in page opens the section that holds the match.
+- In plain HTML only the Up, Down, Home and End keys need script.
+
 ## Examples
 
 ### Questions

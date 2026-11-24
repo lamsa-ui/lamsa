@@ -21,6 +21,10 @@ When to use something else:
 | `label` | `string` |  | Required. Names the landmark. |
 | `...props` | `nav props` |  | Every native nav prop. |
 
+Keyboard and screen readers:
+
+- A named navigation landmark; the current page is marked for screen readers and with a bar and bold text.
+
 ## Examples
 
 ### A side bar

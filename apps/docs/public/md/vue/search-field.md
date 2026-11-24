@@ -25,6 +25,12 @@ When to use something else:
 | `@search` | `event` |  | Enter was pressed; gets the text. |
 | `disabled \| name` | `boolean \| string` |  | As on any input. |
 
+Keyboard and screen readers:
+
+- Enter: Search.
+- Escape: Clear the text.
+- A real search input, read as search; the clear button is named.
+
 ## Examples
 
 ### Search a list

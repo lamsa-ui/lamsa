@@ -21,6 +21,11 @@ When to use something else:
 | `label` | `string` |  | Required. What the buttons do together, for screen readers. |
 | `#default` | `slot` |  | The buttons. |
 
+Keyboard and screen readers:
+
+- Tab: Move from button to button.
+- A named group, read before its buttons.
+
 ## Examples
 
 ### Actions on one thing

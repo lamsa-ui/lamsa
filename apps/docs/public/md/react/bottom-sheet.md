@@ -22,6 +22,12 @@ When to use something else:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Its width on a wide screen: 24, 32 or 48rem. The full width on a phone. |
 | `everything else` | `Dialog API` |  | title, description, open, onOpenChange, actions, dismissable and closeLabel work as in the dialog. |
 
+Keyboard and screen readers:
+
+- Tab or Shift + Tab: Move between the controls inside; focus stays inside.
+- Escape: Close, and put focus back on the button that opened it.
+- A dialog docked to the bottom, named by its title; the page behind stops scrolling.
+
 ## Examples
 
 ### Order details

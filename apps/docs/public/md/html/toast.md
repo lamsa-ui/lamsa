@@ -26,6 +26,14 @@ When to use something else:
 | `ui-toast-region` | `class` |  | The list at the bottom end of the screen. |
 | `ui-toast` | `class` |  | On each ui-alert in it: shadow and entry motion. |
 
+Keyboard and screen readers:
+
+In plain HTML these keys come from your own script, following the matching WAI-ARIA pattern.
+
+- Tab: Reach the action or the close button inside a toast.
+- Toasts sit in a named live region, so each one is read as it comes.
+- The timer waits while the pointer or focus is on a toast, and never runs on one with an action.
+
 ## Examples
 
 ### Tones

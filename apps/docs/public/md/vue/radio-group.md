@@ -28,6 +28,12 @@ When to use something else:
 | `name` | `string` |  | Form field name; made up when left out. |
 | `testId` | `string` |  | data-testid prefix; each radio gets -<index>. |
 
+Keyboard and screen readers:
+
+- Tab: Reach the group, on the chosen option.
+- Arrow keys: Move the choice to the next or previous option.
+- Native radios in a named group, so the group name is read first.
+
 ## Examples
 
 ### One per line
