@@ -1226,10 +1226,6 @@ ol.doc-list {
     --spin: 360deg;
   }
 }
-.doc-ripple__hint {
-  margin: 0;
-  color: var(--ui-text-muted);
-}
 @media (prefers-reduced-motion: no-preference) {
   .doc-ripple__ring {
     animation: doc-ripple-run 7.2s linear infinite;

@@ -112,8 +112,7 @@ const PINS = (() => {
  * A pin board, the touch toy, standing for the one stylesheet, with the frameworks and the two
  * languages on orbits round it: press and hold anywhere on the bed and the pins rise in the shape
  * of the touch, then settle back slowly. A quick tap sends a wave through them. Drag to turn and
- * tilt the board; it glides on, then turns slowly. Decorative (aria-hidden); the line under it
- * says how to use it.
+ * tilt the board; it glides on, then turns slowly. Decorative (aria-hidden).
  */
 @Component({
   selector: 'app-home-pins',
@@ -178,9 +177,6 @@ const PINS = (() => {
           }
         </div>
       </div>
-      <p class="ui-body-sm doc-ripple__hint">
-        Press and hold the pins. Tap to send a wave, drag to turn the board.
-      </p>
     </div>
   `,
 })
