@@ -25,8 +25,8 @@ const TAP = 6;
 /** After a drag the scene rests this long before it turns on its own again, in ms. */
 const REST = 4000;
 /** The globe's radius and the height of its centre over the floor, in cqi. */
-const R = 24;
-const LIFT = 26;
+const R = 29;
+const LIFT = 31;
 /** Where the light comes from, as longitude and latitude in degrees: up and to the front left. */
 const SUN = { lon: 60, lat: 35 };
 
@@ -68,10 +68,10 @@ const ORBITS: {
   period: number;
   at: number;
 }[] = [
-  { fw: 'angular', r: 32, tilt: 72, yaw: 0, period: 26, at: 0 },
-  { fw: 'react', r: 36, tilt: 64, yaw: 55, period: 31, at: 120 },
-  { fw: 'vue', r: 40, tilt: 68, yaw: 110, period: 37, at: 220 },
-  { fw: 'html', r: 44, tilt: 60, yaw: 155, period: 43, at: 300 },
+  { fw: 'angular', r: 36, tilt: 72, yaw: 0, period: 26, at: 0 },
+  { fw: 'react', r: 40, tilt: 64, yaw: 55, period: 31, at: 120 },
+  { fw: 'vue', r: 44, tilt: 68, yaw: 110, period: 37, at: 220 },
+  { fw: 'html', r: 48, tilt: 60, yaw: 155, period: 43, at: 300 },
 ];
 
 /**
@@ -290,7 +290,9 @@ export class HomeGlobeComponent {
     const cq = r.width / 100;
     // Undo the tilt and the turn to find the point on the floor under the finger.
     const dx = (e.clientX - r.left - r.width / 2) / cq;
-    const dy = (e.clientY - r.top - r.height / 2) / cq / Math.cos(rad(this.rx));
+    // The floor sits 8cqi below the stage centre (translateY on .doc-ripple__world).
+    const dy =
+      ((e.clientY - r.top - r.height / 2) / cq - 8) / Math.cos(rad(this.rx));
     const a = -rad(this.rz);
     const clamp = (v: number) => Math.max(-48, Math.min(48, v));
     const x = clamp(dx * Math.cos(a) - dy * Math.sin(a));
