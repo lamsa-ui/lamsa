@@ -27,10 +27,16 @@ const REST = 4000;
 /** The globe's radius and the height of its centre over the floor, in cqi. */
 const R = 24;
 const LIFT = 26;
-/** Where the light comes from, as longitude and latitude in degrees: that half is day. */
-const SUN = { lon: -70, lat: 20 };
+/** Where the light comes from, as longitude and latitude in degrees: up and to the front left. */
+const SUN = { lon: 60, lat: 35 };
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
+/** The light's direction in the scene, in the same axes as the tiles (rotateZ of the +y axis). */
+const SUN_DIR = [
+  -Math.sin(rad(SUN.lon)) * Math.cos(rad(SUN.lat)),
+  Math.cos(rad(SUN.lon)) * Math.cos(rad(SUN.lat)),
+  Math.sin(rad(SUN.lat)),
+];
 
 /**
  * One tile per component, spread evenly over the globe (a Fibonacci sphere). Tiles on the sunny
@@ -53,75 +59,27 @@ const TILES = COMPONENTS.map((c, i, all) => {
   };
 });
 
-/**
- * What circles the globe: each framework on its own tilted ring and speed, and the two languages
- * on the floor. r and z in cqi, angles in degrees.
- */
+/** Each framework circles the globe on its own tilted ring and speed. r in cqi, angles in degrees. */
 const ORBITS: {
-  id: string;
+  fw: Framework;
   r: number;
-  z: number;
   tilt: number;
   yaw: number;
   period: number;
-  moons: { at: number; fw?: Framework; text?: string; lang?: string }[];
+  at: number;
 }[] = [
-  {
-    id: 'angular',
-    r: 32,
-    z: LIFT,
-    tilt: 72,
-    yaw: 0,
-    period: 26,
-    moons: [{ at: 0, fw: 'angular' }],
-  },
-  {
-    id: 'react',
-    r: 36,
-    z: LIFT,
-    tilt: 64,
-    yaw: 55,
-    period: 31,
-    moons: [{ at: 120, fw: 'react' }],
-  },
-  {
-    id: 'vue',
-    r: 40,
-    z: LIFT,
-    tilt: 68,
-    yaw: 110,
-    period: 37,
-    moons: [{ at: 220, fw: 'vue' }],
-  },
-  {
-    id: 'html',
-    r: 44,
-    z: LIFT,
-    tilt: 60,
-    yaw: 155,
-    period: 43,
-    moons: [{ at: 300, fw: 'html' }],
-  },
-  {
-    id: 'languages',
-    r: 48,
-    z: 1,
-    tilt: 0,
-    yaw: 0,
-    period: 60,
-    moons: [
-      { at: 0, text: 'ع', lang: 'ar' },
-      { at: 180, text: 'A', lang: 'en' },
-    ],
-  },
+  { fw: 'angular', r: 32, tilt: 72, yaw: 0, period: 26, at: 0 },
+  { fw: 'react', r: 36, tilt: 64, yaw: 55, period: 31, at: 120 },
+  { fw: 'vue', r: 40, tilt: 68, yaw: 110, period: 37, at: 220 },
+  { fw: 'html', r: 44, tilt: 60, yaw: 155, period: 43, at: 300 },
 ];
 
 /**
- * The library as a globe: every component is a tile on it, the light theme on its day side and
- * the dark theme on its night side; the frameworks circle it as moons and the two languages run
- * round the floor. Drag to turn and tilt it; it glides on, then turns slowly. Tap a tile to open
- * that component's page, or the floor to send a ripple. Decorative (aria-hidden): every page is
- * also in the side bar.
+ * The library as a globe: every component is a point of light on it, in the light theme on the
+ * day side and the dark theme on the night side, with smooth shading between; the frameworks
+ * circle it as moons. Hover a point to read its name. Drag to turn and tilt it; it glides on,
+ * then turns slowly. Tap a point to open that component's page, or the floor to send a ripple.
+ * Decorative (aria-hidden): every page is also in the side bar.
  */
 @Component({
   selector: 'app-home-globe',
@@ -137,6 +95,8 @@ const ORBITS: {
         (pointermove)="move($event)"
         (pointerup)="up($event)"
         (pointercancel)="up(null)"
+        (pointerover)="hover($event)"
+        (pointerout)="named.set(null)"
       >
         <div #world class="doc-ripple__world">
           <div class="doc-ripple__grid"></div>
@@ -151,28 +111,26 @@ const ORBITS: {
               [style.--y]="w.y"
             ></span>
           }
-          @for (o of orbits; track o.id) {
+          @for (o of orbits; track o.fw) {
             <div
               class="doc-orbit"
-              [class.doc-orbit--flat]="!o.tilt"
               [style.--r]="o.r"
-              [style.--z]="o.z"
+              [style.--z]="lift"
               [style.--tilt]="o.tilt + 'deg'"
               [style.--yaw]="o.yaw + 'deg'"
               [style.--period]="o.period + 's'"
             >
-              @for (m of o.moons; track m.at) {
-                <span class="doc-orbit__moon" [style.--at]="m.at + 'deg'">
-                  @if (m.fw; as fw) {
-                    <app-framework-icon [id]="fw" [where]="'orbit'" />
-                  } @else {
-                    <span [attr.lang]="m.lang">{{ m.text }}</span>
-                  }
-                </span>
-              }
+              <span class="doc-orbit__moon" [style.--at]="o.at + 'deg'">
+                <app-framework-icon [id]="o.fw" [where]="'orbit'" />
+              </span>
             </div>
           }
-          <div class="doc-globe" [style.--r]="radius" [style.--lift]="lift">
+          <div
+            #globe
+            class="doc-globe"
+            [style.--r]="radius"
+            [style.--lift]="lift"
+          >
             <span class="doc-globe__core"></span>
             @for (t of tiles; track t.path) {
               <span
@@ -181,11 +139,18 @@ const ORBITS: {
                 [attr.data-path]="t.path"
                 [style.--lat]="t.lat + 'deg'"
                 [style.--lon]="t.lon + 'deg'"
-                >{{ t.label }}</span
-              >
+              ></span>
             }
           </div>
         </div>
+        @if (named(); as n) {
+          <span
+            class="doc-globe__name"
+            [style.left.px]="n.x"
+            [style.top.px]="n.y"
+            >{{ n.label }}</span
+          >
+        }
       </div>
     </div>
   `,
@@ -198,10 +163,17 @@ export class HomeGlobeComponent {
   protected readonly lift = LIFT;
   protected readonly waves = signal<{ id: number; x: number; y: number }[]>([]);
   protected readonly dragging = signal(false);
+  /** The component under the pointer, and where its point is in the stage, in px. */
+  protected readonly named = signal<{
+    label: string;
+    x: number;
+    y: number;
+  } | null>(null);
 
   private readonly router = inject(Router);
   private readonly stage = viewChild.required<ElementRef<HTMLElement>>('stage');
   private readonly world = viewChild.required<ElementRef<HTMLElement>>('world');
+  private readonly globe = viewChild.required<ElementRef<HTMLElement>>('globe');
   private readonly still = matchMedia('(prefers-reduced-motion: reduce)');
 
   private rx = RX;
@@ -226,6 +198,18 @@ export class HomeGlobeComponent {
     destroy.onDestroy(() => cancelAnimationFrame(this.frame));
   }
 
+  protected hover(e: PointerEvent): void {
+    const tile = (e.target as Element).closest<HTMLElement>('[data-path]');
+    if (!tile || this.start) return;
+    const t = tile.getBoundingClientRect();
+    const s = this.stage().nativeElement.getBoundingClientRect();
+    this.named.set({
+      label: TILES.find((x) => x.path === tile.dataset['path'])?.label ?? '',
+      x: t.left + t.width / 2 - s.left,
+      y: t.top - s.top,
+    });
+  }
+
   protected down(e: PointerEvent): void {
     if (e.button !== 0) return;
     // Keep focus out of the decorative scene.
@@ -237,6 +221,7 @@ export class HomeGlobeComponent {
 
   protected move(e: PointerEvent): void {
     if (!this.start) return;
+    this.named.set(null);
     if (!this.moved) {
       if (Math.hypot(e.clientX - this.start.x, e.clientY - this.start.y) < TAP)
         return;
@@ -279,6 +264,17 @@ export class HomeGlobeComponent {
     const s = this.world().nativeElement.style;
     s.setProperty('--rx', `${this.rx.toFixed(2)}deg`);
     s.setProperty('--rz', `${this.rz.toFixed(2)}deg`);
+    // Where the light falls on the globe as you see it: the sun turned with the scene.
+    const [x, y, z] = SUN_DIR;
+    const [cz, sz, cx, sx] = [
+      Math.cos(rad(this.rz)),
+      Math.sin(rad(this.rz)),
+      Math.cos(rad(this.rx)),
+      Math.sin(rad(this.rx)),
+    ];
+    const g = this.globe().nativeElement.style;
+    g.setProperty('--sx', (x * cz - y * sz).toFixed(3));
+    g.setProperty('--sy', ((x * sz + y * cz) * cx - z * sx).toFixed(3));
   }
 
   /** A tap: a tile opens its page; anywhere else sends a ring out on the floor. */

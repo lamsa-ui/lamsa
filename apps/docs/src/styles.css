@@ -1111,60 +1111,77 @@ ol.doc-list {
     opacity: 0;
   }
 }
-/* The globe: one tile per component on a sphere of radius --r, centred --lift over the floor.
-   A tile on the day side carries data-theme="light", on the night side "dark". The core is a
-   disc that always faces you, so the gaps between tiles read as a solid world. */
+/* The globe: one point per component on a sphere of radius --r, centred --lift over the floor.
+   The body is a disc that always faces you, shaded from day (light theme) to night (dark theme)
+   around --sx/--sy, where the light falls as you see it (set by home-globe.component). A point on
+   the day side carries data-theme="light", on the night side "dark". */
 .doc-globe {
+  --sx: -0.5;
+  --sy: -0.4;
   transform-style: preserve-3d;
   transform: translateZ(calc(var(--lift) * 1cqi));
 }
 .doc-globe__core {
   position: absolute;
-  inline-size: calc(var(--r) * 1.9cqi);
-  block-size: calc(var(--r) * 1.9cqi);
-  margin: calc(var(--r) * -0.95cqi) 0 0 calc(var(--r) * -0.95cqi);
+  inline-size: calc(var(--r) * 2cqi);
+  block-size: calc(var(--r) * 2cqi);
+  margin: calc(var(--r) * -1cqi) 0 0 calc(var(--r) * -1cqi);
   border-radius: 50%;
   background: radial-gradient(
-    circle at 35% 30%,
-    color-mix(in oklab, var(--ui-primary) 18%, var(--ui-surface)),
-    color-mix(in oklab, var(--ui-primary) 45%, #0b1020)
+    circle at calc(50% + var(--sx) * 40%) calc(50% + var(--sy) * 40%),
+    #ffffff,
+    color-mix(in oklab, var(--ui-primary) 18%, #ffffff) 25%,
+    color-mix(in oklab, var(--ui-primary) 45%, #151b30) 60%,
+    #151b30 95%
   );
   transform: rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1));
 }
 .doc-globe__tile {
-  --out: 0;
+  --out: 0.2;
   position: absolute;
-  display: grid;
-  place-items: center;
-  inline-size: 11.5cqi;
-  block-size: 6.8cqi;
-  margin: -3.4cqi 0 0 -5.75cqi;
-  padding: 0.4cqi;
-  border: 0.2cqi solid var(--ui-border);
-  border-radius: 1cqi;
-  background: var(--ui-surface);
-  color: var(--ui-text);
-  font: var(--ui-body-sm);
-  font-size: 1.7cqi;
-  font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
+  inline-size: 1.8cqi;
+  block-size: 1.8cqi;
+  margin: -0.9cqi 0 0 -0.9cqi;
+  border-radius: 50%;
+  background: var(--ui-primary);
+  box-shadow: 0 0 1.4cqi color-mix(in oklab, var(--ui-primary) 70%, transparent);
   backface-visibility: hidden;
   cursor: pointer;
   transform: rotateZ(var(--lon)) rotateX(calc(var(--lat) - 90deg))
     translateZ(calc((var(--r) + var(--out)) * 1cqi));
 }
+/* A bigger target than the point itself. */
+.doc-globe__tile::before {
+  content: '';
+  position: absolute;
+  inset: -1.6cqi;
+  border-radius: 50%;
+}
+/* The name of the point under the pointer, flat over the scene so it always reads. */
+.doc-globe__name {
+  position: absolute;
+  translate: -50% calc(-100% - var(--ui-space-2));
+  padding: var(--ui-space-1) var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: var(--ui-shadow);
+  font: var(--ui-body-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
 .doc-globe__tile:hover {
-  --out: 2.5;
-  border-color: var(--ui-primary);
+  --out: 2;
 }
 @media (prefers-reduced-motion: no-preference) {
   .doc-globe__tile {
     transition: transform var(--ui-duration-fast) var(--ui-ease);
   }
 }
-/* Orbits round the globe: one per framework, each on its own tilt, and the two languages on the
-   floor. A moon runs round its ring by --spin and always turns its face to you. */
+/* Orbits round the globe: one per framework, each on its own tilt. A moon runs round its ring by
+   --spin and always turns its face to you. */
 @property --spin {
   syntax: '<angle>';
   inherits: false;
@@ -1181,9 +1198,6 @@ ol.doc-list {
   transform: translateZ(calc(var(--z) * 1cqi)) rotateZ(var(--yaw))
     rotateX(var(--tilt));
   pointer-events: none;
-}
-.doc-orbit--flat {
-  border-style: dashed;
 }
 .doc-orbit__moon {
   --a: calc(var(--at) + var(--spin));
