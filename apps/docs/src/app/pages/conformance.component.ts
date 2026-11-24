@@ -550,7 +550,7 @@ const RESULT_AR: Record<Level, string> = {
           </li>
         </ul>
         <p class="doc-muted">
-          Version 0.0.0, <time datetime="2026-11-24">24 November 2026</time>.
+          Reviewed on <time datetime="2026-11-24">24 November 2026</time>.
           {{ counts }}
         </p>
         <p>
