@@ -395,8 +395,8 @@
 .doc-main:focus {
   outline: none;
 }
-/* Small screens: one slim sticky bar (menu, mark, settings chip); the side bar is a drawer. */
-@media (max-width: 56rem) {
+/* Below 64rem (the header needs ~1000px for its pickers): one slim sticky bar (menu, mark, settings chip); the side bar is a drawer. */
+@media (width < 64rem) {
   :root {
     --doc-header-height: 3.75rem;
   }
